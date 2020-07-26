@@ -93,7 +93,8 @@ public class BattleSystem : MonoBehaviour
 
         for (int i = 0; i < enemyBattleStationLocations.Length; i++)
         {
-            Instantiate(enemyPrefab[i], enemyBattleStationLocations[i].position, Quaternion.identity);
+           // Instantiate(enemyPrefab[i], enemyBattleStationLocations[i].position, Quaternion.identity);
+           // GameObject enemyGO = enemyPrefab[i];
             GameObject enemyGO = Instantiate(enemyPrefab[i], enemyBattleStationLocations[i]);
             enemyUnit = enemyGO.GetComponent<Unit>();
         }
@@ -132,7 +133,7 @@ public class BattleSystem : MonoBehaviour
                 isDead = enemyUnit.TakeDamage(Starter.changeupDamage);
                 changeup = false;
             }
-            enemyHUD.SetHP(enemyUnit.currentHP);
+           // enemyHUD.SetHP(enemyUnit[].currentHP);
             dialogueText.text = "The attack is successful!";
             yield return new WaitForSeconds(2f);
 
@@ -179,7 +180,7 @@ public class BattleSystem : MonoBehaviour
                 isDead = enemyUnit.TakeDamage(MiddleReliever.changeupDamage);
                 changeup = false;
             }
-            enemyHUD.SetHP(enemyUnit.currentHP);
+          //  enemyHUD.SetHP(enemyUnit.currentHP);
             dialogueText.text = "The attack is successful!";
             yield return new WaitForSeconds(2f);
 
@@ -226,7 +227,7 @@ public class BattleSystem : MonoBehaviour
                 isDead = enemyUnit.TakeDamage(SetUp.changeupDamage);
                 changeup = false;
             }
-            enemyHUD.SetHP(enemyUnit.currentHP);
+           // enemyHUD.SetHP(enemyUnit.currentHP);
             dialogueText.text = "The attack is successful!";
             yield return new WaitForSeconds(2f);
 
@@ -273,7 +274,7 @@ public class BattleSystem : MonoBehaviour
                 isDead = enemyUnit.TakeDamage(Closer.changeupDamage);
                 changeup = false;
             }
-            enemyHUD.SetHP(enemyUnit.currentHP);
+          //  enemyHUD.SetHP(enemyUnit.currentHP);
             dialogueText.text = "The attack is successful!";
             yield return new WaitForSeconds(2f);
 

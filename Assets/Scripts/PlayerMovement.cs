@@ -15,7 +15,7 @@ public class PlayerMovement : MonoBehaviour
     bool interactActiveEnemy;
 
     public static bool canMove;
-
+    public GameObject ShatterBall;
     private void Start()
     {
         canMove = true;
@@ -44,11 +44,12 @@ public class PlayerMovement : MonoBehaviour
             }
             if (interactActiveEnemy && Input.GetKeyDown(KeyCode.Space))
             {
-                print("Load Battle");
                 PlayerLocationDontDestroy.playerX = transform.position.x;
                 PlayerLocationDontDestroy.playerY = transform.position.y;
                 PlayerLocationDontDestroy.playerZ = transform.position.z;
-                SceneManager.LoadScene("SampleScene");
+                //waiting for the shatter effect 
+                ShatterBall.SetActive(true);
+                StartCoroutine(Waiting());
             }
         }
     }
@@ -77,5 +78,11 @@ public class PlayerMovement : MonoBehaviour
         {
             interactActiveEnemy = false;
         }
+    }
+
+    IEnumerator Waiting()
+    {
+        yield return new WaitForSeconds(2f);
+        SceneManager.LoadScene("SampleScene");
     }
 }

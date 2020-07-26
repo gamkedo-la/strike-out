@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Unit : MonoBehaviour
 {
@@ -20,7 +21,7 @@ public class Unit : MonoBehaviour
     public int enemyDamage;
 
     public int maxHP;
-    public int currentHP;
+    public float currentHP;
 
     public int maxStamina;
     public int currentStamina;
@@ -33,12 +34,36 @@ public class Unit : MonoBehaviour
     public int minMoney;
     public int maxMoney;
 
+    public bool isEnemy;
+    public Slider HealthSlider;
+
+
+  /*  public void SetHUD(Unit unit)
+    {
+        HealthSlider.value = unit.currentHP / unit.maxHP;
+    }
+    */
     public void Start()
     {
+        if (isEnemy)
+        {
+            currentHP = maxHP;
+        }
+
         ExperienceToDistribute = Random.Range(minExperience, maxExperience);
         MoneyToDistribute = Random.Range(minMoney, maxMoney);
     }
 
+    void Update()
+    {
+        //  currentHP -= 5 * Time.deltaTime;
+        if (isEnemy)
+        {
+            print(this.currentHP + "/" + maxHP);
+            HealthSlider.value = currentHP / maxHP;
+        }
+    }
+    
     public bool TakeDamage(int dmg)
     {
         currentHP -= dmg;
