@@ -250,6 +250,17 @@ MonoBehaviour:
   SetUpEnergy: {fileID: 1009006315}
   CloserMorale: {fileID: 1602381351}
   CloserEnergy: {fileID: 216849933}
+  StM: {fileID: 84888886}
+  StE: {fileID: 784425140}
+  MM: {fileID: 434593182}
+  ME: {fileID: 1648218462}
+  SeM: {fileID: 2059704734}
+  SeE: {fileID: 1009006313}
+  CM: {fileID: 1602381349}
+  CE: {fileID: 216849931}
+  staminaBaseColor: {r: 0.9607844, g: 0, b: 0, a: 0}
+  energyBaseColor: {r: 0, g: 0.9607844, b: 0.9607844, a: 0}
+  downedColor: {r: 0.3490566, g: 0.3490566, b: 0.3490566, a: 0}
   StarterExpGain: {fileID: 1782645774}
   MRExpGain: {fileID: 795920328}
   SetUpExpGain: {fileID: 1884763286}
@@ -275,6 +286,11 @@ MonoBehaviour:
   - {fileID: 5438675491336898574, guid: 772c9e8e6d40d2e48a7247427386608b, type: 3}
   - {fileID: 5438675491336898574, guid: 772c9e8e6d40d2e48a7247427386608b, type: 3}
   dialogueText: {fileID: 978384022}
+  playerStations:
+  - {fileID: 1582617643}
+  - {fileID: 672578755}
+  - {fileID: 115290651}
+  - {fileID: 840313136}
 --- !u!4 &35255473
 Transform:
   m_ObjectHideFlags: 0
@@ -5412,7 +5428,7 @@ GameObject:
   - component: {fileID: 115290652}
   m_Layer: 0
   m_Name: SetUpBattleStation
-  m_TagString: Untagged
+  m_TagString: BattleStation
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13334,7 +13350,7 @@ GameObject:
   - component: {fileID: 672578756}
   m_Layer: 0
   m_Name: MidRelievBattleStation
-  m_TagString: Untagged
+  m_TagString: BattleStation
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14499,7 +14515,7 @@ GameObject:
   - component: {fileID: 840313137}
   m_Layer: 0
   m_Name: CloserBattleStation
-  m_TagString: Untagged
+  m_TagString: BattleStation
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17024,7 +17040,7 @@ GameObject:
   - component: {fileID: 1582617644}
   m_Layer: 0
   m_Name: StarterBattleStation
-  m_TagString: Untagged
+  m_TagString: BattleStation
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

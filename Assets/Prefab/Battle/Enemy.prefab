@@ -311,7 +311,7 @@ MonoBehaviour:
   sliderStamina: 0
   curveballStamina: 0
   changeupStamina: 0
-  enemyDamage: 5
+  enemyDamage: 50
   maxHP: 50
   currentHP: 50
   maxStamina: 30

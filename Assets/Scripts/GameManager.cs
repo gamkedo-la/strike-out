@@ -186,6 +186,26 @@ public class GameManager : MonoBehaviour
             gameStartingStats = true;
         }
 
+        if (StarterMorale == 0)
+        {
+            StarterMorale = 1;
+        }
+
+        if (MidRelivMorale == 0)
+        {
+            MidRelivMorale = 1;
+        }
+
+        if (SetUpMorale == 0)
+        {
+            SetUpMorale = 1;
+        }
+
+        if (CloserMorale == 0)
+        {
+            CloserMorale = 1;
+        }
+
         moneyUI.text = "$ " + Money.ToString("F0");
 
         Starter = GameObject.Find("StarterMorale").GetComponent<Slider>();

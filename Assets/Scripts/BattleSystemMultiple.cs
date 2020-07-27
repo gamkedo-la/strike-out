@@ -27,31 +27,34 @@ public class BattleSystemMultiple : MonoBehaviour
     public GameObject PlayerPitches;
     public GameObject ConfirmMenu;
     public GameObject EndingMenu;
-
+    //the player characters
     Unit Starter;
     Unit MiddleReliever;
     Unit SetUp;
     Unit Closer;
-
+    //slider in the bottom right
     public Slider StarterMorale, StarterEnergy;
     public Slider MiddleMorale, MiddleEnergy;
     public Slider SetUpMorale, SetUpEnergy;
     public Slider CloserMorale, CloserEnergy;
 
+    //Setting Color for being up versus downed
+    public Color staminaBaseColor, energyBaseColor, downedColor;
+    //End screen experience
     public Text StarterExpGain, MRExpGain, SetUpExpGain, CloserExpGain;
     public Text StartTotalExp, MRTotalExp, SetUpTotalExp, CloserTotalExp;
 
     public Text MoneyText;
-
+    //Particle systems for selection
     public GameObject enemySelectionParticle;
     public GameObject playerSelectionParticle;
-
+    //determining enemy selection
     public int enemyUnitSelected;
     public Transform[] enemyBattleStationLocations;
     public GameObject[] enemyPrefab;
 
     public Unit[] enemyUnit;
-
+    //text informing the player what is going on
     public Text dialogueText;
 
     //PlayerPitchChoice
@@ -62,6 +65,11 @@ public class BattleSystemMultiple : MonoBehaviour
 
     //Enemy
     bool isDead;
+    //determing player losing conditions
+    public GameObject[] playerStations;
+    int playerCount;
+    bool allPlayersDead;
+    bool starterDown, middleDown, setupDown, closerDown;
 
     //BattleHUD enemyHUD;
 
@@ -70,6 +78,12 @@ public class BattleSystemMultiple : MonoBehaviour
     private void Start()
     {
         state = BattleStateMultiple.START;
+
+        foreach (GameObject player in playerStations)
+        {
+            playerCount++;
+            print(playerCount);
+        }
 
         StarterMorale.value = (GameManager.StarterMorale / GameManager.StarterMoraleMax);
         MiddleMorale.value = (GameManager.MidRelivMorale / GameManager.MidRelivMoraleMax);
@@ -140,7 +154,16 @@ public class BattleSystemMultiple : MonoBehaviour
                 enemySelectionParticle.transform.position = enemyBattleStationLocations[enemyUnitSelected].transform.position;
             }
         }
+
+        if (playerCount == 0)
+        {
+            state = BattleStateMultiple.LOST;
+            allPlayersDead = true;
+            EndBattle();
+        }
     }
+
+
 
     public void ConfirmAttack()
     {
@@ -535,9 +558,10 @@ public class BattleSystemMultiple : MonoBehaviour
             yield return new WaitForSeconds(3f);
             if (isDead)
             {
-                //Come back to this, this is if everyone loses
-                state = BattleStateMultiple.LOST;
-                EndBattle();
+                starterDown = true;
+                playerCount--;
+                state = BattleStateMultiple.MIDDLE;
+                MiddleTurn();
             }
 
             else
@@ -555,9 +579,10 @@ public class BattleSystemMultiple : MonoBehaviour
             yield return new WaitForSeconds(1f);
             if (isDead)
             {
-                //Come back to this, this is if everyone loses
-                state = BattleStateMultiple.LOST;
-                EndBattle();
+                middleDown = true;
+                playerCount--;
+                state = BattleStateMultiple.SETUP;
+                SETUPTurn();
             }
 
             else
@@ -575,9 +600,10 @@ public class BattleSystemMultiple : MonoBehaviour
             yield return new WaitForSeconds(1f);
             if (isDead)
             {
-                //Come back to this, this is if everyone loses
-                state = BattleStateMultiple.LOST;
-                EndBattle();
+                setupDown = true;
+                playerCount--;
+                state = BattleStateMultiple.MIDDLE;
+                MiddleTurn();
             }
 
             else
@@ -595,9 +621,10 @@ public class BattleSystemMultiple : MonoBehaviour
             yield return new WaitForSeconds(1f);
             if (isDead)
             {
-                //Come back to this, this is if everyone loses
-                state = BattleStateMultiple.LOST;
-                EndBattle();
+                closerDown = true;
+                playerCount--;
+                state = BattleStateMultiple.MIDDLE;
+                MiddleTurn();
             }
 
             else
