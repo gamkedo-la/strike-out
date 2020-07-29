@@ -160,6 +160,8 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+       
+
         if (!gameStartingStats)
         {
             StarterMorale = 25;

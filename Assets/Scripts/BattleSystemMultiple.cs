@@ -50,8 +50,8 @@ public class BattleSystemMultiple : MonoBehaviour
     public GameObject playerSelectionParticle;
     //determining enemy selection
     public int enemyUnitSelected;
-    public Transform[] enemyBattleStationLocations;
-    public GameObject[] enemyPrefab;
+    public List<Transform> enemyBattleStationLocations;
+    public List<GameObject> enemyPrefab;
 
     public Unit[] enemyUnit;
     //text informing the player what is going on
@@ -67,23 +67,22 @@ public class BattleSystemMultiple : MonoBehaviour
     bool isDead;
     //determing player losing conditions
     public GameObject[] playerStations;
-    int playerCount;
+    bool starterDead, middleDead, setupDead, closerDead;
     bool allPlayersDead;
-    bool starterDown, middleDown, setupDown, closerDown;
 
-    //BattleHUD enemyHUD;
-
+    //Choosing which player to attack
+    int WhoToAttack;
     //
     bool enemySelect;
     private void Start()
     {
         state = BattleStateMultiple.START;
 
-        foreach (GameObject player in playerStations)
-        {
-            playerCount++;
-            print(playerCount);
-        }
+        starterDead = false;
+        middleDead = false;
+        setupDead = false;
+        closerDead = false;
+
 
         StarterMorale.value = (GameManager.StarterMorale / GameManager.StarterMoraleMax);
         MiddleMorale.value = (GameManager.MidRelivMorale / GameManager.MidRelivMoraleMax);
@@ -110,7 +109,7 @@ public class BattleSystemMultiple : MonoBehaviour
         SetUp = playerGO3.GetComponent<Unit>();
         Closer = playerGO4.GetComponent<Unit>();
 
-        for (int i = 0; i < enemyBattleStationLocations.Length; i++)
+        for (int i = 0; i < enemyBattleStationLocations.Count; i++)
         {
             // Instantiate(enemyPrefab[i], enemyBattleStationLocations[i].position, Quaternion.identity);
             // GameObject enemyGO = enemyPrefab[i];
@@ -126,6 +125,7 @@ public class BattleSystemMultiple : MonoBehaviour
 
     private void Update()
     {
+        print(enemyBattleStationLocations[enemyUnitSelected]);
         if ((state == BattleStateMultiple.STARTER || state == BattleStateMultiple.MIDDLE || state == BattleStateMultiple.SETUP || state == BattleStateMultiple.CLOSER) && enemySelect)
         {
             //SelectionProcess
@@ -139,23 +139,29 @@ public class BattleSystemMultiple : MonoBehaviour
                 }
                 if (enemyUnitSelected < 0)
                 {
-                    enemyUnitSelected = enemyBattleStationLocations.Length-1;
+                    enemyUnitSelected = enemyBattleStationLocations.Count-1;
                 }
 
                 enemySelectionParticle.transform.position = enemyBattleStationLocations[enemyUnitSelected].transform.position;
             }
             if (Input.GetKeyDown(KeyCode.D))
             {
-                if(enemyUnitSelected <= enemyBattleStationLocations.Length-1)
+                if(enemyUnitSelected <= enemyBattleStationLocations.Count-1)
                     enemyUnitSelected++;
-                if (enemyUnitSelected > enemyBattleStationLocations.Length-1)
+                if (enemyUnitSelected > enemyBattleStationLocations.Count-1)
                     enemyUnitSelected = 0;
 
                 enemySelectionParticle.transform.position = enemyBattleStationLocations[enemyUnitSelected].transform.position;
             }
         }
 
-        if (playerCount == 0)
+        if (enemyBattleStationLocations.Count == 0)
+        {
+            state = BattleStateMultiple.WON;
+            EndBattle();
+        }
+
+        if (starterDead && middleDead && setupDead && closerDead)
         {
             state = BattleStateMultiple.LOST;
             allPlayersDead = true;
@@ -357,7 +363,6 @@ public class BattleSystemMultiple : MonoBehaviour
             if (fastball)
             {
                 isDead = enemyUnit[enemyUnitSelected].TakeDamage(Starter.fastballDamage);
-                print(enemyUnit[enemyUnitSelected].currentHP);
                 fastball = false;
             }
             if (slider)
@@ -381,10 +386,13 @@ public class BattleSystemMultiple : MonoBehaviour
             //This checks to see if the Enemy is Dead or has HP remaining
             if (isDead)
             {
-                //End Battle
-                state = BattleStateMultiple.WON;
-                //Get items,transition out of battle
-                EndBattle();
+              /*  enemyBattleStationLocations.Remove(enemyBattleStationLocations[enemyUnitSelected]);
+                enemyPrefab.Remove(enemyPrefab[enemyUnitSelected]);
+                enemyPrefab[enemyUnitSelected].SetActive(false);
+
+
+                state = BattleStateMultiple.ENEMYTURN;
+                StartCoroutine(EnemyTurn1());*/
             }
 
             if (!isDead)
@@ -428,10 +436,12 @@ public class BattleSystemMultiple : MonoBehaviour
             //This checks to see if the Enemy is Dead or has HP remaining
             if (isDead)
             {
-                //End Battle
-                state = BattleStateMultiple.WON;
-                //Get items,transition out of battle
-                EndBattle();
+                /*enemyBattleStationLocations.Remove(enemyBattleStationLocations[enemyUnitSelected]);
+                enemyPrefab.Remove(enemyPrefab[enemyUnitSelected]);
+                enemyPrefab[enemyUnitSelected].SetActive(false);
+
+                state = BattleStateMultiple.ENEMYTURN;
+                StartCoroutine(EnemyTurn2());*/
             }
 
             if (!isDead)
@@ -476,10 +486,12 @@ public class BattleSystemMultiple : MonoBehaviour
             //This checks to see if the Enemy is Dead or has HP remaining
             if (isDead)
             {
-                //End Battle
-                state = BattleStateMultiple.WON;
-                //Get items,transition out of battle
-                EndBattle();
+                /*enemyBattleStationLocations.Remove(enemyBattleStationLocations[enemyUnitSelected]);
+                enemyPrefab.Remove(enemyPrefab[enemyUnitSelected]);
+                enemyPrefab[enemyUnitSelected].SetActive(false);
+
+                state = BattleStateMultiple.ENEMYTURN;
+                StartCoroutine(EnemyTurn3());*/
             }
 
             if (!isDead)
@@ -523,10 +535,12 @@ public class BattleSystemMultiple : MonoBehaviour
             //This checks to see if the Enemy is Dead or has HP remaining
             if (isDead)
             {
-                //End Battle
-                state = BattleStateMultiple.WON;
-                //Get items,transition out of battle
-                EndBattle();
+               /* enemyBattleStationLocations.Remove(enemyBattleStationLocations[enemyUnitSelected]);
+                enemyPrefab.Remove(enemyPrefab[enemyUnitSelected]);
+                enemyPrefab[enemyUnitSelected].SetActive(false);
+
+                state = BattleStateMultiple.STARTER;
+                StarterTurn();*/
             }
 
             if (!isDead)
@@ -542,14 +556,41 @@ public class BattleSystemMultiple : MonoBehaviour
     #region Enemy Attack
     IEnumerator EnemyTurn1()
     {
+        if (enemyUnit[enemyUnitSelected].currentHP <= 0)
+        {
+            //Skipping Turn to go to pitcher
+            MiddleTurn();
+        }
+        if (starterDead && middleDead && setupDead && closerDead)
+        {
+            EndBattle();
+        }
         //Need logic to determine what attack the enemy will do
 
         //attack animation
-        yield return new WaitForSeconds(1.5f);
 
         //Choosing Who To Attack
-        int WhoToAttack = Random.Range(0, 3);
-        if (WhoToAttack == 0)
+        WhoToAttack = Random.Range(0, 4);
+
+        if (starterDead && WhoToAttack == 0)
+        {
+            StartCoroutine(EnemyTurn1());
+        }
+        if (middleDead && WhoToAttack == 1)
+        {
+            StartCoroutine(EnemyTurn1());
+        }
+        if (setupDead && WhoToAttack == 2)
+        {
+            StartCoroutine(EnemyTurn1());
+        }
+        if (closerDead && WhoToAttack == 3)
+        {
+            StartCoroutine(EnemyTurn1());
+        }
+        yield return new WaitForSeconds(1.5f);
+
+        if (WhoToAttack == 0 && !starterDead)
         {
             dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Starter!";
             bool isDead = Starter.TakeDamage(enemyUnit[enemyUnitSelected].enemyDamage);
@@ -558,8 +599,7 @@ public class BattleSystemMultiple : MonoBehaviour
             yield return new WaitForSeconds(3f);
             if (isDead)
             {
-                starterDown = true;
-                playerCount--;
+                starterDead = true;
                 state = BattleStateMultiple.MIDDLE;
                 MiddleTurn();
             }
@@ -570,7 +610,7 @@ public class BattleSystemMultiple : MonoBehaviour
                 MiddleTurn();
             }
         }
-        if (WhoToAttack == 1)
+        if (WhoToAttack == 1 && !middleDead)
         {
             dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Mid Reliever!";
             bool isDead = MiddleReliever.TakeDamage(enemyUnit[enemyUnitSelected].enemyDamage);
@@ -579,8 +619,7 @@ public class BattleSystemMultiple : MonoBehaviour
             yield return new WaitForSeconds(1f);
             if (isDead)
             {
-                middleDown = true;
-                playerCount--;
+                middleDead = true;
                 state = BattleStateMultiple.SETUP;
                 SETUPTurn();
             }
@@ -591,7 +630,7 @@ public class BattleSystemMultiple : MonoBehaviour
                 MiddleTurn();
             }
         }
-        if (WhoToAttack == 2)
+        if (WhoToAttack == 2 && !setupDead)
         {
             dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Set Up!";
             bool isDead = SetUp.TakeDamage(enemyUnit[enemyUnitSelected].enemyDamage);
@@ -600,8 +639,7 @@ public class BattleSystemMultiple : MonoBehaviour
             yield return new WaitForSeconds(1f);
             if (isDead)
             {
-                setupDown = true;
-                playerCount--;
+                setupDead = true;
                 state = BattleStateMultiple.MIDDLE;
                 MiddleTurn();
             }
@@ -612,7 +650,7 @@ public class BattleSystemMultiple : MonoBehaviour
                 MiddleTurn();
             }
         }
-        if (WhoToAttack == 3)
+        if (WhoToAttack == 3 && !closerDead)
         {
             dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Closer!";
             bool isDead = Closer.TakeDamage(enemyUnit[enemyUnitSelected].enemyDamage);
@@ -621,8 +659,7 @@ public class BattleSystemMultiple : MonoBehaviour
             yield return new WaitForSeconds(1f);
             if (isDead)
             {
-                closerDown = true;
-                playerCount--;
+                closerDead = true;
                 state = BattleStateMultiple.MIDDLE;
                 MiddleTurn();
             }
@@ -638,14 +675,42 @@ public class BattleSystemMultiple : MonoBehaviour
 
     IEnumerator EnemyTurn2()
     {
+        if (enemyUnit[enemyUnitSelected].currentHP <= 0)
+        {
+            //Skipping Turn to go to pitcher
+            SETUPTurn();
+        }
+        if (starterDead && middleDead && setupDead && closerDead)
+        {
+            EndBattle();
+        }
         //Need logic to determine what attack the enemy will do
 
         //attack animation
-        yield return new WaitForSeconds(1.5f);
+        //attack animation
 
         //Choosing Who To Attack
-        int WhoToAttack = Random.Range(0, 3);
-        if (WhoToAttack == 0)
+        WhoToAttack = Random.Range(0, 4);
+
+        if (starterDead && WhoToAttack == 0)
+        {
+            StartCoroutine(EnemyTurn2());
+        }
+        if (middleDead && WhoToAttack == 1)
+        {
+            StartCoroutine(EnemyTurn2());
+        }
+        if (setupDead && WhoToAttack == 2)
+        {
+            StartCoroutine(EnemyTurn2());
+        }
+        if (closerDead && WhoToAttack == 3)
+        {
+            StartCoroutine(EnemyTurn2());
+        }
+        yield return new WaitForSeconds(0.1f);
+
+        if (WhoToAttack == 0 && !starterDead) 
         {
             dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Starter!";
             bool isDead = Starter.TakeDamage(enemyUnit[enemyUnitSelected].enemyDamage);
@@ -654,9 +719,9 @@ public class BattleSystemMultiple : MonoBehaviour
             yield return new WaitForSeconds(3f);
             if (isDead)
             {
-                //Come back to this, this is if everyone loses
-                state = BattleStateMultiple.LOST;
-                EndBattle();
+                starterDead = true;
+                state = BattleStateMultiple.SETUP;
+                SETUPTurn();
             }
 
             else
@@ -665,7 +730,7 @@ public class BattleSystemMultiple : MonoBehaviour
                 SETUPTurn();
             }
         }
-        if (WhoToAttack == 1)
+        if (WhoToAttack == 1 && !middleDead)
         {
             dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Mid Reliever!";
             bool isDead = MiddleReliever.TakeDamage(enemyUnit[enemyUnitSelected].enemyDamage);
@@ -674,9 +739,9 @@ public class BattleSystemMultiple : MonoBehaviour
             yield return new WaitForSeconds(1f);
             if (isDead)
             {
-                //Come back to this, this is if everyone loses
-                state = BattleStateMultiple.LOST;
-                EndBattle();
+                middleDead = true;
+                state = BattleStateMultiple.SETUP;
+                SETUPTurn();
             }
 
             else
@@ -685,7 +750,7 @@ public class BattleSystemMultiple : MonoBehaviour
                 SETUPTurn();
             }
         }
-        if (WhoToAttack == 2)
+        if (WhoToAttack == 2 && !setupDead)
         {
             dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Set Up!";
             bool isDead = SetUp.TakeDamage(enemyUnit[enemyUnitSelected].enemyDamage);
@@ -694,9 +759,9 @@ public class BattleSystemMultiple : MonoBehaviour
             yield return new WaitForSeconds(1f);
             if (isDead)
             {
-                //Come back to this, this is if everyone loses
-                state = BattleStateMultiple.LOST;
-                EndBattle();
+                setupDead = true;
+                state = BattleStateMultiple.CLOSER;
+                CloserTurn();
             }
 
             else
@@ -705,7 +770,7 @@ public class BattleSystemMultiple : MonoBehaviour
                 SETUPTurn();
             }
         }
-        if (WhoToAttack == 3)
+        if (WhoToAttack == 3 && !closerDead)
         {
             dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Closer!";
             bool isDead = Closer.TakeDamage(enemyUnit[enemyUnitSelected].enemyDamage);
@@ -714,9 +779,9 @@ public class BattleSystemMultiple : MonoBehaviour
             yield return new WaitForSeconds(1f);
             if (isDead)
             {
-                //Come back to this, this is if everyone loses
-                state = BattleStateMultiple.LOST;
-                EndBattle();
+                closerDead = true;
+                state = BattleStateMultiple.SETUP;
+                SETUPTurn();
             }
 
             else
@@ -730,14 +795,41 @@ public class BattleSystemMultiple : MonoBehaviour
 
     IEnumerator EnemyTurn3()
     {
+        if (enemyUnit[enemyUnitSelected].currentHP <= 0)
+        {
+            //Skipping Turn to go to pitcher
+            CloserTurn();
+        }
+        if (starterDead && middleDead && setupDead && closerDead)
+        {
+            EndBattle();
+        }
         //Need logic to determine what attack the enemy will do
 
         //attack animation
-        yield return new WaitForSeconds(1.5f);
 
         //Choosing Who To Attack
-        int WhoToAttack = Random.Range(0, 3);
-        if (WhoToAttack == 0)
+        WhoToAttack = Random.Range(0, 4);
+
+        if (starterDead && WhoToAttack == 0)
+        {
+            StartCoroutine(EnemyTurn3());
+        }
+        if (middleDead && WhoToAttack == 1)
+        {
+            StartCoroutine(EnemyTurn3());
+        }
+        if (setupDead && WhoToAttack == 2)
+        {
+            StartCoroutine(EnemyTurn3());
+        }
+        if (closerDead && WhoToAttack == 3)
+        {
+            StartCoroutine(EnemyTurn3());
+        }
+        yield return new WaitForSeconds(0.1f);
+
+        if (WhoToAttack == 0 && !starterDead)
         {
             dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Starter!";
             bool isDead = Starter.TakeDamage(enemyUnit[enemyUnitSelected].enemyDamage);
@@ -746,9 +838,9 @@ public class BattleSystemMultiple : MonoBehaviour
             yield return new WaitForSeconds(3f);
             if (isDead)
             {
-                //Come back to this, this is if everyone loses
-                state = BattleStateMultiple.LOST;
-                EndBattle();
+                starterDead = true;
+                state = BattleStateMultiple.CLOSER;
+                CloserTurn();
             }
 
             else
@@ -757,7 +849,7 @@ public class BattleSystemMultiple : MonoBehaviour
                 CloserTurn();
             }
         }
-        if (WhoToAttack == 1)
+        if (WhoToAttack == 1 && !middleDead)
         {
             dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Mid Reliever!";
             bool isDead = MiddleReliever.TakeDamage(enemyUnit[enemyUnitSelected].enemyDamage);
@@ -766,9 +858,9 @@ public class BattleSystemMultiple : MonoBehaviour
             yield return new WaitForSeconds(1f);
             if (isDead)
             {
-                //Come back to this, this is if everyone loses
-                state = BattleStateMultiple.LOST;
-                EndBattle();
+                middleDead = true;
+                state = BattleStateMultiple.CLOSER;
+                CloserTurn();
             }
 
             else
@@ -777,7 +869,7 @@ public class BattleSystemMultiple : MonoBehaviour
                 CloserTurn();
             }
         }
-        if (WhoToAttack == 2)
+        if (WhoToAttack == 2 && !setupDead)
         {
             dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Set Up!";
             bool isDead = SetUp.TakeDamage(enemyUnit[enemyUnitSelected].enemyDamage);
@@ -786,9 +878,9 @@ public class BattleSystemMultiple : MonoBehaviour
             yield return new WaitForSeconds(1f);
             if (isDead)
             {
-                //Come back to this, this is if everyone loses
-                state = BattleStateMultiple.LOST;
-                EndBattle();
+                middleDead = true;
+                state = BattleStateMultiple.CLOSER;
+                CloserTurn();
             }
 
             else
@@ -797,7 +889,7 @@ public class BattleSystemMultiple : MonoBehaviour
                 CloserTurn();
             }
         }
-        if (WhoToAttack == 3)
+        if (WhoToAttack == 3 && !closerDead)
         {
             dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Closer!";
             bool isDead = Closer.TakeDamage(enemyUnit[enemyUnitSelected].enemyDamage);
@@ -806,9 +898,9 @@ public class BattleSystemMultiple : MonoBehaviour
             yield return new WaitForSeconds(1f);
             if (isDead)
             {
-                //Come back to this, this is if everyone loses
-                state = BattleStateMultiple.LOST;
-                EndBattle();
+                closerDead = true;
+                state = BattleStateMultiple.STARTER;
+                StarterTurn();
             }
 
             else
@@ -824,47 +916,74 @@ public class BattleSystemMultiple : MonoBehaviour
     #region Player Turns
     void StarterTurn()
     {
-        PlayerMenu.SetActive(true);
-        dialogueText.text = "Starter: Choose an Action.";
+        if (starterDead)
+        {
+            StartCoroutine(EnemyTurn1());
+        }
+        if (!starterDead)
+        {
+            PlayerMenu.SetActive(true);
+            dialogueText.text = "Starter: Choose an Action.";
 
-        fastball = false;
-        slider = false;
-        changeup = false;
-        curveball = false;
-
+            fastball = false;
+            slider = false;
+            changeup = false;
+            curveball = false;
+        }
     }
 
     void MiddleTurn()
     {
-        PlayerMenu.SetActive(true);
-        dialogueText.text = "Middle Reliever: Choose an Action.";
+        if (middleDead)
+        {
+            StartCoroutine(EnemyTurn2());
+        }
+        if (!middleDead)
+        {
+            PlayerMenu.SetActive(true);
+            dialogueText.text = "Middle Reliever: Choose an Action.";
 
-        fastball = false;
-        slider = false;
-        changeup = false;
-        curveball = false;
+            fastball = false;
+            slider = false;
+            changeup = false;
+            curveball = false;
+        }
     }
 
     void SETUPTurn()
     {
-        PlayerMenu.SetActive(true);
-        dialogueText.text = "Set Up: Choose an Action.";
+        if (setupDead)
+        {
+            StartCoroutine(EnemyTurn3());
+        }
+        if (!setupDead)
+        {
+            PlayerMenu.SetActive(true);
+            dialogueText.text = "Set Up: Choose an Action.";
 
-        fastball = false;
-        slider = false;
-        changeup = false;
-        curveball = false;
+            fastball = false;
+            slider = false;
+            changeup = false;
+            curveball = false;
+        }
     }
 
     void CloserTurn()
     {
-        PlayerMenu.SetActive(true);
-        dialogueText.text = "Closer: Choose an Action.";
+        if (closerDead)
+        {
+            StarterTurn();
+        }
+        if (!closerDead)
+        {
+            PlayerMenu.SetActive(true);
+            dialogueText.text = "Closer: Choose an Action.";
 
-        fastball = false;
-        slider = false;
-        changeup = false;
-        curveball = false;
+            fastball = false;
+            slider = false;
+            changeup = false;
+            curveball = false;
+        }
     }
     #endregion
 
@@ -1246,6 +1365,7 @@ public class BattleSystemMultiple : MonoBehaviour
         else if (state == BattleStateMultiple.LOST)
         {
             dialogueText.text = "You lost the battle...";
+            StartCoroutine(WaitingAtEndOfBattle());
         }
     }
     public void BattleFinished()
@@ -1253,4 +1373,10 @@ public class BattleSystemMultiple : MonoBehaviour
         SceneManager.LoadScene("Concourse");
     }
     #endregion
+
+    IEnumerator WaitingAtEndOfBattle()
+    {
+        yield return new WaitForSeconds(2);
+        SceneManager.LoadScene("Concourse");
+    }
 }

@@ -59,7 +59,6 @@ public class Unit : MonoBehaviour
         //  currentHP -= 5 * Time.deltaTime;
         if (isEnemy)
         {
-            print(this.currentHP + "/" + maxHP);
             HealthSlider.value = currentHP / maxHP;
         }
     }
