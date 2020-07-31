@@ -5,14 +5,22 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    //morale and energy
     public static float starterMorale, midRelivMorale, setUpMorale, closerMorale;
     public static float StarterEnergy, MidRelivEnergy, SetUpEnergy, CloserEnergy;
 
     public static int StarterMoraleMax, MidRelivMoraleMax, SetUpMoraleMax, CloserMoraleMax;
     public static int StarterEnergyMax, MidRelievEnergyMax, SetUpEnergyMax, CloserEnergyMax;
 
-    private static float starterExp, mrExp, setUpExp, closerExp;
+    //attack strength
+    public static int starterFast, starterSlid, starterCurve, starterChange, starterAgil;
+    public static int middleFast, middleSlid, middleCurve, middleChange, middleAgil;
+    public static int setupFast, setupSlid, setupCurve, setupChange, setupAgil;
+    public static int closerFast, closerSlid, closerCurve, closerChange, closerAgil;
 
+    //experience
+    private static float starterExp, mrExp, setUpExp, closerExp;
+    //UI
     Slider Starter, MidReliv, SetUp, Closer;
     Slider StarterE, MidRelivE, SetUpE, CloserE;
 
@@ -49,6 +57,8 @@ public class GameManager : MonoBehaviour
             money = value;
         }
     }
+
+    #region Morale
     public static float StarterMorale
     {
         get
@@ -100,7 +110,8 @@ public class GameManager : MonoBehaviour
             closerMorale = value;
         }
     }
-
+    #endregion
+    #region Experience
     public static float StarterExp
     {
         get
@@ -152,7 +163,278 @@ public class GameManager : MonoBehaviour
             closerExp = value;
         }
     }
+    #endregion
+    #region PlayerStats
 
+    #region Starter
+    public static int StarterFast
+    {
+        get
+        {
+            return starterFast;
+        }
+
+        set
+        {
+            starterFast = value;
+        }
+    }
+
+    public static int StarterSlid
+    {
+        get
+        {
+            return starterSlid;
+        }
+
+        set
+        {
+            starterSlid = value;
+        }
+    }
+
+    public static int StarterCurve
+    {
+        get
+        {
+            return starterCurve;
+        }
+
+        set
+        {
+            starterCurve = value;
+        }
+    }
+
+    public static int StarterChange
+    {
+        get
+        {
+            return starterChange;
+        }
+
+        set
+        {
+            starterChange = value;
+        }
+    }
+
+    public static int StarterAgil
+    {
+        get
+        {
+            return starterAgil;
+        }
+
+        set
+        {
+            starterAgil = value;
+        }
+    }
+    #endregion
+
+    #region Middle
+    public static int MiddleFast
+    {
+        get
+        {
+            return middleFast;
+        }
+
+        set
+        {
+            middleFast = value;
+        }
+    }
+
+    public static int MiddleSlid
+    {
+        get
+        {
+            return middleSlid;
+        }
+
+        set
+        {
+            middleSlid = value;
+        }
+    }
+
+    public static int MiddleCurve
+    {
+        get
+        {
+            return middleCurve;
+        }
+
+        set
+        {
+            middleCurve = value;
+        }
+    }
+
+    public static int MiddleChange
+    {
+        get
+        {
+            return middleChange;
+        }
+
+        set
+        {
+            middleChange = value;
+        }
+    }
+
+    public static int MiddleAgil
+    {
+        get
+        {
+            return middleAgil;
+        }
+
+        set
+        {
+            middleAgil = value;
+        }
+    }
+    #endregion
+
+    #region SetUp
+    public static int SetUpFast
+    {
+        get
+        {
+            return setupFast;
+        }
+
+        set
+        {
+            setupFast = value;
+        }
+    }
+
+    public static int SetUpSlid
+    {
+        get
+        {
+            return setupSlid;
+        }
+
+        set
+        {
+            setupSlid = value;
+        }
+    }
+
+    public static int SetUpCurve
+    {
+        get
+        {
+            return setupCurve;
+        }
+
+        set
+        {
+            setupCurve = value;
+        }
+    }
+
+    public static int SetUpChange
+    {
+        get
+        {
+            return setupChange;
+        }
+
+        set
+        {
+            setupChange = value;
+        }
+    }
+
+    public static int SetUpAgil
+    {
+        get
+        {
+            return setupAgil;
+        }
+
+        set
+        {
+            setupAgil = value;
+        }
+    }
+    #endregion
+
+    #region Closer
+    public static int CloserFast
+    {
+        get
+        {
+            return closerFast;
+        }
+
+        set
+        {
+            closerFast = value;
+        }
+    }
+
+    public static int CloserSlid
+    {
+        get
+        {
+            return closerSlid;
+        }
+
+        set
+        {
+            closerSlid = value;
+        }
+    }
+
+    public static int CloserCurve
+    {
+        get
+        {
+            return closerCurve;
+        }
+
+        set
+        {
+            closerCurve = value;
+        }
+    }
+
+    public static int CloserChange
+    {
+        get
+        {
+            return closerChange;
+        }
+
+        set
+        {
+            closerChange = value;
+        }
+    }
+
+    public static int CloserAgil
+    {
+        get
+        {
+            return closerAgil;
+        }
+
+        set
+        {
+            closerAgil = value;
+        }
+    }
+    #endregion
+
+    #endregion
     private void Awake()
     {
         _instance = this;
@@ -160,7 +442,31 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-       
+        #region StartingStats 
+        starterFast = 2;
+        starterSlid = 2;
+        starterCurve = 5;
+        starterChange = 3;
+        starterAgil = 3;
+
+        middleFast = 3;
+        middleSlid = 5;
+        middleCurve = 2;
+        middleChange = 3;
+        middleAgil = 2;
+
+        setupFast = 2;
+        setupSlid = 1;
+        setupCurve = 1;
+        setupChange = 6;
+        setupAgil = 4;
+
+        closerFast = 7;
+        closerSlid = 3;
+        closerCurve = 1;
+        closerChange = 1;
+        closerAgil = 3;
+        #endregion
 
         if (!gameStartingStats)
         {

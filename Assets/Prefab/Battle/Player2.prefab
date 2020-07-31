@@ -46,10 +46,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitName: MIddle Reliever
   unitLevel: 1
-  fastballDamage: 10
-  sliderDamage: 10
-  curveballDamage: 10
-  changeupDamage: 5
+  fastballDamage: 1
+  sliderDamage: 1
+  curveballDamage: 1
+  changeupDamage: 1
   fastballStamina: 5
   sliderStamina: 4
   curveballStamina: 4
@@ -59,6 +59,14 @@ MonoBehaviour:
   currentHP: 20
   maxStamina: 30
   currentStamina: 25
+  ExperienceToDistribute: 0
+  minExperience: 0
+  maxExperience: 0
+  MoneyToDistribute: 0
+  minMoney: 0
+  maxMoney: 0
+  isEnemy: 0
+  HealthSlider: {fileID: 0}
 --- !u!1 &1370738456086393325
 GameObject:
   m_ObjectHideFlags: 0

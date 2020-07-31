@@ -10,6 +10,12 @@ public class StatPageScroll : MonoBehaviour
 
     public GameObject MenuToggle;
     bool menuActive;
+
+
+    public Slider StartF, StartS, StartC, StartCh, StartA;
+    public Slider MiddleF, MiddleS, MiddleC, MiddleCh, MiddleA;
+    public Slider SetUpF, SetUpS, SetUpC, SetUpCh, SetUpA;
+    public Slider CloserF, CloserS, CloserC, CloserCh, CloserA;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,13 +32,44 @@ public class StatPageScroll : MonoBehaviour
 
         if (menuActive)
         {
-            MenuToggle.SetActive(true);
+            MenuActive();
+            print(GameManager.StarterFast);
+
+            StartF.value = GameManager.StarterFast;
+            StartS.value = GameManager.StarterSlid;
+            StartC.value = GameManager.StarterCurve;
+            StartCh.value = GameManager.StarterChange;
+            StartA.value = GameManager.StarterAgil;
+
+            MiddleF.value = GameManager.MiddleFast;
+            MiddleS.value = GameManager.MiddleSlid ;
+            MiddleC.value = GameManager.MiddleCurve;
+            MiddleCh.value = GameManager.MiddleChange;
+            MiddleA.value = GameManager.MiddleAgil;
+
+            SetUpF.value = GameManager.SetUpFast;
+            SetUpS.value = GameManager.SetUpSlid;
+            SetUpC.value = GameManager.SetUpCurve;
+            SetUpCh.value = GameManager.SetUpChange;
+            SetUpA.value = GameManager.SetUpAgil;
+
+            CloserF.value = GameManager.CloserFast;
+            CloserS.value = GameManager.CloserSlid;
+            CloserC.value = GameManager.CloserCurve;
+            CloserCh.value = GameManager.CloserChange;
+            CloserA.value = GameManager.CloserAgil;
         }
 
         if(!menuActive)
         {
             MenuToggle.SetActive(false);
         }
+    }
+
+    void MenuActive()
+    {
+        MenuToggle.SetActive(true);
+
 
     }
 

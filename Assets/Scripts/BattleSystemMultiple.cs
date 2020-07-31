@@ -362,22 +362,22 @@ public class BattleSystemMultiple : MonoBehaviour
         {
             if (fastball)
             {
-                isDead = enemyUnit[enemyUnitSelected].TakeDamage(Starter.fastballDamage);
+                isDead = enemyUnit[enemyUnitSelected].TakeDamage(Starter.fastballDamage + GameManager.StarterFast);
                 fastball = false;
             }
             if (slider)
             {
-                isDead = enemyUnit[enemyUnitSelected].TakeDamage(Starter.sliderDamage);
+                isDead = enemyUnit[enemyUnitSelected].TakeDamage(Starter.sliderDamage + GameManager.StarterSlid);
                 slider = false;
             }
             if (curveball)
             {
-                isDead = enemyUnit[enemyUnitSelected].TakeDamage(Starter.curveballDamage);
+                isDead = enemyUnit[enemyUnitSelected].TakeDamage(Starter.curveballDamage + GameManager.StarterCurve);
                 curveball = false;
             }
             if (changeup)
             {
-                isDead = enemyUnit[enemyUnitSelected].TakeDamage(Starter.changeupDamage);
+                isDead = enemyUnit[enemyUnitSelected].TakeDamage(Starter.changeupDamage + GameManager.StarterChange);
                 changeup = false;
             }
             dialogueText.text = "The attack is successful!";
@@ -411,22 +411,22 @@ public class BattleSystemMultiple : MonoBehaviour
         {
             if (fastball)
             {
-                isDead = enemyUnit[enemyUnitSelected].TakeDamage(MiddleReliever.fastballDamage);
+                isDead = enemyUnit[enemyUnitSelected].TakeDamage(MiddleReliever.fastballDamage + GameManager.MiddleFast);
                 fastball = false;
             }
             if (slider)
             {
-                isDead = enemyUnit[enemyUnitSelected].TakeDamage(MiddleReliever.sliderDamage);
+                isDead = enemyUnit[enemyUnitSelected].TakeDamage(MiddleReliever.sliderDamage + GameManager.MiddleSlid);
                 slider = false;
             }
             if (curveball)
             {
-                isDead = enemyUnit[enemyUnitSelected].TakeDamage(MiddleReliever.curveballDamage);
+                isDead = enemyUnit[enemyUnitSelected].TakeDamage(MiddleReliever.curveballDamage + GameManager.MiddleCurve);
                 curveball = false;
             }
             if (changeup)
             {
-                isDead = enemyUnit[enemyUnitSelected].TakeDamage(MiddleReliever.changeupDamage);
+                isDead = enemyUnit[enemyUnitSelected].TakeDamage(MiddleReliever.changeupDamage + GameManager.MiddleChange);
                 changeup = false;
             }
             //enemyHUD.SetHP(enemyUnit[enemyUnitSelected].currentHP);
@@ -461,22 +461,22 @@ public class BattleSystemMultiple : MonoBehaviour
             //To Do Start Attack Animation
             if (fastball)
             {
-                isDead = enemyUnit[enemyUnitSelected].TakeDamage(SetUp.fastballDamage);
+                isDead = enemyUnit[enemyUnitSelected].TakeDamage(SetUp.fastballDamage + GameManager.SetUpFast);
                 fastball = false;
             }
             if (slider)
             {
-                isDead = enemyUnit[enemyUnitSelected].TakeDamage(SetUp.sliderDamage);
+                isDead = enemyUnit[enemyUnitSelected].TakeDamage(SetUp.sliderDamage + GameManager.SetUpSlid);
                 slider = false;
             }
             if (curveball)
             {
-                isDead = enemyUnit[enemyUnitSelected].TakeDamage(SetUp.curveballDamage);
+                isDead = enemyUnit[enemyUnitSelected].TakeDamage(SetUp.curveballDamage + GameManager.SetUpCurve);
                 curveball = false;
             }
             if (changeup)
             {
-                isDead = enemyUnit[enemyUnitSelected].TakeDamage(SetUp.changeupDamage);
+                isDead = enemyUnit[enemyUnitSelected].TakeDamage(SetUp.changeupDamage + GameManager.SetUpChange);
                 changeup = false;
             }
            // enemyHUD.SetHP(enemyUnit[enemyUnitSelected].currentHP);
@@ -510,22 +510,22 @@ public class BattleSystemMultiple : MonoBehaviour
         {
             if (fastball)
             {
-                isDead = enemyUnit[enemyUnitSelected].TakeDamage(Closer.fastballDamage);
+                isDead = enemyUnit[enemyUnitSelected].TakeDamage(Closer.fastballDamage + GameManager.CloserFast);
                 fastball = false;
             }
             if (slider)
             {
-                isDead = enemyUnit[enemyUnitSelected].TakeDamage(Closer.sliderDamage);
+                isDead = enemyUnit[enemyUnitSelected].TakeDamage(Closer.sliderDamage + GameManager.CloserSlid);
                 slider = false;
             }
             if (curveball)
             {
-                isDead = enemyUnit[enemyUnitSelected].TakeDamage(Closer.curveballDamage);
+                isDead = enemyUnit[enemyUnitSelected].TakeDamage(Closer.curveballDamage + GameManager.CloserCurve);
                 curveball = false;
             }
             if (changeup)
             {
-                isDead = enemyUnit[enemyUnitSelected].TakeDamage(Closer.changeupDamage);
+                isDead = enemyUnit[enemyUnitSelected].TakeDamage(Closer.changeupDamage + GameManager.CloserChange);
                 changeup = false;
             }
             //enemyHUD.SetHP(enemyUnit[enemyUnitSelected].currentHP);
@@ -565,6 +565,8 @@ public class BattleSystemMultiple : MonoBehaviour
         {
             EndBattle();
         }
+
+        int RandomAttack = Random.Range(0, 100);
         //Need logic to determine what attack the enemy will do
 
         //attack animation
@@ -592,82 +594,136 @@ public class BattleSystemMultiple : MonoBehaviour
 
         if (WhoToAttack == 0 && !starterDead)
         {
-            dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Starter!";
-            bool isDead = Starter.TakeDamage(enemyUnit[enemyUnitSelected].enemyDamage);
-            GameManager.StarterMorale -= enemyUnit[enemyUnitSelected].enemyDamage;
-            StarterMorale.value = (GameManager.StarterMorale / GameManager.StarterMoraleMax);
-            yield return new WaitForSeconds(3f);
-            if (isDead)
+            print(RandomAttack + "/" + GameManager.StarterAgil);
+            if (GameManager.StarterAgil >= RandomAttack)
             {
-                starterDead = true;
+                dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Starter!";
+                yield return new WaitForSeconds(.5f);
+                dialogueText.text = "Starter Dodges!";
+
                 state = BattleStateMultiple.MIDDLE;
                 MiddleTurn();
             }
 
-            else
+            if (GameManager.StarterAgil < RandomAttack)
             {
-                state = BattleStateMultiple.MIDDLE;
-                MiddleTurn();
+                dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Starter!";
+                bool isDead = Starter.TakeDamage(enemyUnit[enemyUnitSelected].enemyDamage);
+                GameManager.StarterMorale -= enemyUnit[enemyUnitSelected].enemyDamage;
+                StarterMorale.value = (GameManager.StarterMorale / GameManager.StarterMoraleMax);
+                yield return new WaitForSeconds(3f);
+                if (isDead)
+                {
+                    starterDead = true;
+                    state = BattleStateMultiple.MIDDLE;
+                    MiddleTurn();
+                }
+
+                else
+                {
+                    state = BattleStateMultiple.MIDDLE;
+                    MiddleTurn();
+                }
             }
         }
         if (WhoToAttack == 1 && !middleDead)
         {
-            dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Mid Reliever!";
-            bool isDead = MiddleReliever.TakeDamage(enemyUnit[enemyUnitSelected].enemyDamage);
-            GameManager.MidRelivMorale -= enemyUnit[enemyUnitSelected].enemyDamage;
-            MiddleMorale.value = (GameManager.MidRelivMorale / GameManager.MidRelivMoraleMax);
-            yield return new WaitForSeconds(1f);
-            if (isDead)
+            print(RandomAttack + "/" + GameManager.MiddleAgil);
+            if (GameManager.MiddleAgil >= RandomAttack)
             {
-                middleDead = true;
-                state = BattleStateMultiple.SETUP;
-                SETUPTurn();
-            }
+                dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Mid Reliever!";
+                yield return new WaitForSeconds(.5f);
+                dialogueText.text = "Mid Reliever Dodges!";
 
-            else
-            {
                 state = BattleStateMultiple.MIDDLE;
                 MiddleTurn();
+            }
+            if (GameManager.MiddleAgil < RandomAttack)
+            {
+                dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Mid Reliever!";
+                bool isDead = MiddleReliever.TakeDamage(enemyUnit[enemyUnitSelected].enemyDamage);
+                GameManager.MidRelivMorale -= enemyUnit[enemyUnitSelected].enemyDamage;
+                MiddleMorale.value = (GameManager.MidRelivMorale / GameManager.MidRelivMoraleMax);
+                yield return new WaitForSeconds(1f);
+                if (isDead)
+                {
+                    middleDead = true;
+                    state = BattleStateMultiple.SETUP;
+                    SETUPTurn();
+                }
+
+                else
+                {
+                    state = BattleStateMultiple.MIDDLE;
+                    MiddleTurn();
+                }
             }
         }
         if (WhoToAttack == 2 && !setupDead)
         {
-            dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Set Up!";
-            bool isDead = SetUp.TakeDamage(enemyUnit[enemyUnitSelected].enemyDamage);
-            GameManager.SetUpMorale -= enemyUnit[enemyUnitSelected].enemyDamage;
-            SetUpMorale.value = (GameManager.SetUpMorale / GameManager.SetUpMoraleMax);
-            yield return new WaitForSeconds(1f);
-            if (isDead)
+            print(RandomAttack + "/" + GameManager.SetUpAgil);
+            if (GameManager.SetUpAgil >= RandomAttack)
             {
-                setupDead = true;
+                dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks SetUp!";
+                yield return new WaitForSeconds(.5f);
+                dialogueText.text = "SetUp Dodges!";
+
                 state = BattleStateMultiple.MIDDLE;
                 MiddleTurn();
             }
-
-            else
+            if (GameManager.SetUpAgil < RandomAttack)
             {
-                state = BattleStateMultiple.MIDDLE;
-                MiddleTurn();
+                dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Set Up!";
+                bool isDead = SetUp.TakeDamage(enemyUnit[enemyUnitSelected].enemyDamage);
+                GameManager.SetUpMorale -= enemyUnit[enemyUnitSelected].enemyDamage;
+                SetUpMorale.value = (GameManager.SetUpMorale / GameManager.SetUpMoraleMax);
+                yield return new WaitForSeconds(1f);
+                if (isDead)
+                {
+                    setupDead = true;
+                    state = BattleStateMultiple.MIDDLE;
+                    MiddleTurn();
+                }
+
+                else
+                {
+                    state = BattleStateMultiple.MIDDLE;
+                    MiddleTurn();
+                }
             }
         }
         if (WhoToAttack == 3 && !closerDead)
         {
-            dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Closer!";
-            bool isDead = Closer.TakeDamage(enemyUnit[enemyUnitSelected].enemyDamage);
-            GameManager.CloserMorale -= enemyUnit[enemyUnitSelected].enemyDamage;
-            CloserMorale.value = (GameManager.CloserMorale / GameManager.CloserMoraleMax);
-            yield return new WaitForSeconds(1f);
-            if (isDead)
+            print(RandomAttack + "/" + GameManager.CloserAgil);
+            if (GameManager.CloserAgil >= RandomAttack)
             {
-                closerDead = true;
+                dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Closer!";
+                yield return new WaitForSeconds(.5f);
+                dialogueText.text = "Closer Dodges!";
+
                 state = BattleStateMultiple.MIDDLE;
                 MiddleTurn();
             }
 
-            else
+            if (GameManager.CloserAgil < RandomAttack)
             {
-                state = BattleStateMultiple.MIDDLE;
-                MiddleTurn();
+                dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Closer!";
+                bool isDead = Closer.TakeDamage(enemyUnit[enemyUnitSelected].enemyDamage);
+                GameManager.CloserMorale -= enemyUnit[enemyUnitSelected].enemyDamage;
+                CloserMorale.value = (GameManager.CloserMorale / GameManager.CloserMoraleMax);
+                yield return new WaitForSeconds(1f);
+                if (isDead)
+                {
+                    closerDead = true;
+                    state = BattleStateMultiple.MIDDLE;
+                    MiddleTurn();
+                }
+
+                else
+                {
+                    state = BattleStateMultiple.MIDDLE;
+                    MiddleTurn();
+                }
             }
         }
 
@@ -684,6 +740,8 @@ public class BattleSystemMultiple : MonoBehaviour
         {
             EndBattle();
         }
+
+        int RandomAttack = Random.Range(0, 100);
         //Need logic to determine what attack the enemy will do
 
         //attack animation
@@ -712,82 +770,130 @@ public class BattleSystemMultiple : MonoBehaviour
 
         if (WhoToAttack == 0 && !starterDead) 
         {
-            dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Starter!";
-            bool isDead = Starter.TakeDamage(enemyUnit[enemyUnitSelected].enemyDamage);
-            GameManager.StarterMorale -= enemyUnit[enemyUnitSelected].enemyDamage;
-            StarterMorale.value = (GameManager.StarterMorale / GameManager.StarterMoraleMax);
-            yield return new WaitForSeconds(3f);
-            if (isDead)
+            if (GameManager.StarterAgil >= RandomAttack)
             {
-                starterDead = true;
-                state = BattleStateMultiple.SETUP;
-                SETUPTurn();
-            }
+                dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Starter!";
+                yield return new WaitForSeconds(.5f);
+                dialogueText.text = "Starter Dodges!";
 
-            else
+                state = BattleStateMultiple.MIDDLE;
+                MiddleTurn();
+            }
+            if (GameManager.StarterAgil < RandomAttack)
             {
-                state = BattleStateMultiple.SETUP;
-                SETUPTurn();
+                dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Starter!";
+                bool isDead = Starter.TakeDamage(enemyUnit[enemyUnitSelected].enemyDamage);
+                GameManager.StarterMorale -= enemyUnit[enemyUnitSelected].enemyDamage;
+                StarterMorale.value = (GameManager.StarterMorale / GameManager.StarterMoraleMax);
+                yield return new WaitForSeconds(3f);
+                if (isDead)
+                {
+                    starterDead = true;
+                    state = BattleStateMultiple.SETUP;
+                    SETUPTurn();
+                }
+
+                else
+                {
+                    state = BattleStateMultiple.SETUP;
+                    SETUPTurn();
+                }
             }
         }
         if (WhoToAttack == 1 && !middleDead)
         {
-            dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Mid Reliever!";
-            bool isDead = MiddleReliever.TakeDamage(enemyUnit[enemyUnitSelected].enemyDamage);
-            GameManager.MidRelivMorale -= enemyUnit[enemyUnitSelected].enemyDamage;
-            MiddleMorale.value = (GameManager.MidRelivMorale / GameManager.MidRelivMoraleMax);
-            yield return new WaitForSeconds(1f);
-            if (isDead)
+            if (GameManager.MiddleAgil >= RandomAttack)
             {
-                middleDead = true;
-                state = BattleStateMultiple.SETUP;
-                SETUPTurn();
-            }
+                dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Mid Reliever!";
+                yield return new WaitForSeconds(.5f);
+                dialogueText.text = "Mid Reliever Dodges!";
 
-            else
+                state = BattleStateMultiple.MIDDLE;
+                MiddleTurn();
+            }
+            if (GameManager.MiddleAgil < RandomAttack)
             {
-                state = BattleStateMultiple.SETUP;
-                SETUPTurn();
+                dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Mid Reliever!";
+                bool isDead = MiddleReliever.TakeDamage(enemyUnit[enemyUnitSelected].enemyDamage);
+                GameManager.MidRelivMorale -= enemyUnit[enemyUnitSelected].enemyDamage;
+                MiddleMorale.value = (GameManager.MidRelivMorale / GameManager.MidRelivMoraleMax);
+                yield return new WaitForSeconds(1f);
+                if (isDead)
+                {
+                    middleDead = true;
+                    state = BattleStateMultiple.SETUP;
+                    SETUPTurn();
+                }
+
+                else
+                {
+                    state = BattleStateMultiple.SETUP;
+                    SETUPTurn();
+                }
             }
         }
         if (WhoToAttack == 2 && !setupDead)
         {
-            dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Set Up!";
-            bool isDead = SetUp.TakeDamage(enemyUnit[enemyUnitSelected].enemyDamage);
-            GameManager.SetUpMorale -= enemyUnit[enemyUnitSelected].enemyDamage;
-            SetUpMorale.value = (GameManager.SetUpMorale / GameManager.SetUpMoraleMax);
-            yield return new WaitForSeconds(1f);
-            if (isDead)
+            if (GameManager.SetUpAgil >= RandomAttack)
             {
-                setupDead = true;
-                state = BattleStateMultiple.CLOSER;
-                CloserTurn();
-            }
+                dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Set Up!";
+                yield return new WaitForSeconds(.5f);
+                dialogueText.text = "Set Up Dodges!";
 
-            else
+                state = BattleStateMultiple.MIDDLE;
+                MiddleTurn();
+            }
+            if (GameManager.SetUpAgil < RandomAttack)
             {
-                state = BattleStateMultiple.SETUP;
-                SETUPTurn();
+                dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Set Up!";
+                bool isDead = SetUp.TakeDamage(enemyUnit[enemyUnitSelected].enemyDamage);
+                GameManager.SetUpMorale -= enemyUnit[enemyUnitSelected].enemyDamage;
+                SetUpMorale.value = (GameManager.SetUpMorale / GameManager.SetUpMoraleMax);
+                yield return new WaitForSeconds(1f);
+                if (isDead)
+                {
+                    setupDead = true;
+                    state = BattleStateMultiple.CLOSER;
+                    CloserTurn();
+                }
+
+                else
+                {
+                    state = BattleStateMultiple.SETUP;
+                    SETUPTurn();
+                }
             }
         }
         if (WhoToAttack == 3 && !closerDead)
         {
-            dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Closer!";
-            bool isDead = Closer.TakeDamage(enemyUnit[enemyUnitSelected].enemyDamage);
-            GameManager.CloserMorale -= enemyUnit[enemyUnitSelected].enemyDamage;
-            CloserMorale.value = (GameManager.CloserMorale / GameManager.CloserMoraleMax);
-            yield return new WaitForSeconds(1f);
-            if (isDead)
+            if (GameManager.CloserAgil >= RandomAttack)
             {
-                closerDead = true;
-                state = BattleStateMultiple.SETUP;
-                SETUPTurn();
-            }
+                dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Closer!";
+                yield return new WaitForSeconds(.5f);
+                dialogueText.text = "Closer Dodges!";
 
-            else
+                state = BattleStateMultiple.MIDDLE;
+                MiddleTurn();
+            }
+            if (GameManager.CloserAgil < RandomAttack)
             {
-                state = BattleStateMultiple.SETUP;
-                SETUPTurn();
+                dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Closer!";
+                bool isDead = Closer.TakeDamage(enemyUnit[enemyUnitSelected].enemyDamage);
+                GameManager.CloserMorale -= enemyUnit[enemyUnitSelected].enemyDamage;
+                CloserMorale.value = (GameManager.CloserMorale / GameManager.CloserMoraleMax);
+                yield return new WaitForSeconds(1f);
+                if (isDead)
+                {
+                    closerDead = true;
+                    state = BattleStateMultiple.SETUP;
+                    SETUPTurn();
+                }
+
+                else
+                {
+                    state = BattleStateMultiple.SETUP;
+                    SETUPTurn();
+                }
             }
         }
 
@@ -804,6 +910,8 @@ public class BattleSystemMultiple : MonoBehaviour
         {
             EndBattle();
         }
+        int RandomAttack = Random.Range(0, 100);
+
         //Need logic to determine what attack the enemy will do
 
         //attack animation
@@ -831,82 +939,130 @@ public class BattleSystemMultiple : MonoBehaviour
 
         if (WhoToAttack == 0 && !starterDead)
         {
-            dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Starter!";
-            bool isDead = Starter.TakeDamage(enemyUnit[enemyUnitSelected].enemyDamage);
-            GameManager.StarterMorale -= enemyUnit[enemyUnitSelected].enemyDamage;
-            StarterMorale.value = (GameManager.StarterMorale / GameManager.StarterMoraleMax);
-            yield return new WaitForSeconds(3f);
-            if (isDead)
+            if (GameManager.StarterAgil >= RandomAttack)
             {
-                starterDead = true;
-                state = BattleStateMultiple.CLOSER;
-                CloserTurn();
-            }
+                dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Starter!";
+                yield return new WaitForSeconds(.5f);
+                dialogueText.text = "Starter Dodges!";
 
-            else
+                state = BattleStateMultiple.MIDDLE;
+                MiddleTurn();
+            }
+            if (GameManager.StarterAgil < RandomAttack)
             {
-                state = BattleStateMultiple.CLOSER;
-                CloserTurn();
+                dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Starter!";
+                bool isDead = Starter.TakeDamage(enemyUnit[enemyUnitSelected].enemyDamage);
+                GameManager.StarterMorale -= enemyUnit[enemyUnitSelected].enemyDamage;
+                StarterMorale.value = (GameManager.StarterMorale / GameManager.StarterMoraleMax);
+                yield return new WaitForSeconds(3f);
+                if (isDead)
+                {
+                    starterDead = true;
+                    state = BattleStateMultiple.CLOSER;
+                    CloserTurn();
+                }
+
+                else
+                {
+                    state = BattleStateMultiple.CLOSER;
+                    CloserTurn();
+                }
             }
         }
         if (WhoToAttack == 1 && !middleDead)
         {
-            dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Mid Reliever!";
-            bool isDead = MiddleReliever.TakeDamage(enemyUnit[enemyUnitSelected].enemyDamage);
-            GameManager.MidRelivMorale -= enemyUnit[enemyUnitSelected].enemyDamage;
-            MiddleMorale.value = (GameManager.MidRelivMorale / GameManager.MidRelivMoraleMax);
-            yield return new WaitForSeconds(1f);
-            if (isDead)
+            if (GameManager.MiddleAgil >= RandomAttack)
             {
-                middleDead = true;
-                state = BattleStateMultiple.CLOSER;
-                CloserTurn();
-            }
+                dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Mid Reliever!";
+                yield return new WaitForSeconds(.5f);
+                dialogueText.text = "MidReliever Dodges!";
 
-            else
+                state = BattleStateMultiple.MIDDLE;
+                MiddleTurn();
+            }
+            if (GameManager.MiddleAgil < RandomAttack)
             {
-                state = BattleStateMultiple.CLOSER;
-                CloserTurn();
+                dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Mid Reliever!";
+                bool isDead = MiddleReliever.TakeDamage(enemyUnit[enemyUnitSelected].enemyDamage);
+                GameManager.MidRelivMorale -= enemyUnit[enemyUnitSelected].enemyDamage;
+                MiddleMorale.value = (GameManager.MidRelivMorale / GameManager.MidRelivMoraleMax);
+                yield return new WaitForSeconds(1f);
+                if (isDead)
+                {
+                    middleDead = true;
+                    state = BattleStateMultiple.CLOSER;
+                    CloserTurn();
+                }
+
+                else
+                {
+                    state = BattleStateMultiple.CLOSER;
+                    CloserTurn();
+                }
             }
         }
         if (WhoToAttack == 2 && !setupDead)
         {
-            dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Set Up!";
-            bool isDead = SetUp.TakeDamage(enemyUnit[enemyUnitSelected].enemyDamage);
-            GameManager.SetUpMorale -= enemyUnit[enemyUnitSelected].enemyDamage;
-            SetUpMorale.value = (GameManager.SetUpMorale / GameManager.SetUpMoraleMax);
-            yield return new WaitForSeconds(1f);
-            if (isDead)
+            if (GameManager.SetUpAgil >= RandomAttack)
             {
-                middleDead = true;
-                state = BattleStateMultiple.CLOSER;
-                CloserTurn();
-            }
+                dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Set Up!";
+                yield return new WaitForSeconds(.5f);
+                dialogueText.text = "Set Up Dodges!";
 
-            else
+                state = BattleStateMultiple.MIDDLE;
+                MiddleTurn();
+            }
+            if (GameManager.SetUpAgil < RandomAttack)
             {
-                state = BattleStateMultiple.CLOSER;
-                CloserTurn();
+                dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Set Up!";
+                bool isDead = SetUp.TakeDamage(enemyUnit[enemyUnitSelected].enemyDamage);
+                GameManager.SetUpMorale -= enemyUnit[enemyUnitSelected].enemyDamage;
+                SetUpMorale.value = (GameManager.SetUpMorale / GameManager.SetUpMoraleMax);
+                yield return new WaitForSeconds(1f);
+                if (isDead)
+                {
+                    middleDead = true;
+                    state = BattleStateMultiple.CLOSER;
+                    CloserTurn();
+                }
+
+                else
+                {
+                    state = BattleStateMultiple.CLOSER;
+                    CloserTurn();
+                }
             }
         }
         if (WhoToAttack == 3 && !closerDead)
         {
-            dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Closer!";
-            bool isDead = Closer.TakeDamage(enemyUnit[enemyUnitSelected].enemyDamage);
-            GameManager.CloserMorale -= enemyUnit[enemyUnitSelected].enemyDamage;
-            CloserMorale.value = (GameManager.CloserMorale / GameManager.CloserMoraleMax);
-            yield return new WaitForSeconds(1f);
-            if (isDead)
+            if (GameManager.CloserAgil >= RandomAttack)
             {
-                closerDead = true;
-                state = BattleStateMultiple.STARTER;
-                StarterTurn();
-            }
+                dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Closer!";
+                yield return new WaitForSeconds(.5f);
+                dialogueText.text = "Closer Dodges!";
 
-            else
+                state = BattleStateMultiple.MIDDLE;
+                MiddleTurn();
+            }
+            if (GameManager.CloserAgil < RandomAttack)
             {
-                state = BattleStateMultiple.CLOSER;
-                CloserTurn();
+                dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Closer!";
+                bool isDead = Closer.TakeDamage(enemyUnit[enemyUnitSelected].enemyDamage);
+                GameManager.CloserMorale -= enemyUnit[enemyUnitSelected].enemyDamage;
+                CloserMorale.value = (GameManager.CloserMorale / GameManager.CloserMoraleMax);
+                yield return new WaitForSeconds(1f);
+                if (isDead)
+                {
+                    closerDead = true;
+                    state = BattleStateMultiple.STARTER;
+                    StarterTurn();
+                }
+
+                else
+                {
+                    state = BattleStateMultiple.CLOSER;
+                    CloserTurn();
+                }
             }
         }
 
