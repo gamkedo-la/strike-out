@@ -139,10 +139,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitName: SetUp
   unitLevel: 1
-  fastballDamage: 1
-  sliderDamage: 1
-  curveballDamage: 1
-  changeupDamage: 1
+  fastballDamage: 10
+  sliderDamage: 10
+  curveballDamage: 10
+  changeupDamage: 10
   fastballStamina: 5
   sliderStamina: 4
   curveballStamina: 4

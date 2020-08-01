@@ -317,8 +317,8 @@ MonoBehaviour:
   maxStamina: 30
   currentStamina: 25
   ExperienceToDistribute: 0
-  minExperience: 100
-  maxExperience: 500
+  minExperience: 20
+  maxExperience: 30
   MoneyToDistribute: 0
   minMoney: 10
   maxMoney: 20

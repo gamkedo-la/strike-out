@@ -20,9 +20,12 @@ public class GameManager : MonoBehaviour
 
     //experience
     private static float starterExp, mrExp, setUpExp, closerExp;
+    private static float starterTargetExp, mrTargetExp, setupTargetExp, closerTargetExp;
+    private static int starterLevel, mrLevel, setupLevel, closerLevel;
     //UI
     Slider Starter, MidReliv, SetUp, Closer;
     Slider StarterE, MidRelivE, SetUpE, CloserE;
+
 
     public Text moneyUI;
 
@@ -112,6 +115,7 @@ public class GameManager : MonoBehaviour
     }
     #endregion
     #region Experience
+           #region CurrentExp;
     public static float StarterExp
     {
         get
@@ -163,6 +167,114 @@ public class GameManager : MonoBehaviour
             closerExp = value;
         }
     }
+    #endregion
+           #region TargetExp
+    public static float StarterTargetExp
+    {
+        get
+        {
+            return starterTargetExp;
+        }
+
+        set
+        {
+            starterTargetExp = value;
+        }
+    }
+
+    public static float MRTargetExp
+    {
+        get
+        {
+            return mrTargetExp;
+        }
+
+        set
+        {
+            mrTargetExp = value;
+        }
+    }
+
+    public static float SetupTargetExp
+    {
+        get
+        {
+            return setupTargetExp;
+        }
+
+        set
+        {
+            setupTargetExp = value;
+        }
+    }
+
+    public static float CloserTargetExp
+    {
+        get
+        {
+            return closerTargetExp;
+        }
+
+        set
+        {
+            closerTargetExp = value;
+        }
+    }
+    #endregion
+
+           #region Level
+    public static int StarterLevel
+    {
+        get
+        {
+            return starterLevel;
+        }
+
+        set
+        {
+            starterLevel = value;
+        }
+    }
+
+    public static int MRLevel
+    {
+        get
+        {
+            return mrLevel;
+        }
+
+        set
+        {
+            mrLevel = value;
+        }
+    }
+
+    public static int SetUpLevel
+    {
+        get
+        {
+            return setupLevel;
+        }
+
+        set
+        {
+            setupLevel = value;
+        }
+    }
+
+    public static int CloserLevel
+    {
+        get
+        {
+            return closerLevel;
+        }
+
+        set
+        {
+            closerLevel = value;
+        }
+    }
+    #endregion
     #endregion
     #region PlayerStats
 
@@ -466,6 +578,15 @@ public class GameManager : MonoBehaviour
         closerCurve = 1;
         closerChange = 1;
         closerAgil = 3;
+        #endregion
+
+        #region Experience
+        starterTargetExp = 5;
+        mrTargetExp = 5;
+        setupTargetExp = 5;
+        closerTargetExp = 5;
+
+
         #endregion
 
         if (!gameStartingStats)

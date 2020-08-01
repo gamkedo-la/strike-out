@@ -40,10 +40,23 @@ public class BattleSystemMultiple : MonoBehaviour
 
     //Setting Color for being up versus downed
     public Color staminaBaseColor, energyBaseColor, downedColor;
-    //End screen experience
+    #region End screen experience
     public Text StarterExpGain, MRExpGain, SetUpExpGain, CloserExpGain;
+    public Text StarterExpToNext, MRExpToNext, SetUpExpToNext, CloserExpToNext;
     public Text StartTotalExp, MRTotalExp, SetUpTotalExp, CloserTotalExp;
+    bool SLevel, MLevel, SeLevel, CLevel;
+    public GameObject SLevelUp, MLevelUp, SetUpLevelUp, CloserLevelUp;
 
+    public GameObject PlayerStatsScreen, SLevelUpScreen, MLevelUpScreen, SeLevelUpScreen, CLevelUpScreen;
+
+    public Slider SFSlider, SSSlider, SCSlider, SChSlider, SASlider;
+    public Slider MFSlider, MSSlider, MCSlider, MChSlider, MASlider;
+    public Slider SeFSlider, SeSSlider, SeCSlider, SeChSlider, SeASlider;
+    public Slider CFSlider, CSSlider, CCSlider, CChSlider, CASlider;
+    public Text SPoints, MPoints, SePoints, CPoints;
+    
+    int SPointsToGive, MPointsToGive, SePointsToGive, CPointsToGive;
+    #endregion
     public Text MoneyText;
     //Particle systems for selection
     public GameObject enemySelectionParticle;
@@ -69,11 +82,14 @@ public class BattleSystemMultiple : MonoBehaviour
     public GameObject[] playerStations;
     bool starterDead, middleDead, setupDead, closerDead;
     bool allPlayersDead;
+    int enemyCount;
 
     //Choosing which player to attack
     int WhoToAttack;
     //
     bool enemySelect;
+    bool isOver;
+    int totalExp;
     private void Start()
     {
         state = BattleStateMultiple.START;
@@ -93,6 +109,12 @@ public class BattleSystemMultiple : MonoBehaviour
         MiddleEnergy.value = (GameManager.MidRelivEnergy / GameManager.MidRelievEnergyMax);
         SetUpEnergy.value = (GameManager.SetUpEnergy / GameManager.SetUpEnergyMax);
         CloserEnergy.value = (GameManager.CloserEnergy / GameManager.CloserEnergyMax);
+
+        for (int i = 0; i < enemyBattleStationLocations.Count; i++)
+        {
+            enemyCount++;
+            enemyPrefab[i].SetActive(true);
+        }
 
         StartCoroutine(SetupBattle());
     }
@@ -125,7 +147,6 @@ public class BattleSystemMultiple : MonoBehaviour
 
     private void Update()
     {
-        print(enemyBattleStationLocations[enemyUnitSelected]);
         if ((state == BattleStateMultiple.STARTER || state == BattleStateMultiple.MIDDLE || state == BattleStateMultiple.SETUP || state == BattleStateMultiple.CLOSER) && enemySelect)
         {
             //SelectionProcess
@@ -155,7 +176,8 @@ public class BattleSystemMultiple : MonoBehaviour
             }
         }
 
-        if (enemyBattleStationLocations.Count == 0)
+        print(enemyCount);
+        if (enemyCount == 0 && !isOver)
         {
             state = BattleStateMultiple.WON;
             EndBattle();
@@ -386,13 +408,15 @@ public class BattleSystemMultiple : MonoBehaviour
             //This checks to see if the Enemy is Dead or has HP remaining
             if (isDead)
             {
-              /*  enemyBattleStationLocations.Remove(enemyBattleStationLocations[enemyUnitSelected]);
-                enemyPrefab.Remove(enemyPrefab[enemyUnitSelected]);
-                enemyPrefab[enemyUnitSelected].SetActive(false);
-
+                //Destroy(enemyPrefab[enemyUnitSelected]);
+                totalExp += enemyUnit[enemyUnitSelected].ExperienceToDistribute;
+                enemyCount--;
+                enemyBattleStationLocations.Remove(enemyBattleStationLocations[enemyUnitSelected]);
+                enemyUnitSelected = 0;
+                enemySelectionParticle.transform.position = enemyBattleStationLocations[enemyUnitSelected].transform.position;
 
                 state = BattleStateMultiple.ENEMYTURN;
-                StartCoroutine(EnemyTurn1());*/
+                StartCoroutine(EnemyTurn1());
             }
 
             if (!isDead)
@@ -436,12 +460,14 @@ public class BattleSystemMultiple : MonoBehaviour
             //This checks to see if the Enemy is Dead or has HP remaining
             if (isDead)
             {
-                /*enemyBattleStationLocations.Remove(enemyBattleStationLocations[enemyUnitSelected]);
-                enemyPrefab.Remove(enemyPrefab[enemyUnitSelected]);
-                enemyPrefab[enemyUnitSelected].SetActive(false);
+                totalExp += enemyUnit[enemyUnitSelected].ExperienceToDistribute;
+                enemyCount--;
+                enemyBattleStationLocations.Remove(enemyBattleStationLocations[enemyUnitSelected]);
+                enemyUnitSelected = 0;
+                enemySelectionParticle.transform.position = enemyBattleStationLocations[enemyUnitSelected].transform.position;
 
                 state = BattleStateMultiple.ENEMYTURN;
-                StartCoroutine(EnemyTurn2());*/
+                StartCoroutine(EnemyTurn2());
             }
 
             if (!isDead)
@@ -486,12 +512,14 @@ public class BattleSystemMultiple : MonoBehaviour
             //This checks to see if the Enemy is Dead or has HP remaining
             if (isDead)
             {
-                /*enemyBattleStationLocations.Remove(enemyBattleStationLocations[enemyUnitSelected]);
-                enemyPrefab.Remove(enemyPrefab[enemyUnitSelected]);
-                enemyPrefab[enemyUnitSelected].SetActive(false);
+                totalExp += enemyUnit[enemyUnitSelected].ExperienceToDistribute;
+                enemyCount--;
+                enemyBattleStationLocations.Remove(enemyBattleStationLocations[enemyUnitSelected]);
+                enemyUnitSelected = 0;
+                enemySelectionParticle.transform.position = enemyBattleStationLocations[enemyUnitSelected].transform.position;
 
                 state = BattleStateMultiple.ENEMYTURN;
-                StartCoroutine(EnemyTurn3());*/
+                StartCoroutine(EnemyTurn3());
             }
 
             if (!isDead)
@@ -535,12 +563,14 @@ public class BattleSystemMultiple : MonoBehaviour
             //This checks to see if the Enemy is Dead or has HP remaining
             if (isDead)
             {
-               /* enemyBattleStationLocations.Remove(enemyBattleStationLocations[enemyUnitSelected]);
-                enemyPrefab.Remove(enemyPrefab[enemyUnitSelected]);
-                enemyPrefab[enemyUnitSelected].SetActive(false);
+                totalExp += enemyUnit[enemyUnitSelected].ExperienceToDistribute;
+                enemyCount--;
+                enemyBattleStationLocations.Remove(enemyBattleStationLocations[enemyUnitSelected]);
+                enemyUnitSelected = 0;
+                enemySelectionParticle.transform.position = enemyBattleStationLocations[enemyUnitSelected].transform.position;
 
                 state = BattleStateMultiple.STARTER;
-                StarterTurn();*/
+                StarterTurn();
             }
 
             if (!isDead)
@@ -594,7 +624,7 @@ public class BattleSystemMultiple : MonoBehaviour
 
         if (WhoToAttack == 0 && !starterDead)
         {
-            print(RandomAttack + "/" + GameManager.StarterAgil);
+
             if (GameManager.StarterAgil >= RandomAttack)
             {
                 dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Starter!";
@@ -628,7 +658,6 @@ public class BattleSystemMultiple : MonoBehaviour
         }
         if (WhoToAttack == 1 && !middleDead)
         {
-            print(RandomAttack + "/" + GameManager.MiddleAgil);
             if (GameManager.MiddleAgil >= RandomAttack)
             {
                 dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Mid Reliever!";
@@ -661,7 +690,7 @@ public class BattleSystemMultiple : MonoBehaviour
         }
         if (WhoToAttack == 2 && !setupDead)
         {
-            print(RandomAttack + "/" + GameManager.SetUpAgil);
+
             if (GameManager.SetUpAgil >= RandomAttack)
             {
                 dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks SetUp!";
@@ -694,7 +723,7 @@ public class BattleSystemMultiple : MonoBehaviour
         }
         if (WhoToAttack == 3 && !closerDead)
         {
-            print(RandomAttack + "/" + GameManager.CloserAgil);
+
             if (GameManager.CloserAgil >= RandomAttack)
             {
                 dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Closer!";
@@ -1469,15 +1498,6 @@ public class BattleSystemMultiple : MonoBehaviour
 
     public void OnCancelButton()
     {
-        if (state != BattleStateMultiple.STARTER)
-            return;
-        if (state != BattleStateMultiple.SETUP)
-            return;
-        if (state != BattleStateMultiple.MIDDLE)
-            return;
-        if (state != BattleStateMultiple.CLOSER)
-            return;
-
         PlayerMenu.SetActive(true);
         PlayerPitches.SetActive(false);
     }
@@ -1500,23 +1520,26 @@ public class BattleSystemMultiple : MonoBehaviour
             PlayerPitches.SetActive(false);
             PlayerMenu.SetActive(false);
 
-            StarterExpGain.text = "   +" + (enemyUnit[enemyUnitSelected].ExperienceToDistribute / 4).ToString("F0");
-            MRExpGain.text = "   +" + (enemyUnit[enemyUnitSelected].ExperienceToDistribute / 4).ToString("F0");
-            SetUpExpGain.text = "   +" + (enemyUnit[enemyUnitSelected].ExperienceToDistribute / 4).ToString("F0");
-            CloserExpGain.text = "   +" + (enemyUnit[enemyUnitSelected].ExperienceToDistribute / 4).ToString("F0");
+            StarterExpGain.text = "   +" + (totalExp / 4).ToString("F0");
+            MRExpGain.text = "   +" + (totalExp / 4).ToString("F0");
+            SetUpExpGain.text = "   +" + (totalExp / 4).ToString("F0");
+            CloserExpGain.text = "   +" + (totalExp / 4).ToString("F0");
 
-            GameManager.StarterExp = enemyUnit[enemyUnitSelected].ExperienceToDistribute / 4 + GameManager.StarterExp;
-            GameManager.MRExp = enemyUnit[enemyUnitSelected].ExperienceToDistribute / 4 + GameManager.MRExp;
-            GameManager.SetUpExp = enemyUnit[enemyUnitSelected].ExperienceToDistribute / 4 + GameManager.SetUpExp;
-            GameManager.CloserExp = enemyUnit[enemyUnitSelected].ExperienceToDistribute / 4 + GameManager.CloserExp;
+            GameManager.StarterExp = totalExp / 4 + GameManager.StarterExp;
+            GameManager.MRExp = totalExp / 4 + GameManager.MRExp;
+            GameManager.SetUpExp = totalExp / 4 + GameManager.SetUpExp;
+            GameManager.CloserExp = totalExp / 4 + GameManager.CloserExp;
 
-            StartTotalExp.text = GameManager.StarterExp.ToString("F0");
-            MRTotalExp.text = GameManager.MRExp.ToString("F0");
-            SetUpTotalExp.text = GameManager.SetUpExp.ToString("F0");
-            CloserTotalExp.text = GameManager.CloserExp.ToString("F0");
+            StartTotalExp.text = GameManager.StarterLevel.ToString("F0");
+            MRTotalExp.text = GameManager.MRLevel.ToString("F0");
+            SetUpTotalExp.text = GameManager.SetUpLevel.ToString("F0");
+            CloserTotalExp.text = GameManager.CloserLevel.ToString("F0");
+
+            AddXP();
 
             GameManager.Money += enemyUnit[enemyUnitSelected].MoneyToDistribute;
             MoneyText.text = "$ " + enemyUnit[enemyUnitSelected].MoneyToDistribute.ToString("F0");
+            isOver = true;
         }
         else if (state == BattleStateMultiple.LOST)
         {
@@ -1524,15 +1547,226 @@ public class BattleSystemMultiple : MonoBehaviour
             StartCoroutine(WaitingAtEndOfBattle());
         }
     }
+    public void AddXP()
+    {
+        StarterExp(totalExp/4);
+        MidExp(totalExp / 4);
+        SetUpExp(totalExp / 4);
+        CloserExp(totalExp / 4); 
+    }
+
+    void StarterExp(int xp)
+    {
+        xp = (totalExp / 4);
+        int OldLevelS = GameManager.StarterLevel;
+
+        while (GameManager.StarterExp >= GameManager.StarterTargetExp)
+        {
+            GameManager.StarterExp = GameManager.StarterExp - GameManager.StarterTargetExp;
+            GameManager.StarterLevel++;
+            SLevel = true;
+            SLevelUp.SetActive(true);
+            GameManager.StarterTargetExp *= 2f;
+            //add training points
+            StarterExpToNext.text = GameManager.StarterTargetExp.ToString("F0");
+            int NewLevelS = GameManager.StarterLevel;
+            int Difference = OldLevelS - NewLevelS;
+            SPointsToGive = Difference * 3;
+        }
+    }
+
+    void MidExp(int xp)
+    {
+        xp = (totalExp / 4);
+        int OldLevelM = GameManager.MRLevel;
+
+        while (GameManager.MRExp >= GameManager.MRTargetExp)
+        {
+            GameManager.MRExp = GameManager.MRExp - GameManager.MRTargetExp;
+            GameManager.MRLevel++;
+            MLevel = true;
+            MLevelUp.SetActive(true);
+            GameManager.MRTargetExp *= 2f;
+            //add training points
+            MRExpToNext.text = GameManager.MRTargetExp.ToString("F0");
+            int NewLevelM = GameManager.MRLevel;
+            int Difference = OldLevelM - NewLevelM;
+            MPointsToGive = Difference * 3;
+        }
+    }
+
+    void SetUpExp(int xp)
+    {
+        xp = (totalExp / 4);
+        int OldLevelSe = GameManager.SetUpLevel;
+
+        while (GameManager.SetUpExp >= GameManager.SetupTargetExp)
+        {
+            GameManager.SetUpExp = GameManager.SetUpExp - GameManager.SetupTargetExp;
+            GameManager.SetUpLevel++;
+            SeLevel = true;
+            SetUpLevelUp.SetActive(true);
+            GameManager.SetupTargetExp *= 2f;
+            //add training points
+            SetUpExpToNext.text = GameManager.SetupTargetExp.ToString("F0");
+            int NewLevelSe = GameManager.SetUpLevel;
+            int Difference = OldLevelSe - NewLevelSe;
+            SePointsToGive = Difference * 3;
+        }
+
+    }
+
+    void CloserExp(int xp)
+    {
+        xp = (totalExp / 4);
+        int OldLevelC = GameManager.CloserLevel;
+
+        while (GameManager.CloserExp >= GameManager.CloserTargetExp)
+        {
+            GameManager.CloserExp = GameManager.CloserExp - GameManager.CloserTargetExp;
+            GameManager.CloserLevel++;
+            CLevel = true;
+            CloserLevelUp.SetActive(true);
+            GameManager.CloserTargetExp *= 2f;
+            //add training points
+            CloserExpToNext.text = GameManager.CloserTargetExp.ToString("F0");
+            int NewLevelC = GameManager.CloserLevel;
+            int Difference = OldLevelC - NewLevelC;
+            CPointsToGive = Difference * 3;
+        }
+    }
+
     public void BattleFinished()
     {
-        SceneManager.LoadScene("Concourse");
+        if (isOver)
+        {
+            print(SLevel + "   " + MLevel + "   " + SeLevel + "   " + CLevel);
+
+            PlayerStatsScreen.SetActive(true);
+            print("why am i here");
+            SFSlider.value = GameManager.StarterFast;
+            SSSlider.value = GameManager.StarterSlid;
+            SCSlider.value = GameManager.StarterCurve;
+            SChSlider.value = GameManager.StarterChange;
+            SASlider.value = GameManager.StarterAgil;
+
+            MFSlider.value = GameManager.MiddleFast;
+            MSSlider.value = GameManager.MiddleSlid;
+            MCSlider.value = GameManager.MiddleCurve;
+            MChSlider.value = GameManager.MiddleChange;
+            MASlider.value = GameManager.MiddleAgil;
+
+            SeFSlider.value = GameManager.SetUpFast;
+            SeSSlider.value = GameManager.SetUpSlid;
+            SeCSlider.value = GameManager.SetUpCurve;
+            SeChSlider.value = GameManager.SetUpChange;
+            SeASlider.value = GameManager.SetUpAgil;
+
+            CFSlider.value = GameManager.CloserFast;
+            CSSlider.value = GameManager.CloserSlid;
+            CCSlider.value = GameManager.CloserCurve;
+            CChSlider.value = GameManager.CloserChange;
+            CASlider.value = GameManager.CloserAgil;
+
+            SPoints.text = SPointsToGive.ToString();
+            MPoints.text = MPointsToGive.ToString();
+            SePoints.text = SePointsToGive.ToString();
+            CPoints.text = CPointsToGive.ToString();
+            if (SLevel)
+            {
+                SLevelUpScreen.SetActive(true);
+                StarterLevelUp();
+            }
+            if (!SLevel && MLevel)
+            {
+                MLevelUpScreen.SetActive(true);
+                MidRelieverLevelUp();
+            }
+            if (!SLevel && !MLevel && SeLevel)
+            {
+                SeLevelUpScreen.SetActive(true);
+                SetLevelUp();
+            }
+            if (!SLevel && !MLevel && !SeLevel && CLevel)
+            {
+                CLevelUpScreen.SetActive(true);
+                CloseLevelUp();
+            }
+            EndingMenu.SetActive(false);
+            /*  if (!SLevel && !MLevel && !SeLevel && !CLevel)
+              {
+                  StartCoroutine(WaitingAtEndOfBattle());
+              }*/
+        }
     }
+
+    public void StarterLevelUp()
+    {
+        if (MLevel)
+        {
+            MLevelUpScreen.SetActive(true);
+            SLevelUpScreen.SetActive(false);
+            MidRelieverLevelUp();
+        }
+        if (!MLevel && SeLevel)
+        {
+            SeLevelUpScreen.SetActive(true);
+            MLevelUpScreen.SetActive(false);
+            SetLevelUp();
+        }
+        if (!SeLevel && CLevel)
+        {
+            CLevelUpScreen.SetActive(true);
+            SeLevelUpScreen.SetActive(false);
+            CloseLevelUp();
+        }
+        if (!MLevel && !SeLevel && !CLevel)
+        {
+           // StartCoroutine(WaitingAtEndOfBattle());
+        }
+    }
+
+    public void MidRelieverLevelUp()
+    {
+        if (SeLevel)
+        {
+            SeLevelUpScreen.SetActive(true);
+            SetLevelUp();
+        }
+        if (!SeLevel && CLevel)
+        {
+            CLevelUpScreen.SetActive(true);
+            CloseLevelUp();
+        }
+        if (!SeLevel && !CLevel)
+        {
+           // StartCoroutine(WaitingAtEndOfBattle());
+        }
+    }
+
+    public void SetLevelUp()
+    {
+        if (CLevel)
+        {
+            CLevelUpScreen.SetActive(true);
+            CloseLevelUp();
+        }
+        if (!CLevel)
+        {
+           // StartCoroutine(WaitingAtEndOfBattle());
+        }
+    }
+
+    public void CloseLevelUp()
+    {
+       // StartCoroutine(WaitingAtEndOfBattle());
+    }
+
     #endregion
 
     IEnumerator WaitingAtEndOfBattle()
     {
-        yield return new WaitForSeconds(2);
-        SceneManager.LoadScene("Concourse");
+        yield return new WaitForSeconds(1f);
+         SceneManager.LoadScene("Concourse");
     }
 }
