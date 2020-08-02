@@ -1,8 +1,32 @@
 fileFormatVersion: 2
-guid: 909c980b0450d4a47a5fd0d3c735ec16
+guid: 6137b3c94216601499a0bcb3fe418fa5
 ModelImporter:
-  serializedVersion: 19300
-  internalIDToNameTable: []
+  serializedVersion: 19301
+  internalIDToNameTable:
+  - first:
+      74: 9116978828397133383
+    second: Armature|BasePose
+  - first:
+      74: -79422505550664777
+    second: Armature|InjuredTired
+  - first:
+      74: -3713550108130290136
+    second: Armature|Oof
+  - first:
+      74: -3828583913261678786
+    second: Armature|Running
+  - first:
+      74: -3672444351857111909
+    second: Armature|RunningGood
+  - first:
+      74: -6595870536907429172
+    second: Armature|Set
+  - first:
+      74: -1228952814471920847
+    second: Armature|Victory
+  - first:
+      74: -4435252492879038639
+    second: Armature|Windup
   externalObjects: {}
   materials:
     materialImportMode: 1
@@ -43,6 +67,7 @@ ModelImporter:
     importBlendShapes: 1
     importCameras: 1
     importLights: 1
+    fileIdsGeneration: 2
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
