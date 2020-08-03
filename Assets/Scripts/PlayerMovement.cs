@@ -16,8 +16,12 @@ public class PlayerMovement : MonoBehaviour
 
     public static bool canMove;
     public GameObject ShatterBall;
+
+    public GameObject playerModel;
+    Animator anim;
     private void Start()
     {
+        anim = playerModel.GetComponent<Animator>();
         canMove = true;
     }
 
@@ -31,6 +35,7 @@ public class PlayerMovement : MonoBehaviour
             }
             else
                 currentSpeed = basespeed;
+           
 
             float translation = Input.GetAxis("Vertical") * currentSpeed * Time.deltaTime;
             float rotation = Input.GetAxis("Horizontal") * rotateSpeed * Time.deltaTime;
@@ -50,6 +55,15 @@ public class PlayerMovement : MonoBehaviour
                 //waiting for the shatter effect 
                 ShatterBall.SetActive(true);
                 StartCoroutine(Waiting());
+            }
+
+            if (Input.GetAxis("Vertical") >= 0.03 || Input.GetAxis("Vertical") <= -.03f)
+            {
+                anim.SetBool("isRunning", true);
+            }
+            if (Input.GetAxis("Vertical") <= 0.03 && Input.GetAxis("Vertical") >= -.03f)
+            {
+                anim.SetBool("isRunning", false);
             }
         }
     }
