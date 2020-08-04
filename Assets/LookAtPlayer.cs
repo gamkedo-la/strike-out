@@ -11,7 +11,6 @@ public class LookAtPlayer : MonoBehaviour
     private void LateUpdate()
     {
         distance = Vector3.Distance(this.transform.position, player.transform.position);
-        print(distance);
         if (distance >= 15)
         {
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0,-180,0), RotSpeed * Time.deltaTime);

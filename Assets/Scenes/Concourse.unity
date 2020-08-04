@@ -4190,6 +4190,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8e084a7c56165ec47afedacdcc362769, type: 3}
+--- !u!1 &423104200 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 8e084a7c56165ec47afedacdcc362769,
+    type: 3}
+  m_PrefabInstance: {fileID: 423104199}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &423104201
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 423104200}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 22100000, guid: d27b43f6e8c8d7a438fd453a65445e39, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &434753968
 GameObject:
   m_ObjectHideFlags: 0
@@ -13504,6 +13529,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 384eb0162e61d4141b288690991dad3f, type: 3}
+--- !u!1 &1170242623 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 384eb0162e61d4141b288690991dad3f,
+    type: 3}
+  m_PrefabInstance: {fileID: 1170242622}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1170242624
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1170242623}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 22100000, guid: 7032b4409686f96478483e03d9c07bbe, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1174624393
 GameObject:
   m_ObjectHideFlags: 0
@@ -19257,6 +19307,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 298c1296f3e6bef43879790dd95c1799, type: 3}
+--- !u!1 &1290610801 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 298c1296f3e6bef43879790dd95c1799,
+    type: 3}
+  m_PrefabInstance: {fileID: 1290610800}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1290610802
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1290610801}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 22100000, guid: 64888075beb589541bf6ccd41363a8a9, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!43 &1291484402
 Mesh:
   m_ObjectHideFlags: 0
@@ -29720,6 +29795,11 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 253559558}
+    - target: {fileID: 923771086080950308, guid: 8077703d83248934cba4de3691168b9e,
+        type: 3}
+      propertyPath: PlayerModel
+      value: 
+      objectReference: {fileID: 1170242623}
     - target: {fileID: 923771086080950310, guid: 8077703d83248934cba4de3691168b9e,
         type: 3}
       propertyPath: m_Enabled
@@ -29845,6 +29925,11 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 253559558}
+    - target: {fileID: 4227129763980675201, guid: fb6054befb5d5084db301d003eca991a,
+        type: 3}
+      propertyPath: PlayerModel
+      value: 
+      objectReference: {fileID: 1290610801}
     - target: {fileID: 4227129763980675202, guid: fb6054befb5d5084db301d003eca991a,
         type: 3}
       propertyPath: m_Name
@@ -30017,6 +30102,11 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 253559558}
+    - target: {fileID: 7161829626406151400, guid: 53bdb28da7d0ad444a2713bc3ebe303c,
+        type: 3}
+      propertyPath: PlayerModel
+      value: 
+      objectReference: {fileID: 423104200}
     - target: {fileID: 7161829626406151402, guid: 53bdb28da7d0ad444a2713bc3ebe303c,
         type: 3}
       propertyPath: m_UseGravity

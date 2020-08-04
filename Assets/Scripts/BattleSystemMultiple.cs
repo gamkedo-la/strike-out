@@ -16,6 +16,11 @@ public class BattleSystemMultiple : MonoBehaviour
     public GameObject SetUpPrefab;
     public GameObject CloserPrefab;
 
+    Animator StarterAnim;
+    Animator MidRelAnim;
+    Animator SetUpAnim;
+    Animator CloserAnim;
+
 
     public Transform StarterStation;
     public Transform MiddleStationStation;
@@ -97,6 +102,11 @@ public class BattleSystemMultiple : MonoBehaviour
         middleDead = false;
         setupDead = false;
         closerDead = false;
+
+        StarterAnim = StarterPrefab.GetComponent<Animator>();
+        MidRelAnim = MiddleRelievPrefab.GetComponent<Animator>();
+        SetUpAnim = SetUpPrefab.GetComponent<Animator>();
+        CloserAnim = CloserPrefab.GetComponent<Animator>();
 
 
         StarterMorale.value = (GameManager.StarterMorale / GameManager.StarterMoraleMax);
@@ -200,6 +210,8 @@ public class BattleSystemMultiple : MonoBehaviour
             {
                 if (Starter.fastballStamina <= GameManager.StarterEnergy)
                 {
+                    print("here");
+                    StarterAnim.SetBool("isThrowing", true);
                     GameManager.StarterEnergy -= Starter.fastballStamina;
                     //UpdateStarterUI;
                     StarterEnergy.value = GameManager.StarterEnergy / GameManager.StarterEnergyMax;
@@ -209,6 +221,7 @@ public class BattleSystemMultiple : MonoBehaviour
             {
                 if (Starter.sliderStamina <= GameManager.StarterEnergy)
                 {
+                    StarterAnim.SetBool("isThrowing", true);
                     GameManager.StarterEnergy -= Starter.sliderStamina;
                     //UpdateStarterUI;
                     StarterEnergy.value = GameManager.StarterEnergy / GameManager.StarterEnergyMax;
@@ -218,6 +231,7 @@ public class BattleSystemMultiple : MonoBehaviour
             {
                 if (Starter.curveballStamina <= GameManager.StarterEnergy)
                 {
+                    StarterAnim.SetBool("isThrowing", true);
                     GameManager.StarterEnergy -= Starter.curveballStamina;
                     //UpdateStarterUI;
                     StarterEnergy.value = GameManager.StarterEnergy / GameManager.StarterEnergyMax;
@@ -227,6 +241,7 @@ public class BattleSystemMultiple : MonoBehaviour
             {
                 if (Starter.changeupStamina <= GameManager.StarterEnergy)
                 {
+                    StarterAnim.SetBool("isThrowing", true);
                     GameManager.StarterEnergy -= Starter.changeupStamina;
                     //UpdateStarterUI;
                     StarterEnergy.value = GameManager.StarterEnergy / GameManager.StarterEnergyMax;
@@ -649,13 +664,20 @@ public class BattleSystemMultiple : MonoBehaviour
                 if (GameManager.StarterAgil < RandomAttack)
                 {
                     dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Starter!";
+
+                    yield return new WaitForSeconds(.5f);
+                    StarterAnim.SetBool("isHurt", true);
+
                     bool isDead = Starter.TakeDamage(enemyUnit[enemyUnitSelected].enemyDamage);
                     GameManager.StarterMorale -= enemyUnit[enemyUnitSelected].enemyDamage;
                     StarterMorale.value = (GameManager.StarterMorale / GameManager.StarterMoraleMax);
-                    yield return new WaitForSeconds(3f);
+                    yield return new WaitForSeconds(2f);
                     if (isDead)
                     {
                         starterDead = true;
+
+                        StarterAnim.SetBool("isDown", true);
+
                         state = BattleStateMultiple.MIDDLE;
                         MiddleTurn();
                     }
@@ -827,14 +849,19 @@ public class BattleSystemMultiple : MonoBehaviour
             if (GameManager.StarterAgil < RandomAttack)
             {
                 dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Starter!";
-                bool isDead = Starter.TakeDamage(enemyUnit[enemyUnitSelected].enemyDamage);
+
+                    yield return new WaitForSeconds(.5f);
+                    StarterAnim.SetBool("isHurt", true);
+
+                    bool isDead = Starter.TakeDamage(enemyUnit[enemyUnitSelected].enemyDamage);
                 GameManager.StarterMorale -= enemyUnit[enemyUnitSelected].enemyDamage;
                 StarterMorale.value = (GameManager.StarterMorale / GameManager.StarterMoraleMax);
                 yield return new WaitForSeconds(3f);
                 if (isDead)
                 {
                     starterDead = true;
-                    state = BattleStateMultiple.SETUP;
+                        StarterAnim.SetBool("isDown", true);
+                        state = BattleStateMultiple.SETUP;
                     SETUPTurn();
                 }
 
@@ -1001,6 +1028,10 @@ public class BattleSystemMultiple : MonoBehaviour
                 if (GameManager.StarterAgil < RandomAttack)
                 {
                     dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Starter!";
+
+                    yield return new WaitForSeconds(.5f);
+                    StarterAnim.SetBool("isHurt", true);
+
                     bool isDead = Starter.TakeDamage(enemyUnit[enemyUnitSelected].enemyDamage);
                     GameManager.StarterMorale -= enemyUnit[enemyUnitSelected].enemyDamage;
                     StarterMorale.value = (GameManager.StarterMorale / GameManager.StarterMoraleMax);
@@ -1008,6 +1039,7 @@ public class BattleSystemMultiple : MonoBehaviour
                     if (isDead)
                     {
                         starterDead = true;
+                        StarterAnim.SetBool("isDown", true);
                         state = BattleStateMultiple.CLOSER;
                         CloserTurn();
                     }
@@ -1537,6 +1569,8 @@ public class BattleSystemMultiple : MonoBehaviour
     {
         if (state == BattleStateMultiple.WON)
         {
+            StarterAnim.SetBool("isVictory", true);
+
             dialogueText.text = "You won the Battle!";
             EndingMenu.SetActive(true);
             PlayerPitches.SetActive(false);

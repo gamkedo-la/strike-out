@@ -575,7 +575,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: 0
-  StarterPrefab: {fileID: 5706442500611648451, guid: 29148c11e3b33fe42a201d73e9523bb5,
+  StarterPrefab: {fileID: 1904753284297806757, guid: 2f3b6b5553d5198479f4fbc10fd6159d,
     type: 3}
   MiddleRelievPrefab: {fileID: 1358011623790408722, guid: 5a12497c05101854381e91a02f3bd8ba,
     type: 3}
