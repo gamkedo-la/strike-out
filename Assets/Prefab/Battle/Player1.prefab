@@ -190,10 +190,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitName: Starter
   unitLevel: 1
-  fastballDamage: 10
-  sliderDamage: 10
-  curveballDamage: 10
-  changeupDamage: 10
+  fastballDamage: 5
+  sliderDamage: 5
+  curveballDamage: 5
+  changeupDamage: 5
   fastballStamina: 5
   sliderStamina: 4
   curveballStamina: 4
