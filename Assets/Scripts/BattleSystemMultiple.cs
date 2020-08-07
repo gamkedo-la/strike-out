@@ -94,6 +94,9 @@ public class BattleSystemMultiple : MonoBehaviour
     bool enemySelect;
     bool isOver;
     int totalExp;
+
+    //Initiated GameObjects
+    GameObject playerGO1, playerGO2, playerGO3, playerGO4;
     private void Start()
     {
         state = BattleStateMultiple.START;
@@ -124,10 +127,10 @@ public class BattleSystemMultiple : MonoBehaviour
 
     IEnumerator SetupBattle()
     {
-        GameObject playerGO1 = Instantiate(StarterPrefab, StarterStation);
-        GameObject playerGO2 = Instantiate(MiddleRelievPrefab, MiddleStationStation);
-        GameObject playerGO3 = Instantiate(SetUpPrefab, SetUpStation);
-        GameObject playerGO4 = Instantiate(CloserPrefab, CloserStation);
+        playerGO1 = Instantiate(StarterPrefab, StarterStation);
+        playerGO2 = Instantiate(MiddleRelievPrefab, MiddleStationStation);
+        playerGO3 = Instantiate(SetUpPrefab, SetUpStation);
+        playerGO4 = Instantiate(CloserPrefab, CloserStation);
 
         Starter = playerGO1.GetComponent<Unit>();
         MiddleReliever = playerGO2.GetComponent<Unit>();
@@ -198,62 +201,63 @@ public class BattleSystemMultiple : MonoBehaviour
             EndBattle();
         }
         #region Animations based on Health
-        if (Starter.currentHP > (Starter.maxHP * .2))
+        //Starter
+        if (GameManager.StarterMorale > (GameManager.StarterMoraleMax * .2))
         {
             StarterAnim.SetBool("isInjured", false);
         }
-        if (Starter.currentHP <= (Starter.maxHP * .2) && Starter.currentHP > 0)
+        if (GameManager.StarterMorale <= (GameManager.StarterMoraleMax * .2) && GameManager.StarterMorale > 0)
         {
             StarterAnim.SetBool("isInjured", true);
         }
-
-        if (Starter.currentHP <= 0)
+        if (GameManager.StarterMorale <= 0)
         {
+            starterDead = true;
             StarterAnim.SetBool("isDead", true);
         }
-
-        if (MiddleReliever.currentHP > (MiddleReliever.maxHP * .2))
+        //MR
+        if (GameManager.MidRelivMorale > (GameManager.MidRelivMoraleMax * .2))
         {
             MidRelAnim.SetBool("isInjured", false);
         }
-        if (MiddleReliever.currentHP <= (MiddleReliever.maxHP * .2) && MiddleReliever.currentHP > 0)
+        if (GameManager.MidRelivMorale <= (GameManager.MidRelivMoraleMax * .2) && GameManager.MidRelivMorale > 0)
         {
             MidRelAnim.SetBool("isInjured", true);
         }
-
-        if (MiddleReliever.currentHP <= 0)
+        if (GameManager.MidRelivMorale <= 0)
         {
+            middleDead = true;
             MidRelAnim.SetBool("isDead", true);
         }
-
-        if (SetUp.currentHP > (SetUp.maxHP * .2))
+        //SetUp
+        if (GameManager.SetUpMorale > (GameManager.SetUpMoraleMax * .2))
         {
             SetUpAnim.SetBool("isInjured", false);
         }
-        if (SetUp.currentHP <= (SetUp.maxHP * .2) && SetUp.currentHP > 0)
+        if (GameManager.SetUpMorale <= (GameManager.SetUpMoraleMax * .2) && GameManager.SetUpMorale > 0)
         {
             SetUpAnim.SetBool("isInjured", true);
         }
-
-        if (Closer.currentHP <= 0)
+        if (GameManager.SetUpMorale <= 0)
         {
-            CloserAnim.SetBool("isDead", true);
+            setupDead = true;
+            SetUpAnim.SetBool("isDead", true);
         }
-
-        if (Closer.currentHP > (Closer.maxHP * .2))
+        //Closer
+        if (GameManager.CloserMorale > (GameManager.CloserMoraleMax * .2))
         {
             CloserAnim.SetBool("isInjured", false);
         }
-        if (Closer.currentHP <= (Closer.maxHP * .2) && Closer.currentHP > 0)
+        if (GameManager.CloserMorale <= (GameManager.CloserMoraleMax * .2) && GameManager.CloserMorale > 0)
         {
             CloserAnim.SetBool("isInjured", true);
         }
-
-        if (Closer.currentHP <= 0)
+        if (GameManager.CloserMorale <= 0)
         {
+            closerDead = true;
             CloserAnim.SetBool("isDead", true);
         }
-
+        print(GameManager.StarterMorale + " " + GameManager.MidRelivMorale + " " + GameManager.SetUpMorale + " " + GameManager.CloserMorale + " " );
         #endregion
     }
 
@@ -461,6 +465,7 @@ public class BattleSystemMultiple : MonoBehaviour
     IEnumerator PlayerAttack()
     {
         //To Do Damage Enemy
+        yield return new WaitForSeconds(2f);
 
         if (state == BattleStateMultiple.STARTER)
         {
@@ -514,6 +519,7 @@ public class BattleSystemMultiple : MonoBehaviour
 
     IEnumerator MiddleAttack()
     {
+        yield return new WaitForSeconds(2f);
 
         if (state == BattleStateMultiple.MIDDLE)
         {
@@ -567,6 +573,7 @@ public class BattleSystemMultiple : MonoBehaviour
 
     IEnumerator SetUpAttack()
     {
+        yield return new WaitForSeconds(2f);
 
         if (state == BattleStateMultiple.SETUP)
         {
@@ -622,6 +629,8 @@ public class BattleSystemMultiple : MonoBehaviour
 
     IEnumerator CloserAttack()
     {
+        yield return new WaitForSeconds(2f);
+
         if (state == BattleStateMultiple.CLOSER)
         {
             if (fastball)
@@ -684,7 +693,7 @@ public class BattleSystemMultiple : MonoBehaviour
             MiddleTurn();
         }
 
-        if (enemyUnit[0].currentHP >= 0)
+        if (enemyUnit[0].currentHP > 0)
         {
             if (starterDead && middleDead && setupDead && closerDead)
             {
@@ -725,6 +734,7 @@ public class BattleSystemMultiple : MonoBehaviour
                     dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Starter!";
                     yield return new WaitForSeconds(.5f);
                     dialogueText.text = "Starter Dodges!";
+                    yield return new WaitForSeconds(1f);
                     state = BattleStateMultiple.MIDDLE;
                     MiddleTurn();
                 }
@@ -734,8 +744,11 @@ public class BattleSystemMultiple : MonoBehaviour
                     dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Starter!";
 
                     yield return new WaitForSeconds(2f);
+                    bool isDead = Starter.TakeDamage(enemyUnit[enemyUnitSelected].enemyDamage);
                     if (isDead)
                     {
+                        GameManager.StarterMorale -= enemyUnit[enemyUnitSelected].enemyDamage;
+                        StarterMorale.value = (GameManager.StarterMorale / GameManager.StarterMoraleMax);
                         starterDead = true;
 
                         StarterAnim.SetBool("isDead", true);
@@ -748,7 +761,7 @@ public class BattleSystemMultiple : MonoBehaviour
                     {
                         yield return new WaitForSeconds(.5f);
                         StarterAnim.Play("Armature|Oof");
-                        bool isDead = Starter.TakeDamage(enemyUnit[enemyUnitSelected].enemyDamage);
+
                         GameManager.StarterMorale -= enemyUnit[enemyUnitSelected].enemyDamage;
                         StarterMorale.value = (GameManager.StarterMorale / GameManager.StarterMoraleMax);
 
@@ -764,7 +777,7 @@ public class BattleSystemMultiple : MonoBehaviour
                     dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Mid Reliever!";
                     yield return new WaitForSeconds(.5f);
                     dialogueText.text = "Mid Reliever Dodges!";
-
+                    yield return new WaitForSeconds(1f);
                     state = BattleStateMultiple.MIDDLE;
                     MiddleTurn();
                 }
@@ -773,8 +786,11 @@ public class BattleSystemMultiple : MonoBehaviour
                     dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Mid Reliever!";
 
                     yield return new WaitForSeconds(1f);
+                    bool isDead = MiddleReliever.TakeDamage(enemyUnit[enemyUnitSelected].enemyDamage);
                     if (isDead)
                     {
+                        GameManager.MidRelivMorale -= enemyUnit[enemyUnitSelected].enemyDamage;
+                        MiddleMorale.value = (GameManager.MidRelivMorale / GameManager.MidRelivMoraleMax);
                         middleDead = true;
                         MidRelAnim.SetBool("isDead", true);
                         state = BattleStateMultiple.SETUP;
@@ -785,7 +801,7 @@ public class BattleSystemMultiple : MonoBehaviour
                     {
                         yield return new WaitForSeconds(.5f);
                         MidRelAnim.Play("Armature|Oof");
-                        bool isDead = MiddleReliever.TakeDamage(enemyUnit[enemyUnitSelected].enemyDamage);
+
                         GameManager.MidRelivMorale -= enemyUnit[enemyUnitSelected].enemyDamage;
                         MiddleMorale.value = (GameManager.MidRelivMorale / GameManager.MidRelivMoraleMax);
 
@@ -802,7 +818,7 @@ public class BattleSystemMultiple : MonoBehaviour
                     dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks SetUp!";
                     yield return new WaitForSeconds(.5f);
                     dialogueText.text = "SetUp Dodges!";
-
+                    yield return new WaitForSeconds(1f);
                     state = BattleStateMultiple.MIDDLE;
                     MiddleTurn();
                 }
@@ -811,8 +827,11 @@ public class BattleSystemMultiple : MonoBehaviour
                     dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Set Up!";
 
                     yield return new WaitForSeconds(1f);
+                    bool isDead = SetUp.TakeDamage(enemyUnit[enemyUnitSelected].enemyDamage);
                     if (isDead)
                     {
+                        GameManager.SetUpMorale -= enemyUnit[enemyUnitSelected].enemyDamage;
+                        SetUpMorale.value = (GameManager.SetUpMorale / GameManager.SetUpMoraleMax);
                         SetUpAnim.SetBool("isDead", true);
                         setupDead = true;
                         state = BattleStateMultiple.MIDDLE;
@@ -822,7 +841,6 @@ public class BattleSystemMultiple : MonoBehaviour
                     else
                     {
                         SetUpAnim.Play("Armature|Oof");
-                        bool isDead = SetUp.TakeDamage(enemyUnit[enemyUnitSelected].enemyDamage);
                         GameManager.SetUpMorale -= enemyUnit[enemyUnitSelected].enemyDamage;
                         SetUpMorale.value = (GameManager.SetUpMorale / GameManager.SetUpMoraleMax);
                         state = BattleStateMultiple.MIDDLE;
@@ -838,7 +856,7 @@ public class BattleSystemMultiple : MonoBehaviour
                     dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Closer!";
                     yield return new WaitForSeconds(.5f);
                     dialogueText.text = "Closer Dodges!";
-
+                    yield return new WaitForSeconds(1f);
                     state = BattleStateMultiple.MIDDLE;
                     MiddleTurn();
                 }
@@ -848,8 +866,11 @@ public class BattleSystemMultiple : MonoBehaviour
                     dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Closer!";
 
                     yield return new WaitForSeconds(1f);
+                    bool isDead = Closer.TakeDamage(enemyUnit[enemyUnitSelected].enemyDamage);
                     if (isDead)
                     {
+                        GameManager.CloserMorale -= enemyUnit[enemyUnitSelected].enemyDamage;
+                        CloserMorale.value = (GameManager.CloserMorale / GameManager.CloserMoraleMax);
                         CloserAnim.SetBool("isDead", true);
                         closerDead = true;
                         state = BattleStateMultiple.MIDDLE;
@@ -859,7 +880,6 @@ public class BattleSystemMultiple : MonoBehaviour
                     else
                     {
                         CloserAnim.Play("Armature|Oof");
-                        bool isDead = Closer.TakeDamage(enemyUnit[enemyUnitSelected].enemyDamage);
                         GameManager.CloserMorale -= enemyUnit[enemyUnitSelected].enemyDamage;
                         CloserMorale.value = (GameManager.CloserMorale / GameManager.CloserMoraleMax);
                         state = BattleStateMultiple.MIDDLE;
@@ -880,7 +900,7 @@ public class BattleSystemMultiple : MonoBehaviour
             SETUPTurn();
         }
 
-        if (enemyUnit[0].currentHP >= 0)
+        if (enemyUnit[0].currentHP > 0)
         { 
         if (starterDead && middleDead && setupDead && closerDead)
         {
@@ -921,8 +941,8 @@ public class BattleSystemMultiple : MonoBehaviour
                 dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Starter!";
                 yield return new WaitForSeconds(.5f);
                 dialogueText.text = "Starter Dodges!";
-
-                state = BattleStateMultiple.MIDDLE;
+                    yield return new WaitForSeconds(1f);
+                    state = BattleStateMultiple.MIDDLE;
                 MiddleTurn();
             }
             if (GameManager.StarterAgil < RandomAttack)
@@ -930,9 +950,12 @@ public class BattleSystemMultiple : MonoBehaviour
                 dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Starter!";
 
                 yield return new WaitForSeconds(1.5f);
-                if (isDead)
+                bool isDead = Starter.TakeDamage(enemyUnit[enemyUnitSelected].enemyDamage);
+                    if (isDead)
                 {
-                    starterDead = true;
+                        GameManager.StarterMorale -= enemyUnit[enemyUnitSelected].enemyDamage;
+                        StarterMorale.value = (GameManager.StarterMorale / GameManager.StarterMoraleMax);
+                        starterDead = true;
                         StarterAnim.SetBool("isDead", true);
                         state = BattleStateMultiple.SETUP;
                     SETUPTurn();
@@ -942,7 +965,7 @@ public class BattleSystemMultiple : MonoBehaviour
                 {
                         yield return new WaitForSeconds(.5f);
                         StarterAnim.Play("Armature|Oof");
-                        bool isDead = Starter.TakeDamage(enemyUnit[enemyUnitSelected].enemyDamage);
+
                         GameManager.StarterMorale -= enemyUnit[enemyUnitSelected].enemyDamage;
                         StarterMorale.value = (GameManager.StarterMorale / GameManager.StarterMoraleMax);
                         state = BattleStateMultiple.SETUP;
@@ -957,17 +980,20 @@ public class BattleSystemMultiple : MonoBehaviour
                 dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Mid Reliever!";
                 yield return new WaitForSeconds(.5f);
                 dialogueText.text = "Mid Reliever Dodges!";
-
-                state = BattleStateMultiple.MIDDLE;
+                    yield return new WaitForSeconds(1f);
+                    state = BattleStateMultiple.MIDDLE;
                 MiddleTurn();
             }
             if (GameManager.MiddleAgil < RandomAttack)
             {
                 dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Mid Reliever!";
                 yield return new WaitForSeconds(1f);
-                if (isDead)
+                bool isDead = MiddleReliever.TakeDamage(enemyUnit[enemyUnitSelected].enemyDamage);
+                    if (isDead)
                 {
-                    middleDead = true;
+                        GameManager.MidRelivMorale -= enemyUnit[enemyUnitSelected].enemyDamage;
+                        MiddleMorale.value = (GameManager.MidRelivMorale / GameManager.MidRelivMoraleMax);
+                        middleDead = true;
                         MidRelAnim.SetBool("isDead", true);
                         state = BattleStateMultiple.SETUP;
                     SETUPTurn();
@@ -976,7 +1002,6 @@ public class BattleSystemMultiple : MonoBehaviour
                 else
                 {
                         MidRelAnim.Play("Armature|Oof");
-                        bool isDead = MiddleReliever.TakeDamage(enemyUnit[enemyUnitSelected].enemyDamage);
                         GameManager.MidRelivMorale -= enemyUnit[enemyUnitSelected].enemyDamage;
                         MiddleMorale.value = (GameManager.MidRelivMorale / GameManager.MidRelivMoraleMax);
                         state = BattleStateMultiple.SETUP;
@@ -991,8 +1016,8 @@ public class BattleSystemMultiple : MonoBehaviour
                 dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Set Up!";
                 yield return new WaitForSeconds(.5f);
                 dialogueText.text = "Set Up Dodges!";
-
-                state = BattleStateMultiple.MIDDLE;
+                    yield return new WaitForSeconds(1f);
+                    state = BattleStateMultiple.MIDDLE;
                 MiddleTurn();
             }
             if (GameManager.SetUpAgil < RandomAttack)
@@ -1000,9 +1025,12 @@ public class BattleSystemMultiple : MonoBehaviour
                 dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Set Up!";
 
                 yield return new WaitForSeconds(1f);
-                if (isDead)
+               bool isDead = SetUp.TakeDamage(enemyUnit[enemyUnitSelected].enemyDamage);
+                    if (isDead)
                 {
-                    setupDead = true;
+                        GameManager.SetUpMorale -= enemyUnit[enemyUnitSelected].enemyDamage;
+                        SetUpMorale.value = (GameManager.SetUpMorale / GameManager.SetUpMoraleMax);
+                        setupDead = true;
                         SetUpAnim.SetBool("isDead", true);
                         state = BattleStateMultiple.CLOSER;
                     CloserTurn();
@@ -1011,7 +1039,6 @@ public class BattleSystemMultiple : MonoBehaviour
                 else
                 {
                         SetUpAnim.Play("Armature|Oof");
-                        bool isDead = SetUp.TakeDamage(enemyUnit[enemyUnitSelected].enemyDamage);
                         GameManager.SetUpMorale -= enemyUnit[enemyUnitSelected].enemyDamage;
                         SetUpMorale.value = (GameManager.SetUpMorale / GameManager.SetUpMoraleMax);
                         state = BattleStateMultiple.SETUP;
@@ -1026,7 +1053,7 @@ public class BattleSystemMultiple : MonoBehaviour
                     dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Closer!";
                     yield return new WaitForSeconds(.5f);
                     dialogueText.text = "Closer Dodges!";
-
+                    yield return new WaitForSeconds(1f);
                     state = BattleStateMultiple.MIDDLE;
                     MiddleTurn();
                 }
@@ -1035,10 +1062,14 @@ public class BattleSystemMultiple : MonoBehaviour
                     dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Closer!";
 
                     yield return new WaitForSeconds(1f);
+                    bool isDead = Closer.TakeDamage(enemyUnit[enemyUnitSelected].enemyDamage);
                     if (isDead)
                     {
+                        GameManager.CloserMorale -= enemyUnit[enemyUnitSelected].enemyDamage;
+                        CloserMorale.value = (GameManager.CloserMorale / GameManager.CloserMoraleMax);
                         closerDead = true;
                         CloserAnim.SetBool("isDead", true);
+
                         state = BattleStateMultiple.SETUP;
                         SETUPTurn();
                     }
@@ -1046,7 +1077,6 @@ public class BattleSystemMultiple : MonoBehaviour
                     else
                     {
                         CloserAnim.Play("Armature|Oof");
-                        bool isDead = Closer.TakeDamage(enemyUnit[enemyUnitSelected].enemyDamage);
                         GameManager.CloserMorale -= enemyUnit[enemyUnitSelected].enemyDamage;
                         CloserMorale.value = (GameManager.CloserMorale / GameManager.CloserMoraleMax);
                         state = BattleStateMultiple.SETUP;
@@ -1067,7 +1097,7 @@ public class BattleSystemMultiple : MonoBehaviour
             CloserTurn();
         }
 
-        if (enemyUnit[0].currentHP >= 0)
+        if (enemyUnit[0].currentHP > 0)
         {
             if (starterDead && middleDead && setupDead && closerDead)
             {
@@ -1107,7 +1137,7 @@ public class BattleSystemMultiple : MonoBehaviour
                     dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Starter!";
                     yield return new WaitForSeconds(.5f);
                     dialogueText.text = "Starter Dodges!";
-
+                    yield return new WaitForSeconds(1f);
                     state = BattleStateMultiple.MIDDLE;
                     MiddleTurn();
                 }
@@ -1116,8 +1146,11 @@ public class BattleSystemMultiple : MonoBehaviour
                     dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Starter!";
 
                     yield return new WaitForSeconds(1.5f);
+                    bool isDead = Starter.TakeDamage(enemyUnit[enemyUnitSelected].enemyDamage);
                     if (isDead)
                     {
+                        GameManager.StarterMorale -= enemyUnit[enemyUnitSelected].enemyDamage;
+                        StarterMorale.value = (GameManager.StarterMorale / GameManager.StarterMoraleMax);
                         starterDead = true;
                         StarterAnim.SetBool("isDead", true);
                         state = BattleStateMultiple.CLOSER;
@@ -1128,8 +1161,6 @@ public class BattleSystemMultiple : MonoBehaviour
                     {
                         yield return new WaitForSeconds(.5f);
                         StarterAnim.Play("Armature|Oof");
-
-                        bool isDead = Starter.TakeDamage(enemyUnit[enemyUnitSelected].enemyDamage);
                         GameManager.StarterMorale -= enemyUnit[enemyUnitSelected].enemyDamage;
                         StarterMorale.value = (GameManager.StarterMorale / GameManager.StarterMoraleMax);
                         state = BattleStateMultiple.CLOSER;
@@ -1144,7 +1175,7 @@ public class BattleSystemMultiple : MonoBehaviour
                     dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Mid Reliever!";
                     yield return new WaitForSeconds(.5f);
                     dialogueText.text = "MidReliever Dodges!";
-
+                    yield return new WaitForSeconds(1f);
                     state = BattleStateMultiple.MIDDLE;
                     MiddleTurn();
                 }
@@ -1153,8 +1184,11 @@ public class BattleSystemMultiple : MonoBehaviour
                     dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Mid Reliever!";
 
                     yield return new WaitForSeconds(1f);
+                    bool isDead = MiddleReliever.TakeDamage(enemyUnit[enemyUnitSelected].enemyDamage);
                     if (isDead)
                     {
+                        GameManager.MidRelivMorale -= enemyUnit[enemyUnitSelected].enemyDamage;
+                        MiddleMorale.value = (GameManager.MidRelivMorale / GameManager.MidRelivMoraleMax);
                         middleDead = true;
                         MidRelAnim.SetBool("isDead", true);
                         state = BattleStateMultiple.CLOSER;
@@ -1164,7 +1198,6 @@ public class BattleSystemMultiple : MonoBehaviour
                     else
                     {
                         MidRelAnim.Play("Armature|Oof");
-                        bool isDead = MiddleReliever.TakeDamage(enemyUnit[enemyUnitSelected].enemyDamage);
                         GameManager.MidRelivMorale -= enemyUnit[enemyUnitSelected].enemyDamage;
                         MiddleMorale.value = (GameManager.MidRelivMorale / GameManager.MidRelivMoraleMax);
                         state = BattleStateMultiple.CLOSER;
@@ -1179,7 +1212,7 @@ public class BattleSystemMultiple : MonoBehaviour
                     dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Set Up!";
                     yield return new WaitForSeconds(.5f);
                     dialogueText.text = "Set Up Dodges!";
-
+                    yield return new WaitForSeconds(1f);
                     state = BattleStateMultiple.MIDDLE;
                     MiddleTurn();
                 }
@@ -1188,8 +1221,11 @@ public class BattleSystemMultiple : MonoBehaviour
                     dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Set Up!";
 
                     yield return new WaitForSeconds(1f);
+                    bool isDead = SetUp.TakeDamage(enemyUnit[enemyUnitSelected].enemyDamage);
                     if (isDead)
                     {
+                        GameManager.SetUpMorale -= enemyUnit[enemyUnitSelected].enemyDamage;
+                        SetUpMorale.value = (GameManager.SetUpMorale / GameManager.SetUpMoraleMax);
                         middleDead = true;
                         SetUpAnim.SetBool("isDead", true);
                         state = BattleStateMultiple.CLOSER;
@@ -1199,7 +1235,6 @@ public class BattleSystemMultiple : MonoBehaviour
                     else
                     {
                         SetUpAnim.Play("Armature|Oof");
-                        bool isDead = SetUp.TakeDamage(enemyUnit[enemyUnitSelected].enemyDamage);
                         GameManager.SetUpMorale -= enemyUnit[enemyUnitSelected].enemyDamage;
                         SetUpMorale.value = (GameManager.SetUpMorale / GameManager.SetUpMoraleMax);
                         state = BattleStateMultiple.CLOSER;
@@ -1214,7 +1249,7 @@ public class BattleSystemMultiple : MonoBehaviour
                     dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Closer!";
                     yield return new WaitForSeconds(.5f);
                     dialogueText.text = "Closer Dodges!";
-
+                    yield return new WaitForSeconds(1f);
                     state = BattleStateMultiple.MIDDLE;
                     MiddleTurn();
                 }
@@ -1223,10 +1258,13 @@ public class BattleSystemMultiple : MonoBehaviour
                     dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Closer!";
 
                     yield return new WaitForSeconds(1f);
+                    bool isDead = Closer.TakeDamage(enemyUnit[enemyUnitSelected].enemyDamage);
                     if (isDead)
                     {
                         closerDead = true;
                         CloserAnim.SetBool("isDead", true);
+                        GameManager.CloserMorale -= enemyUnit[enemyUnitSelected].enemyDamage;
+                        CloserMorale.value = (GameManager.CloserMorale / GameManager.CloserMoraleMax);
                         state = BattleStateMultiple.STARTER;
                         StarterTurn();
                     }
@@ -1234,7 +1272,6 @@ public class BattleSystemMultiple : MonoBehaviour
                     else
                     {
                         CloserAnim.Play("Armature|Oof");
-                        bool isDead = Closer.TakeDamage(enemyUnit[enemyUnitSelected].enemyDamage);
                         GameManager.CloserMorale -= enemyUnit[enemyUnitSelected].enemyDamage;
                         CloserMorale.value = (GameManager.CloserMorale / GameManager.CloserMoraleMax);
                         state = BattleStateMultiple.CLOSER;
@@ -1252,6 +1289,7 @@ public class BattleSystemMultiple : MonoBehaviour
     {
         if (starterDead)
         {
+            state = BattleStateMultiple.ENEMYTURN;
             StartCoroutine(EnemyTurn1());
         }
         if (!starterDead)
@@ -1270,6 +1308,7 @@ public class BattleSystemMultiple : MonoBehaviour
     {
         if (middleDead)
         {
+            state = BattleStateMultiple.ENEMYTURN;
             StartCoroutine(EnemyTurn2());
         }
         if (!middleDead)
@@ -1286,8 +1325,15 @@ public class BattleSystemMultiple : MonoBehaviour
 
     void SETUPTurn()
     {
+        if (SetUpAnim.GetBool("isDead"))
+        {
+            state = BattleStateMultiple.ENEMYTURN;
+            StartCoroutine(EnemyTurn3());
+        }
+
         if (setupDead)
         {
+            state = BattleStateMultiple.ENEMYTURN;
             StartCoroutine(EnemyTurn3());
         }
         if (!setupDead)
@@ -1304,8 +1350,14 @@ public class BattleSystemMultiple : MonoBehaviour
 
     void CloserTurn()
     {
+        if (CloserAnim.GetBool("isDead"))
+        {
+            state = BattleStateMultiple.STARTER;
+            StarterTurn();
+        }
         if (closerDead)
         {
+            state = BattleStateMultiple.STARTER;
             StarterTurn();
         }
         if (!closerDead)
@@ -1939,7 +1991,8 @@ public class BattleSystemMultiple : MonoBehaviour
 
     IEnumerator WaitingAtEndOfBattle()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(3f);
+        //Return to Main Menu
          SceneManager.LoadScene("Concourse");
     }
 }

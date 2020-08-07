@@ -585,8 +585,13 @@ public class GameManager : MonoBehaviour
         mrTargetExp = 5;
         setupTargetExp = 5;
         closerTargetExp = 5;
+        #endregion
 
-
+        #region Level
+        starterLevel = 1;
+        mrLevel = 1;
+        setupLevel = 1;
+        closerLevel = 1;
         #endregion
 
         if (!gameStartingStats)
