@@ -311,14 +311,14 @@ MonoBehaviour:
   sliderStamina: 0
   curveballStamina: 0
   changeupStamina: 0
-  enemyDamage: 15
-  maxHP: 10
-  currentHP: 10
+  enemyDamage: 10
+  maxHP: 7
+  currentHP: 7
   maxStamina: 30
   currentStamina: 25
   ExperienceToDistribute: 0
-  minExperience: 20
-  maxExperience: 30
+  minExperience: 10
+  maxExperience: 15
   MoneyToDistribute: 0
   minMoney: 10
   maxMoney: 20

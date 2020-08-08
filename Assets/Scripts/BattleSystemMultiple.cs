@@ -1739,21 +1739,6 @@ public class BattleSystemMultiple : MonoBehaviour
             PlayerMenu.SetActive(false);
             if (!isOver)
             {
-                StarterExpGain.text = "   +" + (totalExp / 4).ToString("F0");
-                MRExpGain.text = "   +" + (totalExp / 4).ToString("F0");
-                SetUpExpGain.text = "   +" + (totalExp / 4).ToString("F0");
-                CloserExpGain.text = "   +" + (totalExp / 4).ToString("F0");
-
-                GameManager.StarterExp = totalExp / 4 + GameManager.StarterExp;
-                GameManager.MRExp = totalExp / 4 + GameManager.MRExp;
-                GameManager.SetUpExp = totalExp / 4 + GameManager.SetUpExp;
-                GameManager.CloserExp = totalExp / 4 + GameManager.CloserExp;
-
-                StartTotalExp.text = GameManager.StarterLevel.ToString("F0");
-                MRTotalExp.text = GameManager.MRLevel.ToString("F0");
-                SetUpTotalExp.text = GameManager.SetUpLevel.ToString("F0");
-                CloserTotalExp.text = GameManager.CloserLevel.ToString("F0");
-
                 AddXP();
             } 
             //Add this later, this is money at the end of the battle. Needs to be a sum of all units
@@ -1769,11 +1754,58 @@ public class BattleSystemMultiple : MonoBehaviour
     }
     public void AddXP()
     {
+        if (!starterDead)
+        {
+            StarterExpGain.text = "   +" + (totalExp / 4).ToString("F0");
+            GameManager.StarterExp = totalExp / 4 + GameManager.StarterExp;
 
-        StarterExp(totalExp/4);
-        MidExp(totalExp / 4);
-        SetUpExp(totalExp / 4);
-        CloserExp(totalExp / 4); 
+            StarterExp(totalExp / 4);
+        }
+        if (!middleDead)
+        {
+            MRExpGain.text = "   +" + (totalExp / 4).ToString("F0");
+            GameManager.MRExp = totalExp / 4 + GameManager.MRExp;
+
+            MidExp(totalExp / 4);
+        }
+        if (!setupDead)
+        {
+            SetUpExpGain.text = "   +" + (totalExp / 4).ToString("F0");
+            GameManager.SetUpExp = totalExp / 4 + GameManager.SetUpExp;
+
+            SetUpExp(totalExp / 4);
+        }
+        if (!closerDead)
+        {
+            CloserExpGain.text = "   +" + (totalExp / 4).ToString("F0");
+            GameManager.CloserExp = totalExp / 4 + GameManager.CloserExp;
+
+            CloserExp(totalExp / 4);
+        }
+        if (starterDead)
+        {
+            StarterExpGain.text = "0";
+            StarterExpToNext.text = GameManager.StarterTargetExp.ToString("F0");
+            StartTotalExp.text = GameManager.StarterLevel.ToString("F0");
+        }
+        if (middleDead)
+        {
+            MRExpGain.text = "0";
+            MRExpToNext.text = GameManager.MRTargetExp.ToString("F0");
+            MRTotalExp.text = GameManager.MRLevel.ToString("F0");
+        }
+        if (setupDead)
+        {
+            SetUpExpGain.text = "0";
+            SetUpExpToNext.text = GameManager.SetupTargetExp.ToString("F0");
+            SetUpTotalExp.text = GameManager.SetUpLevel.ToString("F0");
+        }
+        if (closerDead)
+        {
+            CloserExpGain.text = "0";
+            CloserExpToNext.text = GameManager.CloserTargetExp.ToString("F0");
+            CloserTotalExp.text = GameManager.CloserLevel.ToString("F0");
+        }
     }
 
     void StarterExp(int xp)
@@ -1789,10 +1821,11 @@ public class BattleSystemMultiple : MonoBehaviour
             SLevelUp.SetActive(true);
             GameManager.StarterTargetExp *= 2f;
             //add training points
-            StarterExpToNext.text = GameManager.StarterTargetExp.ToString("F0");
+            StarterExpToNext.text = (GameManager.StarterTargetExp - GameManager.StarterExp).ToString("F0");
             int NewLevelS = GameManager.StarterLevel;
-            int Difference = OldLevelS - NewLevelS;
+            int Difference = NewLevelS - OldLevelS;
             SPointsToGive = Difference * 3;
+            StartTotalExp.text = GameManager.StarterLevel.ToString("F0");
         }
     }
 
@@ -1809,10 +1842,11 @@ public class BattleSystemMultiple : MonoBehaviour
             MLevelUp.SetActive(true);
             GameManager.MRTargetExp *= 2f;
             //add training points
-            MRExpToNext.text = GameManager.MRTargetExp.ToString("F0");
+            MRExpToNext.text = (GameManager.MRTargetExp-GameManager.MRExp).ToString("F0");
             int NewLevelM = GameManager.MRLevel;
-            int Difference = OldLevelM - NewLevelM;
+            int Difference = NewLevelM - OldLevelM;
             MPointsToGive = Difference * 3;
+            MRTotalExp.text = GameManager.MRLevel.ToString("F0");
         }
     }
 
@@ -1829,10 +1863,11 @@ public class BattleSystemMultiple : MonoBehaviour
             SetUpLevelUp.SetActive(true);
             GameManager.SetupTargetExp *= 2f;
             //add training points
-            SetUpExpToNext.text = GameManager.SetupTargetExp.ToString("F0");
+            SetUpExpToNext.text = (GameManager.SetupTargetExp - GameManager.SetUpExp).ToString("F0");
             int NewLevelSe = GameManager.SetUpLevel;
-            int Difference = OldLevelSe - NewLevelSe;
+            int Difference = NewLevelSe - OldLevelSe;
             SePointsToGive = Difference * 3;
+            SetUpTotalExp.text = GameManager.SetUpLevel.ToString("F0");
         }
 
     }
@@ -1850,10 +1885,11 @@ public class BattleSystemMultiple : MonoBehaviour
             CloserLevelUp.SetActive(true);
             GameManager.CloserTargetExp *= 2f;
             //add training points
-            CloserExpToNext.text = GameManager.CloserTargetExp.ToString("F0");
+            CloserExpToNext.text = (GameManager.CloserTargetExp - GameManager.CloserExp).ToString("F0");
             int NewLevelC = GameManager.CloserLevel;
-            int Difference = OldLevelC - NewLevelC;
+            int Difference = NewLevelC - OldLevelC;
             CPointsToGive = Difference * 3;
+            CloserTotalExp.text = GameManager.CloserLevel.ToString("F0");
         }
     }
 
@@ -1897,28 +1933,28 @@ public class BattleSystemMultiple : MonoBehaviour
             {
                 PlayerStatsScreen.SetActive(true);
                 SLevelUpScreen.SetActive(true);
-                //StarterLevelUp();
+                StarterLevelUp();
             }
             if (!SLevel && MLevel)
             {
                 MLevelUpScreen.SetActive(true);
-               //MidRelieverLevelUp();
+               MidRelieverLevelUp();
             }
             if (!SLevel && !MLevel && SeLevel)
             {
                 SeLevelUpScreen.SetActive(true);
-               // SetLevelUp();
+                SetLevelUp();
             }
             if (!SLevel && !MLevel && !SeLevel && CLevel)
             {
                 CLevelUpScreen.SetActive(true);
-                //CloseLevelUp();
+                CloseLevelUp();
             }
             EndingMenu.SetActive(false);
-            /*  if (!SLevel && !MLevel && !SeLevel && !CLevel)
+            if (!SLevel && !MLevel && !SeLevel && !CLevel)
               {
                   StartCoroutine(WaitingAtEndOfBattle());
-              }*/
+              }
         }
     }
 
@@ -1934,7 +1970,7 @@ public class BattleSystemMultiple : MonoBehaviour
         {
             SeLevelUpScreen.SetActive(true);
             MLevelUpScreen.SetActive(false);
-           // SetLevelUp();
+          //  SetLevelUp();
         }
         if (!SeLevel && CLevel)
         {
@@ -1944,7 +1980,7 @@ public class BattleSystemMultiple : MonoBehaviour
         }
         if (!MLevel && !SeLevel && !CLevel)
         {
-           // StartCoroutine(WaitingAtEndOfBattle());
+            StartCoroutine(WaitingAtEndOfBattle());
         }
     }
 
@@ -1954,17 +1990,17 @@ public class BattleSystemMultiple : MonoBehaviour
         {
             SeLevelUpScreen.SetActive(true);
             MLevelUpScreen.SetActive(false);
-            // SetLevelUp();
+           //  SetLevelUp();
         }
         if (!SeLevel && CLevel)
         {
             CLevelUpScreen.SetActive(true);
             MLevelUpScreen.SetActive(false);
-            //  CloseLevelUp();
+           //   CloseLevelUp();
         }
         if (!SeLevel && !CLevel)
         {
-           // StartCoroutine(WaitingAtEndOfBattle());
+            StartCoroutine(WaitingAtEndOfBattle());
         }
     }
 
@@ -1974,11 +2010,11 @@ public class BattleSystemMultiple : MonoBehaviour
         {
             CLevelUpScreen.SetActive(true);
             SeLevelUpScreen.SetActive(false);
-            //  CloseLevelUp();
+          //    CloseLevelUp();
         }
         if (!CLevel)
         {
-           // StartCoroutine(WaitingAtEndOfBattle());
+            StartCoroutine(WaitingAtEndOfBattle());
         }
     }
 
