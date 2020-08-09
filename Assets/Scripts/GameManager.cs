@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour
     public Text moneyUI;
 
     public static bool gameStartingStats;
+    public static bool playerStartingStats;
 
     public static float money;
 
@@ -555,29 +556,34 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         #region StartingStats 
-        starterFast = 2;
-        starterSlid = 2;
-        starterCurve = 5;
-        starterChange = 3;
-        starterAgil = 3;
+        if (!playerStartingStats)
+        {
+            starterFast = 2;
+            starterSlid = 2;
+            starterCurve = 5;
+            starterChange = 3;
+            starterAgil = 3;
 
-        middleFast = 3;
-        middleSlid = 5;
-        middleCurve = 2;
-        middleChange = 3;
-        middleAgil = 2;
+            middleFast = 3;
+            middleSlid = 5;
+            middleCurve = 2;
+            middleChange = 3;
+            middleAgil = 2;
 
-        setupFast = 2;
-        setupSlid = 1;
-        setupCurve = 1;
-        setupChange = 6;
-        setupAgil = 4;
+            setupFast = 2;
+            setupSlid = 1;
+            setupCurve = 1;
+            setupChange = 6;
+            setupAgil = 4;
 
-        closerFast = 7;
-        closerSlid = 3;
-        closerCurve = 1;
-        closerChange = 1;
-        closerAgil = 3;
+            closerFast = 7;
+            closerSlid = 3;
+            closerCurve = 1;
+            closerChange = 1;
+            closerAgil = 3;
+
+            playerStartingStats = true;
+        }
         #endregion
 
         #region Experience

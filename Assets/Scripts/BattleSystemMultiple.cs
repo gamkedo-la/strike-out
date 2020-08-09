@@ -94,6 +94,9 @@ public class BattleSystemMultiple : MonoBehaviour
     bool enemySelect;
     bool isOver;
     int totalExp;
+    //PitchLevelUp
+    bool starterLevel, middleLevel, setUpLevel, closerLevel;
+    public GameObject FastballButton, SliderButton, CurveballButton, ChangeUpButton, AgilityButton, Macro;
 
     //Initiated GameObjects
     GameObject playerGO1, playerGO2, playerGO3, playerGO4;
@@ -1810,94 +1813,115 @@ public class BattleSystemMultiple : MonoBehaviour
 
     void StarterExp(int xp)
     {
-        xp = (totalExp / 4);
-        int OldLevelS = GameManager.StarterLevel;
-
-        while (GameManager.StarterExp >= GameManager.StarterTargetExp)
+        if (!starterDead)
         {
-            GameManager.StarterExp = GameManager.StarterExp - GameManager.StarterTargetExp;
-            GameManager.StarterLevel++;
-            SLevel = true;
-            SLevelUp.SetActive(true);
-            GameManager.StarterTargetExp *= 2f;
-            //add training points
-            StarterExpToNext.text = (GameManager.StarterTargetExp - GameManager.StarterExp).ToString("F0");
-            int NewLevelS = GameManager.StarterLevel;
-            int Difference = NewLevelS - OldLevelS;
-            SPointsToGive = Difference * 3;
-            StartTotalExp.text = GameManager.StarterLevel.ToString("F0");
+            xp = (totalExp / 4);
+            int OldLevelS = GameManager.StarterLevel;
+
+            while (GameManager.StarterExp >= GameManager.StarterTargetExp)
+            {
+                GameManager.StarterExp = GameManager.StarterExp - GameManager.StarterTargetExp;
+                GameManager.StarterLevel++;
+                SLevel = true;
+                SLevelUp.SetActive(true);
+                GameManager.StarterTargetExp *= 2f;
+                //add training points
+                StarterExpToNext.text = (GameManager.StarterTargetExp - GameManager.StarterExp).ToString("F0");
+                int NewLevelS = GameManager.StarterLevel;
+                int Difference = NewLevelS - OldLevelS;
+                SPointsToGive = (Difference * 3);
+                StartTotalExp.text = GameManager.StarterLevel.ToString("F0");
+            }
         }
+        else
+            MidExp(totalExp / 4);
     }
 
     void MidExp(int xp)
     {
-        xp = (totalExp / 4);
-        int OldLevelM = GameManager.MRLevel;
-
-        while (GameManager.MRExp >= GameManager.MRTargetExp)
+        if (!middleDead)
         {
-            GameManager.MRExp = GameManager.MRExp - GameManager.MRTargetExp;
-            GameManager.MRLevel++;
-            MLevel = true;
-            MLevelUp.SetActive(true);
-            GameManager.MRTargetExp *= 2f;
-            //add training points
-            MRExpToNext.text = (GameManager.MRTargetExp-GameManager.MRExp).ToString("F0");
-            int NewLevelM = GameManager.MRLevel;
-            int Difference = NewLevelM - OldLevelM;
-            MPointsToGive = Difference * 3;
-            MRTotalExp.text = GameManager.MRLevel.ToString("F0");
+            xp = (totalExp / 4);
+            int OldLevelM = GameManager.MRLevel;
+
+            while (GameManager.MRExp >= GameManager.MRTargetExp)
+            {
+                GameManager.MRExp = GameManager.MRExp - GameManager.MRTargetExp;
+                GameManager.MRLevel++;
+                MLevel = true;
+                MLevelUp.SetActive(true);
+                GameManager.MRTargetExp *= 2f;
+                //add training points
+                MRExpToNext.text = (GameManager.MRTargetExp - GameManager.MRExp).ToString("F0");
+                int NewLevelM = GameManager.MRLevel;
+                int Difference = NewLevelM - OldLevelM;
+                MPointsToGive = (Difference * 3) + 1;
+                MRTotalExp.text = GameManager.MRLevel.ToString("F0");
+            }
         }
+        else
+            SetUpExp(totalExp / 4);
     }
 
     void SetUpExp(int xp)
     {
-        xp = (totalExp / 4);
-        int OldLevelSe = GameManager.SetUpLevel;
-
-        while (GameManager.SetUpExp >= GameManager.SetupTargetExp)
+        if (!setupDead)
         {
-            GameManager.SetUpExp = GameManager.SetUpExp - GameManager.SetupTargetExp;
-            GameManager.SetUpLevel++;
-            SeLevel = true;
-            SetUpLevelUp.SetActive(true);
-            GameManager.SetupTargetExp *= 2f;
-            //add training points
-            SetUpExpToNext.text = (GameManager.SetupTargetExp - GameManager.SetUpExp).ToString("F0");
-            int NewLevelSe = GameManager.SetUpLevel;
-            int Difference = NewLevelSe - OldLevelSe;
-            SePointsToGive = Difference * 3;
-            SetUpTotalExp.text = GameManager.SetUpLevel.ToString("F0");
-        }
+            xp = (totalExp / 4);
+            int OldLevelSe = GameManager.SetUpLevel;
 
+            while (GameManager.SetUpExp >= GameManager.SetupTargetExp)
+            {
+                GameManager.SetUpExp = GameManager.SetUpExp - GameManager.SetupTargetExp;
+                GameManager.SetUpLevel++;
+                SeLevel = true;
+                SetUpLevelUp.SetActive(true);
+                GameManager.SetupTargetExp *= 2f;
+                //add training points
+                SetUpExpToNext.text = (GameManager.SetupTargetExp - GameManager.SetUpExp).ToString("F0");
+                int NewLevelSe = GameManager.SetUpLevel;
+                int Difference = NewLevelSe - OldLevelSe;
+                SePointsToGive = (Difference * 3) + 1;
+                SetUpTotalExp.text = GameManager.SetUpLevel.ToString("F0");
+            }
+        }
+        else
+            CloserExp(totalExp / 4);
     }
 
     void CloserExp(int xp)
     {
-        xp = (totalExp / 4);
-        int OldLevelC = GameManager.CloserLevel;
-
-        while (GameManager.CloserExp >= GameManager.CloserTargetExp)
+        if (!closerDead)
         {
-            GameManager.CloserExp = GameManager.CloserExp - GameManager.CloserTargetExp;
-            GameManager.CloserLevel++;
-            CLevel = true;
-            CloserLevelUp.SetActive(true);
-            GameManager.CloserTargetExp *= 2f;
-            //add training points
-            CloserExpToNext.text = (GameManager.CloserTargetExp - GameManager.CloserExp).ToString("F0");
-            int NewLevelC = GameManager.CloserLevel;
-            int Difference = NewLevelC - OldLevelC;
-            CPointsToGive = Difference * 3;
-            CloserTotalExp.text = GameManager.CloserLevel.ToString("F0");
+            xp = (totalExp / 4);
+            int OldLevelC = GameManager.CloserLevel;
+
+            while (GameManager.CloserExp >= GameManager.CloserTargetExp)
+            {
+                GameManager.CloserExp = GameManager.CloserExp - GameManager.CloserTargetExp;
+                GameManager.CloserLevel++;
+                CLevel = true;
+                CloserLevelUp.SetActive(true);
+                GameManager.CloserTargetExp *= 2f;
+                //add training points
+                CloserExpToNext.text = (GameManager.CloserTargetExp - GameManager.CloserExp).ToString("F0");
+                int NewLevelC = GameManager.CloserLevel;
+                int Difference = NewLevelC - OldLevelC;
+                CPointsToGive = (Difference * 3) + 1;
+                CloserTotalExp.text = GameManager.CloserLevel.ToString("F0");
+            }
         }
+        else
+            StartCoroutine(WaitingAtEndOfBattle());
     }
 
     public void BattleFinished()
     {
         if (isOver)
         {
-            print(SLevel + "   " + MLevel + "   " + SeLevel + "   " + CLevel);
+            print(SPointsToGive + "   " + MPointsToGive + "   " + SePointsToGive + "   " + CPointsToGive);
+
+            Macro.SetActive(true);
 
             PlayerStatsScreen.SetActive(true);
             SFSlider.value = GameManager.StarterFast;
@@ -1925,30 +1949,55 @@ public class BattleSystemMultiple : MonoBehaviour
             CASlider.value = GameManager.CloserAgil;
 
             SPoints.text = SPointsToGive.ToString();
-            MPoints.text = MPointsToGive.ToString();
-            SePoints.text = SePointsToGive.ToString();
-            CPoints.text = CPointsToGive.ToString();
 
             if (SLevel)
             {
                 PlayerStatsScreen.SetActive(true);
                 SLevelUpScreen.SetActive(true);
-                StarterLevelUp();
+                starterLevel = true;
+               // StarterLevelUp();
+
+                FastballButton.SetActive(true);
+                SliderButton.SetActive(true);
+                CurveballButton.SetActive(true);
+                ChangeUpButton.SetActive(true);
+                AgilityButton.SetActive(true);
             }
             if (!SLevel && MLevel)
             {
+                middleLevel = true;
                 MLevelUpScreen.SetActive(true);
-               MidRelieverLevelUp();
+              // MidRelieverLevelUp();
+
+                FastballButton.SetActive(true);
+                SliderButton.SetActive(true);
+                CurveballButton.SetActive(true);
+                ChangeUpButton.SetActive(true);
+                AgilityButton.SetActive(true);
             }
             if (!SLevel && !MLevel && SeLevel)
             {
+                setUpLevel = true;
                 SeLevelUpScreen.SetActive(true);
-                SetLevelUp();
+               // SetLevelUp();
+
+                FastballButton.SetActive(true);
+                SliderButton.SetActive(true);
+                CurveballButton.SetActive(true);
+                ChangeUpButton.SetActive(true);
+                AgilityButton.SetActive(true);
             }
             if (!SLevel && !MLevel && !SeLevel && CLevel)
             {
+                closerLevel = true;
                 CLevelUpScreen.SetActive(true);
-                CloseLevelUp();
+              //  CloseLevelUp();
+
+                FastballButton.SetActive(true);
+                SliderButton.SetActive(true);
+                CurveballButton.SetActive(true);
+                ChangeUpButton.SetActive(true);
+                AgilityButton.SetActive(true);
             }
             EndingMenu.SetActive(false);
             if (!SLevel && !MLevel && !SeLevel && !CLevel)
@@ -1958,76 +2007,483 @@ public class BattleSystemMultiple : MonoBehaviour
         }
     }
 
-    public void StarterLevelUp()
+    void StarterLevelUp()
     {
         if (MLevel)
         {
+            starterLevel = false;
+            middleLevel = true;
             MLevelUpScreen.SetActive(true);
             SLevelUpScreen.SetActive(false);
-           // MidRelieverLevelUp();
         }
         if (!MLevel && SeLevel)
         {
+            starterLevel = false;
+            setUpLevel = true;
             SeLevelUpScreen.SetActive(true);
             MLevelUpScreen.SetActive(false);
-          //  SetLevelUp();
         }
         if (!SeLevel && CLevel)
         {
+            starterLevel = false;
+            closerLevel = true;
             CLevelUpScreen.SetActive(true);
             SeLevelUpScreen.SetActive(false);
-           // CloseLevelUp();
         }
         if (!MLevel && !SeLevel && !CLevel)
         {
+            starterLevel = false;
             StartCoroutine(WaitingAtEndOfBattle());
         }
     }
 
-    public void MidRelieverLevelUp()
+    void MidRelieverLevelUp()
     {
-        if (SeLevel)
+        MPoints.text = MPointsToGive.ToString();
+
+        if (MLevel)
         {
+            middleLevel = true; 
+            SLevelUpScreen.SetActive(false);
+            MLevelUpScreen.SetActive(true);
+        }
+        if (!MLevel && SeLevel)
+        {
+            middleLevel = false;
+            setUpLevel = true;
             SeLevelUpScreen.SetActive(true);
             MLevelUpScreen.SetActive(false);
-           //  SetLevelUp();
+            SLevelUpScreen.SetActive(false);
         }
-        if (!SeLevel && CLevel)
+        if (!MLevel && !SeLevel && CLevel)
         {
-            CLevelUpScreen.SetActive(true);
+            middleLevel = false;
+            closerLevel = true;
+            SLevelUpScreen.SetActive(false);
             MLevelUpScreen.SetActive(false);
-           //   CloseLevelUp();
+            CLevelUpScreen.SetActive(true);
         }
         if (!SeLevel && !CLevel)
         {
+            middleLevel = false;
             StartCoroutine(WaitingAtEndOfBattle());
         }
     }
 
-    public void SetLevelUp()
+    void SetLevelUp()
     {
-        if (CLevel)
+        SePoints.text = SePointsToGive.ToString();
+
+        if (SeLevel)
         {
+            setUpLevel = true;
+            SLevelUpScreen.SetActive(false);
+            MLevelUpScreen.SetActive(false);
+            SeLevelUpScreen.SetActive(true);
+        }
+        if (!SeLevel && CLevel)
+        {
+            setUpLevel = false;
+            closerLevel = true;
             CLevelUpScreen.SetActive(true);
             SeLevelUpScreen.SetActive(false);
-          //    CloseLevelUp();
+            MLevelUpScreen.SetActive(false);
+            SLevelUpScreen.SetActive(false);
+            CloseLevelUp();
+        }
+    }
+
+    void CloseLevelUp()
+    {
+        CPoints.text = CPointsToGive.ToString();
+
+        CLevelUpScreen.SetActive(true);
+        SLevelUpScreen.SetActive(false);
+        MLevelUpScreen.SetActive(false);
+        SeLevelUpScreen.SetActive(false);
+
+        if (CLevel)
+        {
+            setUpLevel = false;
+            closerLevel = true;
         }
         if (!CLevel)
         {
+            closerLevel = false;
             StartCoroutine(WaitingAtEndOfBattle());
         }
     }
+    #endregion
 
-    public void CloseLevelUp()
+    #region PitchLevelUp
+    public void FastballIncrease()
     {
-        StartCoroutine(WaitingAtEndOfBattle());
+        if (starterLevel)
+        {
+            if (SPointsToGive > 0)
+            {
+                GameManager.StarterFast++;
+                SPointsToGive--;
+                SFSlider.value = GameManager.StarterFast;
+                SPoints.text = SPointsToGive.ToString();
+            }
+            if (SPointsToGive <= 0)
+            {
+                starterLevel = false;
+                MidRelieverLevelUp();
+            }
+        }
+
+        if (middleLevel)
+        { 
+            if (MPointsToGive > 0)
+            {
+                GameManager.MiddleFast++;
+                MPointsToGive--;
+                MFSlider.value = GameManager.MiddleFast;
+                MPoints.text = MPointsToGive.ToString();
+            }
+            if (MPointsToGive <= 0)
+            {
+                middleLevel = false;
+                SetLevelUp();
+            }
+        }
+
+        if (setUpLevel)
+        {
+            if (SePointsToGive > 0)
+            {
+                GameManager.SetUpFast++;
+                SePointsToGive--;
+                SeFSlider.value = GameManager.SetUpFast;
+                SePoints.text = SePointsToGive.ToString();
+            }
+            if (SePointsToGive <= 0)
+            {
+                setUpLevel = false;
+                if (!CLevel)
+                {
+                    setUpLevel = false;
+                    StartCoroutine(WaitingAtEndOfBattle());
+                }
+                else
+                    CloseLevelUp();
+            }
+        }
+
+        if (closerLevel)
+        {
+            if (CPointsToGive > 0)
+            {
+                GameManager.CloserFast++;
+                CPointsToGive--;
+                CFSlider.value = GameManager.CloserFast;
+                CPoints.text = CPointsToGive.ToString();
+            }
+            if (CPointsToGive <= 0)
+            {
+                closerLevel = false;
+                StartCoroutine(WaitingAtEndOfBattle());
+            }
+        }
     }
 
+    public void SliderIncrease()
+    {
+        if (starterLevel)
+        {
+            if (SPointsToGive > 0)
+            {
+                GameManager.StarterSlid++;
+                SPointsToGive--;
+                SSSlider.value = GameManager.StarterSlid;
+                SPoints.text = SPointsToGive.ToString();
+            }
+            if (SPointsToGive <= 0)
+            {
+                starterLevel = false;
+                MidRelieverLevelUp();
+            }
+        }
+
+        if (middleLevel)
+        {
+            if (MPointsToGive > 0)
+            {
+                GameManager.MiddleSlid++;
+                MPointsToGive--;
+                MSSlider.value = GameManager.MiddleSlid;
+                MPoints.text = MPointsToGive.ToString();
+            }
+            if (MPointsToGive <= 0)
+            {
+                middleLevel = false;
+                SetLevelUp();
+            }
+        }
+
+        if (setUpLevel)
+        {
+            if (SePointsToGive > 0)
+            {
+                GameManager.SetUpSlid++;
+                SePointsToGive--;
+                SeSSlider.value = GameManager.SetUpSlid;
+                SePoints.text = SePointsToGive.ToString();
+            }
+            if (SePointsToGive <= 0)
+            {
+                setUpLevel = false;
+                if (!CLevel)
+                {
+                    setUpLevel = false;
+                    StartCoroutine(WaitingAtEndOfBattle());
+                }
+                else
+                    CloseLevelUp();
+            }
+        }
+
+        if (closerLevel)
+        {
+            if (CPointsToGive > 0)
+            {
+                GameManager.CloserSlid++;
+                CPointsToGive--;
+                CSSlider.value = GameManager.CloserSlid;
+                CPoints.text = CPointsToGive.ToString();
+            }
+            if (CPointsToGive <= 0)
+            {
+                closerLevel = false;
+                StartCoroutine(WaitingAtEndOfBattle());
+            }
+        }
+    }
+
+    public void CurveballIncrease()
+    {
+        if (starterLevel)
+        {
+            if (SPointsToGive > 0)
+            {
+                GameManager.StarterCurve++;
+                SPointsToGive--;
+                SCSlider.value = GameManager.StarterCurve;
+                SPoints.text = SPointsToGive.ToString();
+            }
+            if (SPointsToGive <= 0)
+            {
+                starterLevel = false;
+                MidRelieverLevelUp();
+            }
+        }
+
+        if (middleLevel)
+        {
+            if (MPointsToGive > 0)
+            {
+                GameManager.MiddleCurve++;
+                MPointsToGive--;
+                MCSlider.value = GameManager.MiddleCurve;
+                MPoints.text = MPointsToGive.ToString();
+            }
+            if (MPointsToGive <= 0)
+            {
+                middleLevel = false;
+                SetLevelUp();
+            }
+        }
+
+        if (setUpLevel)
+        {
+            if (SePointsToGive > 0)
+            {
+                GameManager.SetUpCurve++;
+                SePointsToGive--;
+                SeCSlider.value = GameManager.SetUpCurve;
+                SePoints.text = SePointsToGive.ToString();
+            }
+            if (SePointsToGive <= 0)
+            {
+                setUpLevel = false;
+                if (!CLevel)
+                {
+                    setUpLevel = false;
+                    StartCoroutine(WaitingAtEndOfBattle());
+                }
+                else
+                    CloseLevelUp();
+            }
+        }
+
+        if (closerLevel)
+        {
+            if (CPointsToGive > 0)
+            {
+                GameManager.CloserCurve++;
+                CPointsToGive--;
+                CCSlider.value = GameManager.CloserCurve;
+                CPoints.text = CPointsToGive.ToString();
+            }
+            if (CPointsToGive <= 0)
+            {
+                closerLevel = false;
+                StartCoroutine(WaitingAtEndOfBattle());
+            }
+        }
+    }
+
+    public void ChangeUpIncrease()
+    {
+        if (starterLevel)
+        {
+            if (SPointsToGive > 0)
+            {
+                GameManager.StarterChange++;
+                SPointsToGive--;
+                SChSlider.value = GameManager.StarterChange;
+                SPoints.text = SPointsToGive.ToString();
+            }
+            if (SPointsToGive <= 0)
+            {
+                starterLevel = false;
+                MidRelieverLevelUp();
+            }
+        }
+
+        if (middleLevel)
+        {
+            if (MPointsToGive > 0)
+            {
+                GameManager.MiddleChange++;
+                MPointsToGive--;
+                MChSlider.value = GameManager.MiddleChange;
+                MPoints.text = MPointsToGive.ToString();
+            }
+            if (MPointsToGive <= 0)
+            {
+                middleLevel = false;
+                SetLevelUp();
+            }
+        }
+
+        if (setUpLevel)
+        {
+            if (SePointsToGive > 0)
+            {
+                GameManager.SetUpChange++;
+                SePointsToGive--;
+                SeChSlider.value = GameManager.SetUpChange;
+                SePoints.text = SePointsToGive.ToString();
+            }
+            if (SePointsToGive <= 0)
+            {
+                setUpLevel = false;
+                if (!CLevel)
+                {
+                    setUpLevel = false;
+                    StartCoroutine(WaitingAtEndOfBattle());
+                }
+                else
+                    CloseLevelUp();
+            }
+        }
+
+        if (closerLevel)
+        {
+            if (CPointsToGive > 0)
+            {
+                GameManager.CloserChange++;
+                CPointsToGive--;
+                CChSlider.value = GameManager.CloserChange;
+                CPoints.text = CPointsToGive.ToString();
+            }
+            if (CPointsToGive <= 0)
+            {
+                closerLevel = false;
+                StartCoroutine(WaitingAtEndOfBattle());
+            }
+        }
+    }
+    public void AgilityIncrease()
+    {
+        if (starterLevel)
+        {
+            if (SPointsToGive > 0)
+            {
+                GameManager.StarterAgil++;
+                SPointsToGive--;
+                SASlider.value = GameManager.StarterAgil;
+                SPoints.text = SPointsToGive.ToString();
+            }
+            if (SPointsToGive <= 0)
+            {
+                starterLevel = false;
+                MidRelieverLevelUp();
+            }
+        }
+
+        if (middleLevel)
+        {
+            if (MPointsToGive > 0)
+            {
+                GameManager.MiddleAgil++;
+                MPointsToGive--;
+                MASlider.value = GameManager.MiddleAgil;
+                MPoints.text = MPointsToGive.ToString();
+            }
+            if (MPointsToGive <= 0)
+            {
+                middleLevel = false;
+                SetLevelUp();
+            }
+        }
+
+        if (setUpLevel)
+        {
+            if (SePointsToGive > 0)
+            {
+                GameManager.SetUpAgil++;
+                SePointsToGive--;
+                SeASlider.value = GameManager.SetUpAgil;
+                SePoints.text = SePointsToGive.ToString();
+            }
+            if (SePointsToGive <= 0)
+            {
+                setUpLevel = false;
+                if (!CLevel)
+                {
+                    setUpLevel = false;
+                    StartCoroutine(WaitingAtEndOfBattle());
+                }
+                else
+                    CloseLevelUp();
+            }
+        }
+
+        if (closerLevel)
+        {
+            if (CPointsToGive > 0)
+            {
+                GameManager.CloserAgil++;
+                CPointsToGive--;
+                CASlider.value = GameManager.CloserAgil;
+                CPoints.text = CPointsToGive.ToString();
+            }
+            if (CPointsToGive <= 0)
+            {
+                closerLevel = false;
+                StartCoroutine(WaitingAtEndOfBattle());
+            }
+        }
+    }
     #endregion
 
     IEnumerator WaitingAtEndOfBattle()
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(1.5f);
         //Return to Main Menu
          SceneManager.LoadScene("Concourse");
     }
