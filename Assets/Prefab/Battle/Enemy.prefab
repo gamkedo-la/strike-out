@@ -312,8 +312,8 @@ MonoBehaviour:
   curveballStamina: 0
   changeupStamina: 0
   enemyDamage: 8
-  maxHP: 10
-  currentHP: 10
+  maxHP: 30
+  currentHP: 5
   maxStamina: 30
   currentStamina: 25
   ExperienceToDistribute: 0

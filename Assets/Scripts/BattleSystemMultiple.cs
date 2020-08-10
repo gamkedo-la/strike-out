@@ -189,6 +189,26 @@ public class BattleSystemMultiple : MonoBehaviour
 
                 enemySelectionParticle.transform.position = enemyBattleStationLocations[enemyUnitSelected].transform.position;
             }
+
+            if (state == BattleStateMultiple.STARTER)
+            {
+                Starter.transform.LookAt(enemyBattleStationLocations[enemyUnitSelected]);
+            }
+
+            if (state == BattleStateMultiple.MIDDLE)
+            {
+                MiddleReliever.transform.LookAt(enemyBattleStationLocations[enemyUnitSelected]);
+            }
+
+            if (state == BattleStateMultiple.SETUP)
+            {
+                SetUp.transform.LookAt(enemyBattleStationLocations[enemyUnitSelected]);
+            }
+
+            if (state == BattleStateMultiple.CLOSER)
+            {
+                Closer.transform.LookAt(enemyBattleStationLocations[enemyUnitSelected]);
+            }
         }
 
         if (enemyCount == 0 && !isOver)
@@ -262,6 +282,53 @@ public class BattleSystemMultiple : MonoBehaviour
         }
         print(GameManager.StarterMorale + " " + GameManager.MidRelivMorale + " " + GameManager.SetUpMorale + " " + GameManager.CloserMorale + " " );
         #endregion
+    }
+
+    public void CallTime()
+    {
+        if (state == BattleStateMultiple.STARTER)
+        {
+            GameManager.StarterEnergy += 5;
+            for (int i = 0; i < enemyUnit.Count; i++)
+            {
+                enemyUnit[i].TakeDamage(-5);
+            }
+            state = BattleStateMultiple.ENEMYTURN;
+            StartCoroutine(EnemyTurn1());
+        }
+
+        if (state == BattleStateMultiple.MIDDLE)
+        {
+            GameManager.StarterEnergy += 5;
+            for (int i = 0; i < enemyUnit.Count; i++)
+            {
+                enemyUnit[i].TakeDamage(-5);
+            }
+            state = BattleStateMultiple.ENEMYTURN;
+            StartCoroutine(EnemyTurn2());
+        }
+
+        if (state == BattleStateMultiple.SETUP)
+        {
+            GameManager.StarterEnergy += 5;
+            for (int i = 0; i < enemyUnit.Count; i++)
+            {
+                enemyUnit[i].TakeDamage(-5);
+            }
+            state = BattleStateMultiple.ENEMYTURN;
+            StartCoroutine(EnemyTurn3());
+        }
+
+        if (state == BattleStateMultiple.CLOSER)
+        {
+            GameManager.StarterEnergy += 5;
+            for (int i = 0; i < enemyUnit.Count; i++)
+            {
+                enemyUnit[i].TakeDamage(-5);
+            }
+            state = BattleStateMultiple.STARTER;
+            StarterTurn();
+        }
     }
 
 
@@ -1415,7 +1482,7 @@ public class BattleSystemMultiple : MonoBehaviour
                 PlayerMenu.SetActive(false);
             }
             else
-                print("Not enough energy!");
+                dialogueText.text = "Not enough energy!";
         }
 
         if (state == BattleStateMultiple.MIDDLE)
@@ -1432,7 +1499,7 @@ public class BattleSystemMultiple : MonoBehaviour
                 PlayerMenu.SetActive(false);
             }
             else
-                print("Not enough energy!");
+                dialogueText.text = "Not enough energy!";
         }
 
         if (state == BattleStateMultiple.SETUP)
@@ -1449,7 +1516,7 @@ public class BattleSystemMultiple : MonoBehaviour
                 PlayerMenu.SetActive(false);
             }
             else
-                print("Not enough energy!");
+                dialogueText.text = "Not enough energy!";
         }
 
         if (state == BattleStateMultiple.CLOSER)
@@ -1466,7 +1533,7 @@ public class BattleSystemMultiple : MonoBehaviour
                 PlayerMenu.SetActive(false);
             }
             else
-                print("Not enough energy!");
+                dialogueText.text = "Not enough energy!";
         }
 
         //if (state != BattleStateMultiple.PLAYERTURN)
@@ -1491,7 +1558,7 @@ public class BattleSystemMultiple : MonoBehaviour
                 PlayerMenu.SetActive(false);
             }
             else
-                print("Not enough energy!");
+                dialogueText.text = "Not enough energy!";
         }
 
         if (state == BattleStateMultiple.MIDDLE)
@@ -1508,7 +1575,7 @@ public class BattleSystemMultiple : MonoBehaviour
                 PlayerMenu.SetActive(false);
             }
             else
-                print("Not enough energy!");
+                dialogueText.text = "Not enough energy!";
         }
 
         if (state == BattleStateMultiple.SETUP)
@@ -1525,7 +1592,7 @@ public class BattleSystemMultiple : MonoBehaviour
                 PlayerMenu.SetActive(false);
             }
             else
-                print("Not enough energy!");
+                dialogueText.text = "Not enough energy!";
         }
 
         if (state == BattleStateMultiple.CLOSER)
@@ -1542,7 +1609,7 @@ public class BattleSystemMultiple : MonoBehaviour
                 PlayerMenu.SetActive(false); 
             }
             else
-                print("Not enough energy!");
+                dialogueText.text = "Not enough energy!";
         }
 
         //if (state != BattleStateMultiple.PLAYERTURN)
@@ -1566,7 +1633,7 @@ public class BattleSystemMultiple : MonoBehaviour
                 PlayerMenu.SetActive(false);
             }
             else
-                print("Not enough energy!");
+                dialogueText.text = "Not enough energy!";
         }
 
         if (state == BattleStateMultiple.MIDDLE)
@@ -1583,7 +1650,7 @@ public class BattleSystemMultiple : MonoBehaviour
                 PlayerMenu.SetActive(false);
             }
             else
-                print("Not enough energy!");
+                dialogueText.text = "Not enough energy!";
         }
 
         if (state == BattleStateMultiple.SETUP)
@@ -1600,7 +1667,7 @@ public class BattleSystemMultiple : MonoBehaviour
                 PlayerMenu.SetActive(false);
             }
             else
-                print("Not enough energy!");
+                dialogueText.text = "Not enough energy!";
         }
 
         if (state == BattleStateMultiple.CLOSER)
@@ -1617,7 +1684,7 @@ public class BattleSystemMultiple : MonoBehaviour
                 PlayerMenu.SetActive(false);
             }
             else
-                print("Not enough energy!");
+                dialogueText.text = "Not enough energy!";
         }
 
         //if (state != BattleStateMultiple.PLAYERTURN)
@@ -1641,7 +1708,7 @@ public class BattleSystemMultiple : MonoBehaviour
                 PlayerMenu.SetActive(false);
             }
             else
-                print("Not enough energy!");
+                dialogueText.text = "Not enough energy!";
         }
 
         if (state == BattleStateMultiple.MIDDLE)
@@ -1658,7 +1725,7 @@ public class BattleSystemMultiple : MonoBehaviour
                 PlayerMenu.SetActive(false);
             }
             else
-                print("Not enough energy!");
+                dialogueText.text = "Not enough energy!";
         }
 
         if (state == BattleStateMultiple.SETUP)
@@ -1675,7 +1742,7 @@ public class BattleSystemMultiple : MonoBehaviour
                 PlayerMenu.SetActive(false);
             }
             else
-                print("Not enough energy!");
+                dialogueText.text = "Not enough energy!";
         }
 
         if (state == BattleStateMultiple.CLOSER)
@@ -1692,7 +1759,7 @@ public class BattleSystemMultiple : MonoBehaviour
                 PlayerMenu.SetActive(false);
             }
             else
-                print("Not enough energy!");
+                dialogueText.text = "Not enough energy!";
         }
 
         //if (state != BattleStateMultiple.PLAYERTURN)
