@@ -18,6 +18,11 @@ public class Unit : MonoBehaviour
     public int curveballStamina;
     public int changeupStamina;
 
+    public float FastballMultiplier;
+    public float SliderMultiplier;
+    public float CurveballMultiplier;
+    public float ChangeUpMultiplier;
+
     public int enemyDamage;
 
     public int maxHP;

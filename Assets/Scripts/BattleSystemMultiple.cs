@@ -71,6 +71,7 @@ public class BattleSystemMultiple : MonoBehaviour
     public List<Transform> enemyBattleStationLocations;
     public List<GameObject> enemyPrefab;
     public List<Unit> enemyUnit;
+    public List<Animator> enemyAnim;
     //text informing the player what is going on
     public Text dialogueText;
 
@@ -152,6 +153,7 @@ public class BattleSystemMultiple : MonoBehaviour
             // GameObject enemyGO = enemyPrefab[i];
             GameObject enemyGO = Instantiate(enemyPrefab[i], enemyBattleStationLocations[i]);
             enemyUnit[i] = enemyGO.GetComponent<Unit>();
+            enemyAnim[i] = enemyGO.GetComponentInChildren<Animator>();
         }
 
         yield return new WaitForSeconds(2f);
@@ -346,6 +348,7 @@ public class BattleSystemMultiple : MonoBehaviour
                     GameManager.StarterEnergy -= Starter.fastballStamina;
                     //UpdateStarterUI;
                     StarterEnergy.value = GameManager.StarterEnergy / GameManager.StarterEnergyMax;
+
                 }
             }
             if (slider)
@@ -524,6 +527,18 @@ public class BattleSystemMultiple : MonoBehaviour
         enemySelect = false;
     }
 
+    IEnumerator WaitingOnEnemy()
+    {
+        yield return new WaitForSeconds(.01f);
+        enemyAnim[enemyUnitSelected].Play("Armature|SwingMiss");
+    }
+
+    IEnumerator WaitingOnEnemyWeakness()
+    {
+        yield return new WaitForSeconds(.01f);
+        enemyAnim[enemyUnitSelected].Play("Armature|SpinDizzy");
+    }
+
     public void CancelAttack()
     {
         PlayerPitches.SetActive(true);
@@ -543,21 +558,25 @@ public class BattleSystemMultiple : MonoBehaviour
             {
                 isDead = enemyUnit[enemyUnitSelected].TakeDamage(Starter.fastballDamage + GameManager.StarterFast);
                 fastball = false;
+                StartCoroutine(WaitingOnEnemy());
             }
             if (slider)
             {
                 isDead = enemyUnit[enemyUnitSelected].TakeDamage(Starter.sliderDamage + GameManager.StarterSlid);
                 slider = false;
+                StartCoroutine(WaitingOnEnemy());
             }
             if (curveball)
             {
                 isDead = enemyUnit[enemyUnitSelected].TakeDamage(Starter.curveballDamage + GameManager.StarterCurve);
                 curveball = false;
+                StartCoroutine(WaitingOnEnemy());
             }
             if (changeup)
             {
                 isDead = enemyUnit[enemyUnitSelected].TakeDamage(Starter.changeupDamage + GameManager.StarterChange);
                 changeup = false;
+                StartCoroutine(WaitingOnEnemy());
             }
             dialogueText.text = "The attack is successful!";
             yield return new WaitForSeconds(2f);
@@ -565,6 +584,7 @@ public class BattleSystemMultiple : MonoBehaviour
             //This checks to see if the Enemy is Dead or has HP remaining
             if (isDead)
             {
+                enemyAnim[enemyUnitSelected].Play("Armature|Downed");
                 //Destroy(enemyPrefab[enemyUnitSelected]);
                 totalExp += enemyUnit[enemyUnitSelected].ExperienceToDistribute;
                 enemyCount--;
@@ -597,21 +617,25 @@ public class BattleSystemMultiple : MonoBehaviour
             {
                 isDead = enemyUnit[enemyUnitSelected].TakeDamage(MiddleReliever.fastballDamage + GameManager.MiddleFast);
                 fastball = false;
+                StartCoroutine(WaitingOnEnemy());
             }
             if (slider)
             {
                 isDead = enemyUnit[enemyUnitSelected].TakeDamage(MiddleReliever.sliderDamage + GameManager.MiddleSlid);
                 slider = false;
+                StartCoroutine(WaitingOnEnemy());
             }
             if (curveball)
             {
                 isDead = enemyUnit[enemyUnitSelected].TakeDamage(MiddleReliever.curveballDamage + GameManager.MiddleCurve);
                 curveball = false;
+                StartCoroutine(WaitingOnEnemy());
             }
             if (changeup)
             {
                 isDead = enemyUnit[enemyUnitSelected].TakeDamage(MiddleReliever.changeupDamage + GameManager.MiddleChange);
                 changeup = false;
+                StartCoroutine(WaitingOnEnemy());
             }
             //enemyHUD.SetHP(enemyUnit[enemyUnitSelected].currentHP);
             dialogueText.text = "The attack is successful!";
@@ -620,6 +644,7 @@ public class BattleSystemMultiple : MonoBehaviour
             //This checks to see if the Enemy is Dead or has HP remaining
             if (isDead)
             {
+                enemyAnim[enemyUnitSelected].Play("Armature|Downed");
                 totalExp += enemyUnit[enemyUnitSelected].ExperienceToDistribute;
                 enemyCount--;
                 enemyBattleStationLocations.Remove(enemyBattleStationLocations[enemyUnitSelected]);
@@ -652,21 +677,25 @@ public class BattleSystemMultiple : MonoBehaviour
             {
                 isDead = enemyUnit[enemyUnitSelected].TakeDamage(SetUp.fastballDamage + GameManager.SetUpFast);
                 fastball = false;
+                StartCoroutine(WaitingOnEnemy());
             }
             if (slider)
             {
                 isDead = enemyUnit[enemyUnitSelected].TakeDamage(SetUp.sliderDamage + GameManager.SetUpSlid);
                 slider = false;
+                StartCoroutine(WaitingOnEnemy());
             }
             if (curveball)
             {
                 isDead = enemyUnit[enemyUnitSelected].TakeDamage(SetUp.curveballDamage + GameManager.SetUpCurve);
                 curveball = false;
+                StartCoroutine(WaitingOnEnemy());
             }
             if (changeup)
             {
                 isDead = enemyUnit[enemyUnitSelected].TakeDamage(SetUp.changeupDamage + GameManager.SetUpChange);
                 changeup = false;
+                StartCoroutine(WaitingOnEnemy());
             }
            // enemyHUD.SetHP(enemyUnit[enemyUnitSelected].currentHP);
             dialogueText.text = "The attack is successful!";
@@ -675,6 +704,7 @@ public class BattleSystemMultiple : MonoBehaviour
             //This checks to see if the Enemy is Dead or has HP remaining
             if (isDead)
             {
+                enemyAnim[enemyUnitSelected].Play("Armature|Downed");
                 totalExp += enemyUnit[enemyUnitSelected].ExperienceToDistribute;
                 enemyCount--;
                 enemyBattleStationLocations.Remove(enemyBattleStationLocations[enemyUnitSelected]);
@@ -707,21 +737,25 @@ public class BattleSystemMultiple : MonoBehaviour
             {
                 isDead = enemyUnit[enemyUnitSelected].TakeDamage(Closer.fastballDamage + GameManager.CloserFast);
                 fastball = false;
+                StartCoroutine(WaitingOnEnemy());
             }
             if (slider)
             {
                 isDead = enemyUnit[enemyUnitSelected].TakeDamage(Closer.sliderDamage + GameManager.CloserSlid);
                 slider = false;
+                StartCoroutine(WaitingOnEnemy());
             }
             if (curveball)
             {
                 isDead = enemyUnit[enemyUnitSelected].TakeDamage(Closer.curveballDamage + GameManager.CloserCurve);
                 curveball = false;
+                StartCoroutine(WaitingOnEnemy());
             }
             if (changeup)
             {
                 isDead = enemyUnit[enemyUnitSelected].TakeDamage(Closer.changeupDamage + GameManager.CloserChange);
                 changeup = false;
+                StartCoroutine(WaitingOnEnemy());
             }
             //enemyHUD.SetHP(enemyUnit[enemyUnitSelected].currentHP);
             dialogueText.text = "The attack is successful!";
@@ -730,6 +764,7 @@ public class BattleSystemMultiple : MonoBehaviour
             //This checks to see if the Enemy is Dead or has HP remaining
             if (isDead)
             {
+                enemyAnim[enemyUnitSelected].Play("Armature|Downed");
                 totalExp += enemyUnit[enemyUnitSelected].ExperienceToDistribute;
                 enemyCount--;
                 enemyBattleStationLocations.Remove(enemyBattleStationLocations[enemyUnitSelected]);
@@ -796,9 +831,10 @@ public class BattleSystemMultiple : MonoBehaviour
             }
             yield return new WaitForSeconds(1.5f);
 
+            enemyAnim[0].Play("Armature|Swing");
+
             if (WhoToAttack == 0 && !starterDead)
             {
-
                 if (GameManager.StarterAgil >= RandomAttack)
                 {
                     dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Starter!";
@@ -879,6 +915,8 @@ public class BattleSystemMultiple : MonoBehaviour
                         MiddleTurn();
                     }
                 }
+
+                yield return new WaitForSeconds(.5f);
             }
             if (WhoToAttack == 2 && !setupDead)
             {
