@@ -556,25 +556,25 @@ public class BattleSystemMultiple : MonoBehaviour
         {
             if (fastball)
             {
-                isDead = enemyUnit[enemyUnitSelected].TakeDamage(Starter.fastballDamage + GameManager.StarterFast);
+                isDead = enemyUnit[enemyUnitSelected].TakeDamageFast(Starter.fastballDamage + GameManager.StarterFast);
                 fastball = false;
                 StartCoroutine(WaitingOnEnemy());
             }
             if (slider)
             {
-                isDead = enemyUnit[enemyUnitSelected].TakeDamage(Starter.sliderDamage + GameManager.StarterSlid);
+                isDead = enemyUnit[enemyUnitSelected].TakeDamageSlid(Starter.sliderDamage + GameManager.StarterSlid);
                 slider = false;
                 StartCoroutine(WaitingOnEnemy());
             }
             if (curveball)
             {
-                isDead = enemyUnit[enemyUnitSelected].TakeDamage(Starter.curveballDamage + GameManager.StarterCurve);
+                isDead = enemyUnit[enemyUnitSelected].TakeDamageCurve(Starter.curveballDamage + GameManager.StarterCurve);
                 curveball = false;
                 StartCoroutine(WaitingOnEnemy());
             }
             if (changeup)
             {
-                isDead = enemyUnit[enemyUnitSelected].TakeDamage(Starter.changeupDamage + GameManager.StarterChange);
+                isDead = enemyUnit[enemyUnitSelected].TakeDamageChange(Starter.changeupDamage + GameManager.StarterChange);
                 changeup = false;
                 StartCoroutine(WaitingOnEnemy());
             }
@@ -615,25 +615,25 @@ public class BattleSystemMultiple : MonoBehaviour
         {
             if (fastball)
             {
-                isDead = enemyUnit[enemyUnitSelected].TakeDamage(MiddleReliever.fastballDamage + GameManager.MiddleFast);
+                isDead = enemyUnit[enemyUnitSelected].TakeDamageFast(MiddleReliever.fastballDamage + GameManager.MiddleFast);
                 fastball = false;
                 StartCoroutine(WaitingOnEnemy());
             }
             if (slider)
             {
-                isDead = enemyUnit[enemyUnitSelected].TakeDamage(MiddleReliever.sliderDamage + GameManager.MiddleSlid);
+                isDead = enemyUnit[enemyUnitSelected].TakeDamageSlid(MiddleReliever.sliderDamage + GameManager.MiddleSlid);
                 slider = false;
                 StartCoroutine(WaitingOnEnemy());
             }
             if (curveball)
             {
-                isDead = enemyUnit[enemyUnitSelected].TakeDamage(MiddleReliever.curveballDamage + GameManager.MiddleCurve);
+                isDead = enemyUnit[enemyUnitSelected].TakeDamageCurve(MiddleReliever.curveballDamage + GameManager.MiddleCurve);
                 curveball = false;
                 StartCoroutine(WaitingOnEnemy());
             }
             if (changeup)
             {
-                isDead = enemyUnit[enemyUnitSelected].TakeDamage(MiddleReliever.changeupDamage + GameManager.MiddleChange);
+                isDead = enemyUnit[enemyUnitSelected].TakeDamageChange(MiddleReliever.changeupDamage + GameManager.MiddleChange);
                 changeup = false;
                 StartCoroutine(WaitingOnEnemy());
             }
@@ -675,25 +675,25 @@ public class BattleSystemMultiple : MonoBehaviour
             //To Do Start Attack Animation
             if (fastball)
             {
-                isDead = enemyUnit[enemyUnitSelected].TakeDamage(SetUp.fastballDamage + GameManager.SetUpFast);
+                isDead = enemyUnit[enemyUnitSelected].TakeDamageFast(SetUp.fastballDamage + GameManager.SetUpFast);
                 fastball = false;
                 StartCoroutine(WaitingOnEnemy());
             }
             if (slider)
             {
-                isDead = enemyUnit[enemyUnitSelected].TakeDamage(SetUp.sliderDamage + GameManager.SetUpSlid);
+                isDead = enemyUnit[enemyUnitSelected].TakeDamageSlid(SetUp.sliderDamage + GameManager.SetUpSlid);
                 slider = false;
                 StartCoroutine(WaitingOnEnemy());
             }
             if (curveball)
             {
-                isDead = enemyUnit[enemyUnitSelected].TakeDamage(SetUp.curveballDamage + GameManager.SetUpCurve);
+                isDead = enemyUnit[enemyUnitSelected].TakeDamageCurve(SetUp.curveballDamage + GameManager.SetUpCurve);
                 curveball = false;
                 StartCoroutine(WaitingOnEnemy());
             }
             if (changeup)
             {
-                isDead = enemyUnit[enemyUnitSelected].TakeDamage(SetUp.changeupDamage + GameManager.SetUpChange);
+                isDead = enemyUnit[enemyUnitSelected].TakeDamageChange(SetUp.changeupDamage + GameManager.SetUpChange);
                 changeup = false;
                 StartCoroutine(WaitingOnEnemy());
             }
@@ -735,25 +735,25 @@ public class BattleSystemMultiple : MonoBehaviour
         {
             if (fastball)
             {
-                isDead = enemyUnit[enemyUnitSelected].TakeDamage(Closer.fastballDamage + GameManager.CloserFast);
+                isDead = enemyUnit[enemyUnitSelected].TakeDamageFast(Closer.fastballDamage + GameManager.CloserFast);
                 fastball = false;
                 StartCoroutine(WaitingOnEnemy());
             }
             if (slider)
             {
-                isDead = enemyUnit[enemyUnitSelected].TakeDamage(Closer.sliderDamage + GameManager.CloserSlid);
+                isDead = enemyUnit[enemyUnitSelected].TakeDamageSlid(Closer.sliderDamage + GameManager.CloserSlid);
                 slider = false;
                 StartCoroutine(WaitingOnEnemy());
             }
             if (curveball)
             {
-                isDead = enemyUnit[enemyUnitSelected].TakeDamage(Closer.curveballDamage + GameManager.CloserCurve);
+                isDead = enemyUnit[enemyUnitSelected].TakeDamageCurve(Closer.curveballDamage + GameManager.CloserCurve);
                 curveball = false;
                 StartCoroutine(WaitingOnEnemy());
             }
             if (changeup)
             {
-                isDead = enemyUnit[enemyUnitSelected].TakeDamage(Closer.changeupDamage + GameManager.CloserChange);
+                isDead = enemyUnit[enemyUnitSelected].TakeDamageChange(Closer.changeupDamage + GameManager.CloserChange);
                 changeup = false;
                 StartCoroutine(WaitingOnEnemy());
             }
