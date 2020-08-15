@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.UI;
 
 public class InventoryItem : MonoBehaviour
 {
@@ -10,6 +11,15 @@ public class InventoryItem : MonoBehaviour
 
     public int MoraleToIncrease;
     public int EnergyToIncrease;
+
+    GameObject Display;
+    Text TextDisplay;
+
+    private void Start()
+    {
+        Display = GameObject.Find("ItemTextDisplay");
+        TextDisplay = Display.GetComponent<Text>();
+    }
 
     public InventoryItem(string thisName, string thisDescription)
     {
@@ -21,8 +31,14 @@ public class InventoryItem : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            print("you ran into an item");
+            TextDisplay.text = ItemName.ToString();
+            StartCoroutine(Waiting());
         }
     }
 
+    IEnumerator Waiting()
+    {
+        yield return new WaitForSeconds(2.5f);
+        TextDisplay.text = "";
+    }
 }
