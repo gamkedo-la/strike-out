@@ -527,18 +527,6 @@ public class BattleSystemMultiple : MonoBehaviour
         enemySelect = false;
     }
 
-    IEnumerator WaitingOnEnemy()
-    {
-        yield return new WaitForSeconds(.01f);
-        enemyAnim[enemyUnitSelected].Play("Armature|SwingMiss");
-    }
-
-    IEnumerator WaitingOnEnemyWeakness()
-    {
-        yield return new WaitForSeconds(.01f);
-        enemyAnim[enemyUnitSelected].Play("Armature|SpinDizzy");
-    }
-
     public void CancelAttack()
     {
         PlayerPitches.SetActive(true);
@@ -558,25 +546,21 @@ public class BattleSystemMultiple : MonoBehaviour
             {
                 isDead = enemyUnit[enemyUnitSelected].TakeDamageFast(Starter.fastballDamage + GameManager.StarterFast);
                 fastball = false;
-                StartCoroutine(WaitingOnEnemy());
             }
             if (slider)
             {
                 isDead = enemyUnit[enemyUnitSelected].TakeDamageSlid(Starter.sliderDamage + GameManager.StarterSlid);
                 slider = false;
-                StartCoroutine(WaitingOnEnemy());
             }
             if (curveball)
             {
                 isDead = enemyUnit[enemyUnitSelected].TakeDamageCurve(Starter.curveballDamage + GameManager.StarterCurve);
                 curveball = false;
-                StartCoroutine(WaitingOnEnemy());
             }
             if (changeup)
             {
                 isDead = enemyUnit[enemyUnitSelected].TakeDamageChange(Starter.changeupDamage + GameManager.StarterChange);
                 changeup = false;
-                StartCoroutine(WaitingOnEnemy());
             }
             dialogueText.text = "The attack is successful!";
             yield return new WaitForSeconds(2f);
@@ -584,7 +568,7 @@ public class BattleSystemMultiple : MonoBehaviour
             //This checks to see if the Enemy is Dead or has HP remaining
             if (isDead)
             {
-                enemyAnim[enemyUnitSelected].Play("Armature|Downed");
+ //               enemyAnim[enemyUnitSelected].Play("Armature|Downed");
                 //Destroy(enemyPrefab[enemyUnitSelected]);
                 totalExp += enemyUnit[enemyUnitSelected].ExperienceToDistribute;
                 enemyCount--;
@@ -617,25 +601,21 @@ public class BattleSystemMultiple : MonoBehaviour
             {
                 isDead = enemyUnit[enemyUnitSelected].TakeDamageFast(MiddleReliever.fastballDamage + GameManager.MiddleFast);
                 fastball = false;
-                StartCoroutine(WaitingOnEnemy());
             }
             if (slider)
             {
                 isDead = enemyUnit[enemyUnitSelected].TakeDamageSlid(MiddleReliever.sliderDamage + GameManager.MiddleSlid);
                 slider = false;
-                StartCoroutine(WaitingOnEnemy());
             }
             if (curveball)
             {
                 isDead = enemyUnit[enemyUnitSelected].TakeDamageCurve(MiddleReliever.curveballDamage + GameManager.MiddleCurve);
                 curveball = false;
-                StartCoroutine(WaitingOnEnemy());
             }
             if (changeup)
             {
                 isDead = enemyUnit[enemyUnitSelected].TakeDamageChange(MiddleReliever.changeupDamage + GameManager.MiddleChange);
                 changeup = false;
-                StartCoroutine(WaitingOnEnemy());
             }
             //enemyHUD.SetHP(enemyUnit[enemyUnitSelected].currentHP);
             dialogueText.text = "The attack is successful!";
@@ -644,7 +624,7 @@ public class BattleSystemMultiple : MonoBehaviour
             //This checks to see if the Enemy is Dead or has HP remaining
             if (isDead)
             {
-                enemyAnim[enemyUnitSelected].Play("Armature|Downed");
+ //               enemyAnim[enemyUnitSelected].Play("Armature|Downed");
                 totalExp += enemyUnit[enemyUnitSelected].ExperienceToDistribute;
                 enemyCount--;
                 enemyBattleStationLocations.Remove(enemyBattleStationLocations[enemyUnitSelected]);
@@ -677,25 +657,21 @@ public class BattleSystemMultiple : MonoBehaviour
             {
                 isDead = enemyUnit[enemyUnitSelected].TakeDamageFast(SetUp.fastballDamage + GameManager.SetUpFast);
                 fastball = false;
-                StartCoroutine(WaitingOnEnemy());
             }
             if (slider)
             {
                 isDead = enemyUnit[enemyUnitSelected].TakeDamageSlid(SetUp.sliderDamage + GameManager.SetUpSlid);
                 slider = false;
-                StartCoroutine(WaitingOnEnemy());
             }
             if (curveball)
             {
                 isDead = enemyUnit[enemyUnitSelected].TakeDamageCurve(SetUp.curveballDamage + GameManager.SetUpCurve);
                 curveball = false;
-                StartCoroutine(WaitingOnEnemy());
             }
             if (changeup)
             {
                 isDead = enemyUnit[enemyUnitSelected].TakeDamageChange(SetUp.changeupDamage + GameManager.SetUpChange);
                 changeup = false;
-                StartCoroutine(WaitingOnEnemy());
             }
            // enemyHUD.SetHP(enemyUnit[enemyUnitSelected].currentHP);
             dialogueText.text = "The attack is successful!";
@@ -704,7 +680,7 @@ public class BattleSystemMultiple : MonoBehaviour
             //This checks to see if the Enemy is Dead or has HP remaining
             if (isDead)
             {
-                enemyAnim[enemyUnitSelected].Play("Armature|Downed");
+ //               enemyAnim[enemyUnitSelected].Play("Armature|Downed");
                 totalExp += enemyUnit[enemyUnitSelected].ExperienceToDistribute;
                 enemyCount--;
                 enemyBattleStationLocations.Remove(enemyBattleStationLocations[enemyUnitSelected]);
@@ -737,25 +713,21 @@ public class BattleSystemMultiple : MonoBehaviour
             {
                 isDead = enemyUnit[enemyUnitSelected].TakeDamageFast(Closer.fastballDamage + GameManager.CloserFast);
                 fastball = false;
-                StartCoroutine(WaitingOnEnemy());
             }
             if (slider)
             {
                 isDead = enemyUnit[enemyUnitSelected].TakeDamageSlid(Closer.sliderDamage + GameManager.CloserSlid);
                 slider = false;
-                StartCoroutine(WaitingOnEnemy());
             }
             if (curveball)
             {
                 isDead = enemyUnit[enemyUnitSelected].TakeDamageCurve(Closer.curveballDamage + GameManager.CloserCurve);
                 curveball = false;
-                StartCoroutine(WaitingOnEnemy());
             }
             if (changeup)
             {
                 isDead = enemyUnit[enemyUnitSelected].TakeDamageChange(Closer.changeupDamage + GameManager.CloserChange);
                 changeup = false;
-                StartCoroutine(WaitingOnEnemy());
             }
             //enemyHUD.SetHP(enemyUnit[enemyUnitSelected].currentHP);
             dialogueText.text = "The attack is successful!";
@@ -764,7 +736,7 @@ public class BattleSystemMultiple : MonoBehaviour
             //This checks to see if the Enemy is Dead or has HP remaining
             if (isDead)
             {
-                enemyAnim[enemyUnitSelected].Play("Armature|Downed");
+ //               enemyAnim[enemyUnitSelected].Play("Armature|Downed");
                 totalExp += enemyUnit[enemyUnitSelected].ExperienceToDistribute;
                 enemyCount--;
                 enemyBattleStationLocations.Remove(enemyBattleStationLocations[enemyUnitSelected]);

@@ -350,6 +350,7 @@ MonoBehaviour:
   HealthSlider: {fileID: 2203616325019548219}
   DescText: {fileID: 5843391866964174108}
   isDizzy: 0
+  anim: {fileID: 2053781330}
 --- !u!114 &5878812590787417898
 MonoBehaviour:
   m_ObjectHideFlags: 0

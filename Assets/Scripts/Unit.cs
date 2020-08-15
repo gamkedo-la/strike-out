@@ -44,6 +44,7 @@ public class Unit : MonoBehaviour
     public Text DescText;
 
     public bool isDizzy;
+    public Animator anim;
 
 
   /*  public void SetHUD(Unit unit)
@@ -61,6 +62,11 @@ public class Unit : MonoBehaviour
         if (DescText != null)
         {
             DescText.text = "";
+        }
+
+        if (anim == null)
+        {
+            return;
         }
 
         ExperienceToDistribute = Random.Range(minExperience, maxExperience);
@@ -95,6 +101,7 @@ public class Unit : MonoBehaviour
 
         if (currentHP <= 0)
         {
+            anim.Play("Armature|Downed");
             return true;
         }
 
@@ -102,11 +109,19 @@ public class Unit : MonoBehaviour
         {
             if (FastballMultiplier == .5f)
             {
+                anim.Play("Armature|Swing");
                 DescText.text = "Resist!";
+                StartCoroutine(ClearText());
+            }
+            if (FastballMultiplier == 1f)
+            {
+                anim.Play("Armature|SwingMiss");
+
                 StartCoroutine(ClearText());
             }
             if (FastballMultiplier == 2)
             {
+                anim.Play("Armature|SpinDizzy");
                 DescText.text = "Weak!";
                 StartCoroutine(ClearText());
             }
@@ -122,7 +137,7 @@ public class Unit : MonoBehaviour
 
         if (currentHP <= 0)
         {
-            
+            anim.Play("Armature|Downed");
             return true;
         }
 
@@ -130,11 +145,18 @@ public class Unit : MonoBehaviour
         {
             if (SliderMultiplier == .5f)
             {
+                anim.Play("Armature|Swing");
                 DescText.text = "Resist!";
+                StartCoroutine(ClearText());
+            }
+            if (SliderMultiplier == 1f)
+            {
+                anim.Play("Armature|SwingMiss");
                 StartCoroutine(ClearText());
             }
             if (SliderMultiplier == 2)
             {
+                anim.Play("Armature|SpinDizzy");
                 DescText.text = "Weak!";
                 StartCoroutine(ClearText());
             }
@@ -150,7 +172,7 @@ public class Unit : MonoBehaviour
 
         if (currentHP <= 0)
         {
-
+            anim.Play("Armature|Downed");
             return true;
         }
 
@@ -158,11 +180,18 @@ public class Unit : MonoBehaviour
         {
             if (CurveballMultiplier == .5f)
             {
+                anim.Play("Armature|Swing");
                 DescText.text = "Resist!";
+                StartCoroutine(ClearText());
+            }
+            if (CurveballMultiplier == 1f)
+            {
+                anim.Play("Armature|SwingMiss");
                 StartCoroutine(ClearText());
             }
             if (CurveballMultiplier == 2)
             {
+                anim.Play("Armature|SpinDizzy");
                 DescText.text = "Weak!";
                 StartCoroutine(ClearText());
             }
@@ -176,7 +205,7 @@ public class Unit : MonoBehaviour
 
         if (currentHP <= 0)
         {
-
+            anim.Play("Armature|Downed");
             return true;
         }
 
@@ -184,11 +213,18 @@ public class Unit : MonoBehaviour
         {
             if (ChangeUpMultiplier == .5f)
             {
+                anim.Play("Armature|Swing");
                 DescText.text = "Resist!";
+                StartCoroutine(ClearText());
+            }
+            if (ChangeUpMultiplier == 1f)
+            {
+                anim.Play("Armature|SwingMiss");
                 StartCoroutine(ClearText());
             }
             if (ChangeUpMultiplier == 2)
             {
+                anim.Play("Armature|SpinDizzy");
                 DescText.text = "Weak!";
                 StartCoroutine(ClearText());
             }

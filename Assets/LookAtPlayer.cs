@@ -8,7 +8,7 @@ public class LookAtPlayer : MonoBehaviour
     float RotSpeed = 80;
     float distance;
 
-    private void LateUpdate()
+    private void FixedUpdate()
     {
         distance = Vector3.Distance(this.transform.position, player.transform.position);
         if (distance >= 15)

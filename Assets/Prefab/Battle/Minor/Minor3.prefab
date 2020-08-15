@@ -635,6 +635,7 @@ MonoBehaviour:
   HealthSlider: {fileID: 8805573068388804387}
   DescText: {fileID: 9155709572403790418}
   isDizzy: 0
+  anim: {fileID: 47937869398368840}
 --- !u!114 &5354356407184672156
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -722,6 +723,12 @@ PrefabInstance:
 --- !u!4 &1169592474544499653 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7437891588565854011, guid: a38393c73b9981b4c8b166debac2c30c,
+    type: 3}
+  m_PrefabInstance: {fileID: 8575848565319175422}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &47937869398368840 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 8622642767998480054, guid: a38393c73b9981b4c8b166debac2c30c,
     type: 3}
   m_PrefabInstance: {fileID: 8575848565319175422}
   m_PrefabAsset: {fileID: 0}
