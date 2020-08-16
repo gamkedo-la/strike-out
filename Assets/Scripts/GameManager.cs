@@ -555,6 +555,8 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        DontDestroyOnLoad(this.gameObject);
+
         #region StartingStats 
         if (!playerStartingStats)
         {

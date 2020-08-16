@@ -101,6 +101,10 @@ public class BattleSystemMultiple : MonoBehaviour
 
     //Initiated GameObjects
     GameObject playerGO1, playerGO2, playerGO3, playerGO4;
+
+    //ItemMenuButton
+    GameObject ItemMenu;
+    public GameObject backButtonItem;
     private void Start()
     {
         state = BattleStateMultiple.START;
@@ -119,6 +123,8 @@ public class BattleSystemMultiple : MonoBehaviour
         MiddleEnergy.value = (GameManager.MidRelivEnergy / GameManager.MidRelievEnergyMax);
         SetUpEnergy.value = (GameManager.SetUpEnergy / GameManager.SetUpEnergyMax);
         CloserEnergy.value = (GameManager.CloserEnergy / GameManager.CloserEnergyMax);
+
+        ItemMenu = GameObject.Find("Inventory");
 
         for (int i = 0; i < enemyBattleStationLocations.Count; i++)
         {
@@ -332,14 +338,18 @@ public class BattleSystemMultiple : MonoBehaviour
             StarterTurn();
         }
     }
-
+    #region ItemManagement
     public void DefensiveShiftItem()
     {
-        for (int i = 0; i < enemyUnit.Count; i++)
+        print("Shift");
+       /* for (int i = 0; i < enemyUnit.Count; i++)
         {
             enemyUnit[i].TakeDamage(-20);
-        }
-        state = BattleStateMultiple.STARTER;
+        }*/
+        AdvanceTurn();
+        print("Did work?");
+
+
         //Determine whose turn it is
     }
 
@@ -348,7 +358,95 @@ public class BattleSystemMultiple : MonoBehaviour
         enemyUnit[enemyUnitSelected].TakeDamageFast(20);
     }
 
+    public void ItemMenuButton()
+    {
+        ItemMenu.transform.localPosition = new Vector3(233, 20, 0);
+        backButtonItem.SetActive(true);
+        PlayerMenu.SetActive(false);
+        PlayerPitches.SetActive(false);
+    }
 
+    public void ItemMenuBack()
+    {
+        backButtonItem.SetActive(false);
+        ItemMenu.transform.localPosition = new Vector3(233, -900, 0);
+        PlayerMenu.SetActive(true);
+        PlayerPitches.SetActive(false);
+    }
+
+    public void AdvanceTurn()
+    {
+        if (state == BattleStateMultiple.STARTER)
+        {
+            backButtonItem.SetActive(false);
+            PlayerMenu.SetActive(true);
+            PlayerPitches.SetActive(false);
+            ItemMenu.transform.localPosition = new Vector3(233, -900, 0);
+            state = BattleStateMultiple.ENEMYTURN;
+            StartCoroutine(EnemyTurn1());
+        }
+
+        if (state == BattleStateMultiple.MIDDLE)
+        {
+            backButtonItem.SetActive(false);
+            PlayerMenu.SetActive(true);
+            PlayerPitches.SetActive(false);
+            ItemMenu.transform.localPosition = new Vector3(233, -900, 0);
+            state = BattleStateMultiple.ENEMYTURN;
+            StartCoroutine(EnemyTurn2());
+        }
+
+        if (state == BattleStateMultiple.SETUP)
+        {
+            backButtonItem.SetActive(false);
+            PlayerMenu.SetActive(true);
+            PlayerPitches.SetActive(false);
+            ItemMenu.transform.localPosition = new Vector3(233, -900, 0);
+            state = BattleStateMultiple.ENEMYTURN;
+            StartCoroutine(EnemyTurn3());
+        }
+
+        if (state == BattleStateMultiple.CLOSER)
+        {
+            backButtonItem.SetActive(false);
+            PlayerMenu.SetActive(true);
+            PlayerPitches.SetActive(false);
+            ItemMenu.transform.localPosition = new Vector3(233, -900, 0);
+            state = BattleStateMultiple.STARTER;
+            StartCoroutine(CloserToStarterWait());
+        }
+
+        StarterMorale.value = (GameManager.StarterMorale / GameManager.StarterMoraleMax);
+        MiddleMorale.value = (GameManager.MidRelivMorale / GameManager.MidRelivMoraleMax);
+        SetUpMorale.value = (GameManager.SetUpMorale / GameManager.SetUpMoraleMax);
+        CloserMorale.value = (GameManager.CloserMorale / GameManager.CloserMoraleMax);
+
+        StarterEnergy.value = (GameManager.StarterEnergy / GameManager.StarterEnergyMax);
+        MiddleEnergy.value = (GameManager.MidRelivEnergy / GameManager.MidRelievEnergyMax);
+        SetUpEnergy.value = (GameManager.SetUpEnergy / GameManager.SetUpEnergyMax);
+        CloserEnergy.value = (GameManager.CloserEnergy / GameManager.CloserEnergyMax);
+    }
+
+    IEnumerator CloserToStarterWait()
+    {
+        yield return new WaitForSeconds(0.5f);
+        StarterTurn();
+    }
+    #endregion
+
+    public void CallBullpen()
+    {
+        int Rand = Random.Range(0, 2);
+        if (Rand == 0)
+        {
+            dialogueText.text = "No one is warming up! You can't leave!";
+        }
+        if (Rand == 1)
+        {
+            dialogueText.text = "The Manager is signaling a replacement, you get away!";
+            StartCoroutine(WaitingAtEndOfBattle());
+        }
+    }
 
     public void ConfirmAttack()
     {

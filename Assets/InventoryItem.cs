@@ -92,12 +92,14 @@ public class InventoryItem : MonoBehaviour
                 TextDisplay.text = ItemName.ToString();
                 StartCoroutine(Waiting());
             }
+            this.gameObject.GetComponent<SphereCollider>().enabled = false;
         }
     }
 
     IEnumerator Waiting()
     {
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(1.5f);
         TextDisplay.text = "";
+        Destroy(this.gameObject);
     }
 }

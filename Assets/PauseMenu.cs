@@ -23,12 +23,12 @@ public class PauseMenu : MonoBehaviour
         
         if (isInventory)
         {
-            InventoryMenu.transform.localPosition = new Vector3(0, 0, 0);
+            InventoryMenu.transform.localPosition = new Vector3(233, 0, 0);
         }
 
         if (!isInventory)
         {
-            InventoryMenu.transform.localPosition = new Vector3(0, -400, 0);
+            InventoryMenu.transform.localPosition = new Vector3(233, -900, 0);
         }
 
 

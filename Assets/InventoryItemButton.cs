@@ -26,7 +26,13 @@ public class InventoryItemButton : MonoBehaviour
         {
             //Choose Between characters
             GameManager.StarterMorale += 20;
+
+            if (GameManager.StarterMorale > GameManager.StarterMoraleMax)
+            {
+                GameManager.StarterMorale = GameManager.StarterMoraleMax;
+            }
             print("Drink Consumed");
+            
             Destroy(InventoryItem);
         }
 
@@ -36,6 +42,23 @@ public class InventoryItemButton : MonoBehaviour
             GameManager.MidRelivMorale += 20;
             GameManager.SetUpMorale += 20;
             GameManager.CloserMorale += 20;
+
+            if (GameManager.StarterMorale > GameManager.StarterMoraleMax)
+            {
+                GameManager.StarterMorale = GameManager.StarterMoraleMax;
+            }
+            if (GameManager.MidRelivMorale > GameManager.MidRelivMoraleMax)
+            {
+                GameManager.MidRelivMorale = GameManager.MidRelivMoraleMax;
+            }
+            if (GameManager.SetUpMorale > GameManager.SetUpMoraleMax)
+            {
+                GameManager.SetUpMorale = GameManager.SetUpMoraleMax;
+            }
+            if (GameManager.CloserMorale > GameManager.CloserMoraleMax)
+            {
+                GameManager.CloserMorale = GameManager.CloserMoraleMax;
+            }
             print("Cookies Eaten");
             Destroy(InventoryItem);
         }
@@ -44,6 +67,11 @@ public class InventoryItemButton : MonoBehaviour
         {
             //Choose Between characters
             GameManager.StarterEnergy += 10;
+
+            if (GameManager.StarterEnergy > GameManager.StarterEnergyMax)
+            {
+                GameManager.StarterEnergy = GameManager.StarterEnergyMax;
+            }
             Destroy(InventoryItem);
         }
 
@@ -53,6 +81,26 @@ public class InventoryItemButton : MonoBehaviour
             GameManager.MidRelivEnergy += 10;
             GameManager.SetUpEnergy += 10;
             GameManager.CloserEnergy += 10;
+
+            if (GameManager.StarterEnergy > GameManager.StarterEnergyMax)
+            {
+                GameManager.StarterEnergy = GameManager.StarterEnergyMax;
+            }
+
+            if (GameManager.MidRelivEnergy > GameManager.MidRelievEnergyMax)
+            {
+                GameManager.MidRelivEnergy = GameManager.MidRelievEnergyMax;
+            }
+
+            if (GameManager.SetUpEnergy > GameManager.SetUpEnergyMax)
+            {
+                GameManager.SetUpEnergy = GameManager.SetUpEnergyMax;
+            }
+
+            if (GameManager.CloserEnergy > GameManager.CloserEnergyMax)
+            {
+                GameManager.CloserEnergy = GameManager.CloserEnergyMax;
+            }
             Destroy(InventoryItem);
         }
 
@@ -64,9 +112,17 @@ public class InventoryItemButton : MonoBehaviour
 
         if (itemText.text == "Scouting Report")
         {
-            //Choose an enemy to lower health
-            MultipleSystem.GetComponent<BattleSystemMultiple>().ScoutingReportItem();
-            Destroy(InventoryItem);
+            try
+            {
+                //Choose an enemy to lower health
+                MultipleSystem.GetComponent<BattleSystemMultiple>().ScoutingReportItem();
+                Destroy(InventoryItem);
+            }
+            catch
+            {
+                print("Only used in battle");
+                return;
+            }
         }
 
         if (itemText.text == "Defensive Shift")
@@ -75,7 +131,25 @@ public class InventoryItemButton : MonoBehaviour
             MultipleSystem.GetComponent<BattleSystemMultiple>().DefensiveShiftItem();
             //Figure Out Whose Turn It Goes To
             Destroy(InventoryItem);
-        }
 
+            try
+            {
+                
+            }
+            catch
+            {
+                print("Only used in battle");
+                return;
+            }
+        }
+        try
+        {
+            print("Here");
+            MultipleSystem.GetComponent<BattleSystemMultiple>().AdvanceTurn();
+        }
+        catch
+        {
+            return;
+        }
     }
 }
