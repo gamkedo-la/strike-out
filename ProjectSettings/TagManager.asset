@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - Screen
   - BattleStation
+  - BattleSystem
   layers:
   - Default
   - TransparentFX

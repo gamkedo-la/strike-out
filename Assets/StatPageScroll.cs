@@ -26,13 +26,6 @@ public class StatPageScroll : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            menuActive = !menuActive;
-        }
-
-        if (menuActive)
-        {
             MenuActive();
             print(GameManager.StarterFast);
 
@@ -59,19 +52,11 @@ public class StatPageScroll : MonoBehaviour
             CloserC.value = GameManager.CloserCurve;
             CloserCh.value = GameManager.CloserChange;
             CloserA.value = GameManager.CloserAgil;
-        }
-
-        if(!menuActive)
-        {
-            MenuToggle.SetActive(false);
-        }
     }
 
     void MenuActive()
     {
         MenuToggle.SetActive(true);
-
-
     }
 
     public void IncreasePage()

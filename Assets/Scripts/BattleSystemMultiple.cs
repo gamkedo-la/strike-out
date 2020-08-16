@@ -333,6 +333,21 @@ public class BattleSystemMultiple : MonoBehaviour
         }
     }
 
+    public void DefensiveShiftItem()
+    {
+        for (int i = 0; i < enemyUnit.Count; i++)
+        {
+            enemyUnit[i].TakeDamage(-20);
+        }
+        state = BattleStateMultiple.STARTER;
+        //Determine whose turn it is
+    }
+
+    public void ScoutingReportItem()
+    {
+        enemyUnit[enemyUnitSelected].TakeDamageFast(20);
+    }
+
 
 
     public void ConfirmAttack()
