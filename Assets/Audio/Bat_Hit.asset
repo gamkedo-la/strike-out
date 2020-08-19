@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ec881fac809cf54887debcac172057a, type: 3}
+  m_Name: Bat_Hit
+  m_EditorClassIdentifier: 
+  Clip: {fileID: 0}
+  Sounds:
+  - {fileID: 8300000, guid: 0a9e55836fdb54d41887849960a9392c, type: 3}
+  - {fileID: 8300000, guid: 778c4f40d8a8a0647b12f144e5651199, type: 3}
+  - {fileID: 8300000, guid: d561ac83e1af3f04a8f2e59fbc454005, type: 3}
+  - {fileID: 8300000, guid: d5531627c827c5a49adf585bf2d675c3, type: 3}
+  - {fileID: 8300000, guid: eade841d80a87774d92050cdc730fae5, type: 3}
+  - {fileID: 8300000, guid: 8593ca9d6d3021f43b6453681771595f, type: 3}
+  output: 1
+  Loop: 0
+  Volume: 1
+  Pitch: 0
+  SpacialBlend: 1
+  RandomVolume: 0
+  RandomPitch: 0

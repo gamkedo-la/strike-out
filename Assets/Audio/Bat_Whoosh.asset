@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ec881fac809cf54887debcac172057a, type: 3}
+  m_Name: Bat_Whoosh
+  m_EditorClassIdentifier: 
+  Clip: {fileID: 0}
+  Sounds:
+  - {fileID: 8300000, guid: ee60a19a7e4c3d649af5cd145c57f8cb, type: 3}
+  - {fileID: 8300000, guid: 43ccdbf3b04d8eb4585140dcfdd53b65, type: 3}
+  - {fileID: 8300000, guid: f0111a92930a87741bfaa5b6d1be95ac, type: 3}
+  - {fileID: 8300000, guid: 01f1c971185d03744a8512f2afc34d40, type: 3}
+  - {fileID: 8300000, guid: 534e731288d842e4aa32dec2f857d8c3, type: 3}
+  - {fileID: 8300000, guid: 31cf02b54e7c52e479e394d48bb78933, type: 3}
+  output: 1
+  Loop: 0
+  Volume: 1
+  Pitch: 0
+  SpacialBlend: 1
+  RandomVolume: 0
+  RandomPitch: 0
