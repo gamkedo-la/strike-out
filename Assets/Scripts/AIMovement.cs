@@ -36,7 +36,8 @@ public class AIMovement : MonoBehaviour
 
         if (follow)
         {
-            agent.SetDestination(starter.transform.position);
+            if(starter != null)
+                agent.SetDestination(starter.transform.position);
             moveSpeed = moveSpeed * 2;
         }
 
@@ -58,7 +59,7 @@ public class AIMovement : MonoBehaviour
 
         if (isWalking)
         {
-            transform.position += transform.forward * Time.deltaTime * moveSpeed;
+            //transform.position += transform.forward * Time.deltaTime * moveSpeed;
         }
     }
 

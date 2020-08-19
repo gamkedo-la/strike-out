@@ -31,6 +31,11 @@ public class AudioSourceController : MonoBehaviour
         position = this.transform.position;
     }
 
+    public void SetSourceOutput(AudioData data)
+    {
+        source.outputAudioMixerGroup = data.GetOutputGroup();
+    }
+
     public void SetSourceProperties(AudioData data)
     {
         source.clip = data.GetRandomClip();

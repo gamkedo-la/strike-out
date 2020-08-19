@@ -20,10 +20,11 @@ MonoBehaviour:
   - {fileID: 8300000, guid: d5531627c827c5a49adf585bf2d675c3, type: 3}
   - {fileID: 8300000, guid: eade841d80a87774d92050cdc730fae5, type: 3}
   - {fileID: 8300000, guid: 8593ca9d6d3021f43b6453681771595f, type: 3}
+  mixer: {fileID: 24100000, guid: 75dd9a9b66abc7c4782df25f39d4594d, type: 2}
   output: 1
   Loop: 0
   Volume: 1
   Pitch: 0
-  SpacialBlend: 1
+  SpatialBlend: 1
   RandomVolume: 0
   RandomPitch: 0

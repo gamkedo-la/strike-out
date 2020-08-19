@@ -8,6 +8,11 @@ public class AudioOnTrigger : MonoBehaviour
     public AudioSourceController controller;
     public bool PlayOnce;
 
+    void Start()
+    {
+        controller.SetSourceOutput(sound);
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player" && sound != null)

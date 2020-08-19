@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEditorInternal;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public enum AudioOutputGroup { Music, Sounds, UI }
 
@@ -10,7 +11,8 @@ public class AudioData : ScriptableObject
 {
     public AudioClip Clip;
     public List<AudioClip> Sounds = new List<AudioClip>();
-    
+
+    public AudioMixer mixer;
     public AudioOutputGroup output;
 
     public bool Loop = false;
@@ -40,21 +42,36 @@ public class AudioData : ScriptableObject
         return AudioUtils.St2pitch(Random.Range(Pitch - RandomPitch, Pitch + RandomPitch));
     }
 
-    public string GetOutputGroup(AudioOutputGroup group)
+    public AudioMixerGroup GetOutputGroup()
     {
-        switch(group)
+        string group;
+
+        switch(output)
         {
             case AudioOutputGroup.Music:
-                return "Music";
-
+                group = "Music";
+                break;
             case AudioOutputGroup.Sounds:
-                return "Sounds";
-
+                group = "Sounds";
+                Debug.Log("Sound output!");
+                break;
             case AudioOutputGroup.UI:
-                return "UI";
-
+                group = "UI";
+                break;
             default:
-                return "Sounds";
+                group = "Sounds";
+                Debug.Log("Sound output!");
+                break;
+        }
+
+        if(mixer != null)
+        {
+            return mixer.FindMatchingGroups(group)[0];
+        } 
+        else
+        {
+            Debug.Log("No Mixer?");
+            return null;
         }
     }
 
