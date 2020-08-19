@@ -5,22 +5,19 @@ using UnityEngine;
 public class AudioOnTrigger : MonoBehaviour
 {
     public AudioData sound;
-    public AudioSource source;
+    public AudioSourceController controller;
     public bool PlayOnce;
 
     private void OnTriggerEnter(Collider other)
     {
-        //if (sound != null)
-        //{
-        //    if (!PlayOnce)
-        //        sound.Play(t);
+        if (other.tag == "Player" && sound != null)
+        {
+            if (!PlayOnce)
+            {
+                controller.PlayRandom(sound);
 
-        //    PlayOnce = true;
-        //}
-        //else
-        //    Debug.LogWarning("AudioOnTrigger Does Not Have Sound Assigned");
-
-        source.clip = sound.Sounds[0];
-        source.Play();
+                PlayOnce = true;
+            }
+        }
     }
 }

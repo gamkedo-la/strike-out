@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 2499784737934817809}
   - component: {fileID: 2499784737934817808}
   - component: {fileID: 2499784737934817805}
+  - component: {fileID: 4481272601519871076}
+  - component: {fileID: 989162582212496609}
   m_Layer: 0
   m_Name: Item-StaminaUp20 (1)
   m_TagString: Untagged
@@ -134,3 +136,31 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &4481272601519871076
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2499784737934817811}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 724f0a876ed396a429a099039ee581db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sound: {fileID: 11400000, guid: 8e2756bad53f79946969961bf2fd351c, type: 2}
+  controller: {fileID: 989162582212496609}
+  PlayOnce: 0
+--- !u!114 &989162582212496609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2499784737934817811}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 323552738cd52c34c9876e75ddbc1531, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  source: {fileID: 0}
