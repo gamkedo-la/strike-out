@@ -302,7 +302,7 @@ public class BattleSystemMultiple : MonoBehaviour
                 enemyUnit[i].TakeDamage(-5);
             }
             state = BattleStateMultiple.ENEMYTURN;
-            StartCoroutine(EnemyTurn1());
+            StartCoroutine("EnemyTurn", 0);
         }
 
         if (state == BattleStateMultiple.MIDDLE)
@@ -313,7 +313,7 @@ public class BattleSystemMultiple : MonoBehaviour
                 enemyUnit[i].TakeDamage(-5);
             }
             state = BattleStateMultiple.ENEMYTURN;
-            StartCoroutine(EnemyTurn2());
+            StartCoroutine("EnemyTurn", 1);
         }
 
         if (state == BattleStateMultiple.SETUP)
@@ -324,7 +324,7 @@ public class BattleSystemMultiple : MonoBehaviour
                 enemyUnit[i].TakeDamage(-5);
             }
             state = BattleStateMultiple.ENEMYTURN;
-            StartCoroutine(EnemyTurn3());
+            StartCoroutine("EnemyTurn", 2);
         }
 
         if (state == BattleStateMultiple.CLOSER)
@@ -383,7 +383,7 @@ public class BattleSystemMultiple : MonoBehaviour
             PlayerPitches.SetActive(false);
             ItemMenu.transform.localPosition = new Vector3(233, -900, 0);
             state = BattleStateMultiple.ENEMYTURN;
-            StartCoroutine(EnemyTurn1());
+            StartCoroutine("EnemyTurn", 0);
         }
 
         if (state == BattleStateMultiple.MIDDLE)
@@ -393,7 +393,7 @@ public class BattleSystemMultiple : MonoBehaviour
             PlayerPitches.SetActive(false);
             ItemMenu.transform.localPosition = new Vector3(233, -900, 0);
             state = BattleStateMultiple.ENEMYTURN;
-            StartCoroutine(EnemyTurn2());
+            StartCoroutine("EnemyTurn", 1);
         }
 
         if (state == BattleStateMultiple.SETUP)
@@ -403,7 +403,7 @@ public class BattleSystemMultiple : MonoBehaviour
             PlayerPitches.SetActive(false);
             ItemMenu.transform.localPosition = new Vector3(233, -900, 0);
             state = BattleStateMultiple.ENEMYTURN;
-            StartCoroutine(EnemyTurn3());
+            StartCoroutine("EnemyTurn", 2);
         }
 
         if (state == BattleStateMultiple.CLOSER)
@@ -692,14 +692,14 @@ public class BattleSystemMultiple : MonoBehaviour
                 enemySelectionParticle.transform.position = enemyBattleStationLocations[enemyUnitSelected].transform.position;
 
                 state = BattleStateMultiple.ENEMYTURN;
-                StartCoroutine(EnemyTurn1());
+                StartCoroutine("EnemyTurn", 0);
             }
 
             if (!isDead)
             {
                 //Middle Reliever turn
                 state = BattleStateMultiple.ENEMYTURN;
-                StartCoroutine(EnemyTurn1());
+                StartCoroutine("EnemyTurn", 0);
             }
         }
     }
@@ -747,14 +747,14 @@ public class BattleSystemMultiple : MonoBehaviour
                 enemySelectionParticle.transform.position = enemyBattleStationLocations[enemyUnitSelected].transform.position;
 
                 state = BattleStateMultiple.ENEMYTURN;
-                StartCoroutine(EnemyTurn2());
+                StartCoroutine("EnemyTurn", 1);
             }
 
             if (!isDead)
             {
                 //Enemy Attack turn
                 state = BattleStateMultiple.ENEMYTURN;
-                StartCoroutine(EnemyTurn2());
+                StartCoroutine("EnemyTurn", 1);
             }
         }
     }
@@ -803,14 +803,14 @@ public class BattleSystemMultiple : MonoBehaviour
                 enemySelectionParticle.transform.position = enemyBattleStationLocations[enemyUnitSelected].transform.position;
 
                 state = BattleStateMultiple.ENEMYTURN;
-                StartCoroutine(EnemyTurn3());
+                StartCoroutine("EnemyTurn", 2);
             }
 
             if (!isDead)
             {
                 //Closer turn
                 state = BattleStateMultiple.ENEMYTURN;
-                StartCoroutine(EnemyTurn3());
+                StartCoroutine("EnemyTurn", 2);
             }
         }
 
@@ -872,7 +872,239 @@ public class BattleSystemMultiple : MonoBehaviour
     }
     #endregion
 
+    bool isPlayerIndexDead(int playerID)
+    {
+        switch (playerID) {
+            case 0:
+                return starterDead;
+            case 1:
+                return middleDead;
+            case 2:
+                return setupDead;
+            case 3:
+                return closerDead;
+        }
+
+        Debug.LogError("isPlayerIndexDead received an invalid index " + playerID);
+        return false;
+    }
+
+    void NextPlayerTurnAfterEnemyTurn(int enemyIndex)
+    {
+        switch (enemyIndex)
+        {
+            case 0:
+                state = BattleStateMultiple.MIDDLE;
+                //Skipping Turn to go to pitcher
+                MiddleTurn();
+                break;
+            case 1:
+                state = BattleStateMultiple.SETUP;
+                //Skipping Turn to go to pitcher
+                SETUPTurn();
+                break;
+            case 2:
+                state = BattleStateMultiple.CLOSER;
+                //Skipping Turn to go to pitcher
+                CloserTurn();
+                break;
+            default:
+                Debug.LogError("Unable to find a player with the given index " + enemyIndex);
+                break;
+        }
+    }
+
+    IEnumerator EnemyTurn(int enemyIndex)
+    {
+        GameManager.Instance.DebugBall.transform.position = enemyUnit[enemyIndex].transform.position + Vector3.up * GameManager.Instance.DebugBallHeight;
+        if (enemyUnit[enemyIndex].currentHP <= 0)
+        {
+            NextPlayerTurnAfterEnemyTurn(enemyIndex);    
+        }  else {
+
+            if (starterDead && middleDead && setupDead && closerDead)
+            {
+                EndBattle();
+            }
+
+            int RandomAttack = Random.Range(0, 100);
+            //Need logic to determine what attack the enemy will do
+
+            //attack animation
+
+            //Choosing Who To Attack
+            //happens at least once, if it is true, it does it again. (keep going until valid)
+            int safteyCounter = 1000;
+            do
+            {
+                WhoToAttack = Random.Range(0, 4);
+                if (safteyCounter-- < 0)
+                {
+                    Debug.LogError("Couldn't find a living WhoToAttack, is the Whole Team Dead?");
+                    break;
+                    //bails us out of the do while
+                }
+
+            } while (isPlayerIndexDead(WhoToAttack));
+
+            yield return new WaitForSeconds(1.5f);
+
+            enemyAnim[enemyIndex].Play("Armature|Swing");
+
+            if (WhoToAttack == 0 && !starterDead)
+            {
+                if (GameManager.StarterAgil >= RandomAttack)
+                {
+                    dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Starter!";
+                    yield return new WaitForSeconds(.5f);
+                    dialogueText.text = "Starter Dodges!";
+                    yield return new WaitForSeconds(1f);
+                    NextPlayerTurnAfterEnemyTurn(enemyIndex);
+                }
+
+                if (GameManager.StarterAgil < RandomAttack)
+                {
+                    dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Starter!";
+
+                    yield return new WaitForSeconds(2f);
+                    bool isDead = Starter.TakeDamage(enemyUnit[enemyUnitSelected].enemyDamage);
+                    if (isDead)
+                    {
+                        GameManager.StarterMorale -= enemyUnit[enemyUnitSelected].enemyDamage;
+                        StarterMorale.value = (GameManager.StarterMorale / GameManager.StarterMoraleMax);
+                        starterDead = true;
+
+                        StarterAnim.SetBool("isDead", true);
+                        NextPlayerTurnAfterEnemyTurn(enemyIndex);
+                    }
+
+                    else
+                    {
+                        yield return new WaitForSeconds(.5f);
+                        StarterAnim.Play("Armature|Oof");
+
+                        GameManager.StarterMorale -= enemyUnit[enemyUnitSelected].enemyDamage;
+                        StarterMorale.value = (GameManager.StarterMorale / GameManager.StarterMoraleMax);
+                        NextPlayerTurnAfterEnemyTurn(enemyIndex);
+                    }
+                }
+            }
+            if (WhoToAttack == 1 && !middleDead)
+            {
+                if (GameManager.MiddleAgil >= RandomAttack)
+                {
+                    dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Mid Reliever!";
+                    yield return new WaitForSeconds(.5f);
+                    dialogueText.text = "Mid Reliever Dodges!";
+                    yield return new WaitForSeconds(1f);
+                    NextPlayerTurnAfterEnemyTurn(enemyIndex);
+                }
+                if (GameManager.MiddleAgil < RandomAttack)
+                {
+                    dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Mid Reliever!";
+
+                    yield return new WaitForSeconds(1f);
+                    bool isDead = MiddleReliever.TakeDamage(enemyUnit[enemyUnitSelected].enemyDamage);
+                    if (isDead)
+                    {
+                        GameManager.MidRelivMorale -= enemyUnit[enemyUnitSelected].enemyDamage;
+                        MiddleMorale.value = (GameManager.MidRelivMorale / GameManager.MidRelivMoraleMax);
+                        middleDead = true;
+                        MidRelAnim.SetBool("isDead", true);
+                        NextPlayerTurnAfterEnemyTurn(enemyIndex);
+                    }
+
+                    else
+                    {
+                        yield return new WaitForSeconds(.5f);
+                        MidRelAnim.Play("Armature|Oof");
+
+                        GameManager.MidRelivMorale -= enemyUnit[enemyUnitSelected].enemyDamage;
+                        MiddleMorale.value = (GameManager.MidRelivMorale / GameManager.MidRelivMoraleMax);
+
+                        NextPlayerTurnAfterEnemyTurn(enemyIndex);
+                    }
+                }
+
+                yield return new WaitForSeconds(.5f);
+            }
+            if (WhoToAttack == 2 && !setupDead)
+            {
+
+                if (GameManager.SetUpAgil >= RandomAttack)
+                {
+                    dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks SetUp!";
+                    yield return new WaitForSeconds(.5f);
+                    dialogueText.text = "SetUp Dodges!";
+                    yield return new WaitForSeconds(1f);
+                    NextPlayerTurnAfterEnemyTurn(enemyIndex);
+                }
+                if (GameManager.SetUpAgil < RandomAttack)
+                {
+                    dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Set Up!";
+
+                    yield return new WaitForSeconds(1f);
+                    bool isDead = SetUp.TakeDamage(enemyUnit[enemyUnitSelected].enemyDamage);
+                    if (isDead)
+                    {
+                        GameManager.SetUpMorale -= enemyUnit[enemyUnitSelected].enemyDamage;
+                        SetUpMorale.value = (GameManager.SetUpMorale / GameManager.SetUpMoraleMax);
+                        SetUpAnim.SetBool("isDead", true);
+                        setupDead = true;
+                        NextPlayerTurnAfterEnemyTurn(enemyIndex);
+                    }
+
+                    else
+                    {
+                        SetUpAnim.Play("Armature|Oof");
+                        GameManager.SetUpMorale -= enemyUnit[enemyUnitSelected].enemyDamage;
+                        SetUpMorale.value = (GameManager.SetUpMorale / GameManager.SetUpMoraleMax);
+                        NextPlayerTurnAfterEnemyTurn(enemyIndex);
+                    }
+                }
+            }
+            if (WhoToAttack == 3 && !closerDead)
+            {
+
+                if (GameManager.CloserAgil >= RandomAttack)
+                {
+                    dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Closer!";
+                    yield return new WaitForSeconds(.5f);
+                    dialogueText.text = "Closer Dodges!";
+                    yield return new WaitForSeconds(1f);
+                    NextPlayerTurnAfterEnemyTurn(enemyIndex);
+                }
+
+                if (GameManager.CloserAgil < RandomAttack)
+                {
+                    dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Closer!";
+
+                    yield return new WaitForSeconds(1f);
+                    bool isDead = Closer.TakeDamage(enemyUnit[enemyUnitSelected].enemyDamage);
+                    if (isDead)
+                    {
+                        GameManager.CloserMorale -= enemyUnit[enemyUnitSelected].enemyDamage;
+                        CloserMorale.value = (GameManager.CloserMorale / GameManager.CloserMoraleMax);
+                        CloserAnim.SetBool("isDead", true);
+                        closerDead = true;
+                        NextPlayerTurnAfterEnemyTurn(enemyIndex);
+                    }
+
+                    else
+                    {
+                        CloserAnim.Play("Armature|Oof");
+                        GameManager.CloserMorale -= enemyUnit[enemyUnitSelected].enemyDamage;
+                        CloserMorale.value = (GameManager.CloserMorale / GameManager.CloserMoraleMax);
+                        NextPlayerTurnAfterEnemyTurn(enemyIndex);
+                    }
+                }
+            }
+        }
+
+    }
+
     #region Enemy Attack
+    /*
     IEnumerator EnemyTurn1()
     {
 
@@ -1083,7 +1315,7 @@ public class BattleSystemMultiple : MonoBehaviour
         }
 
     }
-
+    /
     IEnumerator EnemyTurn2()
     {
         if (enemyUnit[0].currentHP <= 0)
@@ -1475,15 +1707,17 @@ public class BattleSystemMultiple : MonoBehaviour
         }
 
     }
+    */
     #endregion
 
     #region Player Turns
     void StarterTurn()
     {
+        GameManager.Instance.DebugBall.transform.position = Starter.transform.position + Vector3.up * GameManager.Instance.DebugBallHeight;
         if (starterDead)
         {
             state = BattleStateMultiple.ENEMYTURN;
-            StartCoroutine(EnemyTurn1());
+            StartCoroutine("EnemyTurn", 0);
         }
         if (!starterDead)
         {
@@ -1499,10 +1733,11 @@ public class BattleSystemMultiple : MonoBehaviour
 
     void MiddleTurn()
     {
+        GameManager.Instance.DebugBall.transform.position = MiddleReliever.transform.position + Vector3.up * GameManager.Instance.DebugBallHeight;
         if (middleDead)
         {
             state = BattleStateMultiple.ENEMYTURN;
-            StartCoroutine(EnemyTurn2());
+            StartCoroutine("EnemyTurn",1);
         }
         if (!middleDead)
         {
@@ -1518,16 +1753,17 @@ public class BattleSystemMultiple : MonoBehaviour
 
     void SETUPTurn()
     {
+        GameManager.Instance.DebugBall.transform.position = SetUp.transform.position + Vector3.up * GameManager.Instance.DebugBallHeight;
         if (SetUpAnim.GetBool("isDead"))
         {
             state = BattleStateMultiple.ENEMYTURN;
-            StartCoroutine(EnemyTurn3());
+            StartCoroutine("EnemyTurn", 2);
         }
 
         if (setupDead)
         {
             state = BattleStateMultiple.ENEMYTURN;
-            StartCoroutine(EnemyTurn3());
+            StartCoroutine("EnemyTurn", 2);
         }
         if (!setupDead)
         {
@@ -1543,6 +1779,7 @@ public class BattleSystemMultiple : MonoBehaviour
 
     void CloserTurn()
     {
+        GameManager.Instance.DebugBall.transform.position = Closer.transform.position + Vector3.up * GameManager.Instance.DebugBallHeight;
         if (CloserAnim.GetBool("isDead"))
         {
             state = BattleStateMultiple.STARTER;
@@ -1566,17 +1803,6 @@ public class BattleSystemMultiple : MonoBehaviour
     }
     #endregion
 
-    /* IEnumerator PlayerHeal()
-     {
-         playerUnit.Heal(5);
-         playerHUD.SetHP(playerUnit.currentHP);
-         dialogueText.text = "You feel recharged!";
-
-         yield return new WaitForSeconds(2f);
-
-         state = BattleStateMultiple.ENEMYTURN;
-         StartCoroutine(EnemyTurn());
-     }*/
     public void OnPitchesButton()
     {
         // if (state != BattleStateMultiple.PLAYERTURN)
@@ -1586,9 +1812,6 @@ public class BattleSystemMultiple : MonoBehaviour
         PlayerMenu.SetActive(false);
     }
     #region Player Pitches
-    /// <summary>
-    /// 
-    /// </summary>
     public void OnFastballButton()
     {
         if (state == BattleStateMultiple.STARTER)

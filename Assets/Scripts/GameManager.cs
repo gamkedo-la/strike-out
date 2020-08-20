@@ -26,6 +26,9 @@ public class GameManager : MonoBehaviour
     Slider Starter, MidReliv, SetUp, Closer;
     Slider StarterE, MidRelivE, SetUpE, CloserE;
 
+    public GameObject DebugBall;
+    public float DebugBallHeight = 3;
+
 
     public Text moneyUI;
 
