@@ -26,6 +26,6 @@ public class AudioOnAnim : MonoBehaviour
     public void TakeDmg()
     {
         controller.PlayRandom(dmg);
-        Debug.Log("Dmg Sound!");
+        //Debug.Log("Dmg Sound!");
     }
 }
