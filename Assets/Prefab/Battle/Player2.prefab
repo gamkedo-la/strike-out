@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 710162620767881156}
   - component: {fileID: 9024122278730284658}
   - component: {fileID: 1633666124505729188}
+  - component: {fileID: 7022858293225368236}
+  - component: {fileID: 3915719040517047583}
   m_Layer: 0
   m_Name: Player2
   m_TagString: Untagged
@@ -75,6 +77,10 @@ MonoBehaviour:
   sliderStamina: 4
   curveballStamina: 4
   changeupStamina: 3
+  FastballMultiplier: 1
+  SliderMultiplier: 1
+  CurveballMultiplier: 1
+  ChangeUpMultiplier: 1
   enemyDamage: 5
   maxHP: 20
   currentHP: 20
@@ -88,6 +94,37 @@ MonoBehaviour:
   maxMoney: 0
   isEnemy: 0
   HealthSlider: {fileID: 0}
+  DescText: {fileID: 0}
+  isDizzy: 0
+  anim: {fileID: 0}
+--- !u!114 &7022858293225368236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 184877969134656894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bbbb35c8a893e04cb29dd0ca9d2a27e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sound: {fileID: 11400000, guid: 90007dc9b951a564cb7e94972ad6a98a, type: 2}
+  dmg: {fileID: 11400000, guid: efddb4b29ae8d554592f4ca5ea7aa64e, type: 2}
+  controller: {fileID: 3915719040517047583}
+--- !u!114 &3915719040517047583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 184877969134656894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 323552738cd52c34c9876e75ddbc1531, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  source: {fileID: 0}
 --- !u!1 &770759498686696283
 GameObject:
   m_ObjectHideFlags: 0

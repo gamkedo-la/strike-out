@@ -36,6 +36,35 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &4372299133159850524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1104134104477647287}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 323552738cd52c34c9876e75ddbc1531, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  source: {fileID: 0}
+--- !u!114 &6606772757004124683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1104134104477647287}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09749b25fde58fe4a9e8eb60f894fcc0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sound: {fileID: 11400000, guid: 07897056073977649bd9fcad2187c917, type: 2}
+  controller: {fileID: 4372299133159850524}
+  whoosh: {fileID: 11400000, guid: db8cd35f031ca494aa4db8eb73c99c5f, type: 2}
+  mittPop: {fileID: 11400000, guid: dbafe08f7a95f42418dae3041f3ecf50, type: 2}
 --- !u!1 &2542981045256146445
 GameObject:
   m_ObjectHideFlags: 0
@@ -334,6 +363,8 @@ GameObject:
   - component: {fileID: 775820447479113071}
   - component: {fileID: 3656744882692733551}
   - component: {fileID: 2263262127576692534}
+  - component: {fileID: 2129409003261697753}
+  - component: {fileID: 6742907775154756833}
   m_Layer: 0
   m_Name: MInor8
   m_TagString: Untagged
@@ -415,6 +446,35 @@ MonoBehaviour:
   nameText: {fileID: 0}
   levelText: {fileID: 0}
   hpSlider: {fileID: 4966122073885991825}
+--- !u!114 &2129409003261697753
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6915564704565573848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09749b25fde58fe4a9e8eb60f894fcc0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sound: {fileID: 11400000, guid: 07897056073977649bd9fcad2187c917, type: 2}
+  controller: {fileID: 6742907775154756833}
+  whoosh: {fileID: 11400000, guid: db8cd35f031ca494aa4db8eb73c99c5f, type: 2}
+  mittPop: {fileID: 0}
+--- !u!114 &6742907775154756833
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6915564704565573848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 323552738cd52c34c9876e75ddbc1531, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  source: {fileID: 0}
 --- !u!1 &7241489912100142722
 GameObject:
   m_ObjectHideFlags: 0
@@ -729,6 +789,12 @@ Animator:
 --- !u!4 &295404357258091277 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8379006208654185588, guid: c86285d311265aa4dbe9e5fb4596df06,
+    type: 3}
+  m_PrefabInstance: {fileID: 8093330759854100345}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1104134104477647287 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9152411120421588686, guid: c86285d311265aa4dbe9e5fb4596df06,
     type: 3}
   m_PrefabInstance: {fileID: 8093330759854100345}
   m_PrefabAsset: {fileID: 0}

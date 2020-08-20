@@ -367,6 +367,8 @@ GameObject:
   - component: {fileID: 5223237323737561169}
   - component: {fileID: 1427392891701021816}
   - component: {fileID: 1532692849244436495}
+  - component: {fileID: 4083550652120482232}
+  - component: {fileID: -4337846149348610101}
   m_Layer: 0
   m_Name: Minor2
   m_TagString: Untagged
@@ -448,6 +450,35 @@ MonoBehaviour:
   nameText: {fileID: 0}
   levelText: {fileID: 0}
   hpSlider: {fileID: 545765118347137068}
+--- !u!114 &4083550652120482232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7633065956902501681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09749b25fde58fe4a9e8eb60f894fcc0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sound: {fileID: 11400000, guid: 07897056073977649bd9fcad2187c917, type: 2}
+  controller: {fileID: -4337846149348610101}
+  whoosh: {fileID: 11400000, guid: db8cd35f031ca494aa4db8eb73c99c5f, type: 2}
+  mittPop: {fileID: 0}
+--- !u!114 &-4337846149348610101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7633065956902501681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 323552738cd52c34c9876e75ddbc1531, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  source: {fileID: 0}
 --- !u!1 &8622388753265872994
 GameObject:
   m_ObjectHideFlags: 0
@@ -658,6 +689,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5223237323737561169}
     m_Modifications:
+    - target: {fileID: 3262566573591123613, guid: 1d339287086b59342940c3674c3561cc,
+        type: 3}
+      propertyPath: mittPop
+      value: 
+      objectReference: {fileID: 11400000, guid: dbafe08f7a95f42418dae3041f3ecf50,
+        type: 2}
     - target: {fileID: 6001434826607459039, guid: 1d339287086b59342940c3674c3561cc,
         type: 3}
       propertyPath: m_LocalPosition.x

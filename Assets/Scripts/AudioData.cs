@@ -53,14 +53,12 @@ public class AudioData : ScriptableObject
                 break;
             case AudioOutputGroup.Sounds:
                 group = "Sounds";
-                Debug.Log("Sound output!");
                 break;
             case AudioOutputGroup.UI:
                 group = "UI";
                 break;
             default:
                 group = "Sounds";
-                Debug.Log("Sound output!");
                 break;
         }
 

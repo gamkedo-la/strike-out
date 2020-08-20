@@ -1,5 +1,34 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &572345216526641648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1977338089936367999}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09749b25fde58fe4a9e8eb60f894fcc0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sound: {fileID: 11400000, guid: 07897056073977649bd9fcad2187c917, type: 2}
+  controller: {fileID: 3912678256603440559}
+  whoosh: {fileID: 11400000, guid: db8cd35f031ca494aa4db8eb73c99c5f, type: 2}
+  mittPop: {fileID: 11400000, guid: dbafe08f7a95f42418dae3041f3ecf50, type: 2}
+--- !u!114 &3912678256603440559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1977338089936367999}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 323552738cd52c34c9876e75ddbc1531, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  source: {fileID: 0}
 --- !u!1 &4170251708727698822
 GameObject:
   m_ObjectHideFlags: 0
@@ -570,6 +599,8 @@ GameObject:
   - component: {fileID: 7952590715790254492}
   - component: {fileID: 6123141902338338221}
   - component: {fileID: 5354356407184672156}
+  - component: {fileID: -7996553644195003759}
+  - component: {fileID: -2179754243655811223}
   m_Layer: 0
   m_Name: Minor3
   m_TagString: Untagged
@@ -651,6 +682,35 @@ MonoBehaviour:
   nameText: {fileID: 0}
   levelText: {fileID: 0}
   hpSlider: {fileID: 8805573068388804387}
+--- !u!114 &-7996553644195003759
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8896789541914717714}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 323552738cd52c34c9876e75ddbc1531, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  source: {fileID: 0}
+--- !u!114 &-2179754243655811223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8896789541914717714}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09749b25fde58fe4a9e8eb60f894fcc0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sound: {fileID: 11400000, guid: 07897056073977649bd9fcad2187c917, type: 2}
+  controller: {fileID: -7996553644195003759}
+  whoosh: {fileID: 11400000, guid: db8cd35f031ca494aa4db8eb73c99c5f, type: 2}
+  mittPop: {fileID: 0}
 --- !u!1001 &8575848565319175422
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -720,15 +780,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a38393c73b9981b4c8b166debac2c30c, type: 3}
---- !u!4 &1169592474544499653 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7437891588565854011, guid: a38393c73b9981b4c8b166debac2c30c,
+--- !u!1 &1977338089936367999 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7814697880142560641, guid: a38393c73b9981b4c8b166debac2c30c,
     type: 3}
   m_PrefabInstance: {fileID: 8575848565319175422}
   m_PrefabAsset: {fileID: 0}
 --- !u!95 &47937869398368840 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 8622642767998480054, guid: a38393c73b9981b4c8b166debac2c30c,
+    type: 3}
+  m_PrefabInstance: {fileID: 8575848565319175422}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1169592474544499653 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7437891588565854011, guid: a38393c73b9981b4c8b166debac2c30c,
     type: 3}
   m_PrefabInstance: {fileID: 8575848565319175422}
   m_PrefabAsset: {fileID: 0}
