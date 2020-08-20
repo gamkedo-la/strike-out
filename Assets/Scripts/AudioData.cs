@@ -17,8 +17,8 @@ public class AudioData : ScriptableObject
 
     public bool Loop = false;
 
-    [Range(0, 1)]
-    public float Volume = 1f;
+    [Range(-80, 0.0001f)]
+    public float Volume = 0.0001f;
 
     [Range(-24, 24)]
     public float Pitch = 0f;
