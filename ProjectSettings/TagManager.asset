@@ -9,6 +9,7 @@ TagManager:
   - Screen
   - BattleStation
   - BattleSystem
+  - Keys
   layers:
   - Default
   - TransparentFX
