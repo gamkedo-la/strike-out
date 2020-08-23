@@ -557,7 +557,7 @@ GameObject:
   - component: {fileID: 35255472}
   - component: {fileID: 35255471}
   m_Layer: 0
-  m_Name: BattleSystem3Enemies
+  m_Name: BattleSystemEnemies
   m_TagString: BattleSystem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

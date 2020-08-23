@@ -9,6 +9,7 @@ public class InventoryItemButton : MonoBehaviour
     public GameObject InventoryItem;
 
     GameObject MultipleSystem;
+    GameObject GameManagerObject;
 
     public void SetText(string textString)
     {
@@ -16,6 +17,11 @@ public class InventoryItemButton : MonoBehaviour
     }
 
     private void Start()
+    {
+        GameManagerObject = GameObject.Find("GameManager");
+    }
+
+    private void Update()
     {
         MultipleSystem = GameObject.FindGameObjectWithTag("BattleSystem");
     }
@@ -25,11 +31,14 @@ public class InventoryItemButton : MonoBehaviour
         if (itemText.text == "Sports Drink")
         {
             //Choose Between characters
-            GameManager.StarterMorale += 20;
-
-            if (GameManager.StarterMorale > GameManager.StarterMoraleMax)
+            if (MultipleSystem.GetComponent<BattleSystemMultiple>() == null)
             {
-                GameManager.StarterMorale = GameManager.StarterMoraleMax;
+                //Figure Out How To Determine Which Player Gets a Health Up
+            }
+
+            if (MultipleSystem.GetComponent<BattleSystemMultiple>() != null)
+            {
+                MultipleSystem.GetComponent<BattleSystemMultiple>().SportsDrink();
             }
             print("Drink Consumed");
             
@@ -38,68 +47,51 @@ public class InventoryItemButton : MonoBehaviour
 
         if (itemText.text == "Grandma's Cookies")
         {
-            GameManager.StarterMorale += 20;
-            GameManager.MidRelivMorale += 20;
-            GameManager.SetUpMorale += 20;
-            GameManager.CloserMorale += 20;
+            if (MultipleSystem.GetComponent<BattleSystemMultiple>() != null)
+            {
+                GameManagerObject.GetComponent<GameManager>().HealthUpAll(20);
+                print("Cookies Eaten");
+                Destroy(InventoryItem);
+            }
 
-            if (GameManager.StarterMorale > GameManager.StarterMoraleMax)
+            if (MultipleSystem.GetComponent<BattleSystemMultiple>() != null)
             {
-                GameManager.StarterMorale = GameManager.StarterMoraleMax;
+                GameManagerObject.GetComponent<GameManager>().HealthUpAll(20);
+                MultipleSystem.GetComponent<BattleSystemMultiple>().AdvanceTurn();
+                print("Cookies Eaten");
+                Destroy(InventoryItem);
             }
-            if (GameManager.MidRelivMorale > GameManager.MidRelivMoraleMax)
-            {
-                GameManager.MidRelivMorale = GameManager.MidRelivMoraleMax;
-            }
-            if (GameManager.SetUpMorale > GameManager.SetUpMoraleMax)
-            {
-                GameManager.SetUpMorale = GameManager.SetUpMoraleMax;
-            }
-            if (GameManager.CloserMorale > GameManager.CloserMoraleMax)
-            {
-                GameManager.CloserMorale = GameManager.CloserMoraleMax;
-            }
-            print("Cookies Eaten");
-            Destroy(InventoryItem);
+
         }
 
         if (itemText.text == "Granola Bar")
         {
             //Choose Between characters
-            GameManager.StarterEnergy += 10;
-
-            if (GameManager.StarterEnergy > GameManager.StarterEnergyMax)
+            if (MultipleSystem.GetComponent<BattleSystemMultiple>() == null)
             {
-                GameManager.StarterEnergy = GameManager.StarterEnergyMax;
+                //Figure Out How To Determine Which Player Gets an Energy Up
             }
+
+            if (MultipleSystem.GetComponent<BattleSystemMultiple>() != null)
+            {
+                MultipleSystem.GetComponent<BattleSystemMultiple>().GranolaBar();
+            }
+            print("Drink Consumed");
+
             Destroy(InventoryItem);
         }
 
         if (itemText.text == "Sunflower Seeds")
         {
-            GameManager.StarterEnergy += 10;
-            GameManager.MidRelivEnergy += 10;
-            GameManager.SetUpEnergy += 10;
-            GameManager.CloserEnergy += 10;
-
-            if (GameManager.StarterEnergy > GameManager.StarterEnergyMax)
+            if (MultipleSystem.GetComponent<BattleSystemMultiple>() == null)
             {
-                GameManager.StarterEnergy = GameManager.StarterEnergyMax;
+                GameManagerObject.GetComponent<GameManager>().EnergyUpAll(20);
             }
 
-            if (GameManager.MidRelivEnergy > GameManager.MidRelievEnergyMax)
+            if (MultipleSystem.GetComponent<BattleSystemMultiple>() != null)
             {
-                GameManager.MidRelivEnergy = GameManager.MidRelievEnergyMax;
-            }
-
-            if (GameManager.SetUpEnergy > GameManager.SetUpEnergyMax)
-            {
-                GameManager.SetUpEnergy = GameManager.SetUpEnergyMax;
-            }
-
-            if (GameManager.CloserEnergy > GameManager.CloserEnergyMax)
-            {
-                GameManager.CloserEnergy = GameManager.CloserEnergyMax;
+                GameManagerObject.GetComponent<GameManager>().EnergyUpAll(20);
+                MultipleSystem.GetComponent<BattleSystemMultiple>().AdvanceTurn();
             }
             Destroy(InventoryItem);
         }
@@ -112,44 +104,34 @@ public class InventoryItemButton : MonoBehaviour
 
         if (itemText.text == "Scouting Report")
         {
-            try
+            if (MultipleSystem.GetComponent<BattleSystemMultiple>() == null)
             {
-                //Choose an enemy to lower health
-                MultipleSystem.GetComponent<BattleSystemMultiple>().ScoutingReportItem();
-                Destroy(InventoryItem);
-            }
-            catch
-            {
-                print("Only used in battle");
+                Debug.Log("Only used in battle");
                 return;
             }
+
+            if (MultipleSystem.GetComponent<BattleSystemMultiple>() != null)
+            {
+                MultipleSystem.GetComponent<BattleSystemMultiple>().ScoutingReportItem();
+            }
+
+            Destroy(InventoryItem);
         }
 
         if (itemText.text == "Defensive Shift")
         {
-            //Lower all enemy health
-            MultipleSystem.GetComponent<BattleSystemMultiple>().DefensiveShiftItem();
-            //Figure Out Whose Turn It Goes To
-            Destroy(InventoryItem);
-
-            try
+            if (MultipleSystem.GetComponent<BattleSystemMultiple>() == null)
             {
-                
-            }
-            catch
-            {
-                print("Only used in battle");
+                Debug.Log("Only used in battle");
                 return;
             }
-        }
-        try
-        {
-            print("Here");
-            MultipleSystem.GetComponent<BattleSystemMultiple>().AdvanceTurn();
-        }
-        catch
-        {
-            return;
+
+            if (MultipleSystem.GetComponent<BattleSystemMultiple>() != null)
+            {
+                MultipleSystem.GetComponent<BattleSystemMultiple>().DefensiveShiftItem();
+            }
+            //Figure Out Whose Turn It Goes To
+            Destroy(InventoryItem);
         }
     }
 }

@@ -676,5 +676,166 @@ public class GameManager : MonoBehaviour
         SetUpE.value = SetUpEnergy / SetUpEnergyMax;
         CloserE.value = CloserEnergy / CloserEnergyMax;
     }
+    #region Items
 
+    public void UpdateUI()
+    {
+        Starter.value = (StarterMorale / StarterMoraleMax);
+        MidReliv.value = (MidRelivMorale / MidRelivMoraleMax);
+        SetUp.value = (SetUpMorale / SetUpMoraleMax);
+        Closer.value = (CloserMorale / CloserMoraleMax);
+
+
+        StarterE.value = (StarterEnergy / StarterEnergyMax);
+        MidRelivE.value = (MidRelivEnergy / MidRelievEnergyMax);
+        SetUpE.value = (SetUpEnergy / SetUpEnergyMax);
+        CloserE.value = (CloserEnergy / CloserEnergyMax);
+    }
+
+    public void StarterHealthUp(int HPIncrease)
+    {
+           StarterMorale += HPIncrease;
+
+            if (StarterMorale > StarterMoraleMax)
+            {
+                StarterMorale = StarterMoraleMax;
+            }
+        UpdateUI();
+    }
+
+    public void MiddleHealthUp(int HPIncrease)
+    {
+        MidRelivMorale += HPIncrease;
+
+        if (MidRelivMorale > MidRelivMoraleMax)
+        {
+            MidRelivMorale = MidRelivMoraleMax;
+        }
+        UpdateUI();
+    }
+
+    public void SetUpHealthUp(int HPIncrease)
+    {
+        SetUpMorale += HPIncrease;
+
+        if (SetUpMorale > SetUpMoraleMax)
+        {
+            SetUpMorale = SetUpMoraleMax;
+        }
+
+        UpdateUI();
+    }
+
+    public void CloserHealthUp(int HPIncrease)
+    {
+        CloserMorale += HPIncrease;
+
+        if (CloserMorale > CloserMoraleMax)
+        {
+            CloserMorale = CloserMoraleMax;
+        }
+
+        UpdateUI();
+    }
+
+    public void StarterEnergyUp(int EnergyUp)
+    {
+        StarterEnergy += EnergyUp;
+
+        if (StarterEnergy > StarterEnergyMax)
+        {
+            StarterEnergy = StarterEnergyMax;
+        }
+        UpdateUI();
+    }
+
+    public void MiddleEnergyUp(int EnergyUp)
+    {
+        MidRelivEnergy += EnergyUp;
+
+        if (MidRelivEnergy > MidRelievEnergyMax)
+        {
+            MidRelivEnergy = MidRelievEnergyMax;
+        }
+        UpdateUI();
+    }
+
+    public void SetUpEnergyUp(int EnergyUp)
+    {
+        SetUpEnergy += EnergyUp;
+
+        if (SetUpEnergy > SetUpEnergyMax)
+        {
+            SetUpEnergy = SetUpEnergyMax;
+        }
+
+        UpdateUI();
+    }
+
+    public void CloserEnergyUp(int EnergyUp)
+    {
+        CloserEnergy += EnergyUp;
+
+        if (CloserEnergy > CloserEnergyMax)
+        {
+            CloserEnergy = CloserEnergyMax;
+        }
+
+        UpdateUI();
+    }
+
+    public void HealthUpAll(int HPIncrease)
+    {
+        StarterMorale += HPIncrease;
+        MidRelivMorale += HPIncrease;
+        SetUpMorale += HPIncrease;
+        CloserMorale += HPIncrease;
+
+        if (StarterMorale > StarterMoraleMax)
+        {
+            StarterMorale = StarterMoraleMax;
+        }
+        if (MidRelivMorale > MidRelivMoraleMax)
+        {
+            MidRelivMorale = MidRelivMoraleMax;
+        }
+        if (SetUpMorale > SetUpMoraleMax)
+        {
+            SetUpMorale = SetUpMoraleMax;
+        }
+        if (CloserMorale > CloserMoraleMax)
+        {
+            CloserMorale = CloserMoraleMax;
+        }
+
+        UpdateUI();
+    }
+
+    public void EnergyUpAll(int EnergyUp)
+    {
+        StarterEnergy += EnergyUp;
+        MidRelivEnergy += EnergyUp;
+        SetUpEnergy += EnergyUp;
+        CloserEnergy += EnergyUp;
+
+        if (StarterEnergy > StarterEnergyMax)
+        {
+            StarterEnergy = StarterEnergyMax;
+        }
+        if (MidRelivEnergy > MidRelievEnergyMax)
+        {
+            MidRelivEnergy = MidRelievEnergyMax;
+        }
+        if (SetUpEnergy > SetUpEnergyMax)
+        {
+            SetUpEnergy = SetUpEnergyMax;
+        }
+        if (CloserEnergy > CloserEnergyMax)
+        {
+            CloserEnergy = CloserEnergyMax;
+        }
+
+        UpdateUI();
+    }
+    #endregion
 }

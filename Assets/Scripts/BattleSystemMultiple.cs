@@ -105,6 +105,8 @@ public class BattleSystemMultiple : MonoBehaviour
     //ItemMenuButton
     GameObject ItemMenu;
     public GameObject backButtonItem;
+
+    GameObject GameManagerObject;
     private void Start()
     {
         state = BattleStateMultiple.START;
@@ -125,6 +127,7 @@ public class BattleSystemMultiple : MonoBehaviour
         CloserEnergy.value = (GameManager.CloserEnergy / GameManager.CloserEnergyMax);
 
         ItemMenu = GameObject.Find("Inventory");
+        GameManagerObject = GameObject.Find("GameManager");
 
         for (int i = 0; i < enemyBattleStationLocations.Count; i++)
         {
@@ -307,7 +310,7 @@ public class BattleSystemMultiple : MonoBehaviour
 
         if (state == BattleStateMultiple.MIDDLE)
         {
-            GameManager.StarterEnergy += 5;
+            GameManager.MidRelivEnergy += 5;
             for (int i = 0; i < enemyUnit.Count; i++)
             {
                 enemyUnit[i].TakeDamage(-5);
@@ -318,7 +321,7 @@ public class BattleSystemMultiple : MonoBehaviour
 
         if (state == BattleStateMultiple.SETUP)
         {
-            GameManager.StarterEnergy += 5;
+            GameManager.SetUpEnergy += 5;
             for (int i = 0; i < enemyUnit.Count; i++)
             {
                 enemyUnit[i].TakeDamage(-5);
@@ -329,7 +332,7 @@ public class BattleSystemMultiple : MonoBehaviour
 
         if (state == BattleStateMultiple.CLOSER)
         {
-            GameManager.StarterEnergy += 5;
+            GameManager.CloserEnergy += 5;
             for (int i = 0; i < enemyUnit.Count; i++)
             {
                 enemyUnit[i].TakeDamage(-5);
@@ -339,23 +342,137 @@ public class BattleSystemMultiple : MonoBehaviour
         }
     }
     #region ItemManagement
+
+    public void SportsDrink()
+    {
+        if (state == BattleStateMultiple.STARTER)
+        {
+            GameManagerObject.GetComponent<GameManager>().StarterHealthUp(20);
+        }
+        if (state == BattleStateMultiple.SETUP)
+        {
+            GameManagerObject.GetComponent<GameManager>().SetUpHealthUp(20);
+        }
+        if (state == BattleStateMultiple.MIDDLE)
+        {
+            GameManagerObject.GetComponent<GameManager>().MiddleHealthUp(20);
+        }
+        if (state == BattleStateMultiple.CLOSER)
+        {
+            GameManagerObject.GetComponent<GameManager>().CloserHealthUp(20);
+        }
+        AdvanceTurn();
+    }
+
+    public void GranolaBar()
+    {
+        if (state == BattleStateMultiple.STARTER)
+        {
+            GameManagerObject.GetComponent<GameManager>().StarterEnergyUp(10);
+        }
+        if (state == BattleStateMultiple.SETUP)
+        {
+            GameManagerObject.GetComponent<GameManager>().MiddleEnergyUp(10);
+        }
+        if (state == BattleStateMultiple.MIDDLE)
+        {
+            GameManagerObject.GetComponent<GameManager>().SetUpEnergyUp(10);
+        }
+        if (state == BattleStateMultiple.CLOSER)
+        {
+            GameManagerObject.GetComponent<GameManager>().CloserEnergyUp(10);
+        }
+        AdvanceTurn();
+    }
+
+    public void UpdateHealthUI()
+    {
+        AdvanceTurn();
+    }
     public void DefensiveShiftItem()
     {
         print("Shift");
-       /* for (int i = 0; i < enemyUnit.Count; i++)
+        for (int i = 0; i < enemyUnit.Count; i++)
         {
-            enemyUnit[i].TakeDamage(-20);
-        }*/
+            isDead = enemyUnit[i].TakeDamage(20);
+
+            if (isDead)
+            {
+                //               enemyAnim[enemyUnitSelected].Play("Armature|Downed");
+                //Destroy(enemyPrefab[enemyUnitSelected]);
+                totalExp += enemyUnit[i].ExperienceToDistribute;
+                enemyCount--;
+                enemyBattleStationLocations.Remove(enemyBattleStationLocations[i]);
+                enemyPrefab.Remove(enemyPrefab[i]);
+                enemyUnit.Remove(enemyUnit[i]);
+
+                state = BattleStateMultiple.ENEMYTURN;
+                StartCoroutine("EnemyTurn", 0);
+            }
+
+            if (!isDead)
+            {
+                if (state == BattleStateMultiple.STARTER || state == BattleStateMultiple.MIDDLE || state == BattleStateMultiple.SETUP)
+                {
+                    state = BattleStateMultiple.ENEMYTURN;
+                    StartCoroutine("EnemyTurn", 0);
+                }
+                if (state == BattleStateMultiple.CLOSER)
+                {
+                    state = BattleStateMultiple.STARTER;
+                    StarterTurn();
+                }
+            }
+        }
         AdvanceTurn();
         print("Did work?");
-
-
-        //Determine whose turn it is
     }
 
     public void ScoutingReportItem()
     {
-        enemyUnit[enemyUnitSelected].TakeDamageFast(20);
+        isDead = enemyUnit[enemyUnitSelected].TakeDamage(20);
+
+        if (state == BattleStateMultiple.STARTER || state == BattleStateMultiple.MIDDLE || state == BattleStateMultiple.SETUP)
+        {
+            if (isDead)
+            {
+                //enemyAnim[enemyUnitSelected].Play("Armature|Downed");
+                //Destroy(enemyPrefab[enemyUnitSelected]);
+                totalExp += enemyUnit[enemyUnitSelected].ExperienceToDistribute;
+                enemyCount--;
+                enemyBattleStationLocations.Remove(enemyBattleStationLocations[enemyUnitSelected]);
+                enemyPrefab.Remove(enemyPrefab[enemyUnitSelected]);
+                enemyUnit.Remove(enemyUnit[enemyUnitSelected]);
+                enemyUnitSelected = 0;
+                enemySelectionParticle.transform.position = enemyBattleStationLocations[enemyUnitSelected].transform.position;
+            }
+            if (!isDead)
+            {
+                state = BattleStateMultiple.ENEMYTURN;
+                StartCoroutine("EnemyTurn", 0);
+            }
+        }
+
+        if (state == BattleStateMultiple.CLOSER)
+        {
+            if (isDead)
+            {
+                //enemyAnim[enemyUnitSelected].Play("Armature|Downed");
+                //Destroy(enemyPrefab[enemyUnitSelected]);
+                totalExp += enemyUnit[enemyUnitSelected].ExperienceToDistribute;
+                enemyCount--;
+                enemyBattleStationLocations.Remove(enemyBattleStationLocations[enemyUnitSelected]);
+                enemyPrefab.Remove(enemyPrefab[enemyUnitSelected]);
+                enemyUnit.Remove(enemyUnit[enemyUnitSelected]);
+                enemyUnitSelected = 0;
+                enemySelectionParticle.transform.position = enemyBattleStationLocations[enemyUnitSelected].transform.position;
+            }
+            if (!isDead)
+            {
+                state = BattleStateMultiple.STARTER;
+                StarterTurn();
+            }
+        }
     }
 
     public void ItemMenuButton()
@@ -376,42 +493,32 @@ public class BattleSystemMultiple : MonoBehaviour
 
     public void AdvanceTurn()
     {
+        backButtonItem.SetActive(false);
+        PlayerMenu.SetActive(false);
+        PlayerPitches.SetActive(false);
+        ItemMenu.transform.localPosition = new Vector3(233, -900, 0);
+
         if (state == BattleStateMultiple.STARTER)
         {
-            backButtonItem.SetActive(false);
-            PlayerMenu.SetActive(true);
-            PlayerPitches.SetActive(false);
-            ItemMenu.transform.localPosition = new Vector3(233, -900, 0);
+            
             state = BattleStateMultiple.ENEMYTURN;
             StartCoroutine("EnemyTurn", 0);
         }
 
         if (state == BattleStateMultiple.MIDDLE)
         {
-            backButtonItem.SetActive(false);
-            PlayerMenu.SetActive(true);
-            PlayerPitches.SetActive(false);
-            ItemMenu.transform.localPosition = new Vector3(233, -900, 0);
             state = BattleStateMultiple.ENEMYTURN;
             StartCoroutine("EnemyTurn", 1);
         }
 
         if (state == BattleStateMultiple.SETUP)
         {
-            backButtonItem.SetActive(false);
-            PlayerMenu.SetActive(true);
-            PlayerPitches.SetActive(false);
-            ItemMenu.transform.localPosition = new Vector3(233, -900, 0);
             state = BattleStateMultiple.ENEMYTURN;
             StartCoroutine("EnemyTurn", 2);
         }
 
         if (state == BattleStateMultiple.CLOSER)
         {
-            backButtonItem.SetActive(false);
-            PlayerMenu.SetActive(true);
-            PlayerPitches.SetActive(false);
-            ItemMenu.transform.localPosition = new Vector3(233, -900, 0);
             state = BattleStateMultiple.STARTER;
             StartCoroutine(CloserToStarterWait());
         }
