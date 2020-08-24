@@ -8,15 +8,15 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Elevator1
-    second: {fileID: 2100000, guid: 08784012ced931b4a8fe00d9e2097118, type: 2}
+    second: {fileID: 2100000, guid: 13d8033d5e09e064b95db1cc2051a798, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Elevator2
-    second: {fileID: 2100000, guid: 4d153168ef619574e95f0530130a4947, type: 2}
+    second: {fileID: 2100000, guid: 730aebe81a2142a4bb9da628b4c8b087, type: 2}
   materials:
     materialImportMode: 1
-    materialName: 0
+    materialName: 1
     materialSearch: 1
     materialLocation: 1
   animations:
