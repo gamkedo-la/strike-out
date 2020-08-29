@@ -107,8 +107,15 @@ public class BattleSystemMultiple : MonoBehaviour
     public GameObject backButtonItem;
 
     GameObject GameManagerObject;
+
+    //Cam positions
+    public GameObject Camera;
+    public Transform starterCam, middleCam, setupCam, closerCam, enemyCam, battleCam, enemyCamTarget;
     private void Start()
     {
+        Camera.transform.position = battleCam.transform.position;
+        Camera.transform.LookAt(enemyCamTarget.transform.position);
+
         state = BattleStateMultiple.START;
 
         starterDead = false;
@@ -165,7 +172,7 @@ public class BattleSystemMultiple : MonoBehaviour
             enemyAnim[i] = enemyGO.GetComponentInChildren<Animator>();
         }
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(4f);
 
         state = BattleStateMultiple.STARTER;
         StarterTurn();
@@ -190,6 +197,7 @@ public class BattleSystemMultiple : MonoBehaviour
                 }
 
                 enemySelectionParticle.transform.position = enemyBattleStationLocations[enemyUnitSelected].transform.position;
+                Camera.transform.LookAt(enemyBattleStationLocations[enemyUnitSelected]);
             }
             if (Input.GetKeyDown(KeyCode.D))
             {
@@ -199,6 +207,7 @@ public class BattleSystemMultiple : MonoBehaviour
                     enemyUnitSelected = 0;
 
                 enemySelectionParticle.transform.position = enemyBattleStationLocations[enemyUnitSelected].transform.position;
+                Camera.transform.LookAt(enemyBattleStationLocations[enemyUnitSelected]);
             }
 
             if (state == BattleStateMultiple.STARTER)
@@ -758,223 +767,739 @@ public class BattleSystemMultiple : MonoBehaviour
     IEnumerator PlayerAttack()
     {
         //To Do Damage Enemy
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
 
         if (state == BattleStateMultiple.STARTER)
         {
             if (fastball)
             {
-                isDead = enemyUnit[enemyUnitSelected].TakeDamageFast(Starter.fastballDamage + GameManager.StarterFast);
-                fastball = false;
+                if (enemyUnit[enemyUnitSelected].currentHP <= 0)
+                {
+                    fastball = false;
+                    dialogueText.text = "Enemy is knocked out, select another target.";
+                    yield return new WaitForSeconds(1f);
+                    dialogueText.text = "Select someone to attack!";
+                    StartCoroutine(PlayerAttack());
+                }
+                else
+                {
+                    isDead = enemyUnit[enemyUnitSelected].TakeDamageFast(Starter.fastballDamage + GameManager.StarterFast);
+                    fastball = false;
+                    dialogueText.text = "The attack is successful!";
+                    yield return new WaitForSeconds(2f);
+
+                    //This checks to see if the Enemy is Dead or has HP remaining
+                    if (isDead)
+                    {
+                        //               enemyAnim[enemyUnitSelected].Play("Armature|Downed");
+                        //Destroy(enemyPrefab[enemyUnitSelected]);
+                        totalExp += enemyUnit[enemyUnitSelected].ExperienceToDistribute;
+                        enemyCount--;
+                        /* enemyBattleStationLocations.Remove(enemyBattleStationLocations[enemyUnitSelected]);
+                         enemyPrefab.Remove(enemyPrefab[enemyUnitSelected]);
+                         enemyUnit.Remove(enemyUnit[enemyUnitSelected]);
+                         enemyUnitSelected = 0;
+                        */
+                        enemySelectionParticle.transform.position = enemyBattleStationLocations[enemyUnitSelected].transform.position;
+
+                        state = BattleStateMultiple.ENEMYTURN;
+                        StartCoroutine("EnemyTurn", 0);
+                    }
+
+                    if (!isDead)
+                    {
+                        //Middle Reliever turn
+                        state = BattleStateMultiple.ENEMYTURN;
+                        StartCoroutine("EnemyTurn", 0);
+                    }
+
+                }
             }
             if (slider)
             {
-                isDead = enemyUnit[enemyUnitSelected].TakeDamageSlid(Starter.sliderDamage + GameManager.StarterSlid);
-                slider = false;
+                if (enemyUnit[enemyUnitSelected].currentHP <= 0)
+                {
+                    slider = false;
+                    dialogueText.text = "Enemy is knocked out, select another target.";
+                    yield return new WaitForSeconds(1f);
+                    dialogueText.text = "Select someone to attack!";
+                    StartCoroutine(PlayerAttack());
+                }
+                else
+                {
+                    isDead = enemyUnit[enemyUnitSelected].TakeDamageSlid(Starter.sliderDamage + GameManager.StarterSlid);
+                    slider = false;
+                    dialogueText.text = "The attack is successful!";
+                    yield return new WaitForSeconds(2f);
+
+                    //This checks to see if the Enemy is Dead or has HP remaining
+                    if (isDead)
+                    {
+                        //               enemyAnim[enemyUnitSelected].Play("Armature|Downed");
+                        //Destroy(enemyPrefab[enemyUnitSelected]);
+                        totalExp += enemyUnit[enemyUnitSelected].ExperienceToDistribute;
+                        enemyCount--;
+                        /* enemyBattleStationLocations.Remove(enemyBattleStationLocations[enemyUnitSelected]);
+                         enemyPrefab.Remove(enemyPrefab[enemyUnitSelected]);
+                         enemyUnit.Remove(enemyUnit[enemyUnitSelected]);
+                         enemyUnitSelected = 0;
+                        */
+                        enemySelectionParticle.transform.position = enemyBattleStationLocations[enemyUnitSelected].transform.position;
+
+                        state = BattleStateMultiple.ENEMYTURN;
+                        StartCoroutine("EnemyTurn", 0);
+                    }
+
+                    if (!isDead)
+                    {
+                        //Middle Reliever turn
+                        state = BattleStateMultiple.ENEMYTURN;
+                        StartCoroutine("EnemyTurn", 0);
+                    }
+                }
             }
             if (curveball)
             {
-                isDead = enemyUnit[enemyUnitSelected].TakeDamageCurve(Starter.curveballDamage + GameManager.StarterCurve);
-                curveball = false;
+                if (enemyUnit[enemyUnitSelected].currentHP <= 0)
+                {
+                    curveball = false;
+                    dialogueText.text = "Enemy is knocked out, select another target.";
+                    yield return new WaitForSeconds(1f);
+                    dialogueText.text = "Select someone to attack!";
+                    StartCoroutine(PlayerAttack());
+                }
+                else
+                {
+                    isDead = enemyUnit[enemyUnitSelected].TakeDamageCurve(Starter.curveballDamage + GameManager.StarterCurve);
+                    curveball = false;
+                    dialogueText.text = "The attack is successful!";
+                    yield return new WaitForSeconds(2f);
+
+                    //This checks to see if the Enemy is Dead or has HP remaining
+                    if (isDead)
+                    {
+                        //               enemyAnim[enemyUnitSelected].Play("Armature|Downed");
+                        //Destroy(enemyPrefab[enemyUnitSelected]);
+                        totalExp += enemyUnit[enemyUnitSelected].ExperienceToDistribute;
+                        enemyCount--;
+                        /* enemyBattleStationLocations.Remove(enemyBattleStationLocations[enemyUnitSelected]);
+                         enemyPrefab.Remove(enemyPrefab[enemyUnitSelected]);
+                         enemyUnit.Remove(enemyUnit[enemyUnitSelected]);
+                         enemyUnitSelected = 0;
+                        */
+                        enemySelectionParticle.transform.position = enemyBattleStationLocations[enemyUnitSelected].transform.position;
+
+                        state = BattleStateMultiple.ENEMYTURN;
+                        StartCoroutine("EnemyTurn", 0);
+                    }
+
+                    if (!isDead)
+                    {
+                        //Middle Reliever turn
+                        state = BattleStateMultiple.ENEMYTURN;
+                        StartCoroutine("EnemyTurn", 0);
+                    }
+                }
             }
             if (changeup)
             {
-                isDead = enemyUnit[enemyUnitSelected].TakeDamageChange(Starter.changeupDamage + GameManager.StarterChange);
-                changeup = false;
-            }
-            dialogueText.text = "The attack is successful!";
-            yield return new WaitForSeconds(2f);
+                if (enemyUnit[enemyUnitSelected].currentHP <= 0)
+                {
+                    changeup = false;
+                    dialogueText.text = "Enemy is knocked out, select another target.";
+                    yield return new WaitForSeconds(1f);
+                    dialogueText.text = "Select someone to attack!";
+                    StartCoroutine(PlayerAttack());
+                }
+                else
+                {
+                    isDead = enemyUnit[enemyUnitSelected].TakeDamageChange(Starter.changeupDamage + GameManager.StarterChange);
+                    changeup = false;
+                    dialogueText.text = "The attack is successful!";
+                    yield return new WaitForSeconds(2f);
 
-            //This checks to see if the Enemy is Dead or has HP remaining
-            if (isDead)
-            {
- //               enemyAnim[enemyUnitSelected].Play("Armature|Downed");
-                //Destroy(enemyPrefab[enemyUnitSelected]);
-                totalExp += enemyUnit[enemyUnitSelected].ExperienceToDistribute;
-                enemyCount--;
-                enemyBattleStationLocations.Remove(enemyBattleStationLocations[enemyUnitSelected]);
-                enemyPrefab.Remove(enemyPrefab[enemyUnitSelected]);
-                enemyUnit.Remove(enemyUnit[enemyUnitSelected]);
-                enemyUnitSelected = 0;
-                enemySelectionParticle.transform.position = enemyBattleStationLocations[enemyUnitSelected].transform.position;
+                    //This checks to see if the Enemy is Dead or has HP remaining
+                    if (isDead)
+                    {
+                        //               enemyAnim[enemyUnitSelected].Play("Armature|Downed");
+                        //Destroy(enemyPrefab[enemyUnitSelected]);
+                        totalExp += enemyUnit[enemyUnitSelected].ExperienceToDistribute;
+                        enemyCount--;
+                        /* enemyBattleStationLocations.Remove(enemyBattleStationLocations[enemyUnitSelected]);
+                         enemyPrefab.Remove(enemyPrefab[enemyUnitSelected]);
+                         enemyUnit.Remove(enemyUnit[enemyUnitSelected]);
+                         enemyUnitSelected = 0;
+                        */
+                        enemySelectionParticle.transform.position = enemyBattleStationLocations[enemyUnitSelected].transform.position;
 
-                state = BattleStateMultiple.ENEMYTURN;
-                StartCoroutine("EnemyTurn", 0);
-            }
+                        state = BattleStateMultiple.ENEMYTURN;
+                        StartCoroutine("EnemyTurn", 0);
+                    }
 
-            if (!isDead)
-            {
-                //Middle Reliever turn
-                state = BattleStateMultiple.ENEMYTURN;
-                StartCoroutine("EnemyTurn", 0);
+                    if (!isDead)
+                    {
+                        //Middle Reliever turn
+                        state = BattleStateMultiple.ENEMYTURN;
+                        StartCoroutine("EnemyTurn", 0);
+                    }
+                }
             }
         }
     }
 
+
     IEnumerator MiddleAttack()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
 
         if (state == BattleStateMultiple.MIDDLE)
         {
             if (fastball)
             {
-                isDead = enemyUnit[enemyUnitSelected].TakeDamageFast(MiddleReliever.fastballDamage + GameManager.MiddleFast);
-                fastball = false;
+                if (enemyUnit[enemyUnitSelected].currentHP <= 0)
+                {
+                    fastball = false;
+                    dialogueText.text = "Enemy is knocked out, select another target.";
+                    yield return new WaitForSeconds(1f);
+                    dialogueText.text = "Select someone to attack!";
+                    StartCoroutine(MiddleAttack());
+                }
+                else
+                {
+                    isDead = enemyUnit[enemyUnitSelected].TakeDamageFast(MiddleReliever.fastballDamage + GameManager.MiddleFast);
+                    fastball = false;
+                    //enemyHUD.SetHP(enemyUnit[enemyUnitSelected].currentHP);
+                    dialogueText.text = "The attack is successful!";
+                    yield return new WaitForSeconds(2f);
+
+
+                    //This checks to see if the Enemy is Dead or has HP remaining
+                    if (isDead)
+                    {
+                        //               enemyAnim[enemyUnitSelected].Play("Armature|Downed");
+                        totalExp += enemyUnit[enemyUnitSelected].ExperienceToDistribute;
+                        enemyCount--;
+                        /* enemyBattleStationLocations.Remove(enemyBattleStationLocations[enemyUnitSelected]);
+                         enemyPrefab.Remove(enemyPrefab[enemyUnitSelected]);
+                         enemyUnit.Remove(enemyUnit[enemyUnitSelected]);
+                         enemyUnitSelected = 0;
+                         */
+                        enemySelectionParticle.transform.position = enemyBattleStationLocations[enemyUnitSelected].transform.position;
+
+                        state = BattleStateMultiple.ENEMYTURN;
+                        StartCoroutine("EnemyTurn", 1);
+                    }
+
+                    if (!isDead)
+                    {
+                        //Enemy Attack turn
+                        state = BattleStateMultiple.ENEMYTURN;
+                        StartCoroutine("EnemyTurn", 1);
+                    }
+                }
             }
             if (slider)
             {
-                isDead = enemyUnit[enemyUnitSelected].TakeDamageSlid(MiddleReliever.sliderDamage + GameManager.MiddleSlid);
-                slider = false;
+                if (enemyUnit[enemyUnitSelected].currentHP <= 0)
+                {
+                    slider = false;
+                    dialogueText.text = "Enemy is knocked out, select another target.";
+                    yield return new WaitForSeconds(1f);
+                    dialogueText.text = "Select someone to attack!";
+                    StartCoroutine(MiddleAttack());
+                }
+                else
+                {
+                    isDead = enemyUnit[enemyUnitSelected].TakeDamageSlid(MiddleReliever.sliderDamage + GameManager.MiddleSlid);
+                    slider = false;
+                    //enemyHUD.SetHP(enemyUnit[enemyUnitSelected].currentHP);
+                    dialogueText.text = "The attack is successful!";
+                    yield return new WaitForSeconds(2f);
+
+
+                    //This checks to see if the Enemy is Dead or has HP remaining
+                    if (isDead)
+                    {
+                        //               enemyAnim[enemyUnitSelected].Play("Armature|Downed");
+                        totalExp += enemyUnit[enemyUnitSelected].ExperienceToDistribute;
+                        enemyCount--;
+                        /* enemyBattleStationLocations.Remove(enemyBattleStationLocations[enemyUnitSelected]);
+                         enemyPrefab.Remove(enemyPrefab[enemyUnitSelected]);
+                         enemyUnit.Remove(enemyUnit[enemyUnitSelected]);
+                         enemyUnitSelected = 0;
+                         */
+                        enemySelectionParticle.transform.position = enemyBattleStationLocations[enemyUnitSelected].transform.position;
+
+                        state = BattleStateMultiple.ENEMYTURN;
+                        StartCoroutine("EnemyTurn", 1);
+                    }
+
+                    if (!isDead)
+                    {
+                        //Enemy Attack turn
+                        state = BattleStateMultiple.ENEMYTURN;
+                        StartCoroutine("EnemyTurn", 1);
+                    }
+                }
             }
             if (curveball)
             {
-                isDead = enemyUnit[enemyUnitSelected].TakeDamageCurve(MiddleReliever.curveballDamage + GameManager.MiddleCurve);
-                curveball = false;
+                if (enemyUnit[enemyUnitSelected].currentHP <= 0)
+                {
+                    curveball = false;
+                    dialogueText.text = "Enemy is knocked out, select another target.";
+                    yield return new WaitForSeconds(1f);
+                    dialogueText.text = "Select someone to attack!";
+                    StartCoroutine(MiddleAttack());
+                }
+                else
+                {
+                    isDead = enemyUnit[enemyUnitSelected].TakeDamageCurve(MiddleReliever.curveballDamage + GameManager.MiddleCurve);
+                    curveball = false;
+                    //enemyHUD.SetHP(enemyUnit[enemyUnitSelected].currentHP);
+                    dialogueText.text = "The attack is successful!";
+                    yield return new WaitForSeconds(2f);
+
+
+                    //This checks to see if the Enemy is Dead or has HP remaining
+                    if (isDead)
+                    {
+                        //               enemyAnim[enemyUnitSelected].Play("Armature|Downed");
+                        totalExp += enemyUnit[enemyUnitSelected].ExperienceToDistribute;
+                        enemyCount--;
+                        /* enemyBattleStationLocations.Remove(enemyBattleStationLocations[enemyUnitSelected]);
+                         enemyPrefab.Remove(enemyPrefab[enemyUnitSelected]);
+                         enemyUnit.Remove(enemyUnit[enemyUnitSelected]);
+                         enemyUnitSelected = 0;
+                         */
+                        enemySelectionParticle.transform.position = enemyBattleStationLocations[enemyUnitSelected].transform.position;
+
+                        state = BattleStateMultiple.ENEMYTURN;
+                        StartCoroutine("EnemyTurn", 1);
+                    }
+
+                    if (!isDead)
+                    {
+                        //Enemy Attack turn
+                        state = BattleStateMultiple.ENEMYTURN;
+                        StartCoroutine("EnemyTurn", 1);
+                    }
+                }
             }
             if (changeup)
             {
-                isDead = enemyUnit[enemyUnitSelected].TakeDamageChange(MiddleReliever.changeupDamage + GameManager.MiddleChange);
-                changeup = false;
-            }
-            //enemyHUD.SetHP(enemyUnit[enemyUnitSelected].currentHP);
-            dialogueText.text = "The attack is successful!";
-            yield return new WaitForSeconds(2f);
+                if (enemyUnit[enemyUnitSelected].currentHP <= 0)
+                {
+                    changeup = false;
+                    dialogueText.text = "Enemy is knocked out, select another target.";
+                    yield return new WaitForSeconds(1f);
+                    dialogueText.text = "Select someone to attack!";
+                    StartCoroutine(MiddleAttack());
+                }
+                else
+                {
+                    isDead = enemyUnit[enemyUnitSelected].TakeDamageChange(MiddleReliever.changeupDamage + GameManager.MiddleChange);
+                    changeup = false;
+                    //enemyHUD.SetHP(enemyUnit[enemyUnitSelected].currentHP);
+                    dialogueText.text = "The attack is successful!";
+                    yield return new WaitForSeconds(2f);
 
-            //This checks to see if the Enemy is Dead or has HP remaining
-            if (isDead)
-            {
- //               enemyAnim[enemyUnitSelected].Play("Armature|Downed");
-                totalExp += enemyUnit[enemyUnitSelected].ExperienceToDistribute;
-                enemyCount--;
-                enemyBattleStationLocations.Remove(enemyBattleStationLocations[enemyUnitSelected]);
-                enemyPrefab.Remove(enemyPrefab[enemyUnitSelected]);
-                enemyUnit.Remove(enemyUnit[enemyUnitSelected]);
-                enemyUnitSelected = 0;
-                enemySelectionParticle.transform.position = enemyBattleStationLocations[enemyUnitSelected].transform.position;
 
-                state = BattleStateMultiple.ENEMYTURN;
-                StartCoroutine("EnemyTurn", 1);
-            }
+                    //This checks to see if the Enemy is Dead or has HP remaining
+                    if (isDead)
+                    {
+                        //               enemyAnim[enemyUnitSelected].Play("Armature|Downed");
+                        totalExp += enemyUnit[enemyUnitSelected].ExperienceToDistribute;
+                        enemyCount--;
+                        /* enemyBattleStationLocations.Remove(enemyBattleStationLocations[enemyUnitSelected]);
+                         enemyPrefab.Remove(enemyPrefab[enemyUnitSelected]);
+                         enemyUnit.Remove(enemyUnit[enemyUnitSelected]);
+                         enemyUnitSelected = 0;
+                         */
+                        enemySelectionParticle.transform.position = enemyBattleStationLocations[enemyUnitSelected].transform.position;
 
-            if (!isDead)
-            {
-                //Enemy Attack turn
-                state = BattleStateMultiple.ENEMYTURN;
-                StartCoroutine("EnemyTurn", 1);
+                        state = BattleStateMultiple.ENEMYTURN;
+                        StartCoroutine("EnemyTurn", 1);
+                    }
+
+                    if (!isDead)
+                    {
+                        //Enemy Attack turn
+                        state = BattleStateMultiple.ENEMYTURN;
+                        StartCoroutine("EnemyTurn", 1);
+                    }
+                }
             }
         }
     }
 
     IEnumerator SetUpAttack()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
 
         if (state == BattleStateMultiple.SETUP)
         {
             //To Do Start Attack Animation
             if (fastball)
             {
-                isDead = enemyUnit[enemyUnitSelected].TakeDamageFast(SetUp.fastballDamage + GameManager.SetUpFast);
-                fastball = false;
+                if (enemyUnit[enemyUnitSelected].currentHP <= 0)
+                {
+                    fastball = false;
+                    dialogueText.text = "Enemy is knocked out, select another target.";
+                    yield return new WaitForSeconds(1f);
+                    dialogueText.text = "Select someone to attack!";
+                    StartCoroutine(SetUpAttack());
+                }
+                else
+                {
+                    isDead = enemyUnit[enemyUnitSelected].TakeDamageFast(SetUp.fastballDamage + GameManager.SetUpFast);
+                    fastball = false;
+                    // enemyHUD.SetHP(enemyUnit[enemyUnitSelected].currentHP);
+                    dialogueText.text = "The attack is successful!";
+                    yield return new WaitForSeconds(2f);
+
+
+                    //This checks to see if the Enemy is Dead or has HP remaining
+                    if (isDead)
+                    {
+                        //               enemyAnim[enemyUnitSelected].Play("Armature|Downed");
+                        totalExp += enemyUnit[enemyUnitSelected].ExperienceToDistribute;
+                        enemyCount--;
+                        /* enemyBattleStationLocations.Remove(enemyBattleStationLocations[enemyUnitSelected]);
+                         enemyPrefab.Remove(enemyPrefab[enemyUnitSelected]);
+                         enemyUnit.Remove(enemyUnit[enemyUnitSelected]);
+                         enemyUnitSelected = 0;
+                        */
+                        enemySelectionParticle.transform.position = enemyBattleStationLocations[enemyUnitSelected].transform.position;
+
+                        state = BattleStateMultiple.ENEMYTURN;
+                        StartCoroutine("EnemyTurn", 2);
+                    }
+
+                    if (!isDead)
+                    {
+                        //Closer turn
+                        state = BattleStateMultiple.ENEMYTURN;
+                        StartCoroutine("EnemyTurn", 2);
+                    }
+                }
             }
             if (slider)
             {
-                isDead = enemyUnit[enemyUnitSelected].TakeDamageSlid(SetUp.sliderDamage + GameManager.SetUpSlid);
-                slider = false;
+                if (enemyUnit[enemyUnitSelected].currentHP <= 0)
+                {
+                    slider = false;
+                    dialogueText.text = "Enemy is knocked out, select another target.";
+                    yield return new WaitForSeconds(1f);
+                    dialogueText.text = "Select someone to attack!";
+                    StartCoroutine(SetUpAttack());
+                }
+                else
+                {
+                    isDead = enemyUnit[enemyUnitSelected].TakeDamageSlid(SetUp.sliderDamage + GameManager.SetUpSlid);
+                    slider = false;
+                    // enemyHUD.SetHP(enemyUnit[enemyUnitSelected].currentHP);
+                    dialogueText.text = "The attack is successful!";
+                    yield return new WaitForSeconds(2f);
+
+
+                    //This checks to see if the Enemy is Dead or has HP remaining
+                    if (isDead)
+                    {
+                        //               enemyAnim[enemyUnitSelected].Play("Armature|Downed");
+                        totalExp += enemyUnit[enemyUnitSelected].ExperienceToDistribute;
+                        enemyCount--;
+                        /* enemyBattleStationLocations.Remove(enemyBattleStationLocations[enemyUnitSelected]);
+                         enemyPrefab.Remove(enemyPrefab[enemyUnitSelected]);
+                         enemyUnit.Remove(enemyUnit[enemyUnitSelected]);
+                         enemyUnitSelected = 0;
+                        */
+                        enemySelectionParticle.transform.position = enemyBattleStationLocations[enemyUnitSelected].transform.position;
+
+                        state = BattleStateMultiple.ENEMYTURN;
+                        StartCoroutine("EnemyTurn", 2);
+                    }
+
+                    if (!isDead)
+                    {
+                        //Closer turn
+                        state = BattleStateMultiple.ENEMYTURN;
+                        StartCoroutine("EnemyTurn", 2);
+                    }
+                }
             }
             if (curveball)
             {
-                isDead = enemyUnit[enemyUnitSelected].TakeDamageCurve(SetUp.curveballDamage + GameManager.SetUpCurve);
-                curveball = false;
+                if (enemyUnit[enemyUnitSelected].currentHP <= 0)
+                {
+                    curveball = false;
+                    dialogueText.text = "Enemy is knocked out, select another target.";
+                    yield return new WaitForSeconds(1f);
+                    dialogueText.text = "Select someone to attack!";
+                    StartCoroutine(SetUpAttack());
+                }
+                else
+                {
+                    isDead = enemyUnit[enemyUnitSelected].TakeDamageCurve(SetUp.curveballDamage + GameManager.SetUpCurve);
+                    curveball = false;
+                    // enemyHUD.SetHP(enemyUnit[enemyUnitSelected].currentHP);
+                    dialogueText.text = "The attack is successful!";
+                    yield return new WaitForSeconds(2f);
+
+
+                    //This checks to see if the Enemy is Dead or has HP remaining
+                    if (isDead)
+                    {
+                        //               enemyAnim[enemyUnitSelected].Play("Armature|Downed");
+                        totalExp += enemyUnit[enemyUnitSelected].ExperienceToDistribute;
+                        enemyCount--;
+                        /* enemyBattleStationLocations.Remove(enemyBattleStationLocations[enemyUnitSelected]);
+                         enemyPrefab.Remove(enemyPrefab[enemyUnitSelected]);
+                         enemyUnit.Remove(enemyUnit[enemyUnitSelected]);
+                         enemyUnitSelected = 0;
+                        */
+                        enemySelectionParticle.transform.position = enemyBattleStationLocations[enemyUnitSelected].transform.position;
+
+                        state = BattleStateMultiple.ENEMYTURN;
+                        StartCoroutine("EnemyTurn", 2);
+                    }
+
+                    if (!isDead)
+                    {
+                        //Closer turn
+                        state = BattleStateMultiple.ENEMYTURN;
+                        StartCoroutine("EnemyTurn", 2);
+                    }
+                }
             }
             if (changeup)
             {
-                isDead = enemyUnit[enemyUnitSelected].TakeDamageChange(SetUp.changeupDamage + GameManager.SetUpChange);
-                changeup = false;
-            }
-           // enemyHUD.SetHP(enemyUnit[enemyUnitSelected].currentHP);
-            dialogueText.text = "The attack is successful!";
-            yield return new WaitForSeconds(2f);
+                if (enemyUnit[enemyUnitSelected].currentHP <= 0)
+                {
+                    changeup = false;
+                    dialogueText.text = "Enemy is knocked out, select another target.";
+                    yield return new WaitForSeconds(1f);
+                    dialogueText.text = "Select someone to attack!";
+                    StartCoroutine(SetUpAttack());
+                }
+                else
+                {
+                    isDead = enemyUnit[enemyUnitSelected].TakeDamageChange(SetUp.changeupDamage + GameManager.SetUpChange);
+                    changeup = false;
+                    // enemyHUD.SetHP(enemyUnit[enemyUnitSelected].currentHP);
+                    dialogueText.text = "The attack is successful!";
+                    yield return new WaitForSeconds(2f);
 
-            //This checks to see if the Enemy is Dead or has HP remaining
-            if (isDead)
-            {
- //               enemyAnim[enemyUnitSelected].Play("Armature|Downed");
-                totalExp += enemyUnit[enemyUnitSelected].ExperienceToDistribute;
-                enemyCount--;
-                enemyBattleStationLocations.Remove(enemyBattleStationLocations[enemyUnitSelected]);
-                enemyPrefab.Remove(enemyPrefab[enemyUnitSelected]);
-                enemyUnit.Remove(enemyUnit[enemyUnitSelected]);
-                enemyUnitSelected = 0;
-                enemySelectionParticle.transform.position = enemyBattleStationLocations[enemyUnitSelected].transform.position;
 
-                state = BattleStateMultiple.ENEMYTURN;
-                StartCoroutine("EnemyTurn", 2);
+                    //This checks to see if the Enemy is Dead or has HP remaining
+                    if (isDead)
+                    {
+                        //               enemyAnim[enemyUnitSelected].Play("Armature|Downed");
+                        totalExp += enemyUnit[enemyUnitSelected].ExperienceToDistribute;
+                        enemyCount--;
+                        /* enemyBattleStationLocations.Remove(enemyBattleStationLocations[enemyUnitSelected]);
+                         enemyPrefab.Remove(enemyPrefab[enemyUnitSelected]);
+                         enemyUnit.Remove(enemyUnit[enemyUnitSelected]);
+                         enemyUnitSelected = 0;
+                        */
+                        enemySelectionParticle.transform.position = enemyBattleStationLocations[enemyUnitSelected].transform.position;
+
+                        state = BattleStateMultiple.ENEMYTURN;
+                        StartCoroutine("EnemyTurn", 2);
+                    }
+
+                    if (!isDead)
+                    {
+                        //Closer turn
+                        state = BattleStateMultiple.ENEMYTURN;
+                        StartCoroutine("EnemyTurn", 2);
+                    }
+                }
             }
 
-            if (!isDead)
-            {
-                //Closer turn
-                state = BattleStateMultiple.ENEMYTURN;
-                StartCoroutine("EnemyTurn", 2);
-            }
         }
 
     }
 
     IEnumerator CloserAttack()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
 
         if (state == BattleStateMultiple.CLOSER)
         {
             if (fastball)
             {
-                isDead = enemyUnit[enemyUnitSelected].TakeDamageFast(Closer.fastballDamage + GameManager.CloserFast);
-                fastball = false;
+                if (enemyUnit[enemyUnitSelected].currentHP <= 0)
+                {
+                    fastball = false;
+                    dialogueText.text = "Enemy is knocked out, select another target.";
+                    yield return new WaitForSeconds(1f);
+                    dialogueText.text = "Select someone to attack!";
+                    StartCoroutine(CloserAttack());
+                }
+                else
+                {
+                    isDead = enemyUnit[enemyUnitSelected].TakeDamageFast(Closer.fastballDamage + GameManager.CloserFast);
+                    fastball = false;
+                    //enemyHUD.SetHP(enemyUnit[enemyUnitSelected].currentHP);
+                    dialogueText.text = "The attack is successful!";
+                    yield return new WaitForSeconds(2f);
+
+                    //This checks to see if the Enemy is Dead or has HP remaining
+                    if (isDead)
+                    {
+                        //               enemyAnim[enemyUnitSelected].Play("Armature|Downed");
+                        totalExp += enemyUnit[enemyUnitSelected].ExperienceToDistribute;
+                        enemyCount--;
+                        /*enemyBattleStationLocations.Remove(enemyBattleStationLocations[enemyUnitSelected]);
+                        enemyPrefab.Remove(enemyPrefab[enemyUnitSelected]);
+                        enemyUnit.Remove(enemyUnit[enemyUnitSelected]);
+                        enemyUnitSelected = 0;
+                       */
+                        enemySelectionParticle.transform.position = enemyBattleStationLocations[enemyUnitSelected].transform.position;
+
+                        state = BattleStateMultiple.STARTER;
+                        StarterTurn();
+                    }
+
+                    if (!isDead)
+                    {
+                        //Middle Reliever turn
+                        state = BattleStateMultiple.STARTER;
+                        StarterTurn();
+                    }
+                }
             }
             if (slider)
             {
-                isDead = enemyUnit[enemyUnitSelected].TakeDamageSlid(Closer.sliderDamage + GameManager.CloserSlid);
-                slider = false;
+                if (enemyUnit[enemyUnitSelected].currentHP <= 0)
+                {
+                    slider = false;
+                    dialogueText.text = "Enemy is knocked out, select another target.";
+                    yield return new WaitForSeconds(1f);
+                    dialogueText.text = "Select someone to attack!";
+                    StartCoroutine(CloserAttack());
+                }
+                else
+                {
+                    isDead = enemyUnit[enemyUnitSelected].TakeDamageSlid(Closer.sliderDamage + GameManager.CloserSlid);
+                    slider = false;
+                    //enemyHUD.SetHP(enemyUnit[enemyUnitSelected].currentHP);
+                    dialogueText.text = "The attack is successful!";
+                    yield return new WaitForSeconds(2f);
+
+                    //This checks to see if the Enemy is Dead or has HP remaining
+                    if (isDead)
+                    {
+                        //               enemyAnim[enemyUnitSelected].Play("Armature|Downed");
+                        totalExp += enemyUnit[enemyUnitSelected].ExperienceToDistribute;
+                        enemyCount--;
+                        /*enemyBattleStationLocations.Remove(enemyBattleStationLocations[enemyUnitSelected]);
+                        enemyPrefab.Remove(enemyPrefab[enemyUnitSelected]);
+                        enemyUnit.Remove(enemyUnit[enemyUnitSelected]);
+                        enemyUnitSelected = 0;
+                       */
+                        enemySelectionParticle.transform.position = enemyBattleStationLocations[enemyUnitSelected].transform.position;
+
+                        state = BattleStateMultiple.STARTER;
+                        StarterTurn();
+                    }
+
+                    if (!isDead)
+                    {
+                        //Middle Reliever turn
+                        state = BattleStateMultiple.STARTER;
+                        StarterTurn();
+                    }
+                }
             }
             if (curveball)
             {
-                isDead = enemyUnit[enemyUnitSelected].TakeDamageCurve(Closer.curveballDamage + GameManager.CloserCurve);
-                curveball = false;
+                if (enemyUnit[enemyUnitSelected].currentHP <= 0)
+                {
+                    curveball = false;
+                    dialogueText.text = "Enemy is knocked out, select another target.";
+                    yield return new WaitForSeconds(1f);
+                    dialogueText.text = "Select someone to attack!";
+                    StartCoroutine(CloserAttack());
+                }
+                else
+                {
+                    isDead = enemyUnit[enemyUnitSelected].TakeDamageCurve(Closer.curveballDamage + GameManager.CloserCurve);
+                    curveball = false;
+                    //enemyHUD.SetHP(enemyUnit[enemyUnitSelected].currentHP);
+                    dialogueText.text = "The attack is successful!";
+                    yield return new WaitForSeconds(2f);
+
+                    //This checks to see if the Enemy is Dead or has HP remaining
+                    if (isDead)
+                    {
+                        //               enemyAnim[enemyUnitSelected].Play("Armature|Downed");
+                        totalExp += enemyUnit[enemyUnitSelected].ExperienceToDistribute;
+                        enemyCount--;
+                        /*enemyBattleStationLocations.Remove(enemyBattleStationLocations[enemyUnitSelected]);
+                        enemyPrefab.Remove(enemyPrefab[enemyUnitSelected]);
+                        enemyUnit.Remove(enemyUnit[enemyUnitSelected]);
+                        enemyUnitSelected = 0;
+                       */
+                        enemySelectionParticle.transform.position = enemyBattleStationLocations[enemyUnitSelected].transform.position;
+
+                        state = BattleStateMultiple.STARTER;
+                        StarterTurn();
+                    }
+
+                    if (!isDead)
+                    {
+                        //Middle Reliever turn
+                        state = BattleStateMultiple.STARTER;
+                        StarterTurn();
+                    }
+                }
             }
             if (changeup)
             {
-                isDead = enemyUnit[enemyUnitSelected].TakeDamageChange(Closer.changeupDamage + GameManager.CloserChange);
-                changeup = false;
-            }
-            //enemyHUD.SetHP(enemyUnit[enemyUnitSelected].currentHP);
-            dialogueText.text = "The attack is successful!";
-            yield return new WaitForSeconds(2f);
+                if (enemyUnit[enemyUnitSelected].currentHP <= 0)
+                {
+                    changeup = false;
+                    dialogueText.text = "Enemy is knocked out, select another target.";
+                    yield return new WaitForSeconds(1f);
+                    dialogueText.text = "Select someone to attack!";
+                    StartCoroutine(CloserAttack());
+                }
+                else
+                {
+                    isDead = enemyUnit[enemyUnitSelected].TakeDamageChange(Closer.changeupDamage + GameManager.CloserChange);
+                    changeup = false;
+                    //enemyHUD.SetHP(enemyUnit[enemyUnitSelected].currentHP);
+                    dialogueText.text = "The attack is successful!";
+                    yield return new WaitForSeconds(2f);
 
-            //This checks to see if the Enemy is Dead or has HP remaining
-            if (isDead)
-            {
- //               enemyAnim[enemyUnitSelected].Play("Armature|Downed");
-                totalExp += enemyUnit[enemyUnitSelected].ExperienceToDistribute;
-                enemyCount--;
-                enemyBattleStationLocations.Remove(enemyBattleStationLocations[enemyUnitSelected]);
-                enemyPrefab.Remove(enemyPrefab[enemyUnitSelected]);
-                enemyUnit.Remove(enemyUnit[enemyUnitSelected]);
-                enemyUnitSelected = 0;
-                enemySelectionParticle.transform.position = enemyBattleStationLocations[enemyUnitSelected].transform.position;
+                    //This checks to see if the Enemy is Dead or has HP remaining
+                    if (isDead)
+                    {
+                        //               enemyAnim[enemyUnitSelected].Play("Armature|Downed");
+                        totalExp += enemyUnit[enemyUnitSelected].ExperienceToDistribute;
+                        enemyCount--;
+                        /*enemyBattleStationLocations.Remove(enemyBattleStationLocations[enemyUnitSelected]);
+                        enemyPrefab.Remove(enemyPrefab[enemyUnitSelected]);
+                        enemyUnit.Remove(enemyUnit[enemyUnitSelected]);
+                        enemyUnitSelected = 0;
+                       */
+                        enemySelectionParticle.transform.position = enemyBattleStationLocations[enemyUnitSelected].transform.position;
 
-                state = BattleStateMultiple.STARTER;
-                StarterTurn();
+                        state = BattleStateMultiple.STARTER;
+                        StarterTurn();
+                    }
+
+                    if (!isDead)
+                    {
+                        //Middle Reliever turn
+                        state = BattleStateMultiple.STARTER;
+                        StarterTurn();
+                    }
+                }
             }
 
-            if (!isDead)
-            {
-                //Middle Reliever turn
-                state = BattleStateMultiple.STARTER;
-                StarterTurn();
-            }
         }
     }
     #endregion
@@ -1023,6 +1548,8 @@ public class BattleSystemMultiple : MonoBehaviour
 
     IEnumerator EnemyTurn(int enemyIndex)
     {
+        Camera.transform.position = enemyCam.transform.position;
+        Camera.transform.LookAt(Starter.transform.position);
         GameManager.Instance.DebugBall.transform.position = enemyUnit[enemyIndex].transform.position + Vector3.up * GameManager.Instance.DebugBallHeight;
         if (enemyUnit[enemyIndex].currentHP <= 0)
         {
@@ -1060,6 +1587,7 @@ public class BattleSystemMultiple : MonoBehaviour
 
             if (WhoToAttack == 0 && !starterDead)
             {
+                Camera.transform.LookAt(Starter.transform.position);
                 if (GameManager.StarterAgil >= RandomAttack)
                 {
                     dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Starter!";
@@ -1082,6 +1610,7 @@ public class BattleSystemMultiple : MonoBehaviour
                         starterDead = true;
 
                         StarterAnim.SetBool("isDead", true);
+                        yield return new WaitForSeconds(3f);
                         NextPlayerTurnAfterEnemyTurn(enemyIndex);
                     }
 
@@ -1092,12 +1621,14 @@ public class BattleSystemMultiple : MonoBehaviour
 
                         GameManager.StarterMorale -= enemyUnit[enemyUnitSelected].enemyDamage;
                         StarterMorale.value = (GameManager.StarterMorale / GameManager.StarterMoraleMax);
+                        yield return new WaitForSeconds(2f);
                         NextPlayerTurnAfterEnemyTurn(enemyIndex);
                     }
                 }
             }
             if (WhoToAttack == 1 && !middleDead)
             {
+                Camera.transform.LookAt(MiddleReliever.transform.position);
                 if (GameManager.MiddleAgil >= RandomAttack)
                 {
                     dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Mid Reliever!";
@@ -1118,6 +1649,7 @@ public class BattleSystemMultiple : MonoBehaviour
                         MiddleMorale.value = (GameManager.MidRelivMorale / GameManager.MidRelivMoraleMax);
                         middleDead = true;
                         MidRelAnim.SetBool("isDead", true);
+                        yield return new WaitForSeconds(3f);
                         NextPlayerTurnAfterEnemyTurn(enemyIndex);
                     }
 
@@ -1128,7 +1660,7 @@ public class BattleSystemMultiple : MonoBehaviour
 
                         GameManager.MidRelivMorale -= enemyUnit[enemyUnitSelected].enemyDamage;
                         MiddleMorale.value = (GameManager.MidRelivMorale / GameManager.MidRelivMoraleMax);
-
+                        yield return new WaitForSeconds(2f);
                         NextPlayerTurnAfterEnemyTurn(enemyIndex);
                     }
                 }
@@ -1137,7 +1669,7 @@ public class BattleSystemMultiple : MonoBehaviour
             }
             if (WhoToAttack == 2 && !setupDead)
             {
-
+                Camera.transform.LookAt(SetUp.transform.position);
                 if (GameManager.SetUpAgil >= RandomAttack)
                 {
                     dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks SetUp!";
@@ -1158,6 +1690,7 @@ public class BattleSystemMultiple : MonoBehaviour
                         SetUpMorale.value = (GameManager.SetUpMorale / GameManager.SetUpMoraleMax);
                         SetUpAnim.SetBool("isDead", true);
                         setupDead = true;
+                        yield return new WaitForSeconds(3f);
                         NextPlayerTurnAfterEnemyTurn(enemyIndex);
                     }
 
@@ -1166,13 +1699,14 @@ public class BattleSystemMultiple : MonoBehaviour
                         SetUpAnim.Play("Armature|Oof");
                         GameManager.SetUpMorale -= enemyUnit[enemyUnitSelected].enemyDamage;
                         SetUpMorale.value = (GameManager.SetUpMorale / GameManager.SetUpMoraleMax);
+                        yield return new WaitForSeconds(2f);
                         NextPlayerTurnAfterEnemyTurn(enemyIndex);
                     }
                 }
             }
             if (WhoToAttack == 3 && !closerDead)
             {
-
+                Camera.transform.LookAt(Closer.transform.position);
                 if (GameManager.CloserAgil >= RandomAttack)
                 {
                     dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Closer!";
@@ -1194,6 +1728,7 @@ public class BattleSystemMultiple : MonoBehaviour
                         CloserMorale.value = (GameManager.CloserMorale / GameManager.CloserMoraleMax);
                         CloserAnim.SetBool("isDead", true);
                         closerDead = true;
+                        yield return new WaitForSeconds(3f);
                         NextPlayerTurnAfterEnemyTurn(enemyIndex);
                     }
 
@@ -1202,6 +1737,7 @@ public class BattleSystemMultiple : MonoBehaviour
                         CloserAnim.Play("Armature|Oof");
                         GameManager.CloserMorale -= enemyUnit[enemyUnitSelected].enemyDamage;
                         CloserMorale.value = (GameManager.CloserMorale / GameManager.CloserMoraleMax);
+                        yield return new WaitForSeconds(2f);
                         NextPlayerTurnAfterEnemyTurn(enemyIndex);
                     }
                 }
@@ -1820,6 +2356,8 @@ public class BattleSystemMultiple : MonoBehaviour
     #region Player Turns
     void StarterTurn()
     {
+        Camera.transform.position = starterCam.transform.position;
+        Camera.transform.LookAt(enemyCamTarget);
         GameManager.Instance.DebugBall.transform.position = Starter.transform.position + Vector3.up * GameManager.Instance.DebugBallHeight;
         if (starterDead)
         {
@@ -1840,6 +2378,8 @@ public class BattleSystemMultiple : MonoBehaviour
 
     void MiddleTurn()
     {
+        Camera.transform.position = middleCam.transform.position;
+        Camera.transform.LookAt(enemyCamTarget);
         GameManager.Instance.DebugBall.transform.position = MiddleReliever.transform.position + Vector3.up * GameManager.Instance.DebugBallHeight;
         if (middleDead)
         {
@@ -1860,6 +2400,8 @@ public class BattleSystemMultiple : MonoBehaviour
 
     void SETUPTurn()
     {
+        Camera.transform.position = setupCam.transform.position;
+        Camera.transform.LookAt(enemyCamTarget);
         GameManager.Instance.DebugBall.transform.position = SetUp.transform.position + Vector3.up * GameManager.Instance.DebugBallHeight;
         if (SetUpAnim.GetBool("isDead"))
         {
@@ -1886,6 +2428,8 @@ public class BattleSystemMultiple : MonoBehaviour
 
     void CloserTurn()
     {
+        Camera.transform.position = closerCam.transform.position;
+        Camera.transform.LookAt(enemyCamTarget);
         GameManager.Instance.DebugBall.transform.position = Closer.transform.position + Vector3.up * GameManager.Instance.DebugBallHeight;
         if (CloserAnim.GetBool("isDead"))
         {
@@ -2237,6 +2781,8 @@ public class BattleSystemMultiple : MonoBehaviour
     #region End Battle Conditions
     void EndBattle()
     {
+        Camera.transform.position = battleCam.transform.position;
+        Camera.transform.LookAt(enemyCamTarget);
         if (state == BattleStateMultiple.WON)
         {
             if (!starterDead)
