@@ -2133,7 +2133,8 @@ public class BattleSystemMultiple : MonoBehaviour
         else if (state == BattleStateMultiple.LOST)
         {
             dialogueText.text = "You lost the battle...";
-            StartCoroutine(WaitingAtEndOfBattle());
+            GameManager.isGameOver = true;
+            StartCoroutine(WaitingAtEndOfBattleForTraining());
         }
     }
     public void AddXP()
@@ -2867,5 +2868,12 @@ public class BattleSystemMultiple : MonoBehaviour
         yield return new WaitForSeconds(1.5f);
         //Return to Main Menu
          SceneManager.LoadScene("Concourse");
+    }
+
+    IEnumerator WaitingAtEndOfBattleForTraining()
+    {
+        yield return new WaitForSeconds(1.5f);
+        //Return to Main Menu
+        SceneManager.LoadScene("TrainingArea");
     }
 }

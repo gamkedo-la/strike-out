@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    public static bool isGameOver;
     //morale and energy
     public static float starterMorale, midRelivMorale, setUpMorale, closerMorale;
     public static float StarterEnergy, MidRelivEnergy, SetUpEnergy, CloserEnergy;
