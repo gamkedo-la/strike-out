@@ -18,9 +18,22 @@ public class AIMovement : MonoBehaviour
     private NavMeshAgent agent;
     public GameObject starter;
 
+
+    public GameObject[] Vendors;
+    public Animator Vendor;
+
     private void Start()
     {
+        int RandInt = Random.Range(0, 3);
+        Vendors[RandInt].SetActive(true);
+        Vendor = Vendors[RandInt].GetComponent<Animator>();
+
+
         agent = GetComponent<NavMeshAgent>();
+        Vendor.SetBool("isStill", true);
+        Vendor.SetBool("isWalk", false);
+        Vendor.SetBool("isRun", false);
+        // draw a 5-unit white line from the origin for 2.5 seconds
     }
 
     private void Update()
@@ -36,9 +49,12 @@ public class AIMovement : MonoBehaviour
 
         if (follow)
         {
-            if(starter != null)
+            Vendor.SetBool("isStill", false);
+            Vendor.SetBool("isWalk", false);
+            Vendor.SetBool("isRun", true);
+            if (starter != null)
                 agent.SetDestination(starter.transform.position);
-            moveSpeed = moveSpeed * 2;
+            moveSpeed = moveSpeed * 3;
         }
 
         //following
@@ -49,7 +65,7 @@ public class AIMovement : MonoBehaviour
 
         if (isRotatingRight)
         {
-            transform.Rotate(transform.up * Time.deltaTime * rotSpeed);
+            transform.Rotate(transform.up * Time.deltaTime * rotSpeed);    
         }
 
         if (isRotatingLeft)
@@ -59,7 +75,7 @@ public class AIMovement : MonoBehaviour
 
         if (isWalking)
         {
-            //transform.position += transform.forward * Time.deltaTime * moveSpeed;
+            transform.position += transform.forward * Time.deltaTime * moveSpeed;
         }
     }
 
@@ -75,6 +91,9 @@ public class AIMovement : MonoBehaviour
 
         yield return new WaitForSeconds(walkWait);
         isWalking = true;
+        Vendor.SetBool("isStill", false);
+        Vendor.SetBool("isWalk", true);
+        Vendor.SetBool("isRun", false);
         yield return new WaitForSeconds(walkTime);
         isWalking = false;
         yield return new WaitForSeconds(rotateWait);
@@ -82,12 +101,18 @@ public class AIMovement : MonoBehaviour
         {
             isRotatingRight = true;
             yield return new WaitForSeconds(rotTime);
+            Vendor.SetBool("isStill", true);
+            Vendor.SetBool("isWalk", false);
+            Vendor.SetBool("isRun", false);
             isRotatingRight = false;
         }
         if (rotateLorR == 2)
         {
             isRotatingLeft = true;
             yield return new WaitForSeconds(rotTime);
+            Vendor.SetBool("isStill", true);
+            Vendor.SetBool("isWalk", false);
+            Vendor.SetBool("isRun", false);
             isRotatingLeft = false;
         }
         isWandering = false;
