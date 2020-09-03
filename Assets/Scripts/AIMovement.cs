@@ -16,7 +16,7 @@ public class AIMovement : MonoBehaviour
     bool follow;
 
     private NavMeshAgent agent;
-    public GameObject starter;
+    GameObject starter;
 
 
     public GameObject[] Vendors;
@@ -27,7 +27,7 @@ public class AIMovement : MonoBehaviour
         int RandInt = Random.Range(0, 3);
         Vendors[RandInt].SetActive(true);
         Vendor = Vendors[RandInt].GetComponent<Animator>();
-
+        starter = GameObject.FindGameObjectWithTag("Player");
 
         agent = GetComponent<NavMeshAgent>();
         Vendor.SetBool("isStill", true);
@@ -38,6 +38,7 @@ public class AIMovement : MonoBehaviour
 
     private void Update()
     {
+        float dist = Vector3.Distance(this.transform.position, starter.transform.position);
         //raycasting
         enemyRay = new Ray(transform.position, transform.forward * 10);
         Debug.DrawRay(transform.position, transform.forward * 10, rayColor);
@@ -49,12 +50,17 @@ public class AIMovement : MonoBehaviour
 
         if (follow)
         {
-            Vendor.SetBool("isStill", false);
-            Vendor.SetBool("isWalk", false);
-            Vendor.SetBool("isRun", true);
-            if (starter != null)
-                agent.SetDestination(starter.transform.position);
-            moveSpeed = moveSpeed * 3;
+            if (dist <= 30)
+            {
+                Vendor.SetBool("isStill", false);
+                Vendor.SetBool("isWalk", false);
+                Vendor.SetBool("isRun", true);
+                if (starter != null)
+                    agent.SetDestination(starter.transform.position);
+                moveSpeed = moveSpeed * 3;
+            }
+            else
+                follow = false;
         }
 
         //following
