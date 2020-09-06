@@ -27,6 +27,9 @@ public class GameManager : MonoBehaviour
     Slider Starter, MidReliv, SetUp, Closer;
     Slider StarterE, MidRelivE, SetUpE, CloserE;
 
+    //EnemyAttacked player
+    public static bool EnemyAttackedPlayer;
+
     public GameObject DebugBall;
     public float DebugBallHeight = 3.0f;
 
