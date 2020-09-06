@@ -126,59 +126,71 @@ public class BattleSystemMultiple : MonoBehaviour
         print(enemyBattleStationLocations.Count);
         int RandRangeEnemySpawn = Random.Range(0, 100);
 
-        if (RandRangeEnemySpawn < 14)
-        { oneEnemy = true; }
-        if (RandRangeEnemySpawn <= 39 && RandRangeEnemySpawn > 15)
-        { twoEnemy = true; }
-        if (RandRangeEnemySpawn <= 69 && RandRangeEnemySpawn > 40)
-        { threeEnemy = true; }
-        if (RandRangeEnemySpawn <= 89 && RandRangeEnemySpawn > 70)
-        { fourEnemy = true; }
-        if (RandRangeEnemySpawn <= 100 && RandRangeEnemySpawn > 90)
-        { fiveEnemy = true; }
-
-        if (oneEnemy)
+        if (Boss)
         {
+            oneEnemy = true;
+
             for (int i = 0; i < 1; i++)
             {
                 enemyCount++;
                 enemyPrefab[i].SetActive(true);
             }
         }
-        if (twoEnemy)
+        if (!Boss)
         {
-            for (int i = 0; i < 2; i++)
-            {
-                enemyCount++;
-                enemyPrefab[i].SetActive(true);
-            }
-        }
-        if (threeEnemy)
-        {
-            for (int i = 0; i < 3; i++)
-            {
-                enemyCount++;
-                enemyPrefab[i].SetActive(true);
-            }
-        }
-        if (fourEnemy)
-        {
-            for (int i = 0; i < 4; i++)
-            {
-                enemyCount++;
-                enemyPrefab[i].SetActive(true);
-            }
-        }
-        if (fiveEnemy)
-        {
-            for (int i = 0; i < 5; i++)
-            {
-                enemyCount++;
-                enemyPrefab[i].SetActive(true);
+            if (RandRangeEnemySpawn < 14)
+            { oneEnemy = true; }
+            if (RandRangeEnemySpawn <= 39 && RandRangeEnemySpawn > 15)
+            { twoEnemy = true; }
+            if (RandRangeEnemySpawn <= 69 && RandRangeEnemySpawn > 40)
+            { threeEnemy = true; }
+            if (RandRangeEnemySpawn <= 89 && RandRangeEnemySpawn > 70)
+            { fourEnemy = true; }
+            if (RandRangeEnemySpawn <= 100 && RandRangeEnemySpawn > 90)
+            { fiveEnemy = true; }
 
+            if (oneEnemy)
+            {
+                for (int i = 0; i < 1; i++)
+                {
+                    enemyCount++;
+                    enemyPrefab[i].SetActive(true);
+                }
+            }
+            if (twoEnemy)
+            {
+                for (int i = 0; i < 2; i++)
+                {
+                    enemyCount++;
+                    enemyPrefab[i].SetActive(true);
+                }
+            }
+            if (threeEnemy)
+            {
+                for (int i = 0; i < 3; i++)
+                {
+                    enemyCount++;
+                    enemyPrefab[i].SetActive(true);
+                }
+            }
+            if (fourEnemy)
+            {
+                for (int i = 0; i < 4; i++)
+                {
+                    enemyCount++;
+                    enemyPrefab[i].SetActive(true);
+                }
+            }
+            if (fiveEnemy)
+            {
+                for (int i = 0; i < 5; i++)
+                {
+                    enemyCount++;
+                    enemyPrefab[i].SetActive(true);
+
+                }
             }
         }
-
 
         starterDead = false;
         middleDead = false;
@@ -230,7 +242,7 @@ public class BattleSystemMultiple : MonoBehaviour
         {
             for (int i = 0; i < 1; i++)
             {
-                int RandEnemy = Random.Range(0, enemyPrefab.Count + 1);
+                int RandEnemy = Random.Range(0, enemyPrefab.Count);
                 GameObject enemyGO = Instantiate(enemyPrefab[RandEnemy], enemyBattleStationLocations[i]);
                 enemyUnit[RandEnemy] = enemyGO.GetComponent<Unit>();
                 enemyAnim[RandEnemy] = enemyGO.GetComponentInChildren<Animator>();
