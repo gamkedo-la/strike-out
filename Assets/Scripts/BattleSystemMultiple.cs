@@ -116,12 +116,20 @@ public class BattleSystemMultiple : MonoBehaviour
     //bools to determine enemy count
     public bool Boss;
     bool oneEnemy, twoEnemy, threeEnemy, fourEnemy, fiveEnemy;
+
+    //cutscene cam anim 
+    public Animator cutSceneCamAnim;
+    public bool announcer;
     private void Start()
     {
         Camera.transform.position = battleCam.transform.position;
         Camera.transform.LookAt(enemyCamTarget.transform.position);
         state = BattleStateMultiple.START;
 
+        if (announcer)
+        {
+            cutSceneCamAnim.SetBool("Announcer", true);
+        }
 
         print(enemyBattleStationLocations.Count);
         int RandRangeEnemySpawn = Random.Range(0, 100);
@@ -307,7 +315,7 @@ public class BattleSystemMultiple : MonoBehaviour
             //SelectionProcess
             enemySelectionParticle.SetActive(true);
             enemySelectionParticle.transform.position = enemyBattleStationLocations[enemyUnitSelected].transform.position;
-            if (Input.GetKeyDown(KeyCode.A))
+            if (Input.GetKeyDown(KeyCode.A) && !oneEnemy)
             {
                 if (enemyUnitSelected >= 0)
                 {
@@ -330,7 +338,7 @@ public class BattleSystemMultiple : MonoBehaviour
                 enemySelectionParticle.transform.position = enemyBattleStationLocations[enemyUnitSelected].transform.position;
                 Camera.transform.LookAt(enemyBattleStationLocations[enemyUnitSelected]);
             }
-            if (Input.GetKeyDown(KeyCode.D))
+            if (Input.GetKeyDown(KeyCode.D) && !oneEnemy)
             {
                 if (oneEnemy)
                 {

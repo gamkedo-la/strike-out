@@ -8,6 +8,9 @@ public class DialogueTrigger : MonoBehaviour
     bool isInZone;
     public Dialogue dialogue;
 
+    public bool Boss1, Boss2;
+    public static bool GoToMiniBossFight, GoToMajorBossFight;
+
     public void TriggerDialogue()
     {
         FindObjectOfType<DialogueManager>().StartDialogue(dialogue);
@@ -15,9 +18,23 @@ public class DialogueTrigger : MonoBehaviour
 
     private void Update()
     {
-        if (isInZone && Input.GetKey(KeyCode.Space))
+        if (!Boss1 && !Boss2 && isInZone && Input.GetKey(KeyCode.Space))
         {
             TriggerDialogue();
+        }
+
+        if (Boss1 && isInZone)
+        {
+            TriggerDialogue();
+            Boss1 = false;
+            GoToMiniBossFight = true;
+        }
+
+        if (Boss2 && isInZone)
+        {
+            TriggerDialogue();
+            Boss2 = false;
+            GoToMajorBossFight = true;
         }
     }
 

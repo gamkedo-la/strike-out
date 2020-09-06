@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class DialogueManager : MonoBehaviour
 
     public Text nameText;
     public Text dialogueText;
+
+    public string Boss1Level, Boss2Level;
 
     private void Start()
     {
@@ -56,7 +59,25 @@ public class DialogueManager : MonoBehaviour
 
     void EndDialogue()
     {
-        anim.SetBool("isOpen", false);
-        PlayerMovement.canMove = true;
+        if (DialogueTrigger.GoToMiniBossFight)
+        {
+            anim.SetBool("isOpen", false);
+            PlayerMovement.canMove = true;
+            DialogueTrigger.GoToMiniBossFight = false;
+            SceneManager.LoadScene(Boss1Level.ToString());
+        }
+
+        if (DialogueTrigger.GoToMajorBossFight)
+        {
+            anim.SetBool("isOpen", false);
+            PlayerMovement.canMove = true;
+            DialogueTrigger.GoToMajorBossFight = false;
+            SceneManager.LoadScene(Boss2Level.ToString());
+        }
+        else
+        {
+            anim.SetBool("isOpen", false);
+            PlayerMovement.canMove = true;
+        }
     }
 }

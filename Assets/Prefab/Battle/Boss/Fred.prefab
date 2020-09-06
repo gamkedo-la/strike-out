@@ -596,7 +596,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unitName: Test-Batter
-  unitLevel: 1
+  unitLevel: 5
   fastballDamage: 0
   sliderDamage: 0
   curveballDamage: 0
@@ -610,7 +610,7 @@ MonoBehaviour:
   CurveballMultiplier: 2
   ChangeUpMultiplier: 1
   enemyDamage: 8
-  maxHP: 30
+  maxHP: 90
   currentHP: 5
   maxStamina: 30
   currentStamina: 25
@@ -624,7 +624,7 @@ MonoBehaviour:
   HealthSlider: {fileID: 1390369554844219398}
   DescText: {fileID: 6685770739284780833}
   isDizzy: 0
-  anim: {fileID: 0}
+  anim: {fileID: 5556478503803261202, guid: c9aa2d79c352768429aaff7cdbd71b75, type: 3}
 --- !u!114 &6650400506096194839
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -655,7 +655,7 @@ MonoBehaviour:
   sound: {fileID: 11400000, guid: 07897056073977649bd9fcad2187c917, type: 2}
   controller: {fileID: 7343136832007318546}
   whoosh: {fileID: 11400000, guid: db8cd35f031ca494aa4db8eb73c99c5f, type: 2}
-  mittPop: {fileID: 0}
+  mittPop: {fileID: 11400000, guid: dbafe08f7a95f42418dae3041f3ecf50, type: 2}
 --- !u!114 &7343136832007318546
 MonoBehaviour:
   m_ObjectHideFlags: 0
