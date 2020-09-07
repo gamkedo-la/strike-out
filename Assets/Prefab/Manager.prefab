@@ -417,6 +417,8 @@ MonoBehaviour:
     - Hi there.
     - 'This is some test dialogue. '
     - 'Huh, looks like it is working. Carry on. '
+  Boss1: 0
+  Boss2: 0
 --- !u!1 &8853345749730855947
 GameObject:
   m_ObjectHideFlags: 0
@@ -525,7 +527,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8853345750027527606
 Transform:
   m_ObjectHideFlags: 0

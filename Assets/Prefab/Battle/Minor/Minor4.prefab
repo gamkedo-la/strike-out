@@ -405,7 +405,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 
+  m_Text: Resist!
 --- !u!114 &2292830334043739996
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -653,7 +653,7 @@ MonoBehaviour:
   ChangeUpMultiplier: 0.5
   enemyDamage: 8
   maxHP: 30
-  currentHP: 5
+  currentHP: 1
   maxStamina: 30
   currentStamina: 25
   ExperienceToDistribute: 0

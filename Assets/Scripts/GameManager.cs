@@ -36,6 +36,8 @@ public class GameManager : MonoBehaviour
 
     public Text moneyUI;
 
+    public static bool i1, i2, i3, i4, i5, i6, i7, i8, i9, i10, i11, i12, i13, i14, i15, i16, i17, i18, i19, i20, i21, i22, i23, i24, i25;
+
     public static bool gameStartingStats;
     public static bool playerStartingStats;
 
