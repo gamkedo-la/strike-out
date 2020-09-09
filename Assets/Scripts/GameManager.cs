@@ -36,7 +36,13 @@ public class GameManager : MonoBehaviour
 
     public Text moneyUI;
 
+    //dealing with Item placement to maintain no respawn until returning to Training Area
     public static bool i1, i2, i3, i4, i5, i6, i7, i8, i9, i10, i11, i12, i13, i14, i15, i16, i17, i18, i19, i20, i21, i22, i23, i24, i25;
+
+    //dealing with minor, Major, and elite Scouting Reports
+    public static bool m1, m2, m3, m4, m5, m6, m7, m8;
+    public static bool M1, M2, M3, M4, M5, M6, M7, M8;
+    public static bool e1, e2, e3, e4, e5, e6, e7, e8;
 
     public static bool gameStartingStats;
     public static bool playerStartingStats;
