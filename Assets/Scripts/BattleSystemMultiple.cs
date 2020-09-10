@@ -191,14 +191,13 @@ public class BattleSystemMultiple : MonoBehaviour
 
         ItemMenu = GameObject.Find("Inventory");
         GameManagerObject = GameObject.Find("GameManager");
-/*
-        for (int i = 0; i < enemyBattleStationLocations.Count; i++)
-        {
-            enemyCount++;
-            enemyPrefab[i].SetActive(true);
-        }
-        */
-
+        /*
+                for (int i = 0; i < enemyBattleStationLocations.Count; i++)
+                {
+                    enemyCount++;
+                    enemyPrefab[i].SetActive(true);
+                }
+                */
         StartCoroutine(SetupBattle());
     }
 
@@ -226,8 +225,8 @@ public class BattleSystemMultiple : MonoBehaviour
         {
             int RandEnemy = Random.Range(0, enemyPrefab.Count);
             GameObject enemyGO = Instantiate(enemyPrefab[RandEnemy], enemyBattleStationLocations[i]);
-            enemyUnit[RandEnemy] = enemyGO.GetComponent<Unit>();
-            enemyAnim[RandEnemy] = enemyGO.GetComponentInChildren<Animator>();
+            enemyUnit.Add(enemyGO.GetComponent<Unit>());
+            enemyAnim.Add(enemyGO.GetComponentInChildren<Animator>());
         }
         yield return new WaitForSeconds(4f);
         cutsceneCam.SetActive(false);

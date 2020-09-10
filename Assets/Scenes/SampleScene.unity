@@ -891,24 +891,9 @@ MonoBehaviour:
   - {fileID: 2130922546672335066, guid: ae7f14e2d47555b4e946055df7bdb713, type: 3}
   - {fileID: 3842382468848730409, guid: d64e178fcd70b8247a72908829af5c96, type: 3}
   - {fileID: 6915564704565573848, guid: 8b8e35383a1982c419018911eaec8a67, type: 3}
-  enemyUnit:
-  - {fileID: 5438675491336898574, guid: 772c9e8e6d40d2e48a7247427386608b, type: 3}
-  - {fileID: 1427392891701021816, guid: 874c80f80b9c4be42ac63d41bee50347, type: 3}
-  - {fileID: 6123141902338338221, guid: 767f40fc07ceebb4bbfcedf8520c4450, type: 3}
-  - {fileID: 4750860116898520077, guid: 64ce5c92af3371a49896ef527eeb54be, type: 3}
-  - {fileID: 8303844917528703503, guid: 0cb34de868093cf48bd88b74c9e56535, type: 3}
-  - {fileID: 5250511920216187308, guid: ae7f14e2d47555b4e946055df7bdb713, type: 3}
-  - {fileID: 648867221129807564, guid: d64e178fcd70b8247a72908829af5c96, type: 3}
-  - {fileID: 3656744882692733551, guid: 8b8e35383a1982c419018911eaec8a67, type: 3}
-  enemyAnim:
-  - {fileID: 8624071582630905636, guid: 0c8d4177582538d40a2913af89152db9, type: 3}
-  - {fileID: 1850340039125429788, guid: 1d339287086b59342940c3674c3561cc, type: 3}
-  - {fileID: 8622642767998480054, guid: a38393c73b9981b4c8b166debac2c30c, type: 3}
-  - {fileID: 6005573961663283689, guid: 419cf6f81dc5ffc4cb32f4c8b14f6a86, type: 3}
-  - {fileID: -1849658605581956249, guid: 2afcf528cce3d0244b2b36316995b03e, type: 3}
-  - {fileID: -3650495894119019966, guid: c5b2a756851abd244ac3a7aa98c81b66, type: 3}
-  - {fileID: -8826296429887368483, guid: 2c5c4e4af3ca6904a8313242339c1d62, type: 3}
-  - {fileID: 1103003037234473886, guid: c86285d311265aa4dbe9e5fb4596df06, type: 3}
+  enemyUnit: []
+  enemyAnim: []
+  UnitsInBattle: []
   dialogueText: {fileID: 978384022}
   playerStations:
   - {fileID: 1582617643}
