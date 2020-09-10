@@ -46,14 +46,153 @@ public class Unit : MonoBehaviour
     public bool isDizzy;
     public Animator anim;
 
+    public bool m1, m2, m3, m4, m5, m6, m7, m8;
+    public bool M1, M2, M3, M4, M5, M6, M7, M8;
+    public GameObject StrWeakHolder;
 
-  /*  public void SetHUD(Unit unit)
-    {
-        HealthSlider.value = unit.currentHP / unit.maxHP;
-    }
-    */
+
+    /*  public void SetHUD(Unit unit)
+      {
+          HealthSlider.value = unit.currentHP / unit.maxHP;
+      }
+      */
     public void Start()
     {
+        #region Minor
+        if (m1 && GameManager.m1)
+        {
+            StrWeakHolder.SetActive(true);
+        }
+        if (m2 && GameManager.m2)
+        {
+            StrWeakHolder.SetActive(true);
+        }
+        if (m3 && GameManager.m3)
+        {
+            StrWeakHolder.SetActive(true);
+        }
+        if (m4 && GameManager.m4)
+        {
+            StrWeakHolder.SetActive(true);
+        }
+        if (m5 && GameManager.m5)
+        {
+            StrWeakHolder.SetActive(true);
+        }
+        if (m6 && GameManager.m6)
+        {
+            StrWeakHolder.SetActive(true);
+        }
+        if (m7 && GameManager.m7)
+        {
+            StrWeakHolder.SetActive(true);
+        }
+        if (m8 && GameManager.m8)
+        {
+            StrWeakHolder.SetActive(true);
+        }
+
+        if (m1 && !GameManager.m1)
+        {
+            StrWeakHolder.SetActive(false);
+        }
+        if (m2 && !GameManager.m2)
+        {
+            StrWeakHolder.SetActive(false);
+        }
+        if (m3 && !GameManager.m3)
+        {
+            StrWeakHolder.SetActive(false);
+        }
+        if (m4 && !GameManager.m4)
+        {
+            StrWeakHolder.SetActive(false);
+        }
+        if (m5 && !GameManager.m5)
+        {
+            StrWeakHolder.SetActive(false);
+        }
+        if (m6 && !GameManager.m6)
+        {
+            StrWeakHolder.SetActive(false);
+        }
+        if (m7 && !GameManager.m7)
+        {
+            StrWeakHolder.SetActive(false);
+        }
+        if (m8 && !GameManager.m8)
+        {
+            StrWeakHolder.SetActive(false);
+        }
+        #endregion
+        #region Major
+        if (M1 && GameManager.M1)
+        {
+            StrWeakHolder.SetActive(true);
+        }
+        if (M2 && GameManager.M2)
+        {
+            StrWeakHolder.SetActive(true);
+        }
+        if (M3 && GameManager.M3)
+        {
+            StrWeakHolder.SetActive(true);
+        }
+        if (M4 && GameManager.M4)
+        {
+            StrWeakHolder.SetActive(true);
+        }
+        if (M5 && GameManager.M5)
+        {
+            StrWeakHolder.SetActive(true);
+        }
+        if (M6 && GameManager.M6)
+        {
+            StrWeakHolder.SetActive(true);
+        }
+        if (M7 && GameManager.M7)
+        {
+            StrWeakHolder.SetActive(true);
+        }
+        if (M8 && GameManager.M8)
+        {
+            StrWeakHolder.SetActive(true);
+        }
+
+        if (M1 && !GameManager.M1)
+        {
+            StrWeakHolder.SetActive(false);
+        }
+        if (M2 && !GameManager.M2)
+        {
+            StrWeakHolder.SetActive(false);
+        }
+        if (M3 && !GameManager.M3)
+        {
+            StrWeakHolder.SetActive(false);
+        }
+        if (M4 && !GameManager.M4)
+        {
+            StrWeakHolder.SetActive(false);
+        }
+        if (M5 && !GameManager.M5)
+        {
+            StrWeakHolder.SetActive(false);
+        }
+        if (M6 && !GameManager.M6)
+        {
+            StrWeakHolder.SetActive(false);
+        }
+        if (M7 && !GameManager.M7)
+        {
+            StrWeakHolder.SetActive(false);
+        }
+        if (M8 && !GameManager.M8)
+        {
+            StrWeakHolder.SetActive(false);
+        }
+        #endregion
+
         if (isEnemy)
         {
             currentHP = maxHP;

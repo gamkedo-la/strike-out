@@ -646,7 +646,7 @@ MonoBehaviour:
   e6: 0
   e7: 0
   e8: 0
-  price: 30
+  price: 0
   buttonText: {fileID: 246210560}
 --- !u!114 &56041482
 MonoBehaviour:
@@ -1360,7 +1360,7 @@ MonoBehaviour:
   e6: 0
   e7: 0
   e8: 0
-  price: 65
+  price: 0
   buttonText: {fileID: 19220912}
 --- !u!114 &125349224
 MonoBehaviour:
@@ -3763,7 +3763,7 @@ MonoBehaviour:
   e6: 0
   e7: 0
   e8: 0
-  price: 30
+  price: 0
   buttonText: {fileID: 247480432}
 --- !u!114 &487474814
 MonoBehaviour:
@@ -4071,7 +4071,7 @@ MonoBehaviour:
   e6: 0
   e7: 0
   e8: 0
-  price: 65
+  price: 0
   buttonText: {fileID: 1387117277}
 --- !u!114 &502890874
 MonoBehaviour:
@@ -4550,7 +4550,7 @@ MonoBehaviour:
   e6: 0
   e7: 0
   e8: 0
-  price: 30
+  price: 0
   buttonText: {fileID: 1226574893}
 --- !u!114 &536364892
 MonoBehaviour:
@@ -5713,7 +5713,7 @@ MonoBehaviour:
   e6: 0
   e7: 0
   e8: 0
-  price: 30
+  price: 0
   buttonText: {fileID: 1262060153}
 --- !u!114 &675725579
 MonoBehaviour:
@@ -5958,7 +5958,7 @@ MonoBehaviour:
   e6: 0
   e7: 0
   e8: 0
-  price: 65
+  price: 0
   buttonText: {fileID: 77120799}
 --- !u!114 &694810445
 MonoBehaviour:
@@ -9451,7 +9451,7 @@ MonoBehaviour:
   e6: 0
   e7: 0
   e8: 0
-  price: 65
+  price: 0
   buttonText: {fileID: 1223649005}
 --- !u!114 &1258405870
 MonoBehaviour:
@@ -9978,7 +9978,7 @@ MonoBehaviour:
   e6: 0
   e7: 0
   e8: 0
-  price: 65
+  price: 0
   buttonText: {fileID: 7116826}
 --- !u!114 &1292067022
 MonoBehaviour:
@@ -10368,7 +10368,7 @@ MonoBehaviour:
   e6: 0
   e7: 0
   e8: 0
-  price: 30
+  price: 0
   buttonText: {fileID: 2054431225}
 --- !u!114 &1308152941
 MonoBehaviour:
@@ -10805,7 +10805,7 @@ MonoBehaviour:
   e6: 0
   e7: 0
   e8: 0
-  price: 30
+  price: 0
   buttonText: {fileID: 2117726441}
 --- !u!114 &1382472328
 MonoBehaviour:
@@ -11437,7 +11437,7 @@ MonoBehaviour:
   e6: 0
   e7: 0
   e8: 0
-  price: 30
+  price: 0
   buttonText: {fileID: 1950728708}
 --- !u!114 &1404186461
 MonoBehaviour:
@@ -11875,7 +11875,7 @@ MonoBehaviour:
   e6: 0
   e7: 0
   e8: 0
-  price: 65
+  price: 0
   buttonText: {fileID: 406371832}
 --- !u!114 &1459291743
 MonoBehaviour:
@@ -13574,7 +13574,7 @@ MonoBehaviour:
   e6: 0
   e7: 0
   e8: 0
-  price: 65
+  price: 0
   buttonText: {fileID: 1505743247}
 --- !u!114 &1845425230
 MonoBehaviour:
@@ -14142,7 +14142,7 @@ MonoBehaviour:
   e6: 0
   e7: 0
   e8: 0
-  price: 65
+  price: 0
   buttonText: {fileID: 1183319183}
 --- !u!114 &1900463694
 MonoBehaviour:
@@ -14934,7 +14934,7 @@ MonoBehaviour:
   e6: 0
   e7: 0
   e8: 0
-  price: 30
+  price: 0
   buttonText: {fileID: 741861569}
 --- !u!114 &2094492305
 MonoBehaviour:
