@@ -4,17 +4,20 @@ using UnityEngine;
 
 public class ShopButtons : MonoBehaviour
 {
-    public GameObject scoutingMenu, minorMenu, majorMenu;
+    public GameObject scoutingMenu, minorMenu, majorMenu, itemMenu;
 
     public void Items()
     {
         scoutingMenu.SetActive(false);
+        itemMenu.SetActive(true);
     }
 
     public void ScoutingReport()
     {
         scoutingMenu.SetActive(true);
         minorMenu.SetActive(true);
+        majorMenu.SetActive(true);
+        itemMenu.SetActive(false);
     }
 
     public void Minor()
