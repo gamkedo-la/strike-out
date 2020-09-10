@@ -41,7 +41,7 @@ public class AIMovement : MonoBehaviour
         float dist = Vector3.Distance(this.transform.position, starter.transform.position);
         //raycasting
         enemyRay = new Ray(transform.position, transform.forward * 10);
-        Debug.DrawRay(transform.position, transform.forward * 10, rayColor);
+        //Debug.DrawRay(transform.position, transform.forward * 10, rayColor);
 
         if (Physics.Raycast(transform.position, transform.forward, 10))
         {
@@ -57,31 +57,39 @@ public class AIMovement : MonoBehaviour
                 Vendor.SetBool("isRun", true);
                 if (starter != null)
                     agent.SetDestination(starter.transform.position);
+                Debug.DrawRay(transform.position, transform.position + Vector3.up * 3.0f - transform.forward *2, Color.red);
                 moveSpeed = moveSpeed * 3;
             }
             else
+            {
                 follow = false;
+            }
         }
-
-        //following
-        if (!isWandering)
+        else
         {
-            StartCoroutine(Wander());
-        }
+            //following
+            if (!isWandering)
+            {
+                StartCoroutine(Wander());
+            }
 
-        if (isRotatingRight)
-        {
-            transform.Rotate(transform.up * Time.deltaTime * rotSpeed);    
-        }
+            if (isRotatingRight)
+            {
+                transform.Rotate(transform.up * Time.deltaTime * rotSpeed);
+                Debug.DrawRay(transform.position, transform.position + Vector3.up * 5 + transform.right * 4, Color.yellow);
+            }
 
-        if (isRotatingLeft)
-        {
-            transform.Rotate(transform.up * Time.deltaTime * -rotSpeed);
-        }
+            if (isRotatingLeft)
+            {
+                transform.Rotate(transform.up * Time.deltaTime * -rotSpeed);
+                Debug.DrawRay(transform.position, transform.position + Vector3.up * 5 - transform.right * 4, Color.green);
+            }
 
-        if (isWalking)
-        {
-            transform.position += transform.forward * Time.deltaTime * moveSpeed;
+            if (isWalking)
+            {
+                transform.position += transform.forward * Time.deltaTime * moveSpeed;
+                Debug.DrawRay(transform.position, transform.position + Vector3.up * 5 + transform.forward * 4, Color.blue);
+            }
         }
     }
 
@@ -96,13 +104,28 @@ public class AIMovement : MonoBehaviour
         isWandering = true;
 
         yield return new WaitForSeconds(walkWait);
+        if (follow)
+        {
+            isWandering = false;
+            yield break;
+        }
         isWalking = true;
         Vendor.SetBool("isStill", false);
         Vendor.SetBool("isWalk", true);
         Vendor.SetBool("isRun", false);
         yield return new WaitForSeconds(walkTime);
+        if (follow)
+        {
+            isWandering = false;
+            yield break;
+        }
         isWalking = false;
         yield return new WaitForSeconds(rotateWait);
+        if (follow)
+        {
+            isWandering = false;
+            yield break;
+        }
         if (rotateLorR == 1)
         {
             isRotatingRight = true;
