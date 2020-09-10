@@ -578,6 +578,14 @@ MonoBehaviour:
   m6: 0
   m7: 0
   m8: 0
+  M1: 0
+  M2: 0
+  M3: 0
+  M4: 0
+  M5: 0
+  M6: 0
+  M7: 0
+  M8: 0
   StrWeakHolder: {fileID: 3080411477073666501}
 --- !u!114 &5878812590787417898
 MonoBehaviour:

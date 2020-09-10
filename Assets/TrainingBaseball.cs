@@ -10,11 +10,11 @@ public class TrainingBaseball : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
     }
-    public void OnCollisionEnter(Collider other)
+    /*public void OnCollisionEnter(Collider other)
     {
         if (other.tag == "Wall")
         {
             rb.useGravity = true;
         }
-    }
+    }*/
 }

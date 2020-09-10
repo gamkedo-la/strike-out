@@ -70,7 +70,6 @@ public class BattleSystemMultiple : MonoBehaviour
     public int enemyUnitSelected;
     public List<Transform> enemyBattleStationLocations;
     public List<GameObject> enemyPrefab;
-    public GameObject[] enemiesToChooseFrom;
     public List<Unit> enemyUnit;
     public List<Animator> enemyAnim;
     //text informing the player what is going on
@@ -115,7 +114,7 @@ public class BattleSystemMultiple : MonoBehaviour
 
     //bools to determine enemy count
     public bool Boss;
-    bool oneEnemy, twoEnemy, threeEnemy, fourEnemy, fiveEnemy;
+    int enemyStartCount = 0;
 
     //cutscene cam anim 
     public Animator cutSceneCamAnim;
@@ -132,72 +131,47 @@ public class BattleSystemMultiple : MonoBehaviour
         }
 
         print(enemyBattleStationLocations.Count);
-        int RandRangeEnemySpawn = Random.Range(0, 100);
+
 
         if (Boss)
         {
-            oneEnemy = true;
-
-            for (int i = 0; i < 1; i++)
+            enemyStartCount = 1;
+            for (int i = 0; i < enemyStartCount; i++)
             {
                 enemyCount++;
                 enemyPrefab[i].SetActive(true);
             }
         }
-        if (!Boss)
+        else
         {
+            int RandRangeEnemySpawn = Random.Range(0, 100);
+
             if (RandRangeEnemySpawn < 14)
-            { oneEnemy = true; }
-            if (RandRangeEnemySpawn <= 39 && RandRangeEnemySpawn > 15)
-            { twoEnemy = true; }
-            if (RandRangeEnemySpawn <= 69 && RandRangeEnemySpawn > 40)
-            { threeEnemy = true; }
-            if (RandRangeEnemySpawn <= 89 && RandRangeEnemySpawn > 70)
-            { fourEnemy = true; }
-            if (RandRangeEnemySpawn <= 100 && RandRangeEnemySpawn > 90)
-            { fiveEnemy = true; }
-
-            if (oneEnemy)
-            {
-                for (int i = 0; i < 1; i++)
-                {
-                    enemyCount++;
-                    enemyPrefab[i].SetActive(true);
-                }
+            { 
+                enemyStartCount = 1;
             }
-            if (twoEnemy)
-            {
-                for (int i = 0; i < 2; i++)
-                {
-                    enemyCount++;
-                    enemyPrefab[i].SetActive(true);
-                }
+            else if (RandRangeEnemySpawn <= 39 )
+            { 
+                enemyStartCount = 2;
             }
-            if (threeEnemy)
-            {
-                for (int i = 0; i < 3; i++)
-                {
-                    enemyCount++;
-                    enemyPrefab[i].SetActive(true);
-                }
+            else if (RandRangeEnemySpawn <= 69)
+            { 
+                enemyStartCount = 3;
             }
-            if (fourEnemy)
-            {
-                for (int i = 0; i < 4; i++)
-                {
-                    enemyCount++;
-                    enemyPrefab[i].SetActive(true);
-                }
+            else if (RandRangeEnemySpawn <= 89)
+            { 
+                enemyStartCount = 4;
             }
-            if (fiveEnemy)
-            {
-                for (int i = 0; i < 5; i++)
-                {
-                    enemyCount++;
-                    enemyPrefab[i].SetActive(true);
-
-                }
+            else
+            { 
+                enemyStartCount = 5;
             }
+            for (int i = 0; i < enemyStartCount; i++)
+            {
+                enemyCount++;
+                enemyPrefab[i].SetActive(true);
+            }
+            
         }
 
         starterDead = false;
@@ -246,62 +220,15 @@ public class BattleSystemMultiple : MonoBehaviour
         SetUpAnim = playerGO3.GetComponent<Animator>();
         CloserAnim = playerGO4.GetComponent<Animator>();
 
-        if (oneEnemy)
+
+
+        for (int i = 0; i < enemyStartCount; i++)
         {
-            for (int i = 0; i < 1; i++)
-            {
-                int RandEnemy = Random.Range(0, enemyPrefab.Count);
-                GameObject enemyGO = Instantiate(enemyPrefab[RandEnemy], enemyBattleStationLocations[i]);
-                enemyUnit[RandEnemy] = enemyGO.GetComponent<Unit>();
-                enemyAnim[RandEnemy] = enemyGO.GetComponentInChildren<Animator>();
-            }
+            int RandEnemy = Random.Range(0, enemyPrefab.Count);
+            GameObject enemyGO = Instantiate(enemyPrefab[RandEnemy], enemyBattleStationLocations[i]);
+            enemyUnit[RandEnemy] = enemyGO.GetComponent<Unit>();
+            enemyAnim[RandEnemy] = enemyGO.GetComponentInChildren<Animator>();
         }
-
-        if (twoEnemy)
-        {
-            for (int i = 0; i < 2; i++)
-            {
-                int RandEnemy = Random.Range(0, enemyPrefab.Count + 1);
-                GameObject enemyGO = Instantiate(enemyPrefab[RandEnemy], enemyBattleStationLocations[i]);
-                enemyUnit[RandEnemy] = enemyGO.GetComponent<Unit>();
-                enemyAnim[RandEnemy] = enemyGO.GetComponentInChildren<Animator>();
-            }
-        }
-
-        if (threeEnemy)
-        {
-            for (int i = 0; i < 3; i++)
-            {
-                int RandEnemy = Random.Range(0, enemyPrefab.Count + 1);
-                GameObject enemyGO = Instantiate(enemyPrefab[RandEnemy], enemyBattleStationLocations[i]);
-                enemyUnit[RandEnemy] = enemyGO.GetComponent<Unit>();
-                enemyAnim[RandEnemy] = enemyGO.GetComponentInChildren<Animator>();
-            }
-        }
-
-        if (fourEnemy)
-        {
-            for (int i = 0; i < 4; i++)
-            {
-                int RandEnemy = Random.Range(0, enemyPrefab.Count + 1);
-                GameObject enemyGO = Instantiate(enemyPrefab[RandEnemy], enemyBattleStationLocations[i]);
-                enemyUnit[RandEnemy] = enemyGO.GetComponent<Unit>();
-                enemyAnim[RandEnemy] = enemyGO.GetComponentInChildren<Animator>();
-            }
-        }
-
-        if (fiveEnemy)
-        {
-            for (int i = 0; i < 5; i++)
-            {
-                int RandEnemy = Random.Range(0, enemyPrefab.Count + 1);
-                GameObject enemyGO = Instantiate(enemyPrefab[RandEnemy], enemyBattleStationLocations[i]);
-                enemyUnit[RandEnemy] = enemyGO.GetComponent<Unit>();
-                enemyAnim[RandEnemy] = enemyGO.GetComponentInChildren<Animator>();
-            }
-        }
-
-
         yield return new WaitForSeconds(4f);
         cutsceneCam.SetActive(false);
         state = BattleStateMultiple.STARTER;
@@ -315,65 +242,23 @@ public class BattleSystemMultiple : MonoBehaviour
             //SelectionProcess
             enemySelectionParticle.SetActive(true);
             enemySelectionParticle.transform.position = enemyBattleStationLocations[enemyUnitSelected].transform.position;
-            if (Input.GetKeyDown(KeyCode.A) && !oneEnemy)
+            if (Input.GetKeyDown(KeyCode.A) && enemyStartCount > 1)
             {
-                if (enemyUnitSelected >= 0)
-                {
-                    enemyUnitSelected--;
-                }
+                enemyUnitSelected--;
                 if (enemyUnitSelected < 0)
                 {
-                    if (oneEnemy)
-                    { enemyUnitSelected = enemyBattleStationLocations.Count - 5; }
-                    if (twoEnemy)
-                    { enemyUnitSelected = enemyBattleStationLocations.Count - 4; }
-                    if (threeEnemy)
-                    { enemyUnitSelected = enemyBattleStationLocations.Count - 3; }
-                    if (fourEnemy)
-                    { enemyUnitSelected = enemyBattleStationLocations.Count - 2; }
-                    if (fiveEnemy)
-                    { enemyUnitSelected = enemyBattleStationLocations.Count - 1; }
+                    enemyUnitSelected = enemyBattleStationLocations.Count - (6 - enemyStartCount);
                 }
 
                 enemySelectionParticle.transform.position = enemyBattleStationLocations[enemyUnitSelected].transform.position;
                 Camera.transform.LookAt(enemyBattleStationLocations[enemyUnitSelected]);
             }
-            if (Input.GetKeyDown(KeyCode.D) && !oneEnemy)
+            if (Input.GetKeyDown(KeyCode.D) && enemyStartCount > 1)
             {
-                if (oneEnemy)
+                enemyUnitSelected++;
+                if (enemyUnitSelected >= enemyStartCount)
                 {
-                    if (enemyUnitSelected <= enemyBattleStationLocations.Count - 1)
-                        enemyUnitSelected++;
-                    if (enemyUnitSelected > 0)
-                        enemyUnitSelected = 0;
-                }
-                if (twoEnemy)
-                {
-                    if (enemyUnitSelected <= enemyBattleStationLocations.Count - 1)
-                        enemyUnitSelected++;
-                    if (enemyUnitSelected > 1)
-                        enemyUnitSelected = 0;
-                }
-                if (threeEnemy)
-                {
-                    if (enemyUnitSelected <= enemyBattleStationLocations.Count - 1)
-                        enemyUnitSelected++;
-                    if (enemyUnitSelected > 2)
-                        enemyUnitSelected = 0;
-                }
-                if (fourEnemy)
-                {
-                    if (enemyUnitSelected <= enemyBattleStationLocations.Count - 1)
-                        enemyUnitSelected++;
-                    if (enemyUnitSelected > 3)
-                        enemyUnitSelected = 0;
-                }
-                if (fiveEnemy)
-                {
-                    if (enemyUnitSelected <= enemyBattleStationLocations.Count - 1)
-                        enemyUnitSelected++;
-                    if (enemyUnitSelected > 4)
-                        enemyUnitSelected = 0;
+                    enemyUnitSelected = 0;
                 }
 
                 enemySelectionParticle.transform.position = enemyBattleStationLocations[enemyUnitSelected].transform.position;
@@ -1620,127 +1505,124 @@ public class BattleSystemMultiple : MonoBehaviour
 
     void NextPlayerTurnAfterEnemyTurn(int enemyIndex)
     {
-        if (oneEnemy)
+        switch (enemyStartCount)
         {
-            switch (enemyIndex)
-            {
-                case 0:
-                    state = BattleStateMultiple.MIDDLE;
-                    //Skipping Turn to go to pitcher
-                    SETUPTurn();
-                    break;
-                default:
-                    Debug.LogError("Unable to find a player with the given index " + enemyIndex);
-                    break;
-            }
-        }
-        if (twoEnemy)
-        {
-            switch (enemyIndex)
-            {
-                case 0:
-                    state = BattleStateMultiple.MIDDLE;
-                    //Skipping Turn to go to pitcher
-                    MiddleTurn();
-                    break;
-                case 1:
-                    state = BattleStateMultiple.SETUP;
-                    //Skipping Turn to go to pitcher
-                    CloserTurn();
-                    break;
-                default:
-                    Debug.LogError("Unable to find a player with the given index " + enemyIndex);
-                    break;
-            }
-        }
-        if (threeEnemy)
-        {
-            switch (enemyIndex)
-            {
-                case 0:
-                    state = BattleStateMultiple.MIDDLE;
-                    //Skipping Turn to go to pitcher
-                    MiddleTurn();
-                    break;
-                case 1:
-                    state = BattleStateMultiple.SETUP;
-                    //Skipping Turn to go to pitcher
-                    SETUPTurn();
-                    break;
-                case 2:
-                    state = BattleStateMultiple.CLOSER;
-                    //Skipping Turn to go to pitcher
-                    CloserTurn();
-                    break;
-                default:
-                    Debug.LogError("Unable to find a player with the given index " + enemyIndex);
-                    break;
-            }
-        }
-        if (fourEnemy)
-        {
-            switch (enemyIndex)
-            {
-                case 0:
-                    state = BattleStateMultiple.MIDDLE;
-                    //Skipping Turn to go to pitcher
-                    MiddleTurn();
-                    break;
-                case 1:
-                    state = BattleStateMultiple.SETUP;
-                    //Skipping Turn to go to pitcher
-                    SETUPTurn();
-                    break;
-                case 2:
-                    state = BattleStateMultiple.CLOSER;
-                    //Skipping Turn to go to pitcher
-                    CloserTurn();
-                    break;
-                case 3:
-                    state = BattleStateMultiple.STARTER;
-                    //Skipping Turn to go to pitcher
-                    CloserTurn();
-                    break;
-                default:
-                    Debug.LogError("Unable to find a player with the given index " + enemyIndex);
-                    break;
-            }
-        }
-        if (fiveEnemy)
-        {
-            switch (enemyIndex)
-            {
-                case 0:
-                    StartCoroutine("EnemyTurn", 1);
-                    //Skipping Turn to go to pitcher
-                    MiddleTurn();
-                    break;
-                case 1:
-                    StartCoroutine("EnemyTurn", 2);
-                    //Skipping Turn to go to pitcher
-                    SETUPTurn();
-                    break;
-                case 2:
-                    StartCoroutine("EnemyTurn", 3);
-                    //Skipping Turn to go to pitcher
-                    CloserTurn();
-                    break;
-                case 3:
-                    StartCoroutine("EnemyTurn", 4);
-                    //Skipping Turn to go to pitcher
-                    CloserTurn();
-                    break;
-                case 4:
-                    state = BattleStateMultiple.MIDDLE;
-                    //Skipping Turn to go to pitcher
-                    MiddleTurn();
-                    break;
-                default:
-                    Debug.LogError("Unable to find a player with the given index " + enemyIndex);
-                    break;
-            }
-        }
-        
+            case 1:
+                switch (enemyIndex)
+                {
+                    case 0:
+                        state = BattleStateMultiple.MIDDLE;
+                        //Skipping Turn to go to pitcher
+                        SETUPTurn();
+                        break;
+                    default:
+                        Debug.LogError("Unable to find a player with the given index " + enemyIndex);
+                        break;
+                }
+                break;
+            case 2:
+                switch (enemyIndex)
+                {
+                    case 0:
+                        state = BattleStateMultiple.MIDDLE;
+                        //Skipping Turn to go to pitcher
+                        MiddleTurn();
+                        break;
+                    case 1:
+                        state = BattleStateMultiple.SETUP;
+                        //Skipping Turn to go to pitcher
+                        CloserTurn();
+                        break;
+                    default:
+                        Debug.LogError("Unable to find a player with the given index " + enemyIndex);
+                        break;
+                }
+                break;
+            case 3:
+                switch (enemyIndex)
+                {
+                    case 0:
+                        state = BattleStateMultiple.MIDDLE;
+                        //Skipping Turn to go to pitcher
+                        MiddleTurn();
+                        break;
+                    case 1:
+                        state = BattleStateMultiple.SETUP;
+                        //Skipping Turn to go to pitcher
+                        SETUPTurn();
+                        break;
+                    case 2:
+                        state = BattleStateMultiple.CLOSER;
+                        //Skipping Turn to go to pitcher
+                        CloserTurn();
+                        break;
+                    default:
+                        Debug.LogError("Unable to find a player with the given index " + enemyIndex);
+                        break;
+                }
+                break;
+            case 4:
+                switch (enemyIndex)
+                {
+                    case 0:
+                        state = BattleStateMultiple.MIDDLE;
+                        //Skipping Turn to go to pitcher
+                        MiddleTurn();
+                        break;
+                    case 1:
+                        state = BattleStateMultiple.SETUP;
+                        //Skipping Turn to go to pitcher
+                        SETUPTurn();
+                        break;
+                    case 2:
+                        state = BattleStateMultiple.CLOSER;
+                        //Skipping Turn to go to pitcher
+                        CloserTurn();
+                        break;
+                    case 3:
+                        state = BattleStateMultiple.STARTER;
+                        //Skipping Turn to go to pitcher
+                        CloserTurn();
+                        break;
+                    default:
+                        Debug.LogError("Unable to find a player with the given index " + enemyIndex);
+                        break;
+                }
+                break;
+            case 5:
+                switch (enemyIndex)
+                {
+                    case 0:
+                        StartCoroutine("EnemyTurn", 1);
+                        //Skipping Turn to go to pitcher
+                        MiddleTurn();
+                        break;
+                    case 1:
+                        StartCoroutine("EnemyTurn", 2);
+                        //Skipping Turn to go to pitcher
+                        SETUPTurn();
+                        break;
+                    case 2:
+                        StartCoroutine("EnemyTurn", 3);
+                        //Skipping Turn to go to pitcher
+                        CloserTurn();
+                        break;
+                    case 3:
+                        StartCoroutine("EnemyTurn", 4);
+                        //Skipping Turn to go to pitcher
+                        CloserTurn();
+                        break;
+                    case 4:
+                        state = BattleStateMultiple.MIDDLE;
+                        //Skipping Turn to go to pitcher
+                        MiddleTurn();
+                        break;
+                    default:
+                        Debug.LogError("Unable to find a player with the given index " + enemyIndex);
+                        break;
+                }
+                break;
+        }        
     }
 
     IEnumerator EnemyTurn(int enemyIndex)
@@ -1951,32 +1833,16 @@ public class BattleSystemMultiple : MonoBehaviour
         GameManager.Instance.DebugBall.transform.position = Starter.transform.position + Vector3.up * GameManager.Instance.DebugBallHeight;
         if (starterDead)
         {
-            if (oneEnemy)
+            if (enemyStartCount == 1)
             {
                 state = BattleStateMultiple.MIDDLE;
                 MiddleTurn();
             }
-            if (twoEnemy)
+            else 
             {
                 state = BattleStateMultiple.ENEMYTURN;
                 StartCoroutine("EnemyTurn", 0);
             }
-            if (threeEnemy)
-            {
-                state = BattleStateMultiple.ENEMYTURN;
-                StartCoroutine("EnemyTurn", 0);
-            }
-            if (fourEnemy)
-            {
-                state = BattleStateMultiple.ENEMYTURN;
-                StartCoroutine("EnemyTurn", 0);
-            }
-            if (fiveEnemy)
-            {
-                state = BattleStateMultiple.ENEMYTURN;
-                StartCoroutine("EnemyTurn", 0);
-            }
-
         }
         if (!starterDead)
         {
@@ -1997,32 +1863,21 @@ public class BattleSystemMultiple : MonoBehaviour
         GameManager.Instance.DebugBall.transform.position = MiddleReliever.transform.position + Vector3.up * GameManager.Instance.DebugBallHeight;
         if (middleDead)
         {
-            if (oneEnemy)
+            switch (enemyStartCount)
             {
-                state = BattleStateMultiple.ENEMYTURN;
-                StartCoroutine("EnemyTurn", 0);
-            }
-            if (twoEnemy)
-            {
-                state = BattleStateMultiple.SETUP;
-                SETUPTurn();
-            }
-            if (threeEnemy)
-            {
-                state = BattleStateMultiple.ENEMYTURN;
-                StartCoroutine("EnemyTurn", 1);
-            }
-            if (fourEnemy)
-            {
-                state = BattleStateMultiple.ENEMYTURN;
-                StartCoroutine("EnemyTurn", 1);
-            }
-            if (fiveEnemy)
-            {
-                state = BattleStateMultiple.SETUP;
-                SETUPTurn();
-            }
+                case 1:
+                case 3:
+                case 4:
+                    state = BattleStateMultiple.ENEMYTURN;
+                    StartCoroutine("EnemyTurn", 0);
+                    break;
 
+                case 2:
+                case 5:
+                    state = BattleStateMultiple.SETUP;
+                    SETUPTurn();
+                    break;
+            }
         }
         if (!middleDead)
         {
@@ -2049,32 +1904,24 @@ public class BattleSystemMultiple : MonoBehaviour
 
         if (setupDead)
         {
-            if (oneEnemy)
+            switch (enemyStartCount)
             {
-                state = BattleStateMultiple.CLOSER;
-                CloserTurn();
-            }
-            if (twoEnemy)
-            {
-                state = BattleStateMultiple.ENEMYTURN;
-                StartCoroutine("EnemyTurn", 1);
-            }
-            if (threeEnemy)
-            {
-                state = BattleStateMultiple.ENEMYTURN;
-                StartCoroutine("EnemyTurn", 2);
-            }
-            if (fourEnemy)
-            {
-                state = BattleStateMultiple.ENEMYTURN;
-                StartCoroutine("EnemyTurn", 2);
-            }
-            if (fiveEnemy)
-            {
-                state = BattleStateMultiple.CLOSER;
-                CloserTurn();
-            }
+                case 1:
+                case 5:
+                    state = BattleStateMultiple.CLOSER;
+                    CloserTurn();
+                    break;
 
+                case 2:
+                    state = BattleStateMultiple.ENEMYTURN;
+                    StartCoroutine("EnemyTurn", 1);
+                    break;
+                case 3:
+                case 4:
+                    state = BattleStateMultiple.ENEMYTURN;
+                    StartCoroutine("EnemyTurn", 2);
+                    break;
+            }
         }
         if (!setupDead)
         {
@@ -2100,32 +1947,17 @@ public class BattleSystemMultiple : MonoBehaviour
         }
         if (closerDead)
         {
-            if (oneEnemy)
+            switch (enemyStartCount)
             {
-                state = BattleStateMultiple.STARTER;
-                StarterTurn();
+                case 4:
+                    state = BattleStateMultiple.ENEMYTURN;
+                    StartCoroutine("EnemyTurn", 3);
+                    break;
+                default:
+                    state = BattleStateMultiple.STARTER;
+                    StarterTurn();
+                    break;
             }
-            if (twoEnemy)
-            {
-                state = BattleStateMultiple.STARTER;
-                StarterTurn();
-            }
-            if (threeEnemy)
-            {
-                state = BattleStateMultiple.STARTER;
-                StarterTurn();
-            }
-            if (fourEnemy)
-            {
-                state = BattleStateMultiple.ENEMYTURN;
-                StartCoroutine("EnemyTurn", 3);
-            }
-            if (fiveEnemy)
-            {
-                state = BattleStateMultiple.STARTER;
-                StarterTurn();
-            }
-
         }
         if (!closerDead)
         {
