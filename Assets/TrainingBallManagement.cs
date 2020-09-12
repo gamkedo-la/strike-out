@@ -43,7 +43,7 @@ public class TrainingBallManagement : MonoBehaviour
     {
         if (Mid)
         {
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(.8f);
             rb.useGravity = true;
             isMoving = false;
 
@@ -53,7 +53,7 @@ public class TrainingBallManagement : MonoBehaviour
             yield return new WaitForSeconds(.2f);
             rb.useGravity = true;
             rb.velocity = transform.forward * 300 * Time.deltaTime;
-            yield return new WaitForSeconds(1.1f);
+            yield return new WaitForSeconds(.75f);
             isMoving = false;
         }
         rb.velocity = transform.right *-5 * Time.deltaTime;
