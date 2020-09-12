@@ -11,6 +11,19 @@ public class DialogueTrigger : MonoBehaviour
     public bool Boss1, Boss2;
     public static bool GoToMiniBossFight, GoToMajorBossFight;
 
+    public bool isTraining ,isManager;
+    public GameObject dialogue1, dialogue2;
+
+    private void Start()
+    {
+        if (isTraining)
+        {
+            dialogue1.SetActive(true);
+            dialogue2.SetActive(false);
+            TriggerDialogue();
+        }
+    }
+
     public void TriggerDialogue()
     {
         FindObjectOfType<DialogueManager>().StartDialogue(dialogue);
@@ -42,6 +55,14 @@ public class DialogueTrigger : MonoBehaviour
     {
         if (other.tag == "Player")
         {
+            if (isManager)
+            {
+                dialogue1.SetActive(false);
+                dialogue2.SetActive(true);
+                isInZone = true;
+                Exclam.SetActive(true);
+            }
+            else
             isInZone = true;
             Exclam.SetActive(true);
         }

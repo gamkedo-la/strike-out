@@ -15,6 +15,11 @@ public class DialogueManager : MonoBehaviour
 
     public string Boss1Level, Boss2Level;
 
+    //manager - training
+    int randint;
+    public GameObject[] trivia, advice;
+    public GameObject dialogue1, dialogue2;
+
     private void Start()
     {
         sentences = new Queue<string>();
@@ -33,6 +38,7 @@ public class DialogueManager : MonoBehaviour
         }
 
         DisplayNextSentence();
+
     }
 
     public void DisplayNextSentence()
@@ -79,5 +85,23 @@ public class DialogueManager : MonoBehaviour
             anim.SetBool("isOpen", false);
             PlayerMovement.canMove = true;
         }
+    }
+
+    public void Advice()
+    {
+        anim.SetBool("isOpen", false);
+        randint = Random.Range(0, advice.Length);
+        advice[randint].SetActive(true);
+        dialogue1.SetActive(true);
+        dialogue2.SetActive(false);
+    }
+
+    public void Trivia()
+    {
+        anim.SetBool("isOpen", false);
+        randint = Random.Range(0, trivia.Length);
+        trivia[randint].SetActive(true);
+        dialogue1.SetActive(true);
+        dialogue2.SetActive(false);
     }
 }

@@ -17,9 +17,9 @@ public class PlayerLocationDontDestroy : MonoBehaviour
         }
         else
         {
-            playerX = 311.92f;
-            playerY = 171.71f;
-            playerZ = -18.9f;
+            playerX = 43.9f;
+            playerY = -.749f;
+            playerZ = -59.18f;
             isStarting = false;
         }
     }
