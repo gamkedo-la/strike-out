@@ -321,9 +321,11 @@ MonoBehaviour:
   dialogue:
     name: Manager
     sentences:
-    - 'We are proceeding splendedly
-
-'
+    - Boston's Fenway Park is a unique stadium.
+    - The distance from home to right field is only 302 ft (2 ft above the minimum).
+    - The distance to center field is 420 ft.
+    - The distance to left field is 310 ft, but you have to hit it over a 37 ft high
+      wall.
   Boss1: 0
   Boss2: 0
   isTraining: 1
@@ -1003,9 +1005,8 @@ MonoBehaviour:
   dialogue:
     name: Manager
     sentences:
-    - 'We are proceeding splendedly
-
-'
+    - Don't forget to use your money on items, scouting reports, and training.
+    - What else are you going to use it on?
   Boss1: 0
   Boss2: 0
   isTraining: 1
@@ -3347,9 +3348,9 @@ MonoBehaviour:
   dialogue:
     name: Manager
     sentences:
-    - 'We are proceeding splendedly
-
-'
+    - 'The first official baseball game was on May 4th, 1869.  '
+    - The Red Stockings (Braves) played the Great Westerns of Cincinnati.
+    - The Red Stockings won 45-9.
   Boss1: 0
   Boss2: 0
   isTraining: 1
@@ -5014,9 +5015,9 @@ MonoBehaviour:
   dialogue:
     name: Manager
     sentences:
-    - 'We are proceeding splendedly
-
-'
+    - 'Keep the turn order in mind. '
+    - 'The Starter always go first. Middle Reliever is next. Then Set Up. Finally,
+      the Closer. '
   Boss1: 0
   Boss2: 0
   isTraining: 1
@@ -5226,9 +5227,8 @@ MonoBehaviour:
   dialogue:
     name: Manager
     sentences:
-    - 'We are proceeding splendedly
-
-'
+    - "There are over 500 million baseball fans in the world. \n"
+    - Most of the fans are in the Americas and in Japan.
   Boss1: 0
   Boss2: 0
   isTraining: 1
@@ -5558,9 +5558,8 @@ MonoBehaviour:
   dialogue:
     name: Manager
     sentences:
-    - 'We are proceeding splendedly
-
-'
+    - Sometimes avoiding battles is a good way to conserve your strength.
+    - Only enter battles if you're ready.
   Boss1: 0
   Boss2: 0
   isTraining: 1
@@ -5687,6 +5686,7 @@ Transform:
   - {fileID: 1542574204}
   - {fileID: 612124889}
   - {fileID: 1349963851}
+  - {fileID: 1003303080}
   m_Father: {fileID: 4617338999909917178}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7771,10 +7771,6 @@ Transform:
   - {fileID: 979623642}
   - {fileID: 1068902281}
   - {fileID: 2047123159}
-  - {fileID: 686224763}
-  - {fileID: 834035387}
-  - {fileID: 677695095}
-  - {fileID: 1550114376}
   m_Father: {fileID: 4617338999909917178}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -9177,9 +9173,10 @@ MonoBehaviour:
   dialogue:
     name: Manager
     sentences:
-    - 'We are proceeding splendedly
-
-'
+    - The fastest pitch in baseball belongs to Aroldis Chapman (Reds).
+    - His fastball clocked in at 105.1 mph (169 kph).
+    - The slowest pitch belongs to Hernan Perez (Brewers).
+    - 'His ''slider'' clocked in at 48 mph (77.25 kph). '
   Boss1: 0
   Boss2: 0
   isTraining: 1
@@ -9541,9 +9538,10 @@ MonoBehaviour:
   dialogue:
     name: Manager
     sentences:
-    - 'We are proceeding splendedly
-
-'
+    - There are 30 Major League Baseball teams.
+    - There are 261 Minor League teams.
+    - There are over 200 Independent leagues (each with their own teams). Find a
+      local team to support!
   Boss1: 0
   Boss2: 0
   isTraining: 1
@@ -11290,7 +11288,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 594990143}
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -8.26, y: 7.68, z: 11.11}
+  m_LocalPosition: {x: -8.26, y: 7.68, z: 11.54}
   m_LocalScale: {x: 3, y: 0.08190003, z: 3}
   m_Children: []
   m_Father: {fileID: 0}
@@ -11660,9 +11658,15 @@ MonoBehaviour:
   dialogue:
     name: Manager
     sentences:
-    - 'We are proceeding splendedly
-
-'
+    - In Major League Baseball, there are 2 Leagues of 15 teams. The American and
+      National.
+    - The main difference between the leagues is the use of the Designated Hitter.
+    - 'The National League believes that the 9 players on the field are the 9 players
+      who will bat. '
+    - The American League believes that the Pitcher's main job is the pitch. As a
+      result, a different hitter replaces them in the lineup.
+    - The 2020 baseball season is unique. As a result of rule changes, both leagues
+      feature a Designated Hitter.
   Boss1: 0
   Boss2: 0
   isTraining: 1
@@ -12100,9 +12104,9 @@ MonoBehaviour:
   dialogue:
     name: Manager
     sentences:
-    - 'We are proceeding splendedly
-
-'
+    - The New York Yankees have been to the most World Series.
+    - They have played in 40 series (27-13).
+    - The second highest is the St Louis Cardinals with 19 appearances (11-8).
   Boss1: 0
   Boss2: 0
   isTraining: 1
@@ -12493,9 +12497,8 @@ MonoBehaviour:
   dialogue:
     name: Manager
     sentences:
-    - 'We are proceeding splendedly
-
-'
+    - Make sure you are ready for Boss Battles.
+    - You are unable to escape from those battles.
   Boss1: 0
   Boss2: 0
   isTraining: 1
@@ -12847,62 +12850,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
---- !u!1 &677695094
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 677695095}
-  - component: {fileID: 677695096}
-  m_Layer: 0
-  m_Name: Advice (13)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &677695095
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 677695094}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 411556836}
-  m_RootOrder: 13
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &677695096
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 677695094}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6596ed4fdc6b76749b27f9636aa803f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Exclam: {fileID: 4617339000663465792}
-  dialogue:
-    name: Manager
-    sentences:
-    - 'We are proceeding splendedly
-
-'
-  Boss1: 0
-  Boss2: 0
-  isTraining: 1
-  isManager: 0
-  dialogue1: {fileID: 1650342509}
-  dialogue2: {fileID: 1465976004}
 --- !u!1 &683134723
 GameObject:
   m_ObjectHideFlags: 0
@@ -12939,62 +12886,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &686224762
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 686224763}
-  - component: {fileID: 686224764}
-  m_Layer: 0
-  m_Name: Advice (11)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &686224763
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 686224762}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 411556836}
-  m_RootOrder: 11
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &686224764
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 686224762}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6596ed4fdc6b76749b27f9636aa803f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Exclam: {fileID: 4617339000663465792}
-  dialogue:
-    name: Manager
-    sentences:
-    - 'We are proceeding splendedly
-
-'
-  Boss1: 0
-  Boss2: 0
-  isTraining: 1
-  isManager: 0
-  dialogue1: {fileID: 1650342509}
-  dialogue2: {fileID: 1465976004}
 --- !u!1 &691824411 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: cb5309a053ec2094183f83a6f94cff53,
@@ -15401,62 +15292,6 @@ RectTransform:
   m_AnchoredPosition: {x: 150, y: 0}
   m_SizeDelta: {x: 204.72739, y: 29.99998}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &834035386
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 834035387}
-  - component: {fileID: 834035388}
-  m_Layer: 0
-  m_Name: Advice (12)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &834035387
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 834035386}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 411556836}
-  m_RootOrder: 12
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &834035388
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 834035386}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6596ed4fdc6b76749b27f9636aa803f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Exclam: {fileID: 4617339000663465792}
-  dialogue:
-    name: Manager
-    sentences:
-    - 'We are proceeding splendedly
-
-'
-  Boss1: 0
-  Boss2: 0
-  isTraining: 1
-  isManager: 0
-  dialogue1: {fileID: 1650342509}
-  dialogue2: {fileID: 1465976004}
 --- !u!1 &837404035
 GameObject:
   m_ObjectHideFlags: 0
@@ -16958,9 +16793,9 @@ MonoBehaviour:
   dialogue:
     name: Manager
     sentences:
-    - 'We are proceeding splendedly
-
-'
+    - 'The Starter has the most energy since they throw the most, but their pitches
+      are the weakest. '
+    - The Closer has the least energy, but their pitches have the most power.
   Boss1: 0
   Boss2: 0
   isTraining: 1
@@ -17328,9 +17163,8 @@ MonoBehaviour:
   dialogue:
     name: Manager
     sentences:
-    - 'We are proceeding splendedly
-
-'
+    - The largest baseball contract belongs to Mike Trout (Angels).
+    - His 12 year, $426.5 million contract is the largest by over $100 million dollars.
   Boss1: 0
   Boss2: 0
   isTraining: 1
@@ -17768,9 +17602,10 @@ MonoBehaviour:
   dialogue:
     name: Manager
     sentences:
-    - 'We are proceeding splendedly
-
-'
+    - The Starter's strongest pitch starts as the Curveball.
+    - Middle Reliever's is the Slider.
+    - Set Up Reliever is the Change Up.
+    - Closer's is the Fastball.
   Boss1: 0
   Boss2: 0
   isTraining: 1
@@ -17891,6 +17726,65 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 995832640}
   m_CullTransparentMesh: 0
+--- !u!1 &1003303079
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1003303080}
+  - component: {fileID: 1003303081}
+  m_Layer: 0
+  m_Name: Advice (15)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1003303080
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1003303079}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 270179007}
+  m_RootOrder: 15
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1003303081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1003303079}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6596ed4fdc6b76749b27f9636aa803f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Exclam: {fileID: 4617339000663465792}
+  dialogue:
+    name: Manager
+    sentences:
+    - There are lots of different pitches.
+    - Fastballs can be thrown over 100 mph.
+    - Curveballs can break between 2 and 20 inches.
+    - Knuckleballs appear to dance in the air due to their lack of spin.
+    - 'Changeups look just like Fastballs, but most up to 30 mph slower. '
+    - Sliders appear to cut across the zone as it gets closer to home plate.
+  Boss1: 0
+  Boss2: 0
+  isTraining: 1
+  isManager: 0
+  dialogue1: {fileID: 1650342509}
+  dialogue2: {fileID: 1465976004}
 --- !u!1 &1017030895
 GameObject:
   m_ObjectHideFlags: 0
@@ -18703,9 +18597,8 @@ MonoBehaviour:
   dialogue:
     name: Manager
     sentences:
-    - 'We are proceeding splendedly
-
-'
+    - The agility score determines how the Pitcher can dodge attacks.
+    - Use that skill wisely.
   Boss1: 0
   Boss2: 0
   isTraining: 1
@@ -20767,9 +20660,8 @@ MonoBehaviour:
   dialogue:
     name: Manager
     sentences:
-    - 'We are proceeding splendedly
-
-'
+    - Scouting Reports from The Hot Corner are very handy.
+    - They will tell you which pitches the Batters are weak to.
   Boss1: 0
   Boss2: 0
   isTraining: 1
@@ -22755,9 +22647,13 @@ MonoBehaviour:
   dialogue:
     name: Manager
     sentences:
-    - 'We are proceeding splendedly
-
-'
+    - From 1943 to 1955, the All-American Girls Professional Baseball League was
+      the substitue for the MLB.
+    - The league was created during WWII while the men were fighting overseas.
+    - 'There were strict uniform and makeup rules to be worn before, during, and
+      after games. '
+    - The Rockford Peaches finished with 5 Champions during the 12 year run between
+      the 10 team league.
   Boss1: 0
   Boss2: 0
   isTraining: 1
@@ -22811,9 +22707,12 @@ MonoBehaviour:
   dialogue:
     name: Manager
     sentences:
-    - 'We are proceeding splendedly
-
-'
+    - The team with the longest drought without winning the World Series belonged
+      to the Chicago Cubs.
+    - 'The streak was snapped in 2016 after 108 years. '
+    - The longest currently active drought belongs to the Indians (72 years in 1948).
+    - The Indians and Cubs played in the 2016 World Series. The two teams combined
+      a total of 176 years of drought.
   Boss1: 0
   Boss2: 0
   isTraining: 1
@@ -23727,9 +23626,8 @@ MonoBehaviour:
   dialogue:
     name: Manager
     sentences:
-    - 'We are proceeding splendedly
-
-'
+    - The Change Up is the lowest energy pitch.
+    - 'Use it to balance out your energy useage. '
   Boss1: 0
   Boss2: 0
   isTraining: 1
@@ -24930,6 +24828,7 @@ MonoBehaviour:
   - {fileID: 1542574203}
   - {fileID: 612124888}
   - {fileID: 1349963850}
+  - {fileID: 1003303079}
   advice:
   - {fileID: 1622385103}
   - {fileID: 1392022138}
@@ -24942,10 +24841,6 @@ MonoBehaviour:
   - {fileID: 979623641}
   - {fileID: 1068902280}
   - {fileID: 2047123158}
-  - {fileID: 686224762}
-  - {fileID: 834035386}
-  - {fileID: 677695094}
-  - {fileID: 1550114374}
   dialogue1: {fileID: 1650342509}
   dialogue2: {fileID: 1465976004}
 --- !u!4 &1465976006
@@ -25587,9 +25482,10 @@ MonoBehaviour:
   dialogue:
     name: Manager
     sentences:
-    - 'We are proceeding splendedly
-
-'
+    - 'The worst team in baseball history is the Cleveland Spiders. '
+    - 'Due to conflicts of interest, poor attendance, poor players, and no money... '
+    - 'The team finished 20-134 in 1899. '
+    - The were removed from the league the following season.
   Boss1: 0
   Boss2: 0
   isTraining: 1
@@ -25670,62 +25566,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1544555381}
   m_CullTransparentMesh: 0
---- !u!1 &1550114374
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1550114376}
-  - component: {fileID: 1550114375}
-  m_Layer: 0
-  m_Name: Advice (14)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!114 &1550114375
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1550114374}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6596ed4fdc6b76749b27f9636aa803f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Exclam: {fileID: 4617339000663465792}
-  dialogue:
-    name: Manager
-    sentences:
-    - 'We are proceeding splendedly
-
-'
-  Boss1: 0
-  Boss2: 0
-  isTraining: 1
-  isManager: 0
-  dialogue1: {fileID: 1650342509}
-  dialogue2: {fileID: 1465976004}
---- !u!4 &1550114376
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1550114374}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 411556836}
-  m_RootOrder: 14
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1551460187
 GameObject:
   m_ObjectHideFlags: 0
@@ -27164,9 +27004,8 @@ MonoBehaviour:
   dialogue:
     name: Manager
     sentences:
-    - 'We are proceeding splendedly
-
-'
+    - Use your energy wisely.
+    - If you run out, you'll need to take a Time Out which helps the batters.
   Boss1: 0
   Boss2: 0
   isTraining: 1
@@ -29468,8 +29307,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 13.1, y: -316.9}
-  m_SizeDelta: {x: 292.71472, y: 42.43421}
+  m_AnchoredPosition: {x: -27.629, y: -326.74}
+  m_SizeDelta: {x: 211.25735, y: 62.117958}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1777534512
 GameObject:
@@ -30099,9 +29938,10 @@ MonoBehaviour:
   dialogue:
     name: Manager
     sentences:
-    - 'We are proceeding splendedly
-
-'
+    - Wrigley field was built in 1914.
+    - Rather than having padding on the fence, the wall is made of brick covered
+      in ivy.
+    - Balls sometimes are lost in the vines which leads to a double.
   Boss1: 0
   Boss2: 0
   isTraining: 1
@@ -31288,9 +31128,13 @@ MonoBehaviour:
   dialogue:
     name: Manager
     sentences:
-    - 'We are proceeding splendedly
-
-'
+    - The longest verified homerun belongs to Joey Meyer.
+    - In 1987, he hit a 582 ft home run (177.4m).
+    - Legend has it, Lou Gehrig hit a homerun over 4 miles.
+    - The legend stemmed from finding his homerun ball in the nearby garbage dump
+      shortly after he hit it.
+    - How did it get there?
+    - 'He hit the homerun into the bed of a garbage truck that drove to the dump. '
   Boss1: 0
   Boss2: 0
   isTraining: 1
@@ -32058,9 +31902,12 @@ MonoBehaviour:
   dialogue:
     name: Manager
     sentences:
-    - 'We are proceeding splendedly
-
-'
+    - 'Baseball does not have a game clock. The standard length is a 9 inning game. '
+    - The only way for a game to end is for one team to score more runs than the
+      other. If it is tied, it goes into extrra innings.
+    - 'The longest recorded game was 33 innings and took 8hrs and 25 minutes. '
+    - It was played over 3 days - Apr 18, 19 and June 23rd 1981.
+    - The Pawtucket Red Sox beat the Rochester Red Wings 3-2.
   Boss1: 0
   Boss2: 0
   isTraining: 1
@@ -32114,9 +31961,8 @@ MonoBehaviour:
   dialogue:
     name: Manager
     sentences:
-    - 'We are proceeding splendedly
-
-'
+    - Battles consist of between 1 and 5 enemies.
+    - Turn orders vary drastically between them.
   Boss1: 0
   Boss2: 0
   isTraining: 1
@@ -32862,8 +32708,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 13.1, y: -316.9}
-  m_SizeDelta: {x: 292.71472, y: 42.43421}
+  m_AnchoredPosition: {x: -27.629, y: -325.45}
+  m_SizeDelta: {x: 211.25735, y: 59.536995}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2117726439
 GameObject:
@@ -33465,9 +33311,11 @@ MonoBehaviour:
   dialogue:
     name: Manager
     sentences:
-    - 'We are proceeding splendedly
-
-'
+    - A perfect game is when a pitcher does not allow a batter to reach base.
+    - They face 27 batters and retire all of them in order.
+    - In over 150 years (over 218,000 games), this feat has been accomplished 23
+      times.
+    - No one has done it more than once.
   Boss1: 0
   Boss2: 0
   isTraining: 1

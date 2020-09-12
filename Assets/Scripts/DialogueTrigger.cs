@@ -20,7 +20,7 @@ public class DialogueTrigger : MonoBehaviour
         {
             dialogue1.SetActive(true);
             dialogue2.SetActive(false);
-            TriggerDialogue();
+            StartCoroutine(Waiting());
         }
     }
 
@@ -75,5 +75,11 @@ public class DialogueTrigger : MonoBehaviour
             isInZone = false;
             Exclam.SetActive(false);
         }
+    }
+
+    IEnumerator Waiting()
+    {
+        yield return new WaitForSeconds(.25f);
+        TriggerDialogue();
     }
 }
