@@ -3,7 +3,25 @@ guid: 370f7058cd9ed2d44841e4f4f12b93d7
 ModelImporter:
   serializedVersion: 19301
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Stand1
+    second: {fileID: 6142264551165440654, guid: 646c809c2dca50e4c82166a591995569,
+      type: 3}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Stand2
+    second: {fileID: 2684629453133018160, guid: 915fbedf8b229b944900be47bd0c0e3e,
+      type: 3}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Stand3
+    second: {fileID: 1677627929356620339, guid: 6101d310a03f131438c028b5d4a43073,
+      type: 3}
   materials:
     materialImportMode: 1
     materialName: 0
