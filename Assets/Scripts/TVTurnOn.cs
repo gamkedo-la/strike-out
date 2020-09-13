@@ -13,6 +13,8 @@ public class TVTurnOn : MonoBehaviour
     public GameObject SelectionOfLevel;
     public GameObject cam;
 
+    public DialogueForTraining dialogue1, dialogue2, dialogue3;
+
     private void Start()
     {
         cam.SetActive(false);
@@ -72,21 +74,9 @@ public class TVTurnOn : MonoBehaviour
             {
                 if (levelSelect == 0)
                 {
-
-                    SceneManager.LoadScene("Concourse");
-                    Training.LevelSelectTV = false;
-                }
-
-                if (levelSelect == 1)
-                {
-                    SceneManager.LoadScene("Clubhouse");
-                    Training.LevelSelectTV = false;
-                }
-
-                if (levelSelect == 2)
-                {
-                    SceneManager.LoadScene("Field");
-                    Training.LevelSelectTV = false;
+                    FindObjectOfType<LevelManagerDialogue>().StartDialogue(dialogue1);
+                    //SceneManager.LoadScene("Concourse");
+                    //Training.LevelSelectTV = false;
                 }
             }
         }
