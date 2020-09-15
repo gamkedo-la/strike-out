@@ -678,15 +678,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        Starter.value = StarterMorale / StarterMoraleMax;
-        MidReliv.value = MidRelivMorale / MidRelivMoraleMax;
-        SetUp.value = SetUpMorale / SetUpMoraleMax;
-        Closer.value = CloserMorale / CloserMoraleMax;
-
-        StarterE.value = StarterEnergy / StarterEnergyMax;
-        MidRelivE.value = MidRelivEnergy / MidRelievEnergyMax;
-        SetUpE.value = SetUpEnergy / SetUpEnergyMax;
-        CloserE.value = CloserEnergy / CloserEnergyMax;
+        UpdateUI();
     }
     #region Items
 

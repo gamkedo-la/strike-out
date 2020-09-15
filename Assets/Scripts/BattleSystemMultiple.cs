@@ -1512,7 +1512,7 @@ public class BattleSystemMultiple : MonoBehaviour
                     case 0:
                         state = BattleStateMultiple.MIDDLE;
                         //Skipping Turn to go to pitcher
-                        SETUPTurn();
+                        MiddleTurn();
                         break;
                     default:
                         Debug.LogError("Unable to find a player with the given index " + enemyIndex);
@@ -1530,7 +1530,7 @@ public class BattleSystemMultiple : MonoBehaviour
                     case 1:
                         state = BattleStateMultiple.SETUP;
                         //Skipping Turn to go to pitcher
-                        CloserTurn();
+                        SETUPTurn();
                         break;
                     default:
                         Debug.LogError("Unable to find a player with the given index " + enemyIndex);
@@ -1581,7 +1581,7 @@ public class BattleSystemMultiple : MonoBehaviour
                     case 3:
                         state = BattleStateMultiple.STARTER;
                         //Skipping Turn to go to pitcher
-                        CloserTurn();
+                        StarterTurn();
                         break;
                     default:
                         Debug.LogError("Unable to find a player with the given index " + enemyIndex);
@@ -2406,6 +2406,12 @@ public class BattleSystemMultiple : MonoBehaviour
             {
                 GameManager.StarterExp = GameManager.StarterExp - GameManager.StarterTargetExp;
                 GameManager.StarterLevel++;
+
+                GameManager.StarterEnergyMax += 5;
+                GameManager.StarterMoraleMax += 5;
+                GameManager.StarterEnergy += 5;
+                GameManager.StarterMorale += 5;
+
                 SLevel = true;
                 SLevelUp.SetActive(true);
                 GameManager.StarterTargetExp *= 2f;
@@ -2432,6 +2438,12 @@ public class BattleSystemMultiple : MonoBehaviour
             {
                 GameManager.MRExp = GameManager.MRExp - GameManager.MRTargetExp;
                 GameManager.MRLevel++;
+
+                GameManager.MidRelievEnergyMax += 5;
+                GameManager.MidRelivMoraleMax += 5;
+                GameManager.MidRelivEnergy += 5;
+                GameManager.MidRelivMorale += 5;
+
                 MLevel = true;
                 MLevelUp.SetActive(true);
                 GameManager.MRTargetExp *= 2f;
@@ -2458,6 +2470,12 @@ public class BattleSystemMultiple : MonoBehaviour
             {
                 GameManager.SetUpExp = GameManager.SetUpExp - GameManager.SetupTargetExp;
                 GameManager.SetUpLevel++;
+
+                GameManager.SetUpEnergyMax += 5;
+                GameManager.SetUpMoraleMax += 5;
+                GameManager.SetUpMorale += 5;
+                GameManager.SetUpEnergy += 5;
+
                 SeLevel = true;
                 SetUpLevelUp.SetActive(true);
                 GameManager.SetupTargetExp *= 2f;
@@ -2484,6 +2502,12 @@ public class BattleSystemMultiple : MonoBehaviour
             {
                 GameManager.CloserExp = GameManager.CloserExp - GameManager.CloserTargetExp;
                 GameManager.CloserLevel++;
+
+                GameManager.CloserEnergyMax += 5;
+                GameManager.CloserMoraleMax += 5;
+                GameManager.CloserMorale += 5;
+                GameManager.CloserEnergy += 5;
+
                 CLevel = true;
                 CloserLevelUp.SetActive(true);
                 GameManager.CloserTargetExp *= 2f;
@@ -3068,13 +3092,15 @@ public class BattleSystemMultiple : MonoBehaviour
     IEnumerator WaitingAtEndOfBattle()
     {
         yield return new WaitForSeconds(1.5f);
+        state = BattleStateMultiple.START;
         //Return to Main Menu
-         SceneManager.LoadScene("Concourse");
+        SceneManager.LoadScene("Concourse");
     }
 
     IEnumerator WaitingAtEndOfBattleForTraining()
     {
         yield return new WaitForSeconds(1.5f);
+        state = BattleStateMultiple.START;
         //Return to Main Menu
         SceneManager.LoadScene("TrainingArea");
     }
