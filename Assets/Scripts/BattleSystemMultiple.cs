@@ -1666,9 +1666,11 @@ public class BattleSystemMultiple : MonoBehaviour
             if (WhoToAttack == 0 && !starterDead)
             {
                 Camera.transform.LookAt(Starter.transform.position);
+                enemyUnit[enemyUnitSelected].DetermineAttack();
+
                 if (GameManager.StarterAgil >= RandomAttack)
                 {
-                    dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Starter!";
+                    dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Starter with " + enemyUnit[enemyUnitSelected].attackName + "!";
                     yield return new WaitForSeconds(.5f);
                     dialogueText.text = "Starter Dodges!";
                     yield return new WaitForSeconds(1f);
@@ -1677,9 +1679,10 @@ public class BattleSystemMultiple : MonoBehaviour
 
                 if (GameManager.StarterAgil < RandomAttack)
                 {
-                    dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Starter!";
+                    dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Starter with " + enemyUnit[enemyUnitSelected].attackName + "!";
 
                     yield return new WaitForSeconds(2f);
+
                     bool isDead = Starter.TakeDamage(enemyUnit[enemyUnitSelected].enemyDamage);
                     if (isDead)
                     {
@@ -1707,9 +1710,11 @@ public class BattleSystemMultiple : MonoBehaviour
             if (WhoToAttack == 1 && !middleDead)
             {
                 Camera.transform.LookAt(MiddleReliever.transform.position);
+                enemyUnit[enemyUnitSelected].DetermineAttack();
+
                 if (GameManager.MiddleAgil >= RandomAttack)
                 {
-                    dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Mid Reliever!";
+                    dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Mid Reliever with " + enemyUnit[enemyUnitSelected].attackName + "!";
                     yield return new WaitForSeconds(.5f);
                     dialogueText.text = "Mid Reliever Dodges!";
                     yield return new WaitForSeconds(1f);
@@ -1717,7 +1722,7 @@ public class BattleSystemMultiple : MonoBehaviour
                 }
                 if (GameManager.MiddleAgil < RandomAttack)
                 {
-                    dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Mid Reliever!";
+                    dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Mid Reliever with " + enemyUnit[enemyUnitSelected].attackName + "!";
 
                     yield return new WaitForSeconds(1f);
                     bool isDead = MiddleReliever.TakeDamage(enemyUnit[enemyUnitSelected].enemyDamage);
@@ -1748,9 +1753,11 @@ public class BattleSystemMultiple : MonoBehaviour
             if (WhoToAttack == 2 && !setupDead)
             {
                 Camera.transform.LookAt(SetUp.transform.position);
+                enemyUnit[enemyUnitSelected].DetermineAttack();
+
                 if (GameManager.SetUpAgil >= RandomAttack)
                 {
-                    dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks SetUp!";
+                    dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks SetUp with " + enemyUnit[enemyUnitSelected].attackName + "!";
                     yield return new WaitForSeconds(.5f);
                     dialogueText.text = "SetUp Dodges!";
                     yield return new WaitForSeconds(1f);
@@ -1758,7 +1765,7 @@ public class BattleSystemMultiple : MonoBehaviour
                 }
                 if (GameManager.SetUpAgil < RandomAttack)
                 {
-                    dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Set Up!";
+                    dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Set Up with " + enemyUnit[enemyUnitSelected].attackName + "!";
 
                     yield return new WaitForSeconds(1f);
                     bool isDead = SetUp.TakeDamage(enemyUnit[enemyUnitSelected].enemyDamage);
@@ -1785,9 +1792,11 @@ public class BattleSystemMultiple : MonoBehaviour
             if (WhoToAttack == 3 && !closerDead)
             {
                 Camera.transform.LookAt(Closer.transform.position);
+                enemyUnit[enemyUnitSelected].DetermineAttack();
+
                 if (GameManager.CloserAgil >= RandomAttack)
                 {
-                    dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Closer!";
+                    dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Closer with " + enemyUnit[enemyUnitSelected].attackName + "!";
                     yield return new WaitForSeconds(.5f);
                     dialogueText.text = "Closer Dodges!";
                     yield return new WaitForSeconds(1f);
@@ -1796,7 +1805,7 @@ public class BattleSystemMultiple : MonoBehaviour
 
                 if (GameManager.CloserAgil < RandomAttack)
                 {
-                    dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Closer!";
+                    dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Closer with " + enemyUnit[enemyUnitSelected].attackName + "!";
 
                     yield return new WaitForSeconds(1f);
                     bool isDead = Closer.TakeDamage(enemyUnit[enemyUnitSelected].enemyDamage);

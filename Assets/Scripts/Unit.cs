@@ -23,7 +23,9 @@ public class Unit : MonoBehaviour
     public float CurveballMultiplier = 1;
     public float ChangeUpMultiplier = 1;
 
+    int minDamage, maxDamage;
     public int enemyDamage;
+    public string attackName;
 
     public int maxHP;
     public float currentHP;
@@ -50,6 +52,9 @@ public class Unit : MonoBehaviour
     public bool M1, M2, M3, M4, M5, M6, M7, M8;
     public GameObject StrWeakHolder;
 
+    //enemyAttack
+    public int minAttackAvil, maxAttackAvil;
+    int attackToDo;
 
     /*  public void SetHUD(Unit unit)
       {
@@ -220,9 +225,31 @@ public class Unit : MonoBehaviour
             HealthSlider.value = currentHP / maxHP;
         }
     }
+
+    public void DetermineAttack()
+    {
+        attackToDo = Random.Range(minAttackAvil, maxAttackAvil);
+
+        if (attackToDo == 0)
+        { WeakGrounder(); }
+
+        if (attackToDo == 1)
+        { SeeingEye(); }
+
+        if (attackToDo == 2)
+        { PopUp(); }
+
+        if (attackToDo == 3)
+        { LineDrive(); }
+
+        if (attackToDo == 4)
+        { FlyBall(); }
+    }
     
     public bool TakeDamage(int dmg)
     {
+        print(dmg);
+
         currentHP -= dmg;
 
         if (currentHP <= 0)
@@ -392,6 +419,51 @@ public class Unit : MonoBehaviour
         {
             currentHP = maxHP;
         }
+    }
+
+    void WeakGrounder()
+    {
+        minDamage = 1;
+        maxDamage = 5;
+
+        enemyDamage = Random.Range(minDamage, maxDamage);
+        attackName = "Weak Grounder".ToString();
+    }
+
+    void SeeingEye()
+    {
+        minDamage = 2;
+        maxDamage = 4;
+
+        enemyDamage = Random.Range(minDamage, maxDamage);
+        attackName = "Seeing Eye Single".ToString();
+    }
+
+    void PopUp()
+    {
+        minDamage = 3;
+        maxDamage = 4;
+
+        enemyDamage = Random.Range(minDamage, maxDamage);
+        attackName = "Pop Up".ToString();
+    }
+
+    void LineDrive()
+    {
+        minDamage = 4;
+        maxDamage = 6;
+
+        enemyDamage = Random.Range(minDamage, maxDamage);
+        attackName = "Line Drive".ToString();
+    }
+
+    void FlyBall()
+    {
+        minDamage = 4;
+        maxDamage = 7;
+
+        enemyDamage = Random.Range(minDamage, maxDamage);
+        attackName = "Fly Ball".ToString();
     }
 
 

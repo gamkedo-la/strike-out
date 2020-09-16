@@ -396,7 +396,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae41b2d9e5f38bb4fb960aec76aac991, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitName: Test-Batter
+  unitName: Minor 7
   unitLevel: 1
   fastballDamage: 0
   sliderDamage: 0
@@ -411,6 +411,7 @@ MonoBehaviour:
   CurveballMultiplier: 2
   ChangeUpMultiplier: 1
   enemyDamage: 8
+  attackName: 
   maxHP: 30
   currentHP: 5
   maxStamina: 30
@@ -434,7 +435,17 @@ MonoBehaviour:
   m6: 0
   m7: 1
   m8: 0
+  M1: 0
+  M2: 0
+  M3: 0
+  M4: 0
+  M5: 0
+  M6: 0
+  M7: 0
+  M8: 0
   StrWeakHolder: {fileID: 902494222}
+  minAttackAvil: 0
+  maxAttackAvil: 5
 --- !u!114 &663410697445853883
 MonoBehaviour:
   m_ObjectHideFlags: 0
