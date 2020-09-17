@@ -556,7 +556,7 @@ MonoBehaviour:
   ChangeUpMultiplier: 1
   enemyDamage: 8
   attackName: 
-  maxHP: 30
+  maxHP: 10
   currentHP: 1.5
   maxStamina: 30
   currentStamina: 25

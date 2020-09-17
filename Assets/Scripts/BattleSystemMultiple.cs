@@ -236,6 +236,14 @@ public class BattleSystemMultiple : MonoBehaviour
 
     private void Update()
     {
+        //Cheat Code to Win Battle
+        {
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                CheatToInstantlyWin();
+            }
+        }
+
         if ((state == BattleStateMultiple.STARTER || state == BattleStateMultiple.MIDDLE || state == BattleStateMultiple.SETUP || state == BattleStateMultiple.CLOSER) && enemySelect)
         {
             //SelectionProcess
@@ -2530,6 +2538,19 @@ public class BattleSystemMultiple : MonoBehaviour
         }
         else
             StartCoroutine(WaitingAtEndOfBattle());
+    }
+
+    void CheatToInstantlyWin()
+    {
+
+        for (int i = 0; i < enemyUnit.Count; i++)
+        {
+            enemyUnit[i].TakeDamage(100);
+            Debug.Log("Cheat Activated");
+        }
+        state = BattleStateMultiple.WON;
+        EndBattle();
+        Debug.Log("Attempted To Cheat To Win");
     }
 
     public void BattleFinished()

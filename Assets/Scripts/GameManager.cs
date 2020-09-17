@@ -565,11 +565,22 @@ public class GameManager : MonoBehaviour
     #endregion
     private void Awake()
     {
-        _instance = this;
+        if (_instance != null)
+        {
+            Debug.Log("GameManager Already Exists. Self - destruct initiated.");
+            _instance.HookUpUI();
+
+            Destroy(gameObject);
+        }
+        else
+        {
+            _instance = this;
+        }
     }
 
     private void Start()
     {
+        Debug.Log("Calling Start from here");
         DontDestroyOnLoad(this.gameObject);
 
         #region StartingStats 
@@ -664,7 +675,11 @@ public class GameManager : MonoBehaviour
         }
 
         moneyUI.text = "$ " + Money.ToString("F0");
-
+        HookUpUI();
+    }
+    public void HookUpUI()
+    {
+        Debug.Log("Resetting UI Hookups");
         Starter = GameObject.Find("StarterMorale").GetComponent<Slider>();
         MidReliv = GameObject.Find("MiddleRelivMorale").GetComponent<Slider>();
         SetUp = GameObject.Find("SetUpMorale").GetComponent<Slider>();

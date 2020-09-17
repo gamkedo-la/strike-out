@@ -21,7 +21,15 @@ public class InventorySingleton : MonoBehaviour
 
     private void Awake()
     {
-        _instance = this;
+        if (_instance != null)
+        {
+            Debug.Log("Inventory Already Exists. Self - destruct initiated.");
+            Destroy(gameObject);
+        }
+        else
+        {
+            _instance = this;
+        }
     }
 
     private void Start()
