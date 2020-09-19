@@ -10,9 +10,11 @@ public class Elevator : MonoBehaviour
     public GameObject player, mapCam;
     public GameObject mainCam, elevatorCam;
 
+    public GameObject Elevator1, thisElevator;
+
     bool playerInside;
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
@@ -21,12 +23,12 @@ public class Elevator : MonoBehaviour
 
         if (playerInside)
         {
-          //  door.SetActive(true);
+            door.SetActive(true);
             elevatorCam.SetActive(true);
             mainCam.SetActive(false);
             mapCam.SetActive(false);
             player.GetComponent<NavMeshAgent>().enabled = false;
-            elevator.transform.position += elevator.transform.forward * Time.deltaTime * 2.5f;
+            elevator.transform.position += elevator.transform.forward * Time.deltaTime * 4f;
         }
     }
 
@@ -45,11 +47,20 @@ public class Elevator : MonoBehaviour
         {
             playerInside = false;
 
-          //  door.SetActive(false);
+            door.SetActive(false);
             elevatorCam.SetActive(false);
             mainCam.SetActive(true);
             mapCam.SetActive(true);
+            player.GetComponent<NavMeshAgent>().enabled = true;
+            StartCoroutine(Waiting());
         }
 
+    }
+
+    IEnumerator Waiting()
+    {
+        yield return new WaitForSeconds(4f);
+        thisElevator.SetActive(true);
+        Elevator1.SetActive(false);
     }
 }
