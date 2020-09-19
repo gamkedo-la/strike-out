@@ -2,15 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AudioOnStart : MonoBehaviour
+public class AudioOnStart : AudioEventGeneric
 {
-    public AudioData Sound;
+    //public AudioData Sound;
 
     void Start()
     {
-        if (Sound != null)
+        if (sound != null)
         {
-           // Sound.Play();
+            controller.Play(sound);
         }
+        else
+            Debug.Log("No sound attached");
     }
 }
