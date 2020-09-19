@@ -1,64 +1,55 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Elevator : MonoBehaviour
 {
-    public float bottomFloory, topFloory;
-    bool isTop;
-    public GameObject door;
-    public Vector3 doorOpen, doorClosed;
-    bool isMoving;
+    public GameObject barrier, door;
+    public GameObject elevator;
+    public GameObject player, mapCam;
+    public GameObject mainCam, elevatorCam;
 
-    //Testing
-    public GameObject barrier;
-
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if(other.tag == "Player")
-        {
-            isMoving = true;
-        }
-    }
+    bool playerInside;
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            Destroy(barrier);
+            barrier.SetActive(false);
         }
 
-        if (isMoving)
+        if (playerInside)
         {
-            door.transform.position = doorClosed;
-
-            if (isTop)
-            {
-                transform.Translate(Vector3.forward * -10 * Time.deltaTime);
-            }
-            else
-            {
-                transform.Translate(Vector3.forward * 10 * Time.deltaTime);
-            }
+          //  door.SetActive(true);
+            elevatorCam.SetActive(true);
+            mainCam.SetActive(false);
+            mapCam.SetActive(false);
+            player.GetComponent<NavMeshAgent>().enabled = false;
+            elevator.transform.position += elevator.transform.forward * Time.deltaTime * 2.5f;
         }
+    }
 
-        if (gameObject.transform.position.y >= topFloory)
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Player")
         {
-            isTop = true;
-            isMoving = false;
-            door.transform.position = doorOpen;
+            playerInside = true;
         }
 
-        if (gameObject.transform.position.y <= bottomFloory)
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Player")
         {
-            isTop = false;
-            isMoving = false;
-            door.transform.position = doorOpen;
+            playerInside = false;
+
+          //  door.SetActive(false);
+            elevatorCam.SetActive(false);
+            mainCam.SetActive(true);
+            mapCam.SetActive(true);
         }
 
-        if (!isMoving)
-        {
-        }
     }
 }
