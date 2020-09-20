@@ -291,7 +291,6 @@ public class Unit : MonoBehaviour
             if (FastballMultiplier == 1f)
             {
                 anim.Play("Armature|SwingMiss");
-
                 StartCoroutine(ClearText());
             }
             if (FastballMultiplier == 2)

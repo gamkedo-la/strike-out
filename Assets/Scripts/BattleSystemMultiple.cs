@@ -136,11 +136,7 @@ public class BattleSystemMultiple : MonoBehaviour
         if (Boss)
         {
             enemyStartCount = 1;
-            for (int i = 0; i < enemyStartCount; i++)
-            {
-                enemyCount++;
-                enemyPrefab[i].SetActive(true);
-            }
+
         }
         else
         {
@@ -165,13 +161,13 @@ public class BattleSystemMultiple : MonoBehaviour
             else
             { 
                 enemyStartCount = 5;
-            }
-            for (int i = 0; i < enemyStartCount; i++)
-            {
-                enemyCount++;
-                enemyPrefab[i].SetActive(true);
-            }
-            
+            }            
+        }
+
+        for (int i = 0; i < enemyStartCount; i++)
+        {
+            enemyCount++;
+            enemyPrefab[i].SetActive(true);
         }
 
         starterDead = false;
@@ -1902,6 +1898,7 @@ public class BattleSystemMultiple : MonoBehaviour
                 {
                     case 0:
                         state = BattleStateMultiple.SETUP;
+                        SETUPTurn();
                         break;
                     case 1:
                         state = BattleStateMultiple.MIDDLE;

@@ -609,10 +609,10 @@ MonoBehaviour:
   SliderMultiplier: 1
   CurveballMultiplier: 2
   ChangeUpMultiplier: 1
-  enemyDamage: 4
+  enemyDamage: 3
   attackName: Shagging
   maxHP: 100
-  currentHP: 81.5
+  currentHP: 36
   maxStamina: 30
   currentStamina: 25
   ExperienceToDistribute: 0
@@ -625,7 +625,7 @@ MonoBehaviour:
   HealthSlider: {fileID: 1390369554844219398}
   DescText: {fileID: 6685770739284780833}
   isDizzy: 0
-  anim: {fileID: 5556478503803261202, guid: c9aa2d79c352768429aaff7cdbd71b75, type: 3}
+  anim: {fileID: 4623219604573929171}
   m1: 0
   m2: 0
   m3: 0
@@ -642,7 +642,7 @@ MonoBehaviour:
   M6: 0
   M7: 0
   M8: 0
-  StrWeakHolder: {fileID: 0}
+  StrWeakHolder: {fileID: 6949930069196332932}
   minAttackAvil: 4
   maxAttackAvil: 5
 --- !u!114 &6650400506096194839
