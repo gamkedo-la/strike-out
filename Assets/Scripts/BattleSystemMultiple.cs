@@ -707,16 +707,33 @@ public class BattleSystemMultiple : MonoBehaviour
                          enemyUnitSelected = 0;
                         */
                         enemySelectionParticle.transform.position = enemyBattleStationLocations[enemyUnitSelected].transform.position;
+                        if (enemyCount == 1)
+                        {
+                            MiddleTurn();
+                            state = BattleStateMultiple.MIDDLE;
+                        }
 
-                        state = BattleStateMultiple.ENEMYTURN;
-                        StartCoroutine("EnemyTurn", 0);
+                        else
+                        {
+                            state = BattleStateMultiple.ENEMYTURN;
+                            StartCoroutine("EnemyTurn", 0);
+                        }
                     }
 
                     if (!isDead)
                     {
                         //Middle Reliever turn
-                        state = BattleStateMultiple.ENEMYTURN;
-                        StartCoroutine("EnemyTurn", 0);
+                        if (enemyCount == 1)
+                        {
+                            MiddleTurn();
+                            state = BattleStateMultiple.MIDDLE;
+                        }
+
+                        else
+                        {
+                            state = BattleStateMultiple.ENEMYTURN;
+                            StartCoroutine("EnemyTurn", 0);
+                        }
                     }
 
                 }
@@ -757,15 +774,33 @@ public class BattleSystemMultiple : MonoBehaviour
                         */
                         enemySelectionParticle.transform.position = enemyBattleStationLocations[enemyUnitSelected].transform.position;
 
-                        state = BattleStateMultiple.ENEMYTURN;
-                        StartCoroutine("EnemyTurn", 0);
+                        if (enemyCount == 1)
+                        {
+                            MiddleTurn();
+                            state = BattleStateMultiple.MIDDLE;
+                        }
+
+                        else
+                        {
+                            state = BattleStateMultiple.ENEMYTURN;
+                            StartCoroutine("EnemyTurn", 0);
+                        }
                     }
 
                     if (!isDead)
                     {
                         //Middle Reliever turn
-                        state = BattleStateMultiple.ENEMYTURN;
-                        StartCoroutine("EnemyTurn", 0);
+                        if(enemyCount == 1)
+                        {
+                            MiddleTurn();
+                            state = BattleStateMultiple.MIDDLE;
+                        }
+
+                        else
+                        {
+                            state = BattleStateMultiple.ENEMYTURN;
+                            StartCoroutine("EnemyTurn", 0);
+                        }
                     }
                 }
             }
@@ -805,15 +840,33 @@ public class BattleSystemMultiple : MonoBehaviour
                         */
                         enemySelectionParticle.transform.position = enemyBattleStationLocations[enemyUnitSelected].transform.position;
 
-                        state = BattleStateMultiple.ENEMYTURN;
-                        StartCoroutine("EnemyTurn", 0);
+                        if (enemyCount == 1)
+                        {
+                            MiddleTurn();
+                            state = BattleStateMultiple.MIDDLE;
+                        }
+
+                        else
+                        {
+                            state = BattleStateMultiple.ENEMYTURN;
+                            StartCoroutine("EnemyTurn", 0);
+                        }
                     }
 
                     if (!isDead)
                     {
                         //Middle Reliever turn
-                        state = BattleStateMultiple.ENEMYTURN;
-                        StartCoroutine("EnemyTurn", 0);
+                        if (enemyCount == 1)
+                        {
+                            MiddleTurn();
+                            state = BattleStateMultiple.MIDDLE;
+                        }
+
+                        else
+                        {
+                            state = BattleStateMultiple.ENEMYTURN;
+                            StartCoroutine("EnemyTurn", 0);
+                        }
                     }
                 }
             }
@@ -853,15 +906,33 @@ public class BattleSystemMultiple : MonoBehaviour
                         */
                         enemySelectionParticle.transform.position = enemyBattleStationLocations[enemyUnitSelected].transform.position;
 
-                        state = BattleStateMultiple.ENEMYTURN;
-                        StartCoroutine("EnemyTurn", 0);
+                        if (enemyCount == 1)
+                        {
+                            MiddleTurn();
+                            state = BattleStateMultiple.MIDDLE;
+                        }
+
+                        else
+                        {
+                            state = BattleStateMultiple.ENEMYTURN;
+                            StartCoroutine("EnemyTurn", 0);
+                        }
                     }
 
                     if (!isDead)
                     {
                         //Middle Reliever turn
-                        state = BattleStateMultiple.ENEMYTURN;
-                        StartCoroutine("EnemyTurn", 0);
+                        if (enemyCount == 1)
+                        {
+                            MiddleTurn();
+                            state = BattleStateMultiple.MIDDLE;
+                        }
+
+                        else
+                        {
+                            state = BattleStateMultiple.ENEMYTURN;
+                            StartCoroutine("EnemyTurn", 0);
+                        }
                     }
                 }
             }
@@ -912,15 +983,40 @@ public class BattleSystemMultiple : MonoBehaviour
                          */
                         enemySelectionParticle.transform.position = enemyBattleStationLocations[enemyUnitSelected].transform.position;
 
-                        state = BattleStateMultiple.ENEMYTURN;
-                        StartCoroutine("EnemyTurn", 1);
+                        switch (enemyStartCount)
+                        {
+                            case 1:
+                            case 3:
+                            case 4:
+                                state = BattleStateMultiple.ENEMYTURN;
+                                StartCoroutine("EnemyTurn", 0);
+                                break;
+
+                            case 2:
+                            case 5:
+                                state = BattleStateMultiple.SETUP;
+                                SETUPTurn();
+                                break;
+                        }
                     }
 
                     if (!isDead)
                     {
-                        //Enemy Attack turn
-                        state = BattleStateMultiple.ENEMYTURN;
-                        StartCoroutine("EnemyTurn", 1);
+                        switch (enemyStartCount)
+                        {
+                            case 1:
+                            case 3:
+                            case 4:
+                                state = BattleStateMultiple.ENEMYTURN;
+                                StartCoroutine("EnemyTurn", 0);
+                                break;
+
+                            case 2:
+                            case 5:
+                                state = BattleStateMultiple.SETUP;
+                                SETUPTurn();
+                                break;
+                        }
                     }
                 }
             }
@@ -961,15 +1057,41 @@ public class BattleSystemMultiple : MonoBehaviour
                          */
                         enemySelectionParticle.transform.position = enemyBattleStationLocations[enemyUnitSelected].transform.position;
 
-                        state = BattleStateMultiple.ENEMYTURN;
-                        StartCoroutine("EnemyTurn", 1);
+                        switch (enemyStartCount)
+                        {
+                            case 1:
+                            case 3:
+                            case 4:
+                                state = BattleStateMultiple.ENEMYTURN;
+                                StartCoroutine("EnemyTurn", 0);
+                                break;
+
+                            case 2:
+                            case 5:
+                                state = BattleStateMultiple.SETUP;
+                                SETUPTurn();
+                                break;
+                        }
                     }
 
                     if (!isDead)
                     {
                         //Enemy Attack turn
-                        state = BattleStateMultiple.ENEMYTURN;
-                        StartCoroutine("EnemyTurn", 1);
+                        switch (enemyStartCount)
+                        {
+                            case 1:
+                            case 3:
+                            case 4:
+                                state = BattleStateMultiple.ENEMYTURN;
+                                StartCoroutine("EnemyTurn", 0);
+                                break;
+
+                            case 2:
+                            case 5:
+                                state = BattleStateMultiple.SETUP;
+                                SETUPTurn();
+                                break;
+                        }
                     }
                 }
             }
@@ -1010,15 +1132,41 @@ public class BattleSystemMultiple : MonoBehaviour
                          */
                         enemySelectionParticle.transform.position = enemyBattleStationLocations[enemyUnitSelected].transform.position;
 
-                        state = BattleStateMultiple.ENEMYTURN;
-                        StartCoroutine("EnemyTurn", 1);
+                        switch (enemyStartCount)
+                        {
+                            case 1:
+                            case 3:
+                            case 4:
+                                state = BattleStateMultiple.ENEMYTURN;
+                                StartCoroutine("EnemyTurn", 0);
+                                break;
+
+                            case 2:
+                            case 5:
+                                state = BattleStateMultiple.SETUP;
+                                SETUPTurn();
+                                break;
+                        }
                     }
 
                     if (!isDead)
                     {
                         //Enemy Attack turn
-                        state = BattleStateMultiple.ENEMYTURN;
-                        StartCoroutine("EnemyTurn", 1);
+                        switch (enemyStartCount)
+                        {
+                            case 1:
+                            case 3:
+                            case 4:
+                                state = BattleStateMultiple.ENEMYTURN;
+                                StartCoroutine("EnemyTurn", 0);
+                                break;
+
+                            case 2:
+                            case 5:
+                                state = BattleStateMultiple.SETUP;
+                                SETUPTurn();
+                                break;
+                        }
                     }
                 }
             }
@@ -1059,15 +1207,41 @@ public class BattleSystemMultiple : MonoBehaviour
                          */
                         enemySelectionParticle.transform.position = enemyBattleStationLocations[enemyUnitSelected].transform.position;
 
-                        state = BattleStateMultiple.ENEMYTURN;
-                        StartCoroutine("EnemyTurn", 1);
+                        switch (enemyStartCount)
+                        {
+                            case 1:
+                            case 3:
+                            case 4:
+                                state = BattleStateMultiple.ENEMYTURN;
+                                StartCoroutine("EnemyTurn", 0);
+                                break;
+
+                            case 2:
+                            case 5:
+                                state = BattleStateMultiple.SETUP;
+                                SETUPTurn();
+                                break;
+                        }
                     }
 
                     if (!isDead)
                     {
                         //Enemy Attack turn
-                        state = BattleStateMultiple.ENEMYTURN;
-                        StartCoroutine("EnemyTurn", 1);
+                        switch (enemyStartCount)
+                        {
+                            case 1:
+                            case 3:
+                            case 4:
+                                state = BattleStateMultiple.ENEMYTURN;
+                                StartCoroutine("EnemyTurn", 0);
+                                break;
+
+                            case 2:
+                            case 5:
+                                state = BattleStateMultiple.SETUP;
+                                SETUPTurn();
+                                break;
+                        }
                     }
                 }
             }
@@ -1119,15 +1293,44 @@ public class BattleSystemMultiple : MonoBehaviour
                         */
                         enemySelectionParticle.transform.position = enemyBattleStationLocations[enemyUnitSelected].transform.position;
 
-                        state = BattleStateMultiple.ENEMYTURN;
-                        StartCoroutine("EnemyTurn", 2);
+                        switch (enemyStartCount)
+                        {
+                            case 1:
+                            case 5:
+                                CloserTurn();
+                                state = BattleStateMultiple.CLOSER;
+                                break;
+                            case 2:
+                                state = BattleStateMultiple.ENEMYTURN;
+                                StartCoroutine("EnemyTurn", 1);
+                                break;
+                            case 3:
+                            case 4:
+                                state = BattleStateMultiple.ENEMYTURN;
+                                StartCoroutine("EnemyTurn", 2);
+                                break;
+                        }
                     }
 
                     if (!isDead)
                     {
-                        //Closer turn
-                        state = BattleStateMultiple.ENEMYTURN;
-                        StartCoroutine("EnemyTurn", 2);
+                        switch (enemyStartCount)
+                        {
+                            case 1:
+                            case 5:
+                                CloserTurn();
+                                state = BattleStateMultiple.CLOSER;
+                                break;
+                            case 2:
+                                state = BattleStateMultiple.ENEMYTURN;
+                                StartCoroutine("EnemyTurn", 1);
+                                break;
+                            case 3:
+                            case 4:
+                                state = BattleStateMultiple.ENEMYTURN;
+                                StartCoroutine("EnemyTurn", 2);
+                                break;
+                        }
                     }
                 }
             }
@@ -1169,15 +1372,44 @@ public class BattleSystemMultiple : MonoBehaviour
                         */
                         enemySelectionParticle.transform.position = enemyBattleStationLocations[enemyUnitSelected].transform.position;
 
-                        state = BattleStateMultiple.ENEMYTURN;
-                        StartCoroutine("EnemyTurn", 2);
+                        switch (enemyStartCount)
+                        {
+                            case 1:
+                            case 5:
+                                CloserTurn();
+                                state = BattleStateMultiple.CLOSER;
+                                break;
+                            case 2:
+                                state = BattleStateMultiple.ENEMYTURN;
+                                StartCoroutine("EnemyTurn", 1);
+                                break;
+                            case 3:
+                            case 4:
+                                state = BattleStateMultiple.ENEMYTURN;
+                                StartCoroutine("EnemyTurn", 2);
+                                break;   
+                        }
                     }
 
                     if (!isDead)
                     {
-                        //Closer turn
-                        state = BattleStateMultiple.ENEMYTURN;
-                        StartCoroutine("EnemyTurn", 2);
+                        switch (enemyStartCount)
+                        {
+                            case 1:
+                            case 5:
+                                CloserTurn();
+                                state = BattleStateMultiple.CLOSER;
+                                break;
+                            case 2:
+                                state = BattleStateMultiple.ENEMYTURN;
+                                StartCoroutine("EnemyTurn", 1);
+                                break;
+                            case 3:
+                            case 4:
+                                state = BattleStateMultiple.ENEMYTURN;
+                                StartCoroutine("EnemyTurn", 2);
+                                break;
+                        }
                     }
                 }
             }
@@ -1219,15 +1451,44 @@ public class BattleSystemMultiple : MonoBehaviour
                         */
                         enemySelectionParticle.transform.position = enemyBattleStationLocations[enemyUnitSelected].transform.position;
 
-                        state = BattleStateMultiple.ENEMYTURN;
-                        StartCoroutine("EnemyTurn", 2);
+                        switch (enemyStartCount)
+                        {
+                            case 1:
+                            case 5:
+                                CloserTurn();
+                                state = BattleStateMultiple.CLOSER;
+                                break;
+                            case 2:
+                                state = BattleStateMultiple.ENEMYTURN;
+                                StartCoroutine("EnemyTurn", 1);
+                                break;
+                            case 3:
+                            case 4:
+                                state = BattleStateMultiple.ENEMYTURN;
+                                StartCoroutine("EnemyTurn", 2);
+                                break;
+                        }
                     }
 
                     if (!isDead)
                     {
-                        //Closer turn
-                        state = BattleStateMultiple.ENEMYTURN;
-                        StartCoroutine("EnemyTurn", 2);
+                        switch (enemyStartCount)
+                        {
+                            case 1:
+                            case 5:
+                                CloserTurn();
+                                state = BattleStateMultiple.CLOSER;
+                                break;
+                            case 2:
+                                state = BattleStateMultiple.ENEMYTURN;
+                                StartCoroutine("EnemyTurn", 1);
+                                break;
+                            case 3:
+                            case 4:
+                                state = BattleStateMultiple.ENEMYTURN;
+                                StartCoroutine("EnemyTurn", 2);
+                                break;
+                        }
                     }
                 }
             }
@@ -1269,15 +1530,45 @@ public class BattleSystemMultiple : MonoBehaviour
                         */
                         enemySelectionParticle.transform.position = enemyBattleStationLocations[enemyUnitSelected].transform.position;
 
-                        state = BattleStateMultiple.ENEMYTURN;
-                        StartCoroutine("EnemyTurn", 2);
+                        switch (enemyStartCount)
+                        {
+                            case 1:
+                            case 5:
+                                CloserTurn();
+                                state = BattleStateMultiple.CLOSER;
+                                break;
+                            case 2:
+                                state = BattleStateMultiple.ENEMYTURN;
+                                StartCoroutine("EnemyTurn", 1);
+                                break;
+                            case 3:
+                            case 4:
+                                state = BattleStateMultiple.ENEMYTURN;
+                                StartCoroutine("EnemyTurn", 2);
+                                break;
+                        }
                     }
 
                     if (!isDead)
                     {
                         //Closer turn
-                        state = BattleStateMultiple.ENEMYTURN;
-                        StartCoroutine("EnemyTurn", 2);
+                        switch (enemyStartCount)
+                        {
+                            case 1:
+                            case 5:
+                                CloserTurn();
+                                state = BattleStateMultiple.CLOSER;
+                                break;
+                            case 2:
+                                state = BattleStateMultiple.ENEMYTURN;
+                                StartCoroutine("EnemyTurn", 1);
+                                break;
+                            case 3:
+                            case 4:
+                                state = BattleStateMultiple.ENEMYTURN;
+                                StartCoroutine("EnemyTurn", 2);
+                                break;
+                        }
                     }
                 }
             }
@@ -1329,15 +1620,38 @@ public class BattleSystemMultiple : MonoBehaviour
                        */
                         enemySelectionParticle.transform.position = enemyBattleStationLocations[enemyUnitSelected].transform.position;
 
-                        state = BattleStateMultiple.STARTER;
-                        StarterTurn();
+                        switch (enemyStartCount)
+                        {
+                            case 1:
+                            case 2:
+                            case 3:
+                            case 5:
+                                StarterTurn();
+                                state = BattleStateMultiple.STARTER;
+                                break;
+                            case 4:
+                                state = BattleStateMultiple.ENEMYTURN;
+                                StartCoroutine("EnemyTurn", 3);
+                                break;
+                        }
                     }
 
                     if (!isDead)
                     {
-                        //Middle Reliever turn
-                        state = BattleStateMultiple.STARTER;
-                        StarterTurn();
+                        switch (enemyStartCount)
+                        {
+                            case 1:
+                            case 2:
+                            case 3:
+                            case 5:
+                                StarterTurn();
+                                state = BattleStateMultiple.STARTER;
+                                break;
+                            case 4:
+                                state = BattleStateMultiple.ENEMYTURN;
+                                StartCoroutine("EnemyTurn", 3);
+                                break;
+                        }
                     }
                 }
             }
@@ -1378,15 +1692,38 @@ public class BattleSystemMultiple : MonoBehaviour
                        */
                         enemySelectionParticle.transform.position = enemyBattleStationLocations[enemyUnitSelected].transform.position;
 
-                        state = BattleStateMultiple.STARTER;
-                        StarterTurn();
+                        switch (enemyStartCount)
+                        {
+                            case 1:
+                            case 2:
+                            case 3:
+                            case 5:
+                                StarterTurn();
+                                state = BattleStateMultiple.STARTER;
+                                break;
+                            case 4:
+                                state = BattleStateMultiple.ENEMYTURN;
+                                StartCoroutine("EnemyTurn", 3);
+                                break;
+                        }
                     }
 
                     if (!isDead)
                     {
-                        //Middle Reliever turn
-                        state = BattleStateMultiple.STARTER;
-                        StarterTurn();
+                        switch (enemyStartCount)
+                        {
+                            case 1:
+                            case 2:
+                            case 3:
+                            case 5:
+                                StarterTurn();
+                                state = BattleStateMultiple.STARTER;
+                                break;
+                            case 4:
+                                state = BattleStateMultiple.ENEMYTURN;
+                                StartCoroutine("EnemyTurn", 3);
+                                break;
+                        }
                     }
                 }
             }
@@ -1427,15 +1764,38 @@ public class BattleSystemMultiple : MonoBehaviour
                        */
                         enemySelectionParticle.transform.position = enemyBattleStationLocations[enemyUnitSelected].transform.position;
 
-                        state = BattleStateMultiple.STARTER;
-                        StarterTurn();
+                        switch (enemyStartCount)
+                        {
+                            case 1:
+                            case 2:
+                            case 3:
+                            case 5:
+                                StarterTurn();
+                                state = BattleStateMultiple.STARTER;
+                                break;
+                            case 4:
+                                state = BattleStateMultiple.ENEMYTURN;
+                                StartCoroutine("EnemyTurn", 3);
+                                break;
+                        }
                     }
 
                     if (!isDead)
                     {
-                        //Middle Reliever turn
-                        state = BattleStateMultiple.STARTER;
-                        StarterTurn();
+                        switch (enemyStartCount)
+                        {
+                            case 1:
+                            case 2:
+                            case 3:
+                            case 5:
+                                StarterTurn();
+                                state = BattleStateMultiple.STARTER;
+                                break;
+                            case 4:
+                                state = BattleStateMultiple.ENEMYTURN;
+                                StartCoroutine("EnemyTurn", 3);
+                                break;
+                        }
                     }
                 }
             }
@@ -1476,15 +1836,38 @@ public class BattleSystemMultiple : MonoBehaviour
                        */
                         enemySelectionParticle.transform.position = enemyBattleStationLocations[enemyUnitSelected].transform.position;
 
-                        state = BattleStateMultiple.STARTER;
-                        StarterTurn();
+                        switch (enemyStartCount)
+                        {
+                            case 1:
+                            case 2:
+                            case 3:
+                            case 5:
+                                StarterTurn();
+                                state = BattleStateMultiple.STARTER;
+                                break;
+                            case 4:
+                                state = BattleStateMultiple.ENEMYTURN;
+                                StartCoroutine("EnemyTurn", 3);
+                                break;
+                        }
                     }
 
                     if (!isDead)
                     {
-                        //Middle Reliever turn
-                        state = BattleStateMultiple.STARTER;
-                        StarterTurn();
+                        switch (enemyStartCount)
+                        {
+                            case 1:
+                            case 2:
+                            case 3:
+                            case 5:
+                                StarterTurn();
+                                state = BattleStateMultiple.STARTER;
+                                break;
+                            case 4:
+                                state = BattleStateMultiple.ENEMYTURN;
+                                StartCoroutine("EnemyTurn", 3);
+                                break;
+                        }
                     }
                 }
             }
@@ -1518,6 +1901,9 @@ public class BattleSystemMultiple : MonoBehaviour
                 switch (enemyIndex)
                 {
                     case 0:
+                        state = BattleStateMultiple.SETUP;
+                        break;
+                    case 1:
                         state = BattleStateMultiple.MIDDLE;
                         //Skipping Turn to go to pitcher
                         MiddleTurn();
@@ -1639,201 +2025,296 @@ public class BattleSystemMultiple : MonoBehaviour
         GameManager.Instance.DebugBall.transform.position = enemyUnit[enemyIndex].transform.position + Vector3.up * GameManager.Instance.DebugBallHeight;
         if (enemyUnit[enemyIndex].currentHP <= 0)
         {
-            NextPlayerTurnAfterEnemyTurn(enemyIndex);    
-        }  else {
-
+            NextPlayerTurnAfterEnemyTurn(enemyIndex);
+        }
+        else
+        {
             if (starterDead && middleDead && setupDead && closerDead)
             {
                 EndBattle();
             }
 
-            int RandomAttack = Random.Range(0, 100);
-            //Need logic to determine what attack the enemy will do
+            enemyUnit[enemyUnitSelected].DetermineAttack();
 
-            //attack animation
-
-            //Choosing Who To Attack
-            //happens at least once, if it is true, it does it again. (keep going until valid)
-            int safteyCounter = 1000;
-            do
+            if (enemyUnit[enemyUnitSelected].Shagging())
             {
-                WhoToAttack = Random.Range(0, 4);
-                if (safteyCounter-- < 0)
+                dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Everyone with " + enemyUnit[enemyUnitSelected].attackName + "!";
+
+                enemyAnim[enemyIndex].Play("Armature|Swing");
+
+                yield return new WaitForSeconds(2f);
+
+                bool isDead1 = Starter.TakeDamage(enemyUnit[enemyUnitSelected].enemyDamage);
+                bool isDead2 = MiddleReliever.TakeDamage(enemyUnit[enemyUnitSelected].enemyDamage);
+                bool isDead3 = SetUp.TakeDamage(enemyUnit[enemyUnitSelected].enemyDamage);
+                bool isDead4 = Closer.TakeDamage(enemyUnit[enemyUnitSelected].enemyDamage);
+
+                if (isDead1)
                 {
-                    Debug.LogError("Couldn't find a living WhoToAttack, is the Whole Team Dead?");
-                    break;
-                    //bails us out of the do while
+                    GameManager.StarterMorale -= enemyUnit[enemyUnitSelected].enemyDamage;
+                    StarterMorale.value = (GameManager.StarterMorale / GameManager.StarterMoraleMax);
+                    starterDead = true;
+
+                    StarterAnim.SetBool("isDead", true);
+                }
+                if (isDead2)
+                {
+                    GameManager.MidRelivMorale -= enemyUnit[enemyUnitSelected].enemyDamage;
+                    MiddleMorale.value = (GameManager.MidRelivMorale / GameManager.MidRelivMoraleMax);
+                    middleDead = true;
+
+                    MidRelAnim.SetBool("isDead", true);
+
+                }
+                if (isDead3)
+                {
+                    GameManager.SetUpMorale -= enemyUnit[enemyUnitSelected].enemyDamage;
+                    SetUpMorale.value = (GameManager.SetUpMorale / GameManager.SetUpMoraleMax);
+                    setupDead = true;
+
+                    SetUpAnim.SetBool("isDead", true);
+                }
+                if (isDead4)
+                {
+                    GameManager.CloserMorale -= enemyUnit[enemyUnitSelected].enemyDamage;
+                    CloserMorale.value = (GameManager.CloserMorale / GameManager.CloserMoraleMax);
+                    closerDead = true;
+
+                    CloserAnim.SetBool("isDead", true);
+
                 }
 
-            } while (isPlayerIndexDead(WhoToAttack));
-
-            yield return new WaitForSeconds(1.5f);
-
-            enemyAnim[enemyIndex].Play("Armature|Swing");
-
-            if (WhoToAttack == 0 && !starterDead)
-            {
-                Camera.transform.LookAt(Starter.transform.position);
-                enemyUnit[enemyUnitSelected].DetermineAttack();
-
-                if (GameManager.StarterAgil >= RandomAttack)
+                if (!isDead1)
                 {
-                    dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Starter with " + enemyUnit[enemyUnitSelected].attackName + "!";
                     yield return new WaitForSeconds(.5f);
-                    dialogueText.text = "Starter Dodges!";
-                    yield return new WaitForSeconds(1f);
-                    NextPlayerTurnAfterEnemyTurn(enemyIndex);
+                    StarterAnim.Play("Armature|Oof");
+
+                    GameManager.StarterMorale -= enemyUnit[enemyUnitSelected].enemyDamage;
+                    StarterMorale.value = (GameManager.StarterMorale / GameManager.StarterMoraleMax);
                 }
 
-                if (GameManager.StarterAgil < RandomAttack)
+                if (!isDead2)
                 {
-                    dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Starter with " + enemyUnit[enemyUnitSelected].attackName + "!";
+                    yield return new WaitForSeconds(.5f);
+                    MidRelAnim.Play("Armature|Oof");
 
-                    yield return new WaitForSeconds(2f);
+                    GameManager.MidRelivMorale -= enemyUnit[enemyUnitSelected].enemyDamage;
+                    MiddleMorale.value = (GameManager.MidRelivMorale / GameManager.MidRelivMoraleMax);
+                }
 
-                    bool isDead = Starter.TakeDamage(enemyUnit[enemyUnitSelected].enemyDamage);
-                    if (isDead)
+                if (!isDead3)
+                {
+                    yield return new WaitForSeconds(.5f);
+                    SetUpAnim.Play("Armature|Oof");
+
+                    GameManager.SetUpMorale -= enemyUnit[enemyUnitSelected].enemyDamage;
+                    SetUpMorale.value = (GameManager.SetUpMorale / GameManager.SetUpMoraleMax);
+                }
+
+                if (!isDead4)
+                {
+                    yield return new WaitForSeconds(.5f);
+                    CloserAnim.Play("Armature|Oof");
+
+                    GameManager.CloserMorale -= enemyUnit[enemyUnitSelected].enemyDamage;
+                    CloserMorale.value = (GameManager.CloserMorale / GameManager.CloserMoraleMax);
+                }
+
+                yield return new WaitForSeconds(2f);
+                NextPlayerTurnAfterEnemyTurn(enemyIndex);
+            }
+
+
+            else
+            {
+
+                int RandomAttack = Random.Range(0, 100);
+                //Need logic to determine what attack the enemy will do
+
+                //attack animation
+
+                //Choosing Who To Attack
+                //happens at least once, if it is true, it does it again. (keep going until valid)
+                int safteyCounter = 1000;
+
+
+                do
+                {
+                    WhoToAttack = Random.Range(0, 4);
+                    if (safteyCounter-- < 0)
                     {
-                        GameManager.StarterMorale -= enemyUnit[enemyUnitSelected].enemyDamage;
-                        StarterMorale.value = (GameManager.StarterMorale / GameManager.StarterMoraleMax);
-                        starterDead = true;
-
-                        StarterAnim.SetBool("isDead", true);
-                        yield return new WaitForSeconds(3f);
-                        NextPlayerTurnAfterEnemyTurn(enemyIndex);
+                        Debug.LogError("Couldn't find a living WhoToAttack, is the Whole Team Dead?");
+                        break;
+                        //bails us out of the do while
                     }
 
-                    else
+                } while (isPlayerIndexDead(WhoToAttack));
+
+                yield return new WaitForSeconds(1.5f);
+
+                enemyAnim[enemyIndex].Play("Armature|Swing");
+
+                if (WhoToAttack == 0 && !starterDead)
+                {
+                    Camera.transform.LookAt(Starter.transform.position);
+
+
+                    if (GameManager.StarterAgil >= RandomAttack)
                     {
+                        dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Starter with " + enemyUnit[enemyUnitSelected].attackName + "!";
                         yield return new WaitForSeconds(.5f);
-                        StarterAnim.Play("Armature|Oof");
+                        dialogueText.text = "Starter Dodges!";
+                        yield return new WaitForSeconds(1f);
+                        NextPlayerTurnAfterEnemyTurn(enemyIndex);
+                    }
 
-                        GameManager.StarterMorale -= enemyUnit[enemyUnitSelected].enemyDamage;
-                        StarterMorale.value = (GameManager.StarterMorale / GameManager.StarterMoraleMax);
+                    if (GameManager.StarterAgil < RandomAttack)
+                    {
+                        dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Starter with " + enemyUnit[enemyUnitSelected].attackName + "!";
+
                         yield return new WaitForSeconds(2f);
-                        NextPlayerTurnAfterEnemyTurn(enemyIndex);
+
+                        bool isDead = Starter.TakeDamage(enemyUnit[enemyUnitSelected].enemyDamage);
+                        if (isDead)
+                        {
+                            GameManager.StarterMorale -= enemyUnit[enemyUnitSelected].enemyDamage;
+                            StarterMorale.value = (GameManager.StarterMorale / GameManager.StarterMoraleMax);
+                            starterDead = true;
+
+                            StarterAnim.SetBool("isDead", true);
+                            yield return new WaitForSeconds(3f);
+                            NextPlayerTurnAfterEnemyTurn(enemyIndex);
+                        }
+
+                        else
+                        {
+                            yield return new WaitForSeconds(.5f);
+                            StarterAnim.Play("Armature|Oof");
+
+                            GameManager.StarterMorale -= enemyUnit[enemyUnitSelected].enemyDamage;
+                            StarterMorale.value = (GameManager.StarterMorale / GameManager.StarterMoraleMax);
+                            yield return new WaitForSeconds(2f);
+                            NextPlayerTurnAfterEnemyTurn(enemyIndex);
+                        }
                     }
                 }
-            }
-            if (WhoToAttack == 1 && !middleDead)
-            {
-                Camera.transform.LookAt(MiddleReliever.transform.position);
-                enemyUnit[enemyUnitSelected].DetermineAttack();
-
-                if (GameManager.MiddleAgil >= RandomAttack)
+                if (WhoToAttack == 1 && !middleDead)
                 {
-                    dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Mid Reliever with " + enemyUnit[enemyUnitSelected].attackName + "!";
-                    yield return new WaitForSeconds(.5f);
-                    dialogueText.text = "Mid Reliever Dodges!";
-                    yield return new WaitForSeconds(1f);
-                    NextPlayerTurnAfterEnemyTurn(enemyIndex);
-                }
-                if (GameManager.MiddleAgil < RandomAttack)
-                {
-                    dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Mid Reliever with " + enemyUnit[enemyUnitSelected].attackName + "!";
+                    Camera.transform.LookAt(MiddleReliever.transform.position);
 
-                    yield return new WaitForSeconds(1f);
-                    bool isDead = MiddleReliever.TakeDamage(enemyUnit[enemyUnitSelected].enemyDamage);
-                    if (isDead)
+                    if (GameManager.MiddleAgil >= RandomAttack)
                     {
-                        GameManager.MidRelivMorale -= enemyUnit[enemyUnitSelected].enemyDamage;
-                        MiddleMorale.value = (GameManager.MidRelivMorale / GameManager.MidRelivMoraleMax);
-                        middleDead = true;
-                        MidRelAnim.SetBool("isDead", true);
-                        yield return new WaitForSeconds(3f);
-                        NextPlayerTurnAfterEnemyTurn(enemyIndex);
-                    }
-
-                    else
-                    {
+                        dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Mid Reliever with " + enemyUnit[enemyUnitSelected].attackName + "!";
                         yield return new WaitForSeconds(.5f);
-                        MidRelAnim.Play("Armature|Oof");
-
-                        GameManager.MidRelivMorale -= enemyUnit[enemyUnitSelected].enemyDamage;
-                        MiddleMorale.value = (GameManager.MidRelivMorale / GameManager.MidRelivMoraleMax);
-                        yield return new WaitForSeconds(2f);
+                        dialogueText.text = "Mid Reliever Dodges!";
+                        yield return new WaitForSeconds(1f);
                         NextPlayerTurnAfterEnemyTurn(enemyIndex);
                     }
-                }
+                    if (GameManager.MiddleAgil < RandomAttack)
+                    {
+                        dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Mid Reliever with " + enemyUnit[enemyUnitSelected].attackName + "!";
 
-                yield return new WaitForSeconds(.5f);
-            }
-            if (WhoToAttack == 2 && !setupDead)
-            {
-                Camera.transform.LookAt(SetUp.transform.position);
-                enemyUnit[enemyUnitSelected].DetermineAttack();
+                        yield return new WaitForSeconds(1f);
+                        bool isDead = MiddleReliever.TakeDamage(enemyUnit[enemyUnitSelected].enemyDamage);
+                        if (isDead)
+                        {
+                            GameManager.MidRelivMorale -= enemyUnit[enemyUnitSelected].enemyDamage;
+                            MiddleMorale.value = (GameManager.MidRelivMorale / GameManager.MidRelivMoraleMax);
+                            middleDead = true;
+                            MidRelAnim.SetBool("isDead", true);
+                            yield return new WaitForSeconds(3f);
+                            NextPlayerTurnAfterEnemyTurn(enemyIndex);
+                        }
 
-                if (GameManager.SetUpAgil >= RandomAttack)
-                {
-                    dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks SetUp with " + enemyUnit[enemyUnitSelected].attackName + "!";
+                        else
+                        {
+                            yield return new WaitForSeconds(.5f);
+                            MidRelAnim.Play("Armature|Oof");
+
+                            GameManager.MidRelivMorale -= enemyUnit[enemyUnitSelected].enemyDamage;
+                            MiddleMorale.value = (GameManager.MidRelivMorale / GameManager.MidRelivMoraleMax);
+                            yield return new WaitForSeconds(2f);
+                            NextPlayerTurnAfterEnemyTurn(enemyIndex);
+                        }
+                    }
+
                     yield return new WaitForSeconds(.5f);
-                    dialogueText.text = "SetUp Dodges!";
-                    yield return new WaitForSeconds(1f);
-                    NextPlayerTurnAfterEnemyTurn(enemyIndex);
                 }
-                if (GameManager.SetUpAgil < RandomAttack)
+                if (WhoToAttack == 2 && !setupDead)
                 {
-                    dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Set Up with " + enemyUnit[enemyUnitSelected].attackName + "!";
+                    Camera.transform.LookAt(SetUp.transform.position);
 
-                    yield return new WaitForSeconds(1f);
-                    bool isDead = SetUp.TakeDamage(enemyUnit[enemyUnitSelected].enemyDamage);
-                    if (isDead)
+                    if (GameManager.SetUpAgil >= RandomAttack)
                     {
-                        GameManager.SetUpMorale -= enemyUnit[enemyUnitSelected].enemyDamage;
-                        SetUpMorale.value = (GameManager.SetUpMorale / GameManager.SetUpMoraleMax);
-                        SetUpAnim.SetBool("isDead", true);
-                        setupDead = true;
-                        yield return new WaitForSeconds(3f);
+                        dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks SetUp with " + enemyUnit[enemyUnitSelected].attackName + "!";
+                        yield return new WaitForSeconds(.5f);
+                        dialogueText.text = "SetUp Dodges!";
+                        yield return new WaitForSeconds(1f);
+                        NextPlayerTurnAfterEnemyTurn(enemyIndex);
+                    }
+                    if (GameManager.SetUpAgil < RandomAttack)
+                    {
+                        dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Set Up with " + enemyUnit[enemyUnitSelected].attackName + "!";
+
+                        yield return new WaitForSeconds(1f);
+                        bool isDead = SetUp.TakeDamage(enemyUnit[enemyUnitSelected].enemyDamage);
+                        if (isDead)
+                        {
+                            GameManager.SetUpMorale -= enemyUnit[enemyUnitSelected].enemyDamage;
+                            SetUpMorale.value = (GameManager.SetUpMorale / GameManager.SetUpMoraleMax);
+                            SetUpAnim.SetBool("isDead", true);
+                            setupDead = true;
+                            yield return new WaitForSeconds(3f);
+                            NextPlayerTurnAfterEnemyTurn(enemyIndex);
+                        }
+
+                        else
+                        {
+                            SetUpAnim.Play("Armature|Oof");
+                            GameManager.SetUpMorale -= enemyUnit[enemyUnitSelected].enemyDamage;
+                            SetUpMorale.value = (GameManager.SetUpMorale / GameManager.SetUpMoraleMax);
+                            yield return new WaitForSeconds(2f);
+                            NextPlayerTurnAfterEnemyTurn(enemyIndex);
+                        }
+                    }
+                }
+                if (WhoToAttack == 3 && !closerDead)
+                {
+                    Camera.transform.LookAt(Closer.transform.position);
+
+                    if (GameManager.CloserAgil >= RandomAttack)
+                    {
+                        dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Closer with " + enemyUnit[enemyUnitSelected].attackName + "!";
+                        yield return new WaitForSeconds(.5f);
+                        dialogueText.text = "Closer Dodges!";
+                        yield return new WaitForSeconds(1f);
                         NextPlayerTurnAfterEnemyTurn(enemyIndex);
                     }
 
-                    else
+                    if (GameManager.CloserAgil < RandomAttack)
                     {
-                        SetUpAnim.Play("Armature|Oof");
-                        GameManager.SetUpMorale -= enemyUnit[enemyUnitSelected].enemyDamage;
-                        SetUpMorale.value = (GameManager.SetUpMorale / GameManager.SetUpMoraleMax);
-                        yield return new WaitForSeconds(2f);
-                        NextPlayerTurnAfterEnemyTurn(enemyIndex);
-                    }
-                }
-            }
-            if (WhoToAttack == 3 && !closerDead)
-            {
-                Camera.transform.LookAt(Closer.transform.position);
-                enemyUnit[enemyUnitSelected].DetermineAttack();
+                        dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Closer with " + enemyUnit[enemyUnitSelected].attackName + "!";
 
-                if (GameManager.CloserAgil >= RandomAttack)
-                {
-                    dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Closer with " + enemyUnit[enemyUnitSelected].attackName + "!";
-                    yield return new WaitForSeconds(.5f);
-                    dialogueText.text = "Closer Dodges!";
-                    yield return new WaitForSeconds(1f);
-                    NextPlayerTurnAfterEnemyTurn(enemyIndex);
-                }
+                        yield return new WaitForSeconds(1f);
+                        bool isDead = Closer.TakeDamage(enemyUnit[enemyUnitSelected].enemyDamage);
+                        if (isDead)
+                        {
+                            GameManager.CloserMorale -= enemyUnit[enemyUnitSelected].enemyDamage;
+                            CloserMorale.value = (GameManager.CloserMorale / GameManager.CloserMoraleMax);
+                            CloserAnim.SetBool("isDead", true);
+                            closerDead = true;
+                            yield return new WaitForSeconds(3f);
+                            NextPlayerTurnAfterEnemyTurn(enemyIndex);
+                        }
 
-                if (GameManager.CloserAgil < RandomAttack)
-                {
-                    dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Closer with " + enemyUnit[enemyUnitSelected].attackName + "!";
-
-                    yield return new WaitForSeconds(1f);
-                    bool isDead = Closer.TakeDamage(enemyUnit[enemyUnitSelected].enemyDamage);
-                    if (isDead)
-                    {
-                        GameManager.CloserMorale -= enemyUnit[enemyUnitSelected].enemyDamage;
-                        CloserMorale.value = (GameManager.CloserMorale / GameManager.CloserMoraleMax);
-                        CloserAnim.SetBool("isDead", true);
-                        closerDead = true;
-                        yield return new WaitForSeconds(3f);
-                        NextPlayerTurnAfterEnemyTurn(enemyIndex);
-                    }
-
-                    else
-                    {
-                        CloserAnim.Play("Armature|Oof");
-                        GameManager.CloserMorale -= enemyUnit[enemyUnitSelected].enemyDamage;
-                        CloserMorale.value = (GameManager.CloserMorale / GameManager.CloserMoraleMax);
-                        yield return new WaitForSeconds(2f);
-                        NextPlayerTurnAfterEnemyTurn(enemyIndex);
+                        else
+                        {
+                            CloserAnim.Play("Armature|Oof");
+                            GameManager.CloserMorale -= enemyUnit[enemyUnitSelected].enemyDamage;
+                            CloserMorale.value = (GameManager.CloserMorale / GameManager.CloserMoraleMax);
+                            yield return new WaitForSeconds(2f);
+                            NextPlayerTurnAfterEnemyTurn(enemyIndex);
+                        }
                     }
                 }
             }

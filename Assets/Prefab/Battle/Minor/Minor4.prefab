@@ -879,8 +879,8 @@ MonoBehaviour:
   ChangeUpMultiplier: 0.5
   enemyDamage: 8
   attackName: 
-  maxHP: 10
-  currentHP: 1
+  maxHP: 18
+  currentHP: 18
   maxStamina: 30
   currentStamina: 25
   ExperienceToDistribute: 0
@@ -912,7 +912,7 @@ MonoBehaviour:
   M8: 0
   StrWeakHolder: {fileID: 324746304}
   minAttackAvil: 0
-  maxAttackAvil: 5
+  maxAttackAvil: 2
 --- !u!114 &8884915649504131469
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -243,7 +243,16 @@ public class Unit : MonoBehaviour
         { LineDrive(); }
 
         if (attackToDo == 4)
-        { FlyBall(); }
+        { Shagging(); }
+
+        if (attackToDo == 5)
+        { GroundRule(); }
+
+        if (attackToDo == 6)
+        { TakingPitch(); }
+
+        if (attackToDo == 7)
+        { DeepFoul(); }
     }
     
     public bool TakeDamage(int dmg)
@@ -464,6 +473,50 @@ public class Unit : MonoBehaviour
 
         enemyDamage = Random.Range(minDamage, maxDamage);
         attackName = "Fly Ball".ToString();
+    }
+
+    public bool Shagging()
+    {
+        minDamage = 3;
+        maxDamage = 5;
+
+        enemyDamage = Random.Range(minDamage, maxDamage);
+        attackName = "Shagging".ToString();
+
+        if (currentHP >= 0)
+        {
+            return true;
+        }
+
+        else
+            return false;
+    }
+
+    void GroundRule()
+    {
+        minDamage = 10;
+        maxDamage = 15;
+
+        enemyDamage = Random.Range(minDamage, maxDamage);
+        attackName = "Ground Rule Double".ToString();
+    }
+
+    void TakingPitch()
+    {
+        minDamage = 0;
+        maxDamage = 0;
+
+        enemyDamage = Random.Range(minDamage, maxDamage);
+        attackName = "Taking The Pitch".ToString();
+    }
+
+    void DeepFoul()
+    {
+        minDamage = 5;
+        maxDamage = 9;
+
+        enemyDamage = Random.Range(minDamage, maxDamage);
+        attackName = "Deep Foul Ball".ToString();
     }
 
 
