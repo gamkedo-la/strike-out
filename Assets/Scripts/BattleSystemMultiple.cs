@@ -2033,7 +2033,7 @@ public class BattleSystemMultiple : MonoBehaviour
 
             enemyUnit[enemyUnitSelected].DetermineAttack();
 
-            if (enemyUnit[enemyUnitSelected].Shagging())
+            if (Unit.attackAll)
             {
                 dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Everyone with " + enemyUnit[enemyUnitSelected].attackName + "!";
 
@@ -2116,7 +2116,7 @@ public class BattleSystemMultiple : MonoBehaviour
                     GameManager.CloserMorale -= enemyUnit[enemyUnitSelected].enemyDamage;
                     CloserMorale.value = (GameManager.CloserMorale / GameManager.CloserMoraleMax);
                 }
-
+                Unit.attackAll = false;
                 yield return new WaitForSeconds(2f);
                 NextPlayerTurnAfterEnemyTurn(enemyIndex);
             }

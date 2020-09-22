@@ -52,6 +52,8 @@ public class Unit : MonoBehaviour
     public bool M1, M2, M3, M4, M5, M6, M7, M8;
     public GameObject StrWeakHolder;
 
+    public static bool attackAll;
+
     //enemyAttack
     public int minAttackAvil, maxAttackAvil;
     int attackToDo;
@@ -476,6 +478,7 @@ public class Unit : MonoBehaviour
 
     public bool Shagging()
     {
+        attackAll = true;
         minDamage = 3;
         maxDamage = 5;
 

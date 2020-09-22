@@ -644,7 +644,7 @@ MonoBehaviour:
   M8: 0
   StrWeakHolder: {fileID: 6949930069196332932}
   minAttackAvil: 4
-  maxAttackAvil: 5
+  maxAttackAvil: 8
 --- !u!114 &6650400506096194839
 MonoBehaviour:
   m_ObjectHideFlags: 0
