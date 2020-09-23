@@ -888,7 +888,7 @@ MonoBehaviour:
   maxExperience: 15
   MoneyToDistribute: 0
   minMoney: 10
-  maxMoney: 20
+  maxMoney: 11
   isEnemy: 1
   HealthSlider: {fileID: 4862114403205535192}
   DescText: {fileID: 7242523427753813134}

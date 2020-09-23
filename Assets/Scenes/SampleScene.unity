@@ -918,6 +918,7 @@ MonoBehaviour:
   Boss: 0
   cutSceneCamAnim: {fileID: 0}
   announcer: 0
+  InventoryItemPostBattle: {fileID: 1188219740}
 --- !u!4 &35255473
 Transform:
   m_ObjectHideFlags: 0

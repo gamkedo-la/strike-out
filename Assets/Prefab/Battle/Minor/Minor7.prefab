@@ -421,7 +421,7 @@ MonoBehaviour:
   maxExperience: 15
   MoneyToDistribute: 0
   minMoney: 10
-  maxMoney: 20
+  maxMoney: 11
   isEnemy: 1
   HealthSlider: {fileID: 3774393291383842731}
   DescText: {fileID: 4794048739881864691}

@@ -59,7 +59,7 @@ public class BattleSystemMultiple : MonoBehaviour
     public Slider SeFSlider, SeSSlider, SeCSlider, SeChSlider, SeASlider;
     public Slider CFSlider, CSSlider, CCSlider, CChSlider, CASlider;
     public Text SPoints, MPoints, SePoints, CPoints;
-    
+
     int SPointsToGive, MPointsToGive, SePointsToGive, CPointsToGive;
     #endregion
     public Text MoneyText;
@@ -119,8 +119,15 @@ public class BattleSystemMultiple : MonoBehaviour
     //cutscene cam anim 
     public Animator cutSceneCamAnim;
     public bool announcer;
+
+    GameObject InventoryManage;
+    public Text InventoryItemPostBattle;
+
+
     private void Start()
     {
+        InventoryManage = GameObject.Find("Inventory");
+
         Camera.transform.position = battleCam.transform.position;
         Camera.transform.LookAt(enemyCamTarget.transform.position);
         state = BattleStateMultiple.START;
@@ -143,25 +150,25 @@ public class BattleSystemMultiple : MonoBehaviour
             int RandRangeEnemySpawn = Random.Range(0, 100);
 
             if (RandRangeEnemySpawn < 14)
-            { 
+            {
                 enemyStartCount = 1;
             }
-            else if (RandRangeEnemySpawn <= 39 )
-            { 
+            else if (RandRangeEnemySpawn <= 39)
+            {
                 enemyStartCount = 2;
             }
             else if (RandRangeEnemySpawn <= 69)
-            { 
+            {
                 enemyStartCount = 3;
             }
             else if (RandRangeEnemySpawn <= 89)
-            { 
+            {
                 enemyStartCount = 4;
             }
             else
-            { 
+            {
                 enemyStartCount = 5;
-            }            
+            }
         }
 
         for (int i = 0; i < enemyStartCount; i++)
@@ -358,7 +365,7 @@ public class BattleSystemMultiple : MonoBehaviour
             closerDead = true;
             CloserAnim.SetBool("isDead", true);
         }
-        print(GameManager.StarterMorale + " " + GameManager.MidRelivMorale + " " + GameManager.SetUpMorale + " " + GameManager.CloserMorale + " " );
+        print(GameManager.StarterMorale + " " + GameManager.MidRelivMorale + " " + GameManager.SetUpMorale + " " + GameManager.CloserMorale + " ");
         #endregion
     }
 
@@ -512,8 +519,8 @@ public class BattleSystemMultiple : MonoBehaviour
                 totalExp += enemyUnit[enemyUnitSelected].ExperienceToDistribute;
                 enemyCount--;
                 enemyBattleStationLocations.Remove(enemyBattleStationLocations[enemyUnitSelected]);
-               // enemyPrefab.Remove(enemyPrefab[enemyUnitSelected]);
-               // enemyUnit.Remove(enemyUnit[enemyUnitSelected]);
+                // enemyPrefab.Remove(enemyPrefab[enemyUnitSelected]);
+                // enemyUnit.Remove(enemyUnit[enemyUnitSelected]);
                 enemyUnitSelected = 0;
                 enemySelectionParticle.transform.position = enemyBattleStationLocations[enemyUnitSelected].transform.position;
             }
@@ -571,7 +578,7 @@ public class BattleSystemMultiple : MonoBehaviour
 
         if (state == BattleStateMultiple.STARTER)
         {
-            
+
             state = BattleStateMultiple.ENEMYTURN;
             StartCoroutine("EnemyTurn", 0);
         }
@@ -786,7 +793,7 @@ public class BattleSystemMultiple : MonoBehaviour
                     if (!isDead)
                     {
                         //Middle Reliever turn
-                        if(enemyCount == 1)
+                        if (enemyCount == 1)
                         {
                             MiddleTurn();
                             state = BattleStateMultiple.MIDDLE;
@@ -813,8 +820,8 @@ public class BattleSystemMultiple : MonoBehaviour
                 }
                 else
                 {
-                   GameManager.StarterEnergy -= Starter.curveballStamina;
-                   StarterEnergy.value = GameManager.StarterEnergy / GameManager.StarterEnergyMax;
+                    GameManager.StarterEnergy -= Starter.curveballStamina;
+                    StarterEnergy.value = GameManager.StarterEnergy / GameManager.StarterEnergyMax;
                     StarterAnim.Play("Armature|Windup");
                     yield return new WaitForSeconds(2f);
                     isDead = enemyUnit[enemyUnitSelected].TakeDamageCurve(Starter.curveballDamage + GameManager.StarterCurve);
@@ -1383,7 +1390,7 @@ public class BattleSystemMultiple : MonoBehaviour
                             case 4:
                                 state = BattleStateMultiple.ENEMYTURN;
                                 StartCoroutine("EnemyTurn", 2);
-                                break;   
+                                break;
                         }
                     }
 
@@ -2012,7 +2019,7 @@ public class BattleSystemMultiple : MonoBehaviour
                         break;
                 }
                 break;
-        }        
+        }
     }
 
     IEnumerator EnemyTurn(int enemyIndex)
@@ -2332,7 +2339,7 @@ public class BattleSystemMultiple : MonoBehaviour
                 state = BattleStateMultiple.MIDDLE;
                 MiddleTurn();
             }
-            else 
+            else
             {
                 state = BattleStateMultiple.ENEMYTURN;
                 StartCoroutine("EnemyTurn", 0);
@@ -2615,7 +2622,7 @@ public class BattleSystemMultiple : MonoBehaviour
                 enemySelect = true;
                 ConfirmMenu.SetActive(true);
                 PlayerPitches.SetActive(false);
-                PlayerMenu.SetActive(false); 
+                PlayerMenu.SetActive(false);
             }
             else
                 dialogueText.text = "Not enough energy!";
@@ -2821,7 +2828,7 @@ public class BattleSystemMultiple : MonoBehaviour
             if (!isOver)
             {
                 AddXP();
-            } 
+            }
             //Add this later, this is money at the end of the battle. Needs to be a sum of all units
             //GameManager.Money += enemyUnit[enemyUnitSelected].MoneyToDistribute;
             //MoneyText.text = "$ " + enemyUnit[enemyUnitSelected].MoneyToDistribute.ToString("F0");
@@ -2836,6 +2843,12 @@ public class BattleSystemMultiple : MonoBehaviour
     }
     public void AddXP()
     {
+        for (int i = 0; i < enemyUnit.Count; i++)
+        {
+            GameManager.Money += enemyUnit[i].MoneyToDistribute;
+            MoneyText.text = GameManager.Money.ToString();
+        }
+
         if (!starterDead)
         {
             StarterExpGain.text = "   +" + (totalExp / 4).ToString("F0");
@@ -2888,6 +2901,50 @@ public class BattleSystemMultiple : MonoBehaviour
             CloserExpToNext.text = GameManager.CloserTargetExp.ToString("F0");
             CloserTotalExp.text = GameManager.CloserLevel.ToString("F0");
         }
+
+        ChooseItem();
+    }
+
+    void ChooseItem()
+    {
+        int RandInt = Random.Range(0, 100);
+
+        if (RandInt < 30)
+        {
+            print("No item rewarded");
+        }
+        else if (RandInt < 50)
+        {
+            InventoryManage.GetComponent<InventoryManager>().StamUp20();
+            InventoryItemPostBattle.text = "Sports Drink".ToString();
+        }
+        else if (RandInt < 65)
+        {
+            InventoryManage.GetComponent<InventoryManager>().EnUp10();
+            InventoryItemPostBattle.text = "Granola Bar".ToString();
+        }
+        else if (RandInt < 75)
+        {
+            InventoryManage.GetComponent<InventoryManager>().EnUpAll10();
+            InventoryItemPostBattle.text = "Sunflower Seeds".ToString();
+        }
+        else if (RandInt < 83)
+        {
+            InventoryManage.GetComponent<InventoryManager>().StamUpAll20();
+            InventoryItemPostBattle.text = "Grandma's Cookies".ToString();
+        }
+        else if (RandInt < 90)
+        {
+            InventoryManage.GetComponent<InventoryManager>().EnemyHealthDown20();
+            InventoryItemPostBattle.text = "Scouting Report".ToString();
+        }
+        else if (RandInt < 100)
+        {
+            InventoryManage.GetComponent<InventoryManager>().EnemyHealthDownAll20();
+            InventoryItemPostBattle.text = "Defensive Shift".ToString();
+        }
+
+
     }
 
     void StarterExp(int xp)

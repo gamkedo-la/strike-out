@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
     //UI
     Slider Starter, MidReliv, SetUp, Closer;
     Slider StarterE, MidRelivE, SetUpE, CloserE;
+    public Text moneyUI;
 
     //EnemyAttacked player
     public static bool EnemyAttackedPlayer;
@@ -33,8 +34,6 @@ public class GameManager : MonoBehaviour
     public GameObject DebugBall;
     public float DebugBallHeight = 3.0f;
 
-
-    public Text moneyUI;
 
     //dealing with Item placement to maintain no respawn until returning to Training Area
     public static bool i1, i2, i3, i4, i5, i6, i7, i8, i9, i10, i11, i12, i13, i14, i15, i16, i17, i18, i19, i20, i21, i22, i23, i24, i25;
@@ -673,8 +672,6 @@ public class GameManager : MonoBehaviour
         {
             CloserMorale = 1;
         }
-
-        moneyUI.text = "$ " + Money.ToString("F0");
         HookUpUI();
     }
     public void HookUpUI()
@@ -689,6 +686,10 @@ public class GameManager : MonoBehaviour
         MidRelivE = GameObject.Find("MiddleRelivEnergy").GetComponent<Slider>();
         SetUpE = GameObject.Find("SetUpEnergy").GetComponent<Slider>();
         CloserE = GameObject.Find("CloserEnergy").GetComponent<Slider>();
+
+        moneyUI = GameObject.Find("Money").GetComponent<Text>();
+        moneyUI.text = "$ " + Money.ToString("F0");
+        
     }
 
     private void Update()
