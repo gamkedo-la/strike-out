@@ -16,40 +16,43 @@ public class PauseMenu : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Tab) && !isPaused)
+        if (!BattleSystemMultiple.inBattle)
         {
-            isInventory = !isInventory;
-        }
-        
-        if (isInventory)
-        {
-            InventoryMenu.transform.localPosition = new Vector3(233, 0, 0);
-        }
+            if (Input.GetKeyDown(KeyCode.Tab) && !isPaused)
+            {
+                isInventory = !isInventory;
+            }
 
-        if (!isInventory)
-        {
-            InventoryMenu.transform.localPosition = new Vector3(233, -900, 0);
-        }
+            if (isInventory)
+            {
+                InventoryMenu.transform.localPosition = new Vector3(233, 0, 0);
+            }
+
+            if (!isInventory)
+            {
+                InventoryMenu.transform.localPosition = new Vector3(233, -900, 0);
+            }
 
 
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            isInventory = false;
-            isPaused = !isPaused;
-            StatsMenu.SetActive(false);
-           // InventoryMenu.transform.localPosition = new Vector3(0,-400,0);
-        }
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                isInventory = false;
+                isPaused = !isPaused;
+                StatsMenu.SetActive(false);
+                // InventoryMenu.transform.localPosition = new Vector3(0,-400,0);
+            }
 
-        if (isPaused)
-        {
-            Time.timeScale = 0f;
-            pauseMenu.SetActive(true);
-        }
+            if (isPaused)
+            {
+                Time.timeScale = 0f;
+                pauseMenu.SetActive(true);
+            }
 
-        if(!isPaused)
-        {
-            Time.timeScale = 1f;
-            pauseMenu.SetActive(false);
+            if (!isPaused)
+            {
+                Time.timeScale = 1f;
+                pauseMenu.SetActive(false);
+            }
         }
     }
 

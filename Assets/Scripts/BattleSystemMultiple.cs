@@ -9,6 +9,7 @@ public enum BattleStateMultiple { START, STARTER, MIDDLE, SETUP, CLOSER, ENEMYTU
 
 public class BattleSystemMultiple : MonoBehaviour
 {
+    public static bool inBattle; 
     public BattleStateMultiple state;
 
     public GameObject StarterPrefab;
@@ -126,6 +127,7 @@ public class BattleSystemMultiple : MonoBehaviour
 
     private void Start()
     {
+        inBattle = true;
         InventoryManage = GameObject.Find("Inventory");
 
         Camera.transform.position = battleCam.transform.position;
@@ -556,6 +558,7 @@ public class BattleSystemMultiple : MonoBehaviour
     public void ItemMenuButton()
     {
         ItemMenu.transform.localPosition = new Vector3(233, 20, 0);
+        print(ItemMenu.name);
         backButtonItem.SetActive(true);
         PlayerMenu.SetActive(false);
         PlayerPitches.SetActive(false);
@@ -3656,6 +3659,7 @@ public class BattleSystemMultiple : MonoBehaviour
 
     IEnumerator WaitingAtEndOfBattle()
     {
+        inBattle = false;
         yield return new WaitForSeconds(1.5f);
         state = BattleStateMultiple.START;
         //Return to Main Menu
@@ -3664,6 +3668,7 @@ public class BattleSystemMultiple : MonoBehaviour
 
     IEnumerator WaitingAtEndOfBattleForTraining()
     {
+        inBattle = false;
         yield return new WaitForSeconds(1.5f);
         state = BattleStateMultiple.START;
         //Return to Main Menu
