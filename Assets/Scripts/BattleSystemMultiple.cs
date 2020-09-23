@@ -124,6 +124,9 @@ public class BattleSystemMultiple : MonoBehaviour
     GameObject InventoryManage;
     public Text InventoryItemPostBattle;
 
+    //Boss Bool Triggers
+    public bool McGee, Announcer, Umpire, TheBabe;
+
 
     private void Start()
     {
@@ -3659,6 +3662,14 @@ public class BattleSystemMultiple : MonoBehaviour
 
     IEnumerator WaitingAtEndOfBattle()
     {
+        if (McGee)
+        {
+            ConcourseGameManager.McGeeKilled = true;
+        }
+        if (Announcer)
+        {
+            ConcourseGameManager.AnnouncerKilled = true;
+        }
         inBattle = false;
         yield return new WaitForSeconds(1.5f);
         state = BattleStateMultiple.START;
