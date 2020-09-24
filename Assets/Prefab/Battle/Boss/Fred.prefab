@@ -611,7 +611,7 @@ MonoBehaviour:
   ChangeUpMultiplier: 1
   enemyDamage: 3
   attackName: Shagging
-  maxHP: 100
+  maxHP: 10
   currentHP: 36
   maxStamina: 30
   currentStamina: 25

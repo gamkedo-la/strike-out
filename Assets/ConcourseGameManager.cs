@@ -11,6 +11,11 @@ public class ConcourseGameManager : MonoBehaviour
 
     public GameObject elevatorBlock, barrierOnElevator1, barrierOnElevator2, barrierOnElevator3, barrierOnElevator4, ElevatorCam, mainCam;
 
+    public Dialogue dialogue;
+
+    public Vector3 playerStartAfterMcGee;
+    public GameObject Player;
+
     private void Start()
     {
         if (!McGeeHasAlreadyBeenKilled)
@@ -25,6 +30,8 @@ public class ConcourseGameManager : MonoBehaviour
 
     IEnumerator McGeeKilledWaiting()
     {
+        Player.transform.position = playerStartAfterMcGee;
+        yield return new WaitForSeconds(1.5f);
         ElevatorCam.SetActive(true);
         mainCam.SetActive(false);
         yield return new WaitForSeconds(1.5f);
@@ -48,5 +55,8 @@ public class ConcourseGameManager : MonoBehaviour
         ElevatorCam.SetActive(false);
         mainCam.SetActive(true);
         McGeeHasAlreadyBeenKilled = true;
+
+        yield return new WaitForSeconds(1f);
+        FindObjectOfType<DialogueManager>().StartDialogue(dialogue);
     }
 }

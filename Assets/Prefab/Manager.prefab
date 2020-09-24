@@ -419,6 +419,10 @@ MonoBehaviour:
     - 'Huh, looks like it is working. Carry on. '
   Boss1: 0
   Boss2: 0
+  isTraining: 0
+  isManager: 0
+  dialogue1: {fileID: 0}
+  dialogue2: {fileID: 0}
 --- !u!1 &8853345749730855947
 GameObject:
   m_ObjectHideFlags: 0
