@@ -13,7 +13,7 @@ public class ConcourseGameManager : MonoBehaviour
 
     public Dialogue dialogue;
 
-    public Vector3 playerStartAfterMcGee;
+    public Transform playerStartAfterMcGee;
     public GameObject Player;
 
     private void Start()
@@ -30,7 +30,7 @@ public class ConcourseGameManager : MonoBehaviour
 
     IEnumerator McGeeKilledWaiting()
     {
-        Player.transform.position = playerStartAfterMcGee;
+        Player.transform.position = playerStartAfterMcGee.transform.position;
         yield return new WaitForSeconds(1.5f);
         ElevatorCam.SetActive(true);
         mainCam.SetActive(false);
