@@ -23,8 +23,8 @@ TagManager:
   - 
   - MiniMap
   - MiniMapCam
-  - 
-  - 
+  - Enemy
+  - BlockEnemy
   - 
   - 
   - 

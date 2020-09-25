@@ -10,10 +10,12 @@ public class Elevator : MonoBehaviour
     public GameObject player, mapCam;
     public GameObject mainCam, elevatorCam;
 
-    public GameObject Elevator1, thisElevator;
+    public Transform topPos, bottomPos;
 
-    bool playerInside;
+    public float pathPerc = 0.0f;
 
+    bool elevatorRising = false;
+    bool elevatorSinking = false;
     private void FixedUpdate()
     {
         if (Input.GetKeyDown(KeyCode.E))
@@ -21,14 +23,30 @@ public class Elevator : MonoBehaviour
             barrier.SetActive(false);
         }
 
-        if (playerInside)
+        if (elevatorRising)
         {
-            door.SetActive(true);
-            elevatorCam.SetActive(true);
-            mainCam.SetActive(false);
-            mapCam.SetActive(false);
-            player.GetComponent<NavMeshAgent>().enabled = false;
-            elevator.transform.position += elevator.transform.forward * Time.deltaTime * 4f;
+            pathPerc += Time.deltaTime * .3f;
+            if (pathPerc > 1.0f)
+            {
+                pathPerc = 1.0f;
+                ElevatorEnd();
+            }
+            elevator.transform.position = Vector3.Lerp(bottomPos.position, topPos.position, pathPerc);
+
+            //elevator.transform.position += elevator.transform.forward * Time.deltaTime * 4f;
+        }
+
+        if (elevatorSinking)
+        {
+            pathPerc -= Time.deltaTime * .3f;
+            if (pathPerc < 0.0f)
+            {
+                pathPerc = 0.0f;
+                ElevatorEnd();
+            }
+            elevator.transform.position = Vector3.Lerp(bottomPos.position, topPos.position, pathPerc);
+
+            //elevator.transform.position += elevator.transform.forward * Time.deltaTime * 4f;
         }
     }
 
@@ -36,7 +54,21 @@ public class Elevator : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            playerInside = true;
+            if (pathPerc < 0.5f)
+            {
+                elevatorRising = true;
+            }
+            else
+            {
+                elevatorSinking = true;
+            }
+           
+            door.SetActive(true);
+            elevatorCam.SetActive(true);
+            mainCam.SetActive(false);
+            mapCam.SetActive(false);
+            player.GetComponent<NavMeshAgent>().enabled = false;
+            player.transform.SetParent(elevator.transform);
         }
 
     }
@@ -45,22 +77,19 @@ public class Elevator : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            playerInside = false;
-
-            door.SetActive(false);
             elevatorCam.SetActive(false);
             mainCam.SetActive(true);
             mapCam.SetActive(true);
-            player.GetComponent<NavMeshAgent>().enabled = true;
-            StartCoroutine(Waiting());
         }
-
     }
 
-    IEnumerator Waiting()
+    private void ElevatorEnd()
     {
-        yield return new WaitForSeconds(4f);
-        thisElevator.SetActive(true);
-        Elevator1.SetActive(false);
+        elevatorRising = false;
+        elevatorSinking = false;
+
+        door.SetActive(false);
+        player.GetComponent<NavMeshAgent>().enabled = true;
+        player.transform.SetParent(null);
     }
 }
