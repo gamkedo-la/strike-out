@@ -15,10 +15,23 @@ public class TVTurnOn : MonoBehaviour
 
     public DialogueForTraining dialogue1, dialogue2, dialogue3;
 
+    public static bool HOEUnlocked;
+    public Material locked, unlocked;
+    public GameObject HallOfEliteIcon;
+
     private void Start()
     {
         cam.SetActive(false);
         levelSelect = 0;
+
+        if (HOEUnlocked)
+        {
+            HallOfEliteIcon.GetComponent<Renderer>().material = unlocked;
+        }
+        else
+        {
+            HallOfEliteIcon.GetComponent<Renderer>().material = locked;
+        }
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -75,6 +88,13 @@ public class TVTurnOn : MonoBehaviour
                 if (levelSelect == 0)
                 {
                     FindObjectOfType<LevelManagerDialogue>().StartDialogue(dialogue1);
+                    //SceneManager.LoadScene("Concourse");
+                    //Training.LevelSelectTV = false;
+                }
+
+                if (levelSelect == 1 && HOEUnlocked)
+                {
+                    FindObjectOfType<LevelManagerDialogue>().StartDialogue(dialogue3);
                     //SceneManager.LoadScene("Concourse");
                     //Training.LevelSelectTV = false;
                 }

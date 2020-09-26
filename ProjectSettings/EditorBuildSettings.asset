@@ -26,4 +26,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/FredFight.unity
     guid: b6cc9622ca0c553498492314e72b48e1
+  - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: f0ae6c775d4338349b41b2478b04a5ff
   m_configObjects: {}

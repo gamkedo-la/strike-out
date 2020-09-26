@@ -254,7 +254,14 @@ public class BattleSystemMultiple : MonoBehaviour
             enemyUnit.Add(enemyGO.GetComponent<Unit>());
             enemyAnim.Add(enemyGO.GetComponentInChildren<Animator>());
         }
-        yield return new WaitForSeconds(4f);
+        if (Announcer)
+        {
+            yield return new WaitForSeconds(6f);
+        }
+        else
+        {
+            yield return new WaitForSeconds(4f);
+        }
         cutsceneCam.SetActive(false);
         state = BattleStateMultiple.STARTER;
         StarterTurn();

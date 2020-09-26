@@ -140,8 +140,8 @@ MonoBehaviour:
   ChangeUpMultiplier: 1
   enemyDamage: 8
   attackName: 
-  maxHP: 150
-  currentHP: 150
+  maxHP: 10
+  currentHP: 10
   maxStamina: 30
   currentStamina: 25
   ExperienceToDistribute: 0

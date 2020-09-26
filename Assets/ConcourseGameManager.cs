@@ -16,6 +16,8 @@ public class ConcourseGameManager : MonoBehaviour
     public Transform playerStartAfterMcGee;
     public GameObject Player;
 
+    public GameObject AnnouncerConvo, AnnouncerCam;
+
     private void Start()
     {
         if (!McGeeHasAlreadyBeenKilled)
@@ -24,6 +26,17 @@ public class ConcourseGameManager : MonoBehaviour
             {
                 Fred.SetActive(false);
                 StartCoroutine(McGeeKilledWaiting());
+            }
+        }
+
+        if (!AnnouncerHasAlreadyBeenKilled)
+        {
+            if (AnnouncerKilled)
+            {
+                AnnouncerBoss.SetActive(false);
+                AnnouncerCam.SetActive(true);
+                mainCam.SetActive(false);
+                StartCoroutine(AnnouncerKilledWait());
             }
         }
     }
@@ -58,5 +71,13 @@ public class ConcourseGameManager : MonoBehaviour
 
         yield return new WaitForSeconds(1f);
         FindObjectOfType<DialogueManager>().StartDialogue(dialogue);
+    }
+
+    IEnumerator AnnouncerKilledWait()
+    {
+        yield return new WaitForSeconds(7.5f);
+        AnnouncerCam.SetActive(false);
+        mainCam.SetActive(true);
+        AnnouncerConvo.SetActive(true);
     }
 }
