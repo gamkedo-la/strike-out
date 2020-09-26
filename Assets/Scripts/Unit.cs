@@ -257,6 +257,21 @@ public class Unit : MonoBehaviour
 
         if (attackToDo == 7)
         { DeepFoul(); }
+
+        if (attackToDo == 8)
+        { CircusPlay(); }
+
+        if (attackToDo == 9)
+        { Grandstanding(); }
+
+        if (attackToDo == 10)
+        { TheCall(); }
+
+        if (attackToDo == 11)
+        { DucksOnPond(); }
+
+        if (attackToDo == 12)
+        { SouvenirDay(); }
     }
     
     public bool TakeDamage(int dmg)
@@ -528,6 +543,73 @@ public class Unit : MonoBehaviour
         attackName = "Deep Foul Ball".ToString();
     }
 
+    void CircusPlay()
+    {
+        minDamage = 7;
+        maxDamage = 12;
+
+        enemyDamage = Random.Range(minDamage, maxDamage);
+        // DamageUI.text = "-" + enemyDamage.ToString();
+        attackName = "Circus Play".ToString();
+    }
+
+    void Grandstanding()
+    {
+        minDamage = 13;
+        maxDamage = 17;
+
+        enemyDamage = Random.Range(minDamage, maxDamage);
+        // DamageUI.text = "-" + enemyDamage.ToString();
+        attackName = "Grandstanding".ToString();
+    }
+
+    void TheCall()
+    {
+        minDamage = 10;
+        maxDamage = 13;
+
+        enemyDamage = Random.Range(minDamage, maxDamage);
+        // DamageUI.text = "-" + enemyDamage.ToString();
+        attackName = "The Call".ToString();
+    }
+
+    public bool DucksOnPond()
+    {
+        attackAll = true;
+        minDamage = 10;
+        maxDamage = 15;
+
+        enemyDamage = Random.Range(minDamage, maxDamage);
+        //  DamageUI.text = "-" + enemyDamage.ToString();
+        attackName = "Ducks On The Pond".ToString();
+
+        if (currentHP >= 0)
+        {
+            return true;
+        }
+
+        else
+            return false;
+    }
+
+    public bool SouvenirDay()
+    {
+        attackAll = true;
+        minDamage = 15;
+        maxDamage = 25;
+
+        enemyDamage = Random.Range(minDamage, maxDamage);
+        //  DamageUI.text = "-" + enemyDamage.ToString();
+        attackName = "Souvenir Day".ToString();
+
+        if (currentHP >= 0)
+        {
+            return true;
+        }
+
+        else
+            return false;
+    }
 
     IEnumerator ClearText()
     {
