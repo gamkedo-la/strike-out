@@ -77,8 +77,15 @@ public class AudioData : ScriptableObject
     {
         if(Sounds.Count == 0)
         {
-            Debug.LogWarning("AudioData does not contain any AudioClips.");
-            return null;
+            if (Clip != null)
+            {
+                return Clip;
+            }
+            else
+            {
+                Debug.LogWarning("AudioData does not contain any AudioClips.");
+                return null;
+            }
         }
 
         int index = 0;
