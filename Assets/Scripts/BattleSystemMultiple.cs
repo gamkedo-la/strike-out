@@ -130,6 +130,9 @@ public class BattleSystemMultiple : MonoBehaviour
     //Damage UI against players
     public Text StarterDamageUI, MiddleDamageUI, SetUpDamageUI, CloserDamageUI;
 
+    //Announcer Cut Scene Cam
+    public Transform CutSceneCamTarget;
+
     private void Start()
     {
         inBattle = true;
@@ -140,13 +143,21 @@ public class BattleSystemMultiple : MonoBehaviour
         SetUpDamageUI.text = "".ToString();
         CloserDamageUI.text = "".ToString();
 
-        Camera.transform.position = battleCam.transform.position;
-        Camera.transform.LookAt(enemyCamTarget.transform.position);
+        if (Announcer)
+        {
+            Camera.transform.position = CutSceneCamTarget.transform.position;
+            Camera.transform.rotation = CutSceneCamTarget.transform.rotation;
+        }
+        else
+        {
+            Camera.transform.position = battleCam.transform.position;
+            Camera.transform.LookAt(enemyCamTarget.transform.position);
+        }
         state = BattleStateMultiple.START;
 
         if (announcer)
         {
-            cutSceneCamAnim.SetBool("Announcer", true);
+           // cutSceneCamAnim.SetBool("Announcer", true);
         }
 
         print(enemyBattleStationLocations.Count);
