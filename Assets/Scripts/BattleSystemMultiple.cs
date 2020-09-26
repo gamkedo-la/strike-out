@@ -127,11 +127,18 @@ public class BattleSystemMultiple : MonoBehaviour
     //Boss Bool Triggers
     public bool McGee, Announcer, Umpire, TheBabe;
 
+    //Damage UI against players
+    public Text StarterDamageUI, MiddleDamageUI, SetUpDamageUI, CloserDamageUI;
 
     private void Start()
     {
         inBattle = true;
         InventoryManage = GameObject.Find("Inventory");
+
+        StarterDamageUI.text = "".ToString();
+        MiddleDamageUI.text = "".ToString();
+        SetUpDamageUI.text = "".ToString();
+        CloserDamageUI.text = "".ToString();
 
         Camera.transform.position = battleCam.transform.position;
         Camera.transform.LookAt(enemyCamTarget.transform.position);
@@ -2064,7 +2071,7 @@ public class BattleSystemMultiple : MonoBehaviour
                     GameManager.StarterMorale -= enemyUnit[enemyUnitSelected].enemyDamage;
                     StarterMorale.value = (GameManager.StarterMorale / GameManager.StarterMoraleMax);
                     starterDead = true;
-
+                    StarterDamageUI.text = "-" + enemyUnit[enemyUnitSelected].enemyDamage.ToString();
                     StarterAnim.SetBool("isDead", true);
                 }
                 if (isDead2)
@@ -2072,7 +2079,7 @@ public class BattleSystemMultiple : MonoBehaviour
                     GameManager.MidRelivMorale -= enemyUnit[enemyUnitSelected].enemyDamage;
                     MiddleMorale.value = (GameManager.MidRelivMorale / GameManager.MidRelivMoraleMax);
                     middleDead = true;
-
+                    MiddleDamageUI.text = "-" + enemyUnit[enemyUnitSelected].enemyDamage.ToString();
                     MidRelAnim.SetBool("isDead", true);
 
                 }
@@ -2081,7 +2088,7 @@ public class BattleSystemMultiple : MonoBehaviour
                     GameManager.SetUpMorale -= enemyUnit[enemyUnitSelected].enemyDamage;
                     SetUpMorale.value = (GameManager.SetUpMorale / GameManager.SetUpMoraleMax);
                     setupDead = true;
-
+                    SetUpDamageUI.text = "-" + enemyUnit[enemyUnitSelected].enemyDamage.ToString();
                     SetUpAnim.SetBool("isDead", true);
                 }
                 if (isDead4)
@@ -2089,7 +2096,7 @@ public class BattleSystemMultiple : MonoBehaviour
                     GameManager.CloserMorale -= enemyUnit[enemyUnitSelected].enemyDamage;
                     CloserMorale.value = (GameManager.CloserMorale / GameManager.CloserMoraleMax);
                     closerDead = true;
-
+                    CloserDamageUI.text = "-" + enemyUnit[enemyUnitSelected].enemyDamage.ToString();
                     CloserAnim.SetBool("isDead", true);
 
                 }
@@ -2100,6 +2107,7 @@ public class BattleSystemMultiple : MonoBehaviour
                     StarterAnim.Play("Armature|Oof");
 
                     GameManager.StarterMorale -= enemyUnit[enemyUnitSelected].enemyDamage;
+                    StarterDamageUI.text = "-" + enemyUnit[enemyUnitSelected].enemyDamage.ToString();
                     StarterMorale.value = (GameManager.StarterMorale / GameManager.StarterMoraleMax);
                 }
 
@@ -2109,6 +2117,7 @@ public class BattleSystemMultiple : MonoBehaviour
                     MidRelAnim.Play("Armature|Oof");
 
                     GameManager.MidRelivMorale -= enemyUnit[enemyUnitSelected].enemyDamage;
+                    MiddleDamageUI.text = "-" + enemyUnit[enemyUnitSelected].enemyDamage.ToString();
                     MiddleMorale.value = (GameManager.MidRelivMorale / GameManager.MidRelivMoraleMax);
                 }
 
@@ -2118,6 +2127,7 @@ public class BattleSystemMultiple : MonoBehaviour
                     SetUpAnim.Play("Armature|Oof");
 
                     GameManager.SetUpMorale -= enemyUnit[enemyUnitSelected].enemyDamage;
+                    SetUpDamageUI.text = "-" + enemyUnit[enemyUnitSelected].enemyDamage.ToString();
                     SetUpMorale.value = (GameManager.SetUpMorale / GameManager.SetUpMoraleMax);
                 }
 
@@ -2127,10 +2137,12 @@ public class BattleSystemMultiple : MonoBehaviour
                     CloserAnim.Play("Armature|Oof");
 
                     GameManager.CloserMorale -= enemyUnit[enemyUnitSelected].enemyDamage;
+                    CloserDamageUI.text = "-" + enemyUnit[enemyUnitSelected].enemyDamage.ToString();
                     CloserMorale.value = (GameManager.CloserMorale / GameManager.CloserMoraleMax);
                 }
                 Unit.attackAll = false;
                 yield return new WaitForSeconds(2f);
+                StartCoroutine(TurnOffDamageUI());
                 NextPlayerTurnAfterEnemyTurn(enemyIndex);
             }
 
@@ -2185,6 +2197,7 @@ public class BattleSystemMultiple : MonoBehaviour
                         yield return new WaitForSeconds(2f);
 
                         bool isDead = Starter.TakeDamage(enemyUnit[enemyUnitSelected].enemyDamage);
+
                         if (isDead)
                         {
                             GameManager.StarterMorale -= enemyUnit[enemyUnitSelected].enemyDamage;
@@ -2200,13 +2213,14 @@ public class BattleSystemMultiple : MonoBehaviour
                         {
                             yield return new WaitForSeconds(.5f);
                             StarterAnim.Play("Armature|Oof");
-
+                            StarterDamageUI.text = "-" + enemyUnit[enemyUnitSelected].enemyDamage.ToString();
                             GameManager.StarterMorale -= enemyUnit[enemyUnitSelected].enemyDamage;
                             StarterMorale.value = (GameManager.StarterMorale / GameManager.StarterMoraleMax);
                             yield return new WaitForSeconds(2f);
                             NextPlayerTurnAfterEnemyTurn(enemyIndex);
                         }
                     }
+                    StartCoroutine(TurnOffDamageUI());
                 }
                 if (WhoToAttack == 1 && !middleDead)
                 {
@@ -2240,7 +2254,7 @@ public class BattleSystemMultiple : MonoBehaviour
                         {
                             yield return new WaitForSeconds(.5f);
                             MidRelAnim.Play("Armature|Oof");
-
+                            MiddleDamageUI.text = "-" + enemyUnit[enemyUnitSelected].enemyDamage.ToString();
                             GameManager.MidRelivMorale -= enemyUnit[enemyUnitSelected].enemyDamage;
                             MiddleMorale.value = (GameManager.MidRelivMorale / GameManager.MidRelivMoraleMax);
                             yield return new WaitForSeconds(2f);
@@ -2249,6 +2263,7 @@ public class BattleSystemMultiple : MonoBehaviour
                     }
 
                     yield return new WaitForSeconds(.5f);
+                    StartCoroutine(TurnOffDamageUI());
                 }
                 if (WhoToAttack == 2 && !setupDead)
                 {
@@ -2281,12 +2296,14 @@ public class BattleSystemMultiple : MonoBehaviour
                         else
                         {
                             SetUpAnim.Play("Armature|Oof");
+                            SetUpDamageUI.text = "-" + enemyUnit[enemyUnitSelected].enemyDamage.ToString();
                             GameManager.SetUpMorale -= enemyUnit[enemyUnitSelected].enemyDamage;
                             SetUpMorale.value = (GameManager.SetUpMorale / GameManager.SetUpMoraleMax);
                             yield return new WaitForSeconds(2f);
                             NextPlayerTurnAfterEnemyTurn(enemyIndex);
                         }
                     }
+                    StartCoroutine(TurnOffDamageUI());
                 }
                 if (WhoToAttack == 3 && !closerDead)
                 {
@@ -2320,16 +2337,27 @@ public class BattleSystemMultiple : MonoBehaviour
                         else
                         {
                             CloserAnim.Play("Armature|Oof");
+                            CloserDamageUI.text = "-" + enemyUnit[enemyUnitSelected].enemyDamage.ToString();
                             GameManager.CloserMorale -= enemyUnit[enemyUnitSelected].enemyDamage;
                             CloserMorale.value = (GameManager.CloserMorale / GameManager.CloserMoraleMax);
                             yield return new WaitForSeconds(2f);
                             NextPlayerTurnAfterEnemyTurn(enemyIndex);
                         }
                     }
+                    StartCoroutine(TurnOffDamageUI());
                 }
             }
         }
 
+    }
+
+    IEnumerator TurnOffDamageUI()
+    {
+        yield return new WaitForSeconds(1f);
+        StarterDamageUI.text = "".ToString();
+        MiddleDamageUI.text = "".ToString();
+        SetUpDamageUI.text = "".ToString();
+        CloserDamageUI.text = "".ToString();
     }
 
     #region Player Turns

@@ -54,6 +54,8 @@ public class Unit : MonoBehaviour
 
     public static bool attackAll;
 
+    public Text DamageUI;
+
     //enemyAttack
     public int minAttackAvil, maxAttackAvil;
     int attackToDo;
@@ -199,7 +201,7 @@ public class Unit : MonoBehaviour
             StrWeakHolder.SetActive(false);
         }
         #endregion
-
+        DamageUI.text = "";
         if (isEnemy)
         {
             currentHP = maxHP;
@@ -275,10 +277,11 @@ public class Unit : MonoBehaviour
     public bool TakeDamageFast(int dmg)
     {
         currentHP -= (dmg * FastballMultiplier);
-
+        DamageUI.text = "-" + dmg.ToString();
         if (currentHP <= 0)
         {
             anim.Play("Armature|Downed");
+            StartCoroutine(ClearText());
             return true;
         }
 
@@ -288,20 +291,17 @@ public class Unit : MonoBehaviour
             {
                 anim.Play("Armature|Swing");
                 DescText.text = "Resist!";
-                StartCoroutine(ClearText());
             }
             if (FastballMultiplier == 1f)
             {
                 anim.Play("Armature|SwingMiss");
-                StartCoroutine(ClearText());
             }
             if (FastballMultiplier == 2)
             {
                 anim.Play("Armature|SpinDizzy");
                 DescText.text = "Weak!";
-                StartCoroutine(ClearText());
             }
-
+            StartCoroutine(ClearText());
             return false;
         }
     }
@@ -310,10 +310,11 @@ public class Unit : MonoBehaviour
     public bool TakeDamageSlid(int dmg)
     {
         currentHP -= (dmg * SliderMultiplier);
-
+        DamageUI.text = "-" + dmg.ToString();
         if (currentHP <= 0)
         {
             anim.Play("Armature|Downed");
+            StartCoroutine(ClearText());
             return true;
         }
 
@@ -323,20 +324,17 @@ public class Unit : MonoBehaviour
             {
                 anim.Play("Armature|Swing");
                 DescText.text = "Resist!";
-                StartCoroutine(ClearText());
             }
             if (SliderMultiplier == 1f)
             {
                 anim.Play("Armature|SwingMiss");
-                StartCoroutine(ClearText());
             }
             if (SliderMultiplier == 2)
             {
                 anim.Play("Armature|SpinDizzy");
                 DescText.text = "Weak!";
-                StartCoroutine(ClearText());
             }
-
+            StartCoroutine(ClearText());
             return false;
         }
     }
@@ -344,11 +342,12 @@ public class Unit : MonoBehaviour
     public bool TakeDamageCurve(int dmg)
     {
         currentHP -= (dmg * CurveballMultiplier);
-
+        DamageUI.text = "-" + dmg.ToString();
 
         if (currentHP <= 0)
         {
             anim.Play("Armature|Downed");
+            StartCoroutine(ClearText());
             return true;
         }
 
@@ -358,19 +357,17 @@ public class Unit : MonoBehaviour
             {
                 anim.Play("Armature|Swing");
                 DescText.text = "Resist!";
-                StartCoroutine(ClearText());
             }
             if (CurveballMultiplier == 1f)
             {
                 anim.Play("Armature|SwingMiss");
-                StartCoroutine(ClearText());
             }
             if (CurveballMultiplier == 2)
             {
                 anim.Play("Armature|SpinDizzy");
                 DescText.text = "Weak!";
-                StartCoroutine(ClearText());
             }
+            StartCoroutine(ClearText());
             return false;
         }
     }
@@ -378,10 +375,11 @@ public class Unit : MonoBehaviour
     public bool TakeDamageChange(int dmg)
     {
         currentHP -= (dmg * ChangeUpMultiplier);
-
+        DamageUI.text = "-" + dmg.ToString();
         if (currentHP <= 0)
         {
             anim.Play("Armature|Downed");
+            StartCoroutine(ClearText());
             return true;
         }
 
@@ -404,7 +402,7 @@ public class Unit : MonoBehaviour
                 DescText.text = "Weak!";
                 StartCoroutine(ClearText());
             }
-
+            StartCoroutine(ClearText());
             return false;
         }
     }
@@ -437,6 +435,7 @@ public class Unit : MonoBehaviour
         maxDamage = 5;
 
         enemyDamage = Random.Range(minDamage, maxDamage);
+      //  DamageUI.text = "-" + enemyDamage.ToString();
         attackName = "Weak Grounder".ToString();
     }
 
@@ -446,6 +445,7 @@ public class Unit : MonoBehaviour
         maxDamage = 4;
 
         enemyDamage = Random.Range(minDamage, maxDamage);
+      //  DamageUI.text = "-" + enemyDamage.ToString();
         attackName = "Seeing Eye Single".ToString();
     }
 
@@ -455,6 +455,7 @@ public class Unit : MonoBehaviour
         maxDamage = 4;
 
         enemyDamage = Random.Range(minDamage, maxDamage);
+      //  DamageUI.text = "-" + enemyDamage.ToString();
         attackName = "Pop Up".ToString();
     }
 
@@ -464,6 +465,7 @@ public class Unit : MonoBehaviour
         maxDamage = 6;
 
         enemyDamage = Random.Range(minDamage, maxDamage);
+      //  DamageUI.text = "-" + enemyDamage.ToString();
         attackName = "Line Drive".ToString();
     }
 
@@ -473,6 +475,7 @@ public class Unit : MonoBehaviour
         maxDamage = 7;
 
         enemyDamage = Random.Range(minDamage, maxDamage);
+       // DamageUI.text = "-" + enemyDamage.ToString();
         attackName = "Fly Ball".ToString();
     }
 
@@ -483,6 +486,7 @@ public class Unit : MonoBehaviour
         maxDamage = 5;
 
         enemyDamage = Random.Range(minDamage, maxDamage);
+      //  DamageUI.text = "-" + enemyDamage.ToString();
         attackName = "Shagging".ToString();
 
         if (currentHP >= 0)
@@ -500,6 +504,7 @@ public class Unit : MonoBehaviour
         maxDamage = 15;
 
         enemyDamage = Random.Range(minDamage, maxDamage);
+      //  DamageUI.text = "-" + enemyDamage.ToString();
         attackName = "Ground Rule Double".ToString();
     }
 
@@ -509,6 +514,7 @@ public class Unit : MonoBehaviour
         maxDamage = 0;
 
         enemyDamage = Random.Range(minDamage, maxDamage);
+       // DamageUI.text = "-" + enemyDamage.ToString();
         attackName = "Taking The Pitch".ToString();
     }
 
@@ -518,6 +524,7 @@ public class Unit : MonoBehaviour
         maxDamage = 9;
 
         enemyDamage = Random.Range(minDamage, maxDamage);
+       // DamageUI.text = "-" + enemyDamage.ToString();
         attackName = "Deep Foul Ball".ToString();
     }
 
@@ -525,6 +532,7 @@ public class Unit : MonoBehaviour
     IEnumerator ClearText()
     {
         yield return new WaitForSeconds(2f);
+        DamageUI.text = "".ToString();
         DescText.text = "";
     }
 }
