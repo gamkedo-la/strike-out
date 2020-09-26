@@ -556,7 +556,7 @@ MonoBehaviour:
   sound: {fileID: 11400000, guid: 07897056073977649bd9fcad2187c917, type: 2}
   controller: {fileID: -6853353436615684260}
   whoosh: {fileID: 11400000, guid: db8cd35f031ca494aa4db8eb73c99c5f, type: 2}
-  mittPop: {fileID: 0}
+  mittPop: {fileID: 11400000, guid: dbafe08f7a95f42418dae3041f3ecf50, type: 2}
 --- !u!114 &-6853353436615684260
 MonoBehaviour:
   m_ObjectHideFlags: 0
