@@ -13,7 +13,7 @@ public class DialogueTrigger : MonoBehaviour
 
     public bool isTraining ,isManager;
     public GameObject dialogue1, dialogue2;
-
+    public AudioEventGeneric dialogueBoxAudio;
     private void Start()
     {
         if (isTraining)
@@ -27,6 +27,9 @@ public class DialogueTrigger : MonoBehaviour
     public void TriggerDialogue()
     {
         FindObjectOfType<DialogueManager>().StartDialogue(dialogue);
+
+        if(dialogueBoxAudio != null)
+            dialogueBoxAudio.PlayEvent();
     }
 
     private void Update()

@@ -19,6 +19,8 @@ public class DialogueManager : MonoBehaviour
     int randint;
     public GameObject[] trivia, advice;
     public GameObject dialogue1, dialogue2;
+    public AudioData dialogueAudio;
+    public AudioSourceController audioSource;
 
     private void Start()
     {
@@ -61,6 +63,9 @@ public class DialogueManager : MonoBehaviour
             dialogueText.text += letter;
             yield return null;
         }
+
+        if(dialogueAudio != null)
+            audioSource.PlayRandom(dialogueAudio);
     }
 
     void EndDialogue()

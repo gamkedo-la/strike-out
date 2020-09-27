@@ -17,8 +17,8 @@ MonoBehaviour:
   mixer: {fileID: 24100000, guid: 75dd9a9b66abc7c4782df25f39d4594d, type: 2}
   output: 2
   Loop: 0
-  Volume: 0
+  Volume: -3.3
   Pitch: 0
   SpatialBlend: 0
   RandomVolume: 0
-  RandomPitch: 0.48
+  RandomPitch: 0.17
