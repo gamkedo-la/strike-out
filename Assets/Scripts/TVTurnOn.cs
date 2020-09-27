@@ -6,6 +6,10 @@ using UnityEngine.SceneManagement;
 public class TVTurnOn : MonoBehaviour
 {
     bool isActive;
+
+    [SerializeField]
+    private AudioOnKeyInput tvSound;
+
     public static int levelSelect;
 
 
@@ -39,6 +43,7 @@ public class TVTurnOn : MonoBehaviour
         {
             Training.LevelSelectTV = true;
             isActive = true;
+            tvSound.enabled = true;
         }
     }
 
@@ -48,6 +53,7 @@ public class TVTurnOn : MonoBehaviour
         {
             Training.LevelSelectTV = false;
             isActive = false;
+            tvSound.enabled = false;
         }
     }
 
