@@ -5,6 +5,7 @@ using UnityEngine;
 public class KeyConcourse : MonoBehaviour
 {
     public GameObject mainCam, cutSceneCam;
+    public static bool gateHasBeenOpened;
     public Animator gate;
     private void OnTriggerEnter(Collider other)
     {
@@ -13,6 +14,7 @@ public class KeyConcourse : MonoBehaviour
             mainCam.SetActive(false);
             cutSceneCam.SetActive(true);
             gate.SetBool("isOpen", true);
+            gateHasBeenOpened = true;
             StartCoroutine(Waiting());
             this.gameObject.GetComponent<BoxCollider>().enabled = false;
         }

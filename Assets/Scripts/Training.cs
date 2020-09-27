@@ -16,6 +16,8 @@ public class Training : MonoBehaviour
         ConcourseGameManager.McGeeKilled = false;
         ConcourseGameManager.McGeeHasAlreadyBeenKilled = false;
 
+        KeyConcourse.gateHasBeenOpened = false;
+
         GameManager.i1 = false;
         GameManager.i2 = false;
         GameManager.i3 = false;

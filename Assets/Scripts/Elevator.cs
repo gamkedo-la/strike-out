@@ -18,11 +18,11 @@ public class Elevator : MonoBehaviour
     bool elevatorSinking = false;
     private void FixedUpdate()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+       /* if (Input.GetKeyDown(KeyCode.E))
         {
             barrier.SetActive(false);
         }
-
+        */
         if (elevatorRising)
         {
             pathPerc += Time.deltaTime * .3f;
