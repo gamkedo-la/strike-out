@@ -39,11 +39,11 @@ public class AudioSourceController : MonoBehaviour
     public void SetSourceProperties(AudioData data)
     {
         source.clip = data.Clip;
-        source.volume = data.GetRandomVol();
+        source.volume = data.GetVol();
         source.pitch = data.Pitch;
         source.loop = data.Loop;
         source.spatialBlend = data.SpatialBlend;
-        SetSourceOutput(data);
+        //SetSourceOutput(data);
     }
 
     public void SetRandomProperties(AudioData data)
@@ -64,7 +64,7 @@ public class AudioSourceController : MonoBehaviour
     {
         SetSourceProperties(data);
         source.Play();
-        Debug.Log("Playing Sound");
+        //Debug.Log("Playing Sound");
     }
 
     public void PlayRandom(AudioData data)

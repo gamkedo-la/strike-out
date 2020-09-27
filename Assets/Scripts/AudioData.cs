@@ -18,7 +18,7 @@ public class AudioData : ScriptableObject
     public bool Loop = false;
 
     [Range(-80, 0.0001f)]
-    public float Volume = 0.0001f;
+    public float Volume;
 
     [Range(-24, 24)]
     public float Pitch = 0f;
@@ -35,6 +35,11 @@ public class AudioData : ScriptableObject
     public float GetRandomVol()
     {
         return AudioUtils.DbToLinear(Random.Range(Volume + RandomVolume, 0));
+    }
+
+    public float GetVol()
+    {
+        return AudioUtils.DbToLinear(Volume);
     }
 
     public float GetRandomPitch()

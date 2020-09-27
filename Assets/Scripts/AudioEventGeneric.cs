@@ -11,4 +11,9 @@ public class AudioEventGeneric : MonoBehaviour
     {
         controller.SetSourceOutput(sound);
     }
+
+    public void PlayEvent()
+    {
+        controller.PlayRandom(sound);
+    }
 }
