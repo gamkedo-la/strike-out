@@ -6,20 +6,6 @@ public class AudioSourceController : MonoBehaviour
 {
     public AudioSource source;
     private Vector3 position;
-    //public AudioClip Clip;
-
-    //public bool Loop = false;
-
-    //[Range(0, 1)]
-    //public float Volume = 1f;
-
-    //[Range(.25f, 3)]
-    //public float Pitch = 1f;
-
-    //[Range(0f, 1f)]
-    //public float SpacialBlend = 1f;
-
-    //private Transform transform;
 
     void Awake()
     {
