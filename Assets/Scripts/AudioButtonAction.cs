@@ -52,5 +52,8 @@ public class AudioButtonAction : MonoBehaviour
     //    Source.PlayRandom(buttonActionType(buttonAction));
     //}
 
-
+    private void OnDestroy()
+    {
+        ButtonCall -= ButtonListener;
+    }
 }
