@@ -931,6 +931,8 @@ MonoBehaviour:
   SetUpDamageUI: {fileID: 406970136}
   CloserDamageUI: {fileID: 1666829362}
   CutSceneCamTarget: {fileID: 0}
+  victory: {fileID: 35255476}
+  defeat: {fileID: 35255475}
 --- !u!4 &35255473
 Transform:
   m_ObjectHideFlags: 0

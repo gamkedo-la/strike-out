@@ -164,6 +164,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sound: {fileID: 11400000, guid: 90007dc9b951a564cb7e94972ad6a98a, type: 2}
   dmg: {fileID: 11400000, guid: efddb4b29ae8d554592f4ca5ea7aa64e, type: 2}
+  prep: {fileID: 11400000, guid: 14bc4a6529e919d42a41bf4e787cfa59, type: 2}
+  downed: {fileID: 11400000, guid: ca49342de360c324e8006158feab6b7f, type: 2}
   controller: {fileID: 1856310419886277035}
 --- !u!114 &1856310419886277035
 MonoBehaviour:
