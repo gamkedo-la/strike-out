@@ -40,7 +40,7 @@ public class AudioEnemyAnim : AudioEventGeneric
 
     public void Prep()
     {
-        controller.PlayRandom(prep);
+        //controller.PlayRandom(prep);
     }
 
     public void SwingMiss()

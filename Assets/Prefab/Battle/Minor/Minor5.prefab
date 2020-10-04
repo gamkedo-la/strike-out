@@ -866,12 +866,12 @@ MonoBehaviour:
   controller: {fileID: 9081391755092898391}
   whoosh: {fileID: 11400000, guid: db8cd35f031ca494aa4db8eb73c99c5f, type: 2}
   mittPop: {fileID: 11400000, guid: dbafe08f7a95f42418dae3041f3ecf50, type: 2}
-  prep: {fileID: 0}
-  downed: {fileID: 0}
-  downedBatFall: {fileID: 0}
-  swingMiss: {fileID: 0}
-  swingDizzy: {fileID: 0}
-  swingDizzyBirds: {fileID: 0}
+  prep: {fileID: 11400000, guid: 4db55177dc5004f4ba76f44670a69588, type: 2}
+  downed: {fileID: 11400000, guid: ca49342de360c324e8006158feab6b7f, type: 2}
+  downedBatFall: {fileID: 11400000, guid: dd8bd9635a3ff8941b818b8160858469, type: 2}
+  swingMiss: {fileID: 11400000, guid: 8ea36c61b4f11c544876700371394b86, type: 2}
+  swingDizzy: {fileID: 11400000, guid: ac535609a5d5dcb498035d8f66767687, type: 2}
+  swingDizzyBirds: {fileID: 11400000, guid: c60643d699b31c944b77a480c88ee189, type: 2}
 --- !u!114 &9081391755092898391
 MonoBehaviour:
   m_ObjectHideFlags: 0
