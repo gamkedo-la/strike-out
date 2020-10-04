@@ -133,6 +133,10 @@ public class BattleSystemMultiple : MonoBehaviour
     //Announcer Cut Scene Cam
     public Transform CutSceneCamTarget;
 
+    //Win / Lose Audio
+    public AudioEventGeneric victory;
+    public AudioEventGeneric defeat;
+
     private void Start()
     {
         inBattle = true;
@@ -2885,12 +2889,16 @@ public class BattleSystemMultiple : MonoBehaviour
             //GameManager.Money += enemyUnit[enemyUnitSelected].MoneyToDistribute;
             //MoneyText.text = "$ " + enemyUnit[enemyUnitSelected].MoneyToDistribute.ToString("F0");
             isOver = true;
+
+            victory.PlayEvent();
         }
         else if (state == BattleStateMultiple.LOST)
         {
             dialogueText.text = "You lost the battle...";
             GameManager.isGameOver = true;
             StartCoroutine(WaitingAtEndOfBattleForTraining());
+
+            defeat.PlayEvent();
         }
     }
     public void AddXP()

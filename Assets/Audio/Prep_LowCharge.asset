@@ -10,16 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9ec881fac809cf54887debcac172057a, type: 3}
-  m_Name: Pitch
+  m_Name: Prep_LowCharge
   m_EditorClassIdentifier: 
   Clip: {fileID: 0}
   Sounds:
-  - {fileID: 8300000, guid: 171b46a43f46ab841abaefa3a3367c7c, type: 3}
-  - {fileID: 8300000, guid: 7e5b41c25b1c2db48a85d5e167757f5f, type: 3}
-  - {fileID: 8300000, guid: 6804c851da34ccb45b6a7bc944d1c17d, type: 3}
-  - {fileID: 8300000, guid: f70ac2730902f114cb9a30c245ee1820, type: 3}
-  - {fileID: 8300000, guid: 28b8d807035743f42a6dec6560015494, type: 3}
-  - {fileID: 8300000, guid: b705f378ed5c41e4b83e4aefb33fad13, type: 3}
+  - {fileID: 8300000, guid: d24270a659700ee4e8c6bdd097664492, type: 3}
+  - {fileID: 8300000, guid: 19f7d7359644ff6419a0fb9b6f8e5fb0, type: 3}
+  - {fileID: 8300000, guid: f76890d56d211bb4fb8b222404f7db9e, type: 3}
+  - {fileID: 8300000, guid: 8794c12c7aeb8624098ed805f872a921, type: 3}
+  - {fileID: 8300000, guid: 2be2926c5f6dca44eb567366607e219d, type: 3}
   mixer: {fileID: 24100000, guid: 75dd9a9b66abc7c4782df25f39d4594d, type: 2}
   output: 1
   Loop: 0

@@ -767,6 +767,9 @@ GameObject:
   - component: {fileID: 35255473}
   - component: {fileID: 35255472}
   - component: {fileID: 35255471}
+  - component: {fileID: 35255476}
+  - component: {fileID: 35255475}
+  - component: {fileID: 35255474}
   m_Layer: 0
   m_Name: BattleSystemEnemies
   m_TagString: BattleSystem
@@ -942,6 +945,47 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &35255474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 35255470}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 323552738cd52c34c9876e75ddbc1531, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  source: {fileID: 0}
+--- !u!114 &35255475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 35255470}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae26f696ba4d612438922224dc29fdda, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sound: {fileID: 11400000, guid: 1428ea922c6558a4a849f34496bd1345, type: 2}
+  controller: {fileID: 35255474}
+--- !u!114 &35255476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 35255470}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae26f696ba4d612438922224dc29fdda, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sound: {fileID: 11400000, guid: adc9f1ed76657764b9e5dbdee43408cc, type: 2}
+  controller: {fileID: 35255474}
 --- !u!1 &46628226
 GameObject:
   m_ObjectHideFlags: 0

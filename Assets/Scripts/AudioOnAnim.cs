@@ -10,6 +10,8 @@ public class AudioOnAnim : MonoBehaviour
 
     public AudioData sound;
     public AudioData dmg;
+    public AudioData prep;
+    public AudioData downed;
     public AudioSourceController controller;
 
     void Start()
@@ -27,5 +29,15 @@ public class AudioOnAnim : MonoBehaviour
     {
         controller.PlayRandom(dmg);
         //Debug.Log("Dmg Sound!");
+    }
+
+    public void Downed()
+    {
+        controller.PlayRandom(downed);
+    }
+
+    public void Prep()
+    {
+        controller.PlayRandom(prep);
     }
 }
