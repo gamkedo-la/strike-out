@@ -33,6 +33,11 @@ public class AudioEnemyAnim : AudioEventGeneric
         controller.PlayRandom(downed);
     }
 
+    public void DownedBatFall()
+    {
+        controller.PlayRandom(downedBatFall);
+    }
+
     public void Prep()
     {
         controller.PlayRandom(prep);
@@ -45,7 +50,6 @@ public class AudioEnemyAnim : AudioEventGeneric
 
     public void SwingDizzy()
     {
-        SwingMiss();
         controller.PlayRandom(swingDizzy);
         controller.PlayRandom(swingDizzyBirds);
     }
