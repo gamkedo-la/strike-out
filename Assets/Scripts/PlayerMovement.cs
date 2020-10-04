@@ -25,7 +25,7 @@ public class PlayerMovement : MonoBehaviour
         canMove = true;
     }
 
-    private void Update()
+    private void LateUpdate()
     {
         if (canMove)
         {

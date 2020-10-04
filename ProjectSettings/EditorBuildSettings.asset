@@ -32,4 +32,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/FredFight.unity
     guid: b6cc9622ca0c553498492314e72b48e1
+  - enabled: 1
+    path: Assets/Scenes/HoEBattle.unity
+    guid: 5956ee5aa67aa8f48a9b5e7587207f14
+  - enabled: 1
+    path: Assets/Scenes/HoEUmpire.unity
+    guid: 4b97ec1902c4c464da8e797bd4c48047
+  - enabled: 1
+    path: Assets/Scenes/HoEBabe.unity
+    guid: 37c7f4b1aaf57964aaf9cb76f6df27ec
   m_configObjects: {}
