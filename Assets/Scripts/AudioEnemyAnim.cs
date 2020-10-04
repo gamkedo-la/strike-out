@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class AudioEnemyAnim : AudioEventGeneric
 {
+    public BattleSystemMultiple currentBattle;
     public AudioData whoosh;
     public AudioData mittPop;
     public AudioData prep;
@@ -12,6 +13,11 @@ public class AudioEnemyAnim : AudioEventGeneric
     public AudioData swingMiss;
     public AudioData swingDizzy;
     public AudioData swingDizzyBirds;
+
+    private void Start()
+    {
+        currentBattle = FindObjectOfType<BattleSystemMultiple>();
+    }
 
     void BatWhoosh()
     {
@@ -40,7 +46,11 @@ public class AudioEnemyAnim : AudioEventGeneric
 
     public void Prep()
     {
-        //controller.PlayRandom(prep);
+        //if (currentBattle != null)
+        //{
+        //    if(currentBattle.state == BattleStateMultiple.ENEMYTURN)
+        //        controller.PlayRandom(prep);
+        //}
     }
 
     public void SwingMiss()

@@ -5,16 +5,51 @@ using UnityEngine;
 public class AudioSourceController : MonoBehaviour
 {
     public AudioSource source;
+    public List<AudioSource> sources = new List<AudioSource>();
+    [SerializeField]
+    private int currentIndex = 0;
+    [SerializeField]
+    private int maxSources = 5;
     private Vector3 position;
 
     void Awake()
     {
         if(source == null)
         {
-            source = gameObject.AddComponent<AudioSource>();
+            CreateNewSource();
         }
 
         position = this.transform.position;
+    }
+
+    private void CreateNewSource()
+    {
+        source = gameObject.AddComponent<AudioSource>();
+        sources.Add(source);
+    }
+
+    private AudioSource GetNextSource()
+    {
+        if (currentIndex < sources.Count)
+        {
+            if (source.isPlaying == false)
+            {
+                source = sources[currentIndex];
+                return source;
+            }
+            else
+            {
+                currentIndex += 1;
+                return GetNextSource();
+            }
+        }
+        else if (sources.Count < maxSources)
+        {
+            CreateNewSource();
+            return source;
+        }
+        IncrementIndex();
+        return sources[currentIndex];
     }
 
     public void SetSourceOutput(AudioData data)
@@ -55,8 +90,15 @@ public class AudioSourceController : MonoBehaviour
 
     public void PlayRandom(AudioData data)
     {
+        source = GetNextSource();
         SetRandomProperties(data);
         source.Play();
+        IncrementIndex();
+    }
+
+    private void IncrementIndex()
+    {
+        currentIndex = (currentIndex + 1) % sources.Count;
     }
 
     public void Stop()
