@@ -9,6 +9,8 @@ public enum BattleStateMultiple { START, STARTER, MIDDLE, SETUP, CLOSER, ENEMYTU
 
 public class BattleSystemMultiple : MonoBehaviour
 {
+    public bool isConcourse;
+
     public static bool inBattle; 
     public BattleStateMultiple state;
 
@@ -3728,7 +3730,10 @@ public class BattleSystemMultiple : MonoBehaviour
         yield return new WaitForSeconds(1.5f);
         state = BattleStateMultiple.START;
         //Return to Main Menu
-        SceneManager.LoadScene("Concourse");
+        if (isConcourse)
+        {
+            SceneManager.LoadScene("Concourse");
+        }
     }
 
     IEnumerator WaitingAtEndOfBattleForTraining()

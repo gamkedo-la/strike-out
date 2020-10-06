@@ -801,6 +801,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 520983ea4f67fc54cace6b2b66339c39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isConcourse: 1
   state: 0
   StarterPrefab: {fileID: 1904753284297806757, guid: 2f3b6b5553d5198479f4fbc10fd6159d,
     type: 3}
@@ -8173,13 +8174,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.29411766, g: 0.8235295, b: 0.8196079, a: 1}
+  m_Color: {r: 0.6839622, g: 1, b: 0.99765897, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: fbf68f282f1840443a6d40e9dc0aa11e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -16929,13 +16930,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 0.6839622, b: 0.6839622, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 806bfd2033b973d46895d1925ba53b8b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -23083,13 +23084,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.86666673, g: 0.70980394, b: 0.30980393, a: 1}
+  m_Color: {r: 1, g: 0.9162902, b: 0.7028302, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 26e28b6e8b313774eba8545ebb10a33b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -24690,13 +24691,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.8705883, g: 0.32941177, b: 0.8352942, a: 1}
+  m_Color: {r: 1, g: 0.6084906, b: 0.9744669, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: a4e79527c38efa446840c25d20265a7d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
