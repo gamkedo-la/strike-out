@@ -15,10 +15,10 @@ MonoBehaviour:
   Clip: {fileID: 0}
   Sounds:
   - {fileID: 8300000, guid: 9f32d4c5b5b770647a01996d323aebd4, type: 3}
-  mixer: {fileID: 0}
+  mixer: {fileID: 24100000, guid: 75dd9a9b66abc7c4782df25f39d4594d, type: 2}
   output: 0
   Loop: 1
-  Volume: -30
+  Volume: -3
   Pitch: 0
   SpatialBlend: 0
   RandomVolume: 0

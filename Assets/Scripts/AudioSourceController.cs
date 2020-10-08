@@ -96,6 +96,15 @@ public class AudioSourceController : MonoBehaviour
         IncrementIndex();
     }
 
+    public void PlayScheduled(AudioData data, double time)
+    {
+        source = GetNextSource();
+        SetSourceOutput(data);
+        SetRandomProperties(data);
+        source.PlayScheduled(time);
+        IncrementIndex();
+    }
+
     private void IncrementIndex()
     {
         currentIndex = (currentIndex + 1) % sources.Count;
