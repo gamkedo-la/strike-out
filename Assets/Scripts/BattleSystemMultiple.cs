@@ -9,6 +9,8 @@ public enum BattleStateMultiple { START, STARTER, MIDDLE, SETUP, CLOSER, ENEMYTU
 
 public class BattleSystemMultiple : MonoBehaviour
 {
+    public bool isConcourse;
+
     public static bool inBattle; 
     public BattleStateMultiple state;
 
@@ -280,7 +282,7 @@ public class BattleSystemMultiple : MonoBehaviour
                 CheatToInstantlyWin();
             }
         }
-
+        #region Select Enemy
         if ((state == BattleStateMultiple.STARTER || state == BattleStateMultiple.MIDDLE || state == BattleStateMultiple.SETUP || state == BattleStateMultiple.CLOSER) && enemySelect)
         {
             //SelectionProcess
@@ -342,6 +344,8 @@ public class BattleSystemMultiple : MonoBehaviour
             allPlayersDead = true;
             EndBattle();
         }
+
+        #endregion
         #region Animations based on Health
         //Starter
         if (GameManager.StarterMorale > (GameManager.StarterMoraleMax * .2))
@@ -702,7 +706,8 @@ public class BattleSystemMultiple : MonoBehaviour
         enemySelectionParticle.SetActive(false);
         enemySelect = false;
     }
-    #region PlayerAttack
+
+    #region PlayerAttack - animations and Damage
     IEnumerator PlayerAttack()
     {
         //To Do Damage Enemy
@@ -1914,6 +1919,7 @@ public class BattleSystemMultiple : MonoBehaviour
     }
     #endregion
 
+    #region Enemy Turn
     bool isPlayerIndexDead(int playerID)
     {
         switch (playerID) {
@@ -2382,7 +2388,9 @@ public class BattleSystemMultiple : MonoBehaviour
         CloserDamageUI.text = "".ToString();
     }
 
-    #region Player Turns
+    #endregion
+
+    #region Player Turns (button select)
     void StarterTurn()
     {
         Camera.transform.position = starterCam.transform.position;
@@ -2537,7 +2545,7 @@ public class BattleSystemMultiple : MonoBehaviour
         PlayerPitches.SetActive(true);
         PlayerMenu.SetActive(false);
     }
-    #region Player Pitches
+    #region Player Pitch Selection (opens up confirm menu)
     public void OnFastballButton()
     {
         if (state == BattleStateMultiple.STARTER)
@@ -3728,7 +3736,10 @@ public class BattleSystemMultiple : MonoBehaviour
         yield return new WaitForSeconds(1.5f);
         state = BattleStateMultiple.START;
         //Return to Main Menu
-        SceneManager.LoadScene("Concourse");
+        if (isConcourse)
+        {
+            SceneManager.LoadScene("Concourse");
+        }
     }
 
     IEnumerator WaitingAtEndOfBattleForTraining()
