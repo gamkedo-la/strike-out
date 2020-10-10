@@ -32,7 +32,7 @@ public class DoorMovement : MonoBehaviour
             }
             if (isRedClosed)
             {
-                this.transform.position = new Vector3(this.transform.position.x, -13, this.transform.position.z);
+                this.transform.position = new Vector3(this.transform.position.x, -3.5f, this.transform.position.z);
             }
         }
 
@@ -40,7 +40,7 @@ public class DoorMovement : MonoBehaviour
         {
             if (isRedOpen)
             {
-                this.transform.position = new Vector3(this.transform.position.x, -13, this.transform.position.z);
+                this.transform.position = new Vector3(this.transform.position.x, -3.5f, this.transform.position.z);
             }
             if (isRedClosed)
             {
