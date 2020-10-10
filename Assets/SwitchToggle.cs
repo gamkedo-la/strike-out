@@ -9,20 +9,44 @@ public class SwitchToggle : MonoBehaviour
 
     bool inZone;
 
+    public Animator switchModel;
+
     private void Update()
     {
         if (inZone)
         {
+
             if (Input.GetKeyDown(KeyCode.E))
             {
                 if (isRed)
                 {
+                    print("yes");
                     HOEGameManager.redToggle = !HOEGameManager.redToggle;
+
+                    if (HOEGameManager.redToggle)
+                    {
+                        switchModel.SetBool("isOpen", true);
+                    }
+
+                    else
+                    {
+                        switchModel.SetBool("isOpen", false);
+                    }
                 }
 
                 if (isGreen)
                 {
                     HOEGameManager.greenToggle = !HOEGameManager.greenToggle;
+
+                    if (HOEGameManager.greenToggle)
+                    {
+                        switchModel.SetBool("isOpen", true);
+                    }
+
+                    else
+                    {
+                        switchModel.SetBool("isOpen", false);
+                    }
                 }
             }
         }

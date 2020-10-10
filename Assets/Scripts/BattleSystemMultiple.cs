@@ -138,8 +138,6 @@ public class BattleSystemMultiple : MonoBehaviour
     //Win / Lose Audio
     public AudioEventGeneric victory;
     public AudioEventGeneric defeat;
-    public AudioSourceController musicController;
-
     private void Start()
     {
         inBattle = true;
@@ -270,8 +268,6 @@ public class BattleSystemMultiple : MonoBehaviour
             yield return new WaitForSeconds(4f);
         }
         cutsceneCam.SetActive(false);
-        state = BattleStateMultiple.STARTER;
-        StarterTurn();
     }
 
     private void Update()
@@ -407,6 +403,7 @@ public class BattleSystemMultiple : MonoBehaviour
         print(GameManager.StarterMorale + " " + GameManager.MidRelivMorale + " " + GameManager.SetUpMorale + " " + GameManager.CloserMorale + " ");
         #endregion
     }
+
 
     public void CallTime()
     {
@@ -2899,11 +2896,7 @@ public class BattleSystemMultiple : MonoBehaviour
             //MoneyText.text = "$ " + enemyUnit[enemyUnitSelected].MoneyToDistribute.ToString("F0");
             isOver = true;
 
-            if(victory != null)
-                victory.PlayEvent();
-
-            if (musicController != null)
-                musicController.Stop();
+            victory.PlayEvent();
         }
         else if (state == BattleStateMultiple.LOST)
         {
@@ -2911,11 +2904,7 @@ public class BattleSystemMultiple : MonoBehaviour
             GameManager.isGameOver = true;
             StartCoroutine(WaitingAtEndOfBattleForTraining());
 
-            if(defeat != null)
-                defeat.PlayEvent();
-
-            if (musicController != null)
-                musicController.Stop();
+            defeat.PlayEvent();
         }
     }
     public void AddXP()
