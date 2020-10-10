@@ -15,22 +15,23 @@ public class SwitchToggle : MonoBehaviour
     {
         if (inZone)
         {
-
             if (Input.GetKeyDown(KeyCode.E))
             {
                 if (isRed)
                 {
-                    print("yes");
+
                     HOEGameManager.redToggle = !HOEGameManager.redToggle;
 
                     if (HOEGameManager.redToggle)
                     {
                         switchModel.SetBool("isOpen", true);
+                        print("yes");
                     }
 
-                    else
+                    if(!HOEGameManager.redToggle)
                     {
                         switchModel.SetBool("isOpen", false);
+                        print("no");
                     }
                 }
 
@@ -43,7 +44,7 @@ public class SwitchToggle : MonoBehaviour
                         switchModel.SetBool("isOpen", true);
                     }
 
-                    else
+                    if (!HOEGameManager.greenToggle)
                     {
                         switchModel.SetBool("isOpen", false);
                     }
