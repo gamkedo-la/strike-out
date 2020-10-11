@@ -8,6 +8,8 @@ public class AIMovement : MonoBehaviour
     public float moveSpeed = 3f;
     public float rotSpeed = 100f;
 
+    public float distanceToFollow = 30;
+
     private bool isWandering = false, isRotatingLeft = false, isRotatingRight = false, isWalking = false;
 
     Ray enemyRay;
@@ -50,7 +52,7 @@ public class AIMovement : MonoBehaviour
 
         if (follow)
         {
-            if (dist <= 30)
+            if (dist <= distanceToFollow)
             {
                 Vendor.SetBool("isStill", false);
                 Vendor.SetBool("isWalk", false);
