@@ -268,6 +268,10 @@ public class BattleSystemMultiple : MonoBehaviour
             yield return new WaitForSeconds(4f);
         }
         cutsceneCam.SetActive(false);
+
+        state = BattleStateMultiple.STARTER;
+        StarterTurn();
+
     }
 
     private void Update()
