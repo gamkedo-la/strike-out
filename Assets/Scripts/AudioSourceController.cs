@@ -114,4 +114,14 @@ public class AudioSourceController : MonoBehaviour
     {
         source.Stop();
     }
+
+    public void StopAll()
+    {
+        foreach(AudioSource source in sources)
+        {
+            source.Stop();
+        }
+    }
+
+    //TODO add fade out and stop function
 }

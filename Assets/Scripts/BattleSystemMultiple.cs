@@ -138,6 +138,8 @@ public class BattleSystemMultiple : MonoBehaviour
     //Win / Lose Audio
     public AudioEventGeneric victory;
     public AudioEventGeneric defeat;
+    public MusicHandler battleMusic;
+
     private void Start()
     {
         inBattle = true;
@@ -2974,6 +2976,7 @@ public class BattleSystemMultiple : MonoBehaviour
             isOver = true;
 
             victory.PlayEvent();
+            battleMusic.controller.StopAll();
         }
         else if (state == BattleStateMultiple.LOST)
         {
@@ -2982,6 +2985,7 @@ public class BattleSystemMultiple : MonoBehaviour
             StartCoroutine(WaitingAtEndOfBattleForTraining());
 
             defeat.PlayEvent();
+            battleMusic.controller.StopAll();
         }
     }
     public void AddXP()

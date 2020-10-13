@@ -934,6 +934,7 @@ MonoBehaviour:
   CutSceneCamTarget: {fileID: 0}
   victory: {fileID: 35255476}
   defeat: {fileID: 35255475}
+  battleMusic: {fileID: 1690852763}
 --- !u!4 &35255473
 Transform:
   m_ObjectHideFlags: 0
@@ -34231,7 +34232,7 @@ PrefabInstance:
     - target: {fileID: 5143373677150880248, guid: 88d418b7a7f77de4fa8cf6933239616a,
         type: 3}
       propertyPath: StartMusic.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5143373677150880248, guid: 88d418b7a7f77de4fa8cf6933239616a,
         type: 3}
@@ -34260,6 +34261,12 @@ PrefabInstance:
       propertyPath: controller
       value: 
       objectReference: {fileID: 1690852762}
+    - target: {fileID: 5143373677150880248, guid: 88d418b7a7f77de4fa8cf6933239616a,
+        type: 3}
+      propertyPath: StartMusic.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: a68a8973690ac4a43ac13fa5b7fd4eec,
+        type: 2}
     m_RemovedComponents:
     - {fileID: 529725988985261707, guid: 88d418b7a7f77de4fa8cf6933239616a, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 88d418b7a7f77de4fa8cf6933239616a, type: 3}
@@ -34273,6 +34280,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 323552738cd52c34c9876e75ddbc1531, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1690852763 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5143373677150880248, guid: 88d418b7a7f77de4fa8cf6933239616a,
+    type: 3}
+  m_PrefabInstance: {fileID: 1690852761}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ff1578f3b5652f44b26a5240b7f20ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1695493963
