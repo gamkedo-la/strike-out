@@ -34548,6 +34548,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: a68a8973690ac4a43ac13fa5b7fd4eec,
         type: 2}
+    - target: {fileID: 5143373677150880248, guid: 88d418b7a7f77de4fa8cf6933239616a,
+        type: 3}
+      propertyPath: OutMusic
+      value: 
+      objectReference: {fileID: 11400000, guid: a68a8973690ac4a43ac13fa5b7fd4eec,
+        type: 2}
     m_RemovedComponents:
     - {fileID: 529725988985261707, guid: 88d418b7a7f77de4fa8cf6933239616a, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 88d418b7a7f77de4fa8cf6933239616a, type: 3}

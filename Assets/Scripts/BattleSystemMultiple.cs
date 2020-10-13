@@ -2977,6 +2977,7 @@ public class BattleSystemMultiple : MonoBehaviour
 
             victory.PlayEvent();
             battleMusic.controller.StopAll();
+            battleMusic.controller.PlayRandom(battleMusic.OutMusic);
         }
         else if (state == BattleStateMultiple.LOST)
         {
@@ -2986,6 +2987,7 @@ public class BattleSystemMultiple : MonoBehaviour
 
             defeat.PlayEvent();
             battleMusic.controller.StopAll();
+            battleMusic.controller.PlayRandom(battleMusic.OutMusic);
         }
     }
     public void AddXP()

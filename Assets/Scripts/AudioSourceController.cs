@@ -91,6 +91,7 @@ public class AudioSourceController : MonoBehaviour
     public void PlayRandom(AudioData data)
     {
         source = GetNextSource();
+        SetSourceOutput(data);
         SetRandomProperties(data);
         source.Play();
         IncrementIndex();
