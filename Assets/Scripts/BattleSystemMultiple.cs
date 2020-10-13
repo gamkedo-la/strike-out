@@ -271,7 +271,7 @@ public class BattleSystemMultiple : MonoBehaviour
 
         state = BattleStateMultiple.STARTER;
         StarterTurn();
-
+        //Change state and StarterTurn() to NextTurn();
     }
 
     private void Update()
@@ -408,6 +408,78 @@ public class BattleSystemMultiple : MonoBehaviour
         #endregion
     }
 
+    /* enum CharacterIdentifier
+     * {
+     * Starter, Middle, SetUp, Closer, Enemy1, Enemy2, Enemy3, Enemy4, Enemy5,
+     * }
+     * 
+     * TODO Populating a list for the players and enemies (2 lists)
+     * TODO how to advance in the CharacterIdentifierList
+     * 
+     * List <CharacterIdentifier> turnOrder
+     * 
+     * void NextTurn()
+     * {
+         * bool isPlayerTurn; (probably gets moved to the top)
+         * isPlayerTurn = !isPlayerTurn; (determines if it is an enemy turn or player turn)
+         * 
+         * var list = turnOrder;
+         * var character = list[0];
+         * list.Remove(0);
+         * list.Add(character);
+         * 
+         * TODO: Remove character if dead, go to next one (player to player, enemy to enemy).
+         * TODO: Can I get rid of all of the switch cases in the script that determine move order? 
+         * 
+         * if(isPlayerTurn)
+         * {
+                * switch(character)
+                * {
+                *    case CharacterIdentifier.Starter:
+                *          StarterTurn();
+                *          state = BattleStateMultiple.STARTER;
+                *          break;
+                *     case CharacterIdentifier.Middle:
+                *          MiddleTurn();
+                *          state = BattleStateMultiple.MIDDLE;
+                *          break;
+                *     case CharacterIdentifier.SetUp:
+                *          SetUpTurn();
+                *          state = BattleStateMultiple.SETUP;
+                *          break;
+                *     case CharacterIdentifier.Closer:
+                *          CloserTurn();
+                *          state = BattleStateMultiple.CLOSER;
+                *          break;
+                * }
+         * }
+         * 
+         * if(!isPlayerTurn)
+                * {
+                *     case CharacterIdentifier.Enemy1:
+                *          state = BattleStateMultiple.ENEMYTURN;
+                        StartCoroutine("EnemyTurn", 0);
+                *          break;
+                *     case CharacterIdentifier.Enemy2:
+                *          state = BattleStateMultiple.ENEMYTURN;
+                        StartCoroutine("EnemyTurn", 1);
+                *          break;
+                *     case CharacterIdentifier.Enemy3:
+                *          state = BattleStateMultiple.ENEMYTURN;
+                        StartCoroutine("EnemyTurn", 2);
+                *          break;
+                *     case CharacterIdentifier.Enemy4:
+                *          state = BattleStateMultiple.ENEMYTURN;
+                        StartCoroutine("EnemyTurn", 3);
+                *          break;
+                *     case CharacterIdentifier.Enemy5:
+                *          state = BattleStateMultiple.ENEMYTURN;
+                        StartCoroutine("EnemyTurn", 4);
+                *          break;
+                * }
+         * }
+     * }
+     * */
 
     public void CallTime()
     {
@@ -780,7 +852,6 @@ public class BattleSystemMultiple : MonoBehaviour
                             StartCoroutine("EnemyTurn", 0);
                         }
                     }
-
                 }
             }
             if (slider)
@@ -981,6 +1052,7 @@ public class BattleSystemMultiple : MonoBehaviour
                     }
                 }
             }
+            //NextTurn();
         }
     }
 
@@ -1290,6 +1362,7 @@ public class BattleSystemMultiple : MonoBehaviour
                     }
                 }
             }
+            //NextTurn();
         }
     }
 
@@ -1617,7 +1690,7 @@ public class BattleSystemMultiple : MonoBehaviour
                     }
                 }
             }
-
+            //NextTurn();
         }
 
     }
@@ -1916,7 +1989,7 @@ public class BattleSystemMultiple : MonoBehaviour
                     }
                 }
             }
-
+            //NextTurn();
         }
     }
     #endregion
@@ -2378,7 +2451,7 @@ public class BattleSystemMultiple : MonoBehaviour
                 }
             }
         }
-
+        //NextTurn();
     }
 
     IEnumerator TurnOffDamageUI()
