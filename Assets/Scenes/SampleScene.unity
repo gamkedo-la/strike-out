@@ -935,6 +935,8 @@ MonoBehaviour:
   victory: {fileID: 35255476}
   defeat: {fileID: 35255475}
   battleMusic: {fileID: 1690852763}
+  playerTurnOrder: 
+  enemyTurnOrder: 
 --- !u!4 &35255473
 Transform:
   m_ObjectHideFlags: 0

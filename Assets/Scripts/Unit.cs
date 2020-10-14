@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class Unit : MonoBehaviour
 {
     public string unitName;
+    public BattleSystemMultiple.CharacterIdentifier myEnumValue;
     public int unitLevel;
 
     public int fastballDamage;
@@ -219,6 +220,9 @@ public class Unit : MonoBehaviour
 
         ExperienceToDistribute = Random.Range(minExperience, maxExperience);
         MoneyToDistribute = Random.Range(minMoney, maxMoney);
+
+        //Remove This later
+        currentHP = 1;
     }
 
     void Update()
