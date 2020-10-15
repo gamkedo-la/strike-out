@@ -214,7 +214,7 @@ public class BattleSystemMultiple : MonoBehaviour
             }
         }
 
-        enemyStartCount = 3; //REMOVE THIS AFTER TESTING
+        enemyStartCount = 5; //REMOVE THIS AFTER TESTING
 
         enemyTurnOrder.Add(CharacterIdentifier.Enemy1);
         if (enemyStartCount >= 2)
@@ -462,13 +462,10 @@ public class BattleSystemMultiple : MonoBehaviour
             closerDead = true;
             CloserAnim.SetBool("isDead", true);
         }
-        print(GameManager.StarterMorale + " " + GameManager.MidRelivMorale + " " + GameManager.SetUpMorale + " " + GameManager.CloserMorale + " ");
+      //  print(GameManager.StarterMorale + " " + GameManager.MidRelivMorale + " " + GameManager.SetUpMorale + " " + GameManager.CloserMorale + " ");
         #endregion
     }
 
-
-
-    //TODO Populating a list for the players and enemies (2 lists)
     //TODO how to advance in the CharacterIdentifierList
 
 
@@ -493,48 +490,48 @@ public class BattleSystemMultiple : MonoBehaviour
         {
             case CharacterIdentifier.Starter:
                 print("Starter");
-               // StarterTurn();
-              //  state = BattleStateMultiple.STARTER;
+                StarterTurn();
+                state = BattleStateMultiple.STARTER;
                 break;
             case CharacterIdentifier.Middle:
                 print("Middle");
-              //  MiddleTurn();
-              //  state = BattleStateMultiple.MIDDLE;
+                MiddleTurn();
+                state = BattleStateMultiple.MIDDLE;
                 break;
             case CharacterIdentifier.SetUp:
                 print("SetUp");
-              //  SETUPTurn();
-              //  state = BattleStateMultiple.SETUP;
+                SETUPTurn();
+                state = BattleStateMultiple.SETUP;
                 break;
             case CharacterIdentifier.Closer:
                 print("Closer");
-              //  CloserTurn();
-              //  state = BattleStateMultiple.CLOSER;
+                CloserTurn();
+                state = BattleStateMultiple.CLOSER;
                 break;
             case CharacterIdentifier.Enemy1:
                 print("Enemy1");
-               // state = BattleStateMultiple.ENEMYTURN;
-               // StartCoroutine("EnemyTurn", 0);
+                state = BattleStateMultiple.ENEMYTURN;
+                StartCoroutine("EnemyTurn", 0);
                 break;
             case CharacterIdentifier.Enemy2:
                 print("Enemy2");
-              //  state = BattleStateMultiple.ENEMYTURN;
-              //  StartCoroutine("EnemyTurn", 1);
+                state = BattleStateMultiple.ENEMYTURN;
+                StartCoroutine("EnemyTurn", 1);
                 break;
             case CharacterIdentifier.Enemy3:
                 print("Enemy3");
-              //  state = BattleStateMultiple.ENEMYTURN;
-              //  StartCoroutine("EnemyTurn", 2);
+                state = BattleStateMultiple.ENEMYTURN;
+                StartCoroutine("EnemyTurn", 2);
                 break;
             case CharacterIdentifier.Enemy4:
                 print("Enemy4");
-              //  state = BattleStateMultiple.ENEMYTURN;
-             //   StartCoroutine("EnemyTurn", 3);
+                state = BattleStateMultiple.ENEMYTURN;
+                StartCoroutine("EnemyTurn", 3);
                 break;
             case CharacterIdentifier.Enemy5:
                 print("Enemy5");
-              //  state = BattleStateMultiple.ENEMYTURN;
-             //   StartCoroutine("EnemyTurn", 4);
+                state = BattleStateMultiple.ENEMYTURN;
+                StartCoroutine("EnemyTurn", 4);
                 break;
          }
 
@@ -895,7 +892,7 @@ public class BattleSystemMultiple : MonoBehaviour
                          enemyUnitSelected = 0;
                         */
                         enemySelectionParticle.transform.position = enemyBattleStationLocations[enemyUnitSelected].transform.position;
-                        if (enemyCount == 1)
+              /*          if (enemyCount == 1)
                         {
                             MiddleTurn();
                             state = BattleStateMultiple.MIDDLE;
@@ -905,10 +902,10 @@ public class BattleSystemMultiple : MonoBehaviour
                         {
                             state = BattleStateMultiple.ENEMYTURN;
                             StartCoroutine("EnemyTurn", 0);
-                        }
+                        }*/
                     }
 
-                    if (!isDead)
+            /*        if (!isDead)
                     {
                         //Middle Reliever turn
                         if (enemyCount == 1)
@@ -922,7 +919,7 @@ public class BattleSystemMultiple : MonoBehaviour
                             state = BattleStateMultiple.ENEMYTURN;
                             StartCoroutine("EnemyTurn", 0);
                         }
-                    }
+                    }*/
                 }
             }
             if (slider)
@@ -962,7 +959,7 @@ public class BattleSystemMultiple : MonoBehaviour
                         */
                         enemySelectionParticle.transform.position = enemyBattleStationLocations[enemyUnitSelected].transform.position;
 
-                        if (enemyCount == 1)
+            /*            if (enemyCount == 1)
                         {
                             MiddleTurn();
                             state = BattleStateMultiple.MIDDLE;
@@ -972,10 +969,10 @@ public class BattleSystemMultiple : MonoBehaviour
                         {
                             state = BattleStateMultiple.ENEMYTURN;
                             StartCoroutine("EnemyTurn", 0);
-                        }
+                        }*/
                     }
 
-                    if (!isDead)
+          /*          if (!isDead)
                     {
                         //Middle Reliever turn
                         if (enemyCount == 1)
@@ -989,7 +986,7 @@ public class BattleSystemMultiple : MonoBehaviour
                             state = BattleStateMultiple.ENEMYTURN;
                             StartCoroutine("EnemyTurn", 0);
                         }
-                    }
+                    }*/
                 }
             }
             if (curveball)
@@ -1030,7 +1027,7 @@ public class BattleSystemMultiple : MonoBehaviour
                         */
                         enemySelectionParticle.transform.position = enemyBattleStationLocations[enemyUnitSelected].transform.position;
 
-                        if (enemyCount == 1)
+            /*            if (enemyCount == 1)
                         {
                             MiddleTurn();
                             state = BattleStateMultiple.MIDDLE;
@@ -1040,10 +1037,10 @@ public class BattleSystemMultiple : MonoBehaviour
                         {
                             state = BattleStateMultiple.ENEMYTURN;
                             StartCoroutine("EnemyTurn", 0);
-                        }
+                        }*/
                     }
 
-                    if (!isDead)
+           /*         if (!isDead)
                     {
                         //Middle Reliever turn
                         if (enemyCount == 1)
@@ -1057,7 +1054,7 @@ public class BattleSystemMultiple : MonoBehaviour
                             state = BattleStateMultiple.ENEMYTURN;
                             StartCoroutine("EnemyTurn", 0);
                         }
-                    }
+                    }*/
                 }
             }
             if (changeup)
@@ -1097,7 +1094,7 @@ public class BattleSystemMultiple : MonoBehaviour
                         */
                         enemySelectionParticle.transform.position = enemyBattleStationLocations[enemyUnitSelected].transform.position;
 
-                        if (enemyCount == 1)
+             /*           if (enemyCount == 1)
                         {
                             MiddleTurn();
                             state = BattleStateMultiple.MIDDLE;
@@ -1107,10 +1104,10 @@ public class BattleSystemMultiple : MonoBehaviour
                         {
                             state = BattleStateMultiple.ENEMYTURN;
                             StartCoroutine("EnemyTurn", 0);
-                        }
+                        }*/
                     }
 
-                    if (!isDead)
+            /*        if (!isDead)
                     {
                         //Middle Reliever turn
                         if (enemyCount == 1)
@@ -1124,7 +1121,7 @@ public class BattleSystemMultiple : MonoBehaviour
                             state = BattleStateMultiple.ENEMYTURN;
                             StartCoroutine("EnemyTurn", 0);
                         }
-                    }
+                    }*/
                 }
             }
             NextTurn();
@@ -1176,7 +1173,7 @@ public class BattleSystemMultiple : MonoBehaviour
                          */
                         enemySelectionParticle.transform.position = enemyBattleStationLocations[enemyUnitSelected].transform.position;
 
-                        switch (enemyStartCount)
+          /*              switch (enemyStartCount)
                         {
                             case 1:
                             case 3:
@@ -1189,10 +1186,10 @@ public class BattleSystemMultiple : MonoBehaviour
                             case 5:
                                 state = BattleStateMultiple.SETUP;
                                 SETUPTurn();
-                                break;
+                                break;*/
                         }
                     }
-
+/*
                     if (!isDead)
                     {
                         switch (enemyStartCount)
@@ -1210,7 +1207,7 @@ public class BattleSystemMultiple : MonoBehaviour
                                 SETUPTurn();
                                 break;
                         }
-                    }
+                    }*/
                 }
             }
             if (slider)
@@ -1251,7 +1248,7 @@ public class BattleSystemMultiple : MonoBehaviour
                          */
                         enemySelectionParticle.transform.position = enemyBattleStationLocations[enemyUnitSelected].transform.position;
 
-                        switch (enemyStartCount)
+         /*               switch (enemyStartCount)
                         {
                             case 1:
                             case 3:
@@ -1265,10 +1262,10 @@ public class BattleSystemMultiple : MonoBehaviour
                                 state = BattleStateMultiple.SETUP;
                                 SETUPTurn();
                                 break;
-                        }
+                        }*/
                     }
 
-                    if (!isDead)
+      /*              if (!isDead)
                     {
                         //Enemy Attack turn
                         switch (enemyStartCount)
@@ -1286,7 +1283,7 @@ public class BattleSystemMultiple : MonoBehaviour
                                 SETUPTurn();
                                 break;
                         }
-                    }
+                    }*/
                 }
             }
             if (curveball)
@@ -1326,8 +1323,8 @@ public class BattleSystemMultiple : MonoBehaviour
                          enemyUnitSelected = 0;
                          */
                         enemySelectionParticle.transform.position = enemyBattleStationLocations[enemyUnitSelected].transform.position;
-
-                        switch (enemyStartCount)
+    
+           /*             switch (enemyStartCount)
                         {
                             case 1:
                             case 3:
@@ -1341,10 +1338,10 @@ public class BattleSystemMultiple : MonoBehaviour
                                 state = BattleStateMultiple.SETUP;
                                 SETUPTurn();
                                 break;
-                        }
+                        }*/
                     }
 
-                    if (!isDead)
+       /*             if (!isDead)
                     {
                         //Enemy Attack turn
                         switch (enemyStartCount)
@@ -1362,7 +1359,7 @@ public class BattleSystemMultiple : MonoBehaviour
                                 SETUPTurn();
                                 break;
                         }
-                    }
+                    }*/
                 }
             }
             if (changeup)
@@ -1403,7 +1400,7 @@ public class BattleSystemMultiple : MonoBehaviour
                          */
                         enemySelectionParticle.transform.position = enemyBattleStationLocations[enemyUnitSelected].transform.position;
 
-                        switch (enemyStartCount)
+             /*           switch (enemyStartCount)
                         {
                             case 1:
                             case 3:
@@ -1417,10 +1414,10 @@ public class BattleSystemMultiple : MonoBehaviour
                                 state = BattleStateMultiple.SETUP;
                                 SETUPTurn();
                                 break;
-                        }
+                        }*/
                     }
 
-                    if (!isDead)
+           /*         if (!isDead)
                     {
                         //Enemy Attack turn
                         switch (enemyStartCount)
@@ -1439,10 +1436,10 @@ public class BattleSystemMultiple : MonoBehaviour
                                 break;
                         }
                     }
-                }
+                }*/
             }
-           NextTurn();
         }
+        NextTurn();
     }
 
     IEnumerator SetUpAttack()
@@ -1489,9 +1486,9 @@ public class BattleSystemMultiple : MonoBehaviour
                          enemyUnit.Remove(enemyUnit[enemyUnitSelected]);
                          enemyUnitSelected = 0;
                         */
-                        enemySelectionParticle.transform.position = enemyBattleStationLocations[enemyUnitSelected].transform.position;
+                       enemySelectionParticle.transform.position = enemyBattleStationLocations[enemyUnitSelected].transform.position;
 
-                        switch (enemyStartCount)
+         /*               switch (enemyStartCount)
                         {
                             case 1:
                             case 5:
@@ -1507,10 +1504,10 @@ public class BattleSystemMultiple : MonoBehaviour
                                 state = BattleStateMultiple.ENEMYTURN;
                                 StartCoroutine("EnemyTurn", 2);
                                 break;
-                        }
+                        }*/
                     }
 
-                    if (!isDead)
+       /*             if (!isDead)
                     {
                         switch (enemyStartCount)
                         {
@@ -1529,7 +1526,7 @@ public class BattleSystemMultiple : MonoBehaviour
                                 StartCoroutine("EnemyTurn", 2);
                                 break;
                         }
-                    }
+                    }*/
                 }
             }
             if (slider)
@@ -1571,7 +1568,7 @@ public class BattleSystemMultiple : MonoBehaviour
                         */
                         enemySelectionParticle.transform.position = enemyBattleStationLocations[enemyUnitSelected].transform.position;
 
-                        switch (enemyStartCount)
+            /*            switch (enemyStartCount)
                         {
                             case 1:
                             case 5:
@@ -1587,10 +1584,10 @@ public class BattleSystemMultiple : MonoBehaviour
                                 state = BattleStateMultiple.ENEMYTURN;
                                 StartCoroutine("EnemyTurn", 2);
                                 break;
-                        }
+                        }*/
                     }
 
-                    if (!isDead)
+         /*           if (!isDead)
                     {
                         switch (enemyStartCount)
                         {
@@ -1609,7 +1606,7 @@ public class BattleSystemMultiple : MonoBehaviour
                                 StartCoroutine("EnemyTurn", 2);
                                 break;
                         }
-                    }
+                    }*/
                 }
             }
             if (curveball)
@@ -1651,7 +1648,7 @@ public class BattleSystemMultiple : MonoBehaviour
                         */
                         enemySelectionParticle.transform.position = enemyBattleStationLocations[enemyUnitSelected].transform.position;
 
-                        switch (enemyStartCount)
+          /*              switch (enemyStartCount)
                         {
                             case 1:
                             case 5:
@@ -1667,10 +1664,10 @@ public class BattleSystemMultiple : MonoBehaviour
                                 state = BattleStateMultiple.ENEMYTURN;
                                 StartCoroutine("EnemyTurn", 2);
                                 break;
-                        }
+                        }*/
                     }
 
-                    if (!isDead)
+              /*      if (!isDead)
                     {
                         switch (enemyStartCount)
                         {
@@ -1689,7 +1686,7 @@ public class BattleSystemMultiple : MonoBehaviour
                                 StartCoroutine("EnemyTurn", 2);
                                 break;
                         }
-                    }
+                    }*/
                 }
             }
             if (changeup)
@@ -1731,7 +1728,7 @@ public class BattleSystemMultiple : MonoBehaviour
                         */
                         enemySelectionParticle.transform.position = enemyBattleStationLocations[enemyUnitSelected].transform.position;
 
-                        switch (enemyStartCount)
+            /*            switch (enemyStartCount)
                         {
                             case 1:
                             case 5:
@@ -1747,10 +1744,10 @@ public class BattleSystemMultiple : MonoBehaviour
                                 state = BattleStateMultiple.ENEMYTURN;
                                 StartCoroutine("EnemyTurn", 2);
                                 break;
-                        }
+                        }*/
                     }
 
-                    if (!isDead)
+            /*        if (!isDead)
                     {
                         //Closer turn
                         switch (enemyStartCount)
@@ -1770,12 +1767,12 @@ public class BattleSystemMultiple : MonoBehaviour
                                 StartCoroutine("EnemyTurn", 2);
                                 break;
                         }
-                    }
+                    }*/
                 }
             }
-            NextTurn();
+           
         }
-
+        NextTurn();
     }
 
     IEnumerator CloserAttack()
@@ -1822,7 +1819,7 @@ public class BattleSystemMultiple : MonoBehaviour
                        */
                         enemySelectionParticle.transform.position = enemyBattleStationLocations[enemyUnitSelected].transform.position;
 
-                        switch (enemyStartCount)
+              /*          switch (enemyStartCount)
                         {
                             case 1:
                             case 2:
@@ -1835,10 +1832,10 @@ public class BattleSystemMultiple : MonoBehaviour
                                 state = BattleStateMultiple.ENEMYTURN;
                                 StartCoroutine("EnemyTurn", 3);
                                 break;
-                        }
+                        }*/
                     }
 
-                    if (!isDead)
+             /*       if (!isDead)
                     {
                         switch (enemyStartCount)
                         {
@@ -1854,7 +1851,7 @@ public class BattleSystemMultiple : MonoBehaviour
                                 StartCoroutine("EnemyTurn", 3);
                                 break;
                         }
-                    }
+                    }*/
                 }
             }
             if (slider)
@@ -1895,7 +1892,7 @@ public class BattleSystemMultiple : MonoBehaviour
                        */
                         enemySelectionParticle.transform.position = enemyBattleStationLocations[enemyUnitSelected].transform.position;
 
-                        switch (enemyStartCount)
+                  /*      switch (enemyStartCount)
                         {
                             case 1:
                             case 2:
@@ -1908,10 +1905,10 @@ public class BattleSystemMultiple : MonoBehaviour
                                 state = BattleStateMultiple.ENEMYTURN;
                                 StartCoroutine("EnemyTurn", 3);
                                 break;
-                        }
+                        }*/
                     }
 
-                    if (!isDead)
+                 /*   if (!isDead)
                     {
                         switch (enemyStartCount)
                         {
@@ -1927,7 +1924,7 @@ public class BattleSystemMultiple : MonoBehaviour
                                 StartCoroutine("EnemyTurn", 3);
                                 break;
                         }
-                    }
+                    }*/
                 }
             }
             if (curveball)
@@ -1968,7 +1965,7 @@ public class BattleSystemMultiple : MonoBehaviour
                        */
                         enemySelectionParticle.transform.position = enemyBattleStationLocations[enemyUnitSelected].transform.position;
 
-                        switch (enemyStartCount)
+               /*         switch (enemyStartCount)
                         {
                             case 1:
                             case 2:
@@ -1981,10 +1978,10 @@ public class BattleSystemMultiple : MonoBehaviour
                                 state = BattleStateMultiple.ENEMYTURN;
                                 StartCoroutine("EnemyTurn", 3);
                                 break;
-                        }
+                        }*/
                     }
 
-                    if (!isDead)
+               /*     if (!isDead)
                     {
                         switch (enemyStartCount)
                         {
@@ -2000,7 +1997,7 @@ public class BattleSystemMultiple : MonoBehaviour
                                 StartCoroutine("EnemyTurn", 3);
                                 break;
                         }
-                    }
+                    }*/
                 }
             }
             if (changeup)
@@ -2041,7 +2038,7 @@ public class BattleSystemMultiple : MonoBehaviour
                        */
                         enemySelectionParticle.transform.position = enemyBattleStationLocations[enemyUnitSelected].transform.position;
 
-                        switch (enemyStartCount)
+               /*         switch (enemyStartCount)
                         {
                             case 1:
                             case 2:
@@ -2054,10 +2051,10 @@ public class BattleSystemMultiple : MonoBehaviour
                                 state = BattleStateMultiple.ENEMYTURN;
                                 StartCoroutine("EnemyTurn", 3);
                                 break;
-                        }
+                        }*/
                     }
 
-                    if (!isDead)
+                /*    if (!isDead)
                     {
                         switch (enemyStartCount)
                         {
@@ -2073,7 +2070,7 @@ public class BattleSystemMultiple : MonoBehaviour
                                 StartCoroutine("EnemyTurn", 3);
                                 break;
                         }
-                    }
+                    }*/
                 }
             }
             NextTurn();
@@ -2101,7 +2098,7 @@ public class BattleSystemMultiple : MonoBehaviour
 
     void NextPlayerTurnAfterEnemyTurn(int enemyIndex)
     {
-        switch (enemyStartCount)
+        /*switch (enemyStartCount)
         {
             case 1:
                 switch (enemyIndex)
@@ -2222,7 +2219,7 @@ public class BattleSystemMultiple : MonoBehaviour
                         break;
                 }
                 break;
-        }
+        }*/
     }
 
     IEnumerator EnemyTurn(int enemyIndex)
@@ -2574,7 +2571,8 @@ public class BattleSystemMultiple : MonoBehaviour
         GameManager.Instance.DebugBall.transform.position = Starter.transform.position + Vector3.up * GameManager.Instance.DebugBallHeight;
         if (starterDead)
         {
-            if (enemyStartCount == 1)
+            NextTurn();
+           /* if (enemyStartCount == 1)
             {
                 state = BattleStateMultiple.MIDDLE;
                 MiddleTurn();
@@ -2583,7 +2581,7 @@ public class BattleSystemMultiple : MonoBehaviour
             {
                 state = BattleStateMultiple.ENEMYTURN;
                 StartCoroutine("EnemyTurn", 0);
-            }
+            }*/
         }
         if (!starterDead)
         {
@@ -2604,7 +2602,8 @@ public class BattleSystemMultiple : MonoBehaviour
         GameManager.Instance.DebugBall.transform.position = MiddleReliever.transform.position + Vector3.up * GameManager.Instance.DebugBallHeight;
         if (middleDead)
         {
-            switch (enemyStartCount)
+            NextTurn();
+          /*  switch (enemyStartCount)
             {
                 case 1:
                 case 3:
@@ -2618,7 +2617,7 @@ public class BattleSystemMultiple : MonoBehaviour
                     state = BattleStateMultiple.SETUP;
                     SETUPTurn();
                     break;
-            }
+            }*/
         }
         if (!middleDead)
         {
@@ -2645,7 +2644,8 @@ public class BattleSystemMultiple : MonoBehaviour
 
         if (setupDead)
         {
-            switch (enemyStartCount)
+            NextTurn();
+           /* switch (enemyStartCount)
             {
                 case 1:
                 case 5:
@@ -2662,7 +2662,7 @@ public class BattleSystemMultiple : MonoBehaviour
                     state = BattleStateMultiple.ENEMYTURN;
                     StartCoroutine("EnemyTurn", 2);
                     break;
-            }
+            }*/
         }
         if (!setupDead)
         {
@@ -2688,7 +2688,8 @@ public class BattleSystemMultiple : MonoBehaviour
         }
         if (closerDead)
         {
-            switch (enemyStartCount)
+            NextTurn();
+           /* switch (enemyStartCount)
             {
                 case 4:
                     state = BattleStateMultiple.ENEMYTURN;
@@ -2698,7 +2699,7 @@ public class BattleSystemMultiple : MonoBehaviour
                     state = BattleStateMultiple.STARTER;
                     StarterTurn();
                     break;
-            }
+            }*/
         }
         if (!closerDead)
         {

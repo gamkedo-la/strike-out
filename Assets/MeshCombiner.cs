@@ -19,7 +19,7 @@ public class MeshCombiner : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.J))
-            {
+        {
             CombineMeshes();
         }
     }
