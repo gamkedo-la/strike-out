@@ -223,7 +223,7 @@ public class Unit : MonoBehaviour
         MoneyToDistribute = Random.Range(minMoney, maxMoney);
 
         //Remove This later
-        currentHP = 100;
+        //currentHP = 100;
     }
 
     void Update()
@@ -782,8 +782,8 @@ public class Unit : MonoBehaviour
 
     void CalledShot()
     {
-        minDamage = 80;
-        maxDamage = 100;
+        minDamage = 200;
+        maxDamage = 500;
 
         enemyDamage = Random.Range(minDamage, maxDamage);
         //  DamageUI.text = "-" + enemyDamage.ToString();
