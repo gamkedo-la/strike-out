@@ -222,7 +222,7 @@ public class Unit : MonoBehaviour
         MoneyToDistribute = Random.Range(minMoney, maxMoney);
 
         //Remove This later
-        currentHP = 1;
+        currentHP = 100;
     }
 
     void Update()

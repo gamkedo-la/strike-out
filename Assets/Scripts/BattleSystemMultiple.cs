@@ -214,9 +214,8 @@ public class BattleSystemMultiple : MonoBehaviour
             }
         }
 
-        enemyStartCount = 5; //REMOVE THIS AFTER TESTING
-
         enemyTurnOrder.Add(CharacterIdentifier.Enemy1);
+
         if (enemyStartCount >= 2)
         {
             enemyTurnOrder.Add(CharacterIdentifier.Enemy2);
@@ -551,8 +550,8 @@ public class BattleSystemMultiple : MonoBehaviour
             {
                 enemyUnit[i].TakeDamage(-5);
             }
-            state = BattleStateMultiple.ENEMYTURN;
-            StartCoroutine("EnemyTurn", 0);
+           // state = BattleStateMultiple.ENEMYTURN;
+           // StartCoroutine("EnemyTurn", 0);
         }
 
         if (state == BattleStateMultiple.MIDDLE)
@@ -563,8 +562,8 @@ public class BattleSystemMultiple : MonoBehaviour
             {
                 enemyUnit[i].TakeDamage(-5);
             }
-            state = BattleStateMultiple.ENEMYTURN;
-            StartCoroutine("EnemyTurn", 1);
+           // state = BattleStateMultiple.ENEMYTURN;
+           // StartCoroutine("EnemyTurn", 1);
         }
 
         if (state == BattleStateMultiple.SETUP)
@@ -575,8 +574,8 @@ public class BattleSystemMultiple : MonoBehaviour
             {
                 enemyUnit[i].TakeDamage(-5);
             }
-            state = BattleStateMultiple.ENEMYTURN;
-            StartCoroutine("EnemyTurn", 2);
+           // state = BattleStateMultiple.ENEMYTURN;
+           // StartCoroutine("EnemyTurn", 2);
         }
 
         if (state == BattleStateMultiple.CLOSER)
@@ -587,9 +586,10 @@ public class BattleSystemMultiple : MonoBehaviour
             {
                 enemyUnit[i].TakeDamage(-5);
             }
-            state = BattleStateMultiple.STARTER;
-            StarterTurn();
+            //state = BattleStateMultiple.STARTER;
+           // StarterTurn();
         }
+        NextTurn();
     }
     #region ItemManagement
 
@@ -749,7 +749,7 @@ public class BattleSystemMultiple : MonoBehaviour
         PlayerPitches.SetActive(false);
         ItemMenu.transform.localPosition = new Vector3(233, -900, 0);
 
-        if (state == BattleStateMultiple.STARTER)
+       /* if (state == BattleStateMultiple.STARTER)
         {
 
             state = BattleStateMultiple.ENEMYTURN;
@@ -773,6 +773,7 @@ public class BattleSystemMultiple : MonoBehaviour
             state = BattleStateMultiple.STARTER;
             StartCoroutine(CloserToStarterWait());
         }
+        */
 
         StarterMorale.value = (GameManager.StarterMorale / GameManager.StarterMoraleMax);
         MiddleMorale.value = (GameManager.MidRelivMorale / GameManager.MidRelivMoraleMax);
@@ -783,6 +784,8 @@ public class BattleSystemMultiple : MonoBehaviour
         MiddleEnergy.value = (GameManager.MidRelivEnergy / GameManager.MidRelievEnergyMax);
         SetUpEnergy.value = (GameManager.SetUpEnergy / GameManager.SetUpEnergyMax);
         CloserEnergy.value = (GameManager.CloserEnergy / GameManager.CloserEnergyMax);
+
+        NextTurn();
     }
 
     IEnumerator CloserToStarterWait()
@@ -2261,6 +2264,7 @@ public class BattleSystemMultiple : MonoBehaviour
                     StarterDamageUI.text = "-" + enemyUnit[enemyUnitSelected].enemyDamage.ToString();
                     //
                     playerTurnOrder.Remove(CharacterIdentifier.Starter);
+
                     //
                     StarterAnim.SetBool("isDead", true);
                 }
@@ -2405,6 +2409,8 @@ public class BattleSystemMultiple : MonoBehaviour
                             StarterMorale.value = (GameManager.StarterMorale / GameManager.StarterMoraleMax);
                             starterDead = true;
 
+                            playerTurnOrder.Remove(CharacterIdentifier.Starter);
+
                             StarterAnim.SetBool("isDead", true);
                             yield return new WaitForSeconds(3f);
                             NextPlayerTurnAfterEnemyTurn(enemyIndex);
@@ -2446,6 +2452,9 @@ public class BattleSystemMultiple : MonoBehaviour
                             GameManager.MidRelivMorale -= enemyUnit[enemyUnitSelected].enemyDamage;
                             MiddleMorale.value = (GameManager.MidRelivMorale / GameManager.MidRelivMoraleMax);
                             middleDead = true;
+
+                            playerTurnOrder.Remove(CharacterIdentifier.Middle);
+
                             MidRelAnim.SetBool("isDead", true);
                             yield return new WaitForSeconds(3f);
                             NextPlayerTurnAfterEnemyTurn(enemyIndex);
@@ -2490,6 +2499,9 @@ public class BattleSystemMultiple : MonoBehaviour
                             SetUpMorale.value = (GameManager.SetUpMorale / GameManager.SetUpMoraleMax);
                             SetUpAnim.SetBool("isDead", true);
                             setupDead = true;
+
+                            playerTurnOrder.Remove(CharacterIdentifier.SetUp);
+
                             yield return new WaitForSeconds(3f);
                             NextPlayerTurnAfterEnemyTurn(enemyIndex);
                         }
@@ -2531,6 +2543,9 @@ public class BattleSystemMultiple : MonoBehaviour
                             CloserMorale.value = (GameManager.CloserMorale / GameManager.CloserMoraleMax);
                             CloserAnim.SetBool("isDead", true);
                             closerDead = true;
+
+                            playerTurnOrder.Remove(CharacterIdentifier.Closer);
+
                             yield return new WaitForSeconds(3f);
                             NextPlayerTurnAfterEnemyTurn(enemyIndex);
                         }
@@ -3221,11 +3236,14 @@ public class BattleSystemMultiple : MonoBehaviour
                 int NewLevelS = GameManager.StarterLevel;
                 int Difference = NewLevelS - OldLevelS;
                 SPointsToGive = (Difference * 3);
-                StartTotalExp.text = GameManager.StarterLevel.ToString("F0");
             }
+            StarterExpToNext.text = (GameManager.StarterTargetExp - GameManager.StarterExp).ToString("F0");
+            StartTotalExp.text = GameManager.StarterLevel.ToString("F0");
         }
         else
+        {
             MidExp(totalExp / 4);
+        }
     }
 
     void MidExp(int xp)
@@ -3249,15 +3267,17 @@ public class BattleSystemMultiple : MonoBehaviour
                 MLevelUp.SetActive(true);
                 GameManager.MRTargetExp *= 2f;
                 //add training points
-                MRExpToNext.text = (GameManager.MRTargetExp - GameManager.MRExp).ToString("F0");
                 int NewLevelM = GameManager.MRLevel;
                 int Difference = NewLevelM - OldLevelM;
                 MPointsToGive = (Difference * 3) + 1;
-                MRTotalExp.text = GameManager.MRLevel.ToString("F0");
             }
+            MRExpToNext.text = (GameManager.MRTargetExp - GameManager.MRExp).ToString("F0");
+            MRTotalExp.text = GameManager.MRLevel.ToString("F0");
         }
         else
+        {
             SetUpExp(totalExp / 4);
+        }
     }
 
     void SetUpExp(int xp)
@@ -3281,15 +3301,18 @@ public class BattleSystemMultiple : MonoBehaviour
                 SetUpLevelUp.SetActive(true);
                 GameManager.SetupTargetExp *= 2f;
                 //add training points
-                SetUpExpToNext.text = (GameManager.SetupTargetExp - GameManager.SetUpExp).ToString("F0");
+
                 int NewLevelSe = GameManager.SetUpLevel;
                 int Difference = NewLevelSe - OldLevelSe;
                 SePointsToGive = (Difference * 3) + 1;
-                SetUpTotalExp.text = GameManager.SetUpLevel.ToString("F0");
             }
+            SetUpExpToNext.text = (GameManager.SetupTargetExp - GameManager.SetUpExp).ToString("F0");
+            SetUpTotalExp.text = GameManager.SetUpLevel.ToString("F0");
         }
         else
+        {
             CloserExp(totalExp / 4);
+        }
     }
 
     void CloserExp(int xp)
@@ -3313,15 +3336,17 @@ public class BattleSystemMultiple : MonoBehaviour
                 CloserLevelUp.SetActive(true);
                 GameManager.CloserTargetExp *= 2f;
                 //add training points
-                CloserExpToNext.text = (GameManager.CloserTargetExp - GameManager.CloserExp).ToString("F0");
                 int NewLevelC = GameManager.CloserLevel;
                 int Difference = NewLevelC - OldLevelC;
                 CPointsToGive = (Difference * 3) + 1;
-                CloserTotalExp.text = GameManager.CloserLevel.ToString("F0");
             }
+            CloserExpToNext.text = (GameManager.CloserTargetExp - GameManager.CloserExp).ToString("F0");
+            CloserTotalExp.text = GameManager.CloserLevel.ToString("F0");
         }
         else
+        {
             StartCoroutine(WaitingAtEndOfBattle());
+        }
     }
 
     void CheatToInstantlyWin()
