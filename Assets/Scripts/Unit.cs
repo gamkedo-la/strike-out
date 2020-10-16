@@ -54,6 +54,7 @@ public class Unit : MonoBehaviour
     public GameObject StrWeakHolder;
 
     public static bool attackAll;
+    public static bool energyAll;
 
     public Text DamageUI;
 
@@ -276,8 +277,52 @@ public class Unit : MonoBehaviour
 
         if (attackToDo == 12)
         { SouvenirDay(); }
+
+        if (attackToDo == 13)
+        { DeadBall(); }
+
+        if (attackToDo == 14)
+        { Balk(); }
+
+        if (attackToDo == 15)
+        { Walk(); }
+
+        if (attackToDo == 16)
+        { OverTurnedCall(); }
+
+        if (attackToDo == 17)
+        { StrikeOut(); }
+
+        if (attackToDo == 18)
+        { Ejection(); }
+
+        if (attackToDo == 19)
+        { TightStrikeZone(); }
+
+
+
+        if (attackToDo == 20)
+        { Clutch(); }
+
+        if (attackToDo == 21)
+        { GrandSlam(); }
+
+        if (attackToDo == 22)
+        { CalledShot(); }
+
+        if (attackToDo == 23)
+        { Rally(); }
+
+        if (attackToDo == 24)
+        { Double(); }
+
+        if (attackToDo == 25)
+        { RBIMachine(); }
+
+        if (attackToDo == 26)
+        { DeepDrive(); }
     }
-    
+
     public bool TakeDamage(int dmg)
     {
         print(dmg);
@@ -454,7 +499,7 @@ public class Unit : MonoBehaviour
         maxDamage = 5;
 
         enemyDamage = Random.Range(minDamage, maxDamage);
-      //  DamageUI.text = "-" + enemyDamage.ToString();
+        //  DamageUI.text = "-" + enemyDamage.ToString();
         attackName = "Weak Grounder".ToString();
     }
 
@@ -464,7 +509,7 @@ public class Unit : MonoBehaviour
         maxDamage = 4;
 
         enemyDamage = Random.Range(minDamage, maxDamage);
-      //  DamageUI.text = "-" + enemyDamage.ToString();
+        //  DamageUI.text = "-" + enemyDamage.ToString();
         attackName = "Seeing Eye Single".ToString();
     }
 
@@ -474,7 +519,7 @@ public class Unit : MonoBehaviour
         maxDamage = 4;
 
         enemyDamage = Random.Range(minDamage, maxDamage);
-      //  DamageUI.text = "-" + enemyDamage.ToString();
+        //  DamageUI.text = "-" + enemyDamage.ToString();
         attackName = "Pop Up".ToString();
     }
 
@@ -484,7 +529,7 @@ public class Unit : MonoBehaviour
         maxDamage = 6;
 
         enemyDamage = Random.Range(minDamage, maxDamage);
-      //  DamageUI.text = "-" + enemyDamage.ToString();
+        //  DamageUI.text = "-" + enemyDamage.ToString();
         attackName = "Line Drive".ToString();
     }
 
@@ -494,7 +539,7 @@ public class Unit : MonoBehaviour
         maxDamage = 7;
 
         enemyDamage = Random.Range(minDamage, maxDamage);
-       // DamageUI.text = "-" + enemyDamage.ToString();
+        // DamageUI.text = "-" + enemyDamage.ToString();
         attackName = "Fly Ball".ToString();
     }
 
@@ -505,7 +550,7 @@ public class Unit : MonoBehaviour
         maxDamage = 5;
 
         enemyDamage = Random.Range(minDamage, maxDamage);
-      //  DamageUI.text = "-" + enemyDamage.ToString();
+        //  DamageUI.text = "-" + enemyDamage.ToString();
         attackName = "Shagging".ToString();
 
         if (currentHP >= 0)
@@ -523,7 +568,7 @@ public class Unit : MonoBehaviour
         maxDamage = 15;
 
         enemyDamage = Random.Range(minDamage, maxDamage);
-      //  DamageUI.text = "-" + enemyDamage.ToString();
+        //  DamageUI.text = "-" + enemyDamage.ToString();
         attackName = "Ground Rule Double".ToString();
     }
 
@@ -533,7 +578,7 @@ public class Unit : MonoBehaviour
         maxDamage = 0;
 
         enemyDamage = Random.Range(minDamage, maxDamage);
-       // DamageUI.text = "-" + enemyDamage.ToString();
+        // DamageUI.text = "-" + enemyDamage.ToString();
         attackName = "Taking The Pitch".ToString();
     }
 
@@ -543,7 +588,7 @@ public class Unit : MonoBehaviour
         maxDamage = 9;
 
         enemyDamage = Random.Range(minDamage, maxDamage);
-       // DamageUI.text = "-" + enemyDamage.ToString();
+        // DamageUI.text = "-" + enemyDamage.ToString();
         attackName = "Deep Foul Ball".ToString();
     }
 
@@ -614,6 +659,198 @@ public class Unit : MonoBehaviour
         else
             return false;
     }
+
+    void DeadBall()
+    {
+        minDamage = 20;
+        maxDamage = 21;
+
+        enemyDamage = Random.Range(minDamage, maxDamage);
+        //  DamageUI.text = "-" + enemyDamage.ToString();
+        attackName = "Dead Ball".ToString();
+
+    }
+
+    void Balk()
+    {
+        minDamage = 10;
+        maxDamage = 30;
+
+        enemyDamage = Random.Range(minDamage, maxDamage);
+        //  DamageUI.text = "-" + enemyDamage.ToString();
+        attackName = "Balk".ToString();
+
+    }
+
+    void Walk()
+    {
+        minDamage = 32;
+        maxDamage = 35;
+
+        enemyDamage = Random.Range(minDamage, maxDamage);
+        //  DamageUI.text = "-" + enemyDamage.ToString();
+        attackName = "Walk".ToString();
+    }
+
+    void OverTurnedCall()
+    {
+        minDamage = 20;
+        maxDamage = 23;
+
+        enemyDamage = Random.Range(minDamage, maxDamage);
+        //  DamageUI.text = "-" + enemyDamage.ToString();
+        attackName = "Overturned Call".ToString();
+    }
+
+    public bool StrikeOut()
+    {
+        attackAll = true;
+        minDamage = -3;
+        maxDamage = 10;
+
+        enemyDamage = Random.Range(minDamage, maxDamage);
+        //  DamageUI.text = "-" + enemyDamage.ToString();
+        attackName = "Strike Out".ToString();
+
+        if (currentHP >= 0)
+        {
+            return true;
+        }
+
+        else
+            return false;
+
+    }
+    void Ejection()
+    {
+        minDamage = 30;
+        maxDamage = 40;
+
+        enemyDamage = Random.Range(minDamage, maxDamage);
+        //  DamageUI.text = "-" + enemyDamage.ToString();
+        attackName = "Ejection".ToString();
+
+    }
+
+    public bool TightStrikeZone()
+    {
+        energyAll = true;
+        minDamage = 5;
+        maxDamage = 10;
+
+        enemyDamage = Random.Range(minDamage, maxDamage);
+        //  DamageUI.text = "-" + enemyDamage.ToString();
+        attackName = "Tight Strike Zone".ToString();
+
+        if (currentHP >= 0)
+        {
+            return true;
+        }
+
+        else
+            return false;
+    }
+
+    void Clutch()
+    {
+        minDamage = 30;
+        maxDamage = 35;
+
+        enemyDamage = Random.Range(minDamage, maxDamage);
+        //  DamageUI.text = "-" + enemyDamage.ToString();
+        attackName = "Clutch Hit".ToString();
+    }
+
+    public bool GrandSlam()
+    {
+        attackAll = true;
+        minDamage = 50;
+        maxDamage = 65;
+
+        enemyDamage = Random.Range(minDamage, maxDamage);
+        //  DamageUI.text = "-" + enemyDamage.ToString();
+        attackName = "Grand Slam".ToString();
+
+        if (currentHP >= 0)
+        {
+            return true;
+        }
+
+        else
+            return false;
+    }
+
+    void CalledShot()
+    {
+        minDamage = 80;
+        maxDamage = 100;
+
+        enemyDamage = Random.Range(minDamage, maxDamage);
+        //  DamageUI.text = "-" + enemyDamage.ToString();
+        attackName = "Called Shot".ToString();
+    }
+
+    public bool Rally()
+    {
+        energyAll = true;
+
+        minDamage = 10;
+        maxDamage = 15;
+
+        enemyDamage = Random.Range(minDamage, maxDamage);
+        //  DamageUI.text = "-" + enemyDamage.ToString();
+        attackName = "Rally".ToString();
+
+        if (currentHP >= 0)
+        {
+            return true;
+        }
+
+        else
+            return false;
+    }
+
+    void Double()
+    {
+        minDamage = 20;
+        maxDamage = 30;
+
+        enemyDamage = Random.Range(minDamage, maxDamage);
+        //  DamageUI.text = "-" + enemyDamage.ToString();
+        attackName = "Double".ToString();
+        Double2();
+    }
+
+    void Double2()
+    {
+        minDamage = 20;
+        maxDamage = 30;
+
+        enemyDamage = Random.Range(minDamage, maxDamage);
+        //  DamageUI.text = "-" + enemyDamage.ToString();
+        attackName = "Double".ToString();
+    }
+
+    void RBIMachine()
+    {
+        minDamage = 40;
+        maxDamage = 50;
+
+        enemyDamage = Random.Range(minDamage, maxDamage);
+        //  DamageUI.text = "-" + enemyDamage.ToString();
+        attackName = "RBI Machine".ToString();
+    }
+
+    void DeepDrive()
+    {
+        minDamage = 35;
+        maxDamage = 45;
+
+        enemyDamage = Random.Range(minDamage, maxDamage);
+        //  DamageUI.text = "-" + enemyDamage.ToString();
+        attackName = "Deep Drive".ToString();
+    }
+
 
     IEnumerator ClearText()
     {

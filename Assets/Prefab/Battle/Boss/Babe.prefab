@@ -1133,8 +1133,8 @@ MonoBehaviour:
   M8: 0
   StrWeakHolder: {fileID: 1985429394211530192}
   DamageUI: {fileID: 4184921971014777635}
-  minAttackAvil: 4
-  maxAttackAvil: 8
+  minAttackAvil: 20
+  maxAttackAvil: 27
 --- !u!114 &2860996424318398275
 MonoBehaviour:
   m_ObjectHideFlags: 0

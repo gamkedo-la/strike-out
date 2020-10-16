@@ -2351,6 +2351,64 @@ public class BattleSystemMultiple : MonoBehaviour
                 NextPlayerTurnAfterEnemyTurn(enemyIndex);
             }
 
+            else if (Unit.energyAll)
+            {
+                dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " tires the Pitchers with " + enemyUnit[enemyUnitSelected].attackName + "!";
+
+                enemyAnim[enemyIndex].Play("Armature|Swing");
+
+                yield return new WaitForSeconds(1f);
+
+                bool isDead1 = Starter.TakeDamage(enemyUnit[enemyUnitSelected].enemyDamage);
+                bool isDead2 = MiddleReliever.TakeDamage(enemyUnit[enemyUnitSelected].enemyDamage);
+                bool isDead3 = SetUp.TakeDamage(enemyUnit[enemyUnitSelected].enemyDamage);
+                bool isDead4 = Closer.TakeDamage(enemyUnit[enemyUnitSelected].enemyDamage);
+
+                if (!isDead1)
+                {
+                    yield return new WaitForSeconds(.5f);
+                    StarterAnim.Play("Armature|Oof");
+
+                    GameManager.StarterEnergy -= enemyUnit[enemyUnitSelected].enemyDamage;
+                    StarterDamageUI.text = "-" + enemyUnit[enemyUnitSelected].enemyDamage.ToString();
+                    StarterEnergy.value = (GameManager.StarterEnergy / GameManager.StarterEnergyMax);
+                }
+
+                if (!isDead2)
+                {
+                    yield return new WaitForSeconds(.5f);
+                    MidRelAnim.Play("Armature|Oof");
+
+                    GameManager.MidRelivEnergy -= enemyUnit[enemyUnitSelected].enemyDamage;
+                    MiddleDamageUI.text = "-" + enemyUnit[enemyUnitSelected].enemyDamage.ToString();
+                    MiddleEnergy.value = (GameManager.MidRelivEnergy / GameManager.MidRelievEnergyMax);
+                }
+
+                if (!isDead3)
+                {
+                    yield return new WaitForSeconds(.5f);
+                    SetUpAnim.Play("Armature|Oof");
+
+                    GameManager.SetUpEnergy -= enemyUnit[enemyUnitSelected].enemyDamage;
+                    SetUpDamageUI.text = "-" + enemyUnit[enemyUnitSelected].enemyDamage.ToString();
+                    SetUpEnergy.value = (GameManager.SetUpEnergy / GameManager.SetUpEnergyMax);
+                }
+
+                if (!isDead4)
+                {
+                    yield return new WaitForSeconds(.5f);
+                    CloserAnim.Play("Armature|Oof");
+
+                    GameManager.CloserEnergy -= enemyUnit[enemyUnitSelected].enemyDamage;
+                    CloserDamageUI.text = "-" + enemyUnit[enemyUnitSelected].enemyDamage.ToString();
+                    CloserEnergy.value = (GameManager.CloserEnergy / GameManager.CloserEnergyMax);
+                }
+                Unit.energyAll = false;
+                yield return new WaitForSeconds(1f);
+                StartCoroutine(TurnOffDamageUI());
+                NextPlayerTurnAfterEnemyTurn(enemyIndex);
+            }
+
 
             else
             {
