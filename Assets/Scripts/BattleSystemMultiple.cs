@@ -10,6 +10,7 @@ public enum BattleStateMultiple { START, STARTER, MIDDLE, SETUP, CLOSER, ENEMYTU
 public class BattleSystemMultiple : MonoBehaviour
 {
     public bool isConcourse;
+    public bool isHoE;
 
     public static bool inBattle; 
     public BattleStateMultiple state;
@@ -122,6 +123,7 @@ public class BattleSystemMultiple : MonoBehaviour
     //cutscene cam anim 
     public Animator cutSceneCamAnim;
     public bool announcer;
+    public GameObject cutSceneCamSecond;
 
     GameObject InventoryManage;
     public Text InventoryItemPostBattle;
@@ -318,6 +320,11 @@ public class BattleSystemMultiple : MonoBehaviour
         if (Announcer)
         {
             yield return new WaitForSeconds(6f);
+        }
+        else if (isHoE)
+        {
+            yield return new WaitForSeconds(2.75f);
+            cutSceneCamSecond.SetActive(false);
         }
         else
         {
@@ -4029,6 +4036,10 @@ public class BattleSystemMultiple : MonoBehaviour
         if (isConcourse)
         {
             SceneManager.LoadScene("Concourse");
+        }
+        if (isHoE)
+        {
+            SceneManager.LoadScene("ClubHouse");
         }
     }
 

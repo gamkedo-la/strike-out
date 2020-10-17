@@ -6,11 +6,6 @@ public class HOEGameManager : MonoBehaviour
 {
     public static bool redToggle, greenToggle;
     // Start is called before the first frame update
-    void Start()
-    {
-        redToggle = false;
-        greenToggle = false;
-    }
 
     // Update is called once per frame
     void Update()

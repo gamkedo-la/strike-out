@@ -60243,7 +60243,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 520983ea4f67fc54cace6b2b66339c39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isConcourse: 1
+  isConcourse: 0
+  isHoE: 1
   state: 0
   StarterPrefab: {fileID: 1904753284297806757, guid: 2f3b6b5553d5198479f4fbc10fd6159d,
     type: 3}

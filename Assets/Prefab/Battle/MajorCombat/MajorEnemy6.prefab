@@ -627,7 +627,7 @@ MonoBehaviour:
   ChangeUpMultiplier: 1
   enemyDamage: 8
   attackName: 
-  maxHP: 30
+  maxHP: 5
   currentHP: 5
   maxStamina: 30
   currentStamina: 25
@@ -661,7 +661,7 @@ MonoBehaviour:
   StrWeakHolder: {fileID: 3046405202757211967}
   DamageUI: {fileID: 5407518271735165818}
   minAttackAvil: 0
-  maxAttackAvil: 0
+  maxAttackAvil: 6
 --- !u!114 &1266949982881140844
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1113,7 +1113,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 2.25}
+  m_AnchoredPosition: {x: 2.07, y: 1.48}
   m_SizeDelta: {x: 921, y: 518}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &1667416798745440718
@@ -1186,7 +1186,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 0436a969e3c601d4f99f851260648a30,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.77
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0436a969e3c601d4f99f851260648a30,
         type: 3}
