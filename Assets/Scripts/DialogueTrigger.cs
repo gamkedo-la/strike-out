@@ -11,6 +11,13 @@ public class DialogueTrigger : MonoBehaviour
     public bool Boss1, Boss2;
     public static bool GoToMiniBossFight, GoToMajorBossFight;
 
+    public bool Boss3, Boss4;
+    public static bool Umpire, Babe;
+
+    public GameObject theBabe;
+    public GameObject mainCam, cutsceneCam;
+
+
     public bool isTraining ,isManager;
     public GameObject dialogue1, dialogue2;
     public AudioEventGeneric dialogueBoxAudio;
@@ -51,6 +58,23 @@ public class DialogueTrigger : MonoBehaviour
             TriggerDialogue();
             Boss2 = false;
             GoToMajorBossFight = true;
+        }
+
+        if (Boss3 && isInZone)
+        {
+            TriggerDialogue();
+            Boss3 = false;
+            Umpire = true;
+        }
+
+        if (Boss4 && isInZone)
+        {
+            TriggerDialogue();
+            Boss4 = false;
+            Babe = true;
+            theBabe.SetActive(true);
+            mainCam.SetActive(false);
+            cutsceneCam.SetActive(true);
         }
     }
 

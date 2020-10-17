@@ -14,6 +14,7 @@ public class DialogueManager : MonoBehaviour
     public Text dialogueText;
 
     public string Boss1Level, Boss2Level;
+    public string UmpireLevel, BabeLevel;
 
     //manager - training
     int randint;
@@ -37,6 +38,11 @@ public class DialogueManager : MonoBehaviour
         foreach (string sentence in dialogue.sentences)
         {
             sentences.Enqueue(sentence);
+        }
+
+        if (DialogueTrigger.Babe)
+        {
+
         }
 
         DisplayNextSentence();
@@ -78,12 +84,28 @@ public class DialogueManager : MonoBehaviour
             SceneManager.LoadScene(Boss1Level.ToString());
         }
 
-        if (DialogueTrigger.GoToMajorBossFight)
+        else if (DialogueTrigger.GoToMajorBossFight)
         {
             anim.SetBool("isOpen", false);
             PlayerMovement.canMove = true;
             DialogueTrigger.GoToMajorBossFight = false;
             SceneManager.LoadScene(Boss2Level.ToString());
+        }
+
+        else if (DialogueTrigger.Umpire)
+        {
+            anim.SetBool("isOpen", false);
+            PlayerMovement.canMove = true;
+            DialogueTrigger.Umpire = false;
+            SceneManager.LoadScene(UmpireLevel.ToString());
+        }
+
+        else if (DialogueTrigger.Babe)
+        {
+            anim.SetBool("isOpen", false);
+            PlayerMovement.canMove = true;
+            DialogueTrigger.Babe = false;
+            SceneManager.LoadScene(BabeLevel.ToString());
         }
         else
         {

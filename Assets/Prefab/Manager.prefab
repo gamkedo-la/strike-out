@@ -419,6 +419,11 @@ MonoBehaviour:
     - 'Huh, looks like it is working. Carry on. '
   Boss1: 0
   Boss2: 0
+  Boss3: 0
+  Boss4: 0
+  theBabe: {fileID: 0}
+  mainCam: {fileID: 0}
+  cutsceneCam: {fileID: 0}
   isTraining: 0
   isManager: 0
   dialogue1: {fileID: 0}
@@ -532,7 +537,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8853345750027527606
 Transform:
   m_ObjectHideFlags: 0
