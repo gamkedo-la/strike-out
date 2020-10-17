@@ -150,6 +150,8 @@ public class BattleSystemMultiple : MonoBehaviour
     public List<CharacterIdentifier> enemyTurnOrder = new List<CharacterIdentifier>();
     public bool isPlayerTurn;
 
+    public bool isHoEBattle;
+
     private void Start()
     {
         inBattle = true;
@@ -170,6 +172,12 @@ public class BattleSystemMultiple : MonoBehaviour
             Camera.transform.position = CutSceneCamTarget.transform.position;
             Camera.transform.rotation = CutSceneCamTarget.transform.rotation;
         }
+        else if (isHoEBattle)
+        {
+            Camera.SetActive(false);
+            //battleCam.transform.position = new Vector3(-14.45f, 3.71f, -14.82f);
+        }
+
         else
         {
             Camera.transform.position = battleCam.transform.position;
@@ -323,8 +331,8 @@ public class BattleSystemMultiple : MonoBehaviour
         }
         else if (isHoE)
         {
-            yield return new WaitForSeconds(2.75f);
-            cutSceneCamSecond.SetActive(false);
+            yield return new WaitForSeconds(4f);
+            Camera.SetActive(true);
         }
         else
         {
@@ -3137,6 +3145,11 @@ public class BattleSystemMultiple : MonoBehaviour
     #region End Battle Conditions
     void EndBattle()
     {
+        if (isHoEBattle)
+        {
+            battleCam.transform.position = new Vector3(-14.45f, 3.71f, -14.82f);
+        }
+
         Camera.transform.position = battleCam.transform.position;
         Camera.transform.LookAt(enemyCamTarget);
         if (state == BattleStateMultiple.WON)
