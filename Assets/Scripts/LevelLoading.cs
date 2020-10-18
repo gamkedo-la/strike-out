@@ -6,8 +6,6 @@ public class LevelLoading : MonoBehaviour
 {
     public bool turnOn, turnOff;
     public bool plaques, umpire, display, cornfield;
-
-    public GameObject plaqueRoom, umpireRoom, displayRoom, cornfieldRoom;
     // Start is called before the first frame update
     private void OnTriggerEnter(Collider other)
     {
@@ -17,19 +15,19 @@ public class LevelLoading : MonoBehaviour
             {
                 if (plaques)
                 {
-                    plaqueRoom.SetActive(true);
+                    HOEGameManager.plaqueArea = true;
                 }
-                if (umpireRoom)
+                else if (umpire)
                 {
-                    umpireRoom.SetActive(true);
+                    HOEGameManager.umpArea = true;
                 }
-                if (display)
+                else if(display)
                 {
-                    displayRoom.SetActive(true);
+                    HOEGameManager.displayArea = true;
                 }
-                if (cornfield)
+                else if (cornfield)
                 {
-                    cornfieldRoom.SetActive(true);
+                    HOEGameManager.cornfieldArea = true;
                 }
             }
 
@@ -37,22 +35,24 @@ public class LevelLoading : MonoBehaviour
             {
                 if (plaques)
                 {
-                    Destroy(plaqueRoom);
+                    HOEGameManager.plaqueArea = false;
                 }
-                if (umpireRoom)
+                else if (umpire)
                 {
-                    Destroy(umpireRoom);
+                    HOEGameManager.umpArea = false;
                 }
-                if (display)
+                else if(display)
                 {
-                    Destroy(displayRoom);
+                    HOEGameManager.displayArea = false;
                 }
-                if (cornfield)
+                else if (cornfield)
                 {
-                    Destroy(cornfieldRoom);
+                    HOEGameManager.cornfieldArea = false;
                 }
             }
         }
         Destroy(this.gameObject);
     }
+
+   
 }

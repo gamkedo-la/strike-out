@@ -5,20 +5,57 @@ using UnityEngine;
 public class HOEGameManager : MonoBehaviour
 {
     public static bool redToggle, greenToggle;
-    // Start is called before the first frame update
 
-    // Update is called once per frame
-    void Update()
+    public static bool plaqueArea, umpArea, displayArea, cornfieldArea;
+
+    public GameObject plaqueRoom, umpireRoom, displayRoom, cornfieldRoom;
+
+    private void Start()
     {
-        /*if (Input.GetKeyDown(KeyCode.G))
+        plaqueArea = true;
+    }
+
+   /* private void Update()
+    {
+        if (HOEGameManager.plaqueArea)
         {
-            greenToggle = !greenToggle;
+            plaqueRoom.SetActive(true);
         }
 
-        if (Input.GetKeyDown(KeyCode.R))
+        if (HOEGameManager.umpArea)
         {
-            redToggle = !redToggle;
+            umpireRoom.SetActive(true);
         }
-        */
+
+        if (HOEGameManager.displayArea)
+        {
+            displayRoom.SetActive(true);
+        }
+
+        if (HOEGameManager.cornfieldArea)
+        {
+            cornfieldRoom.SetActive(true);
+        }
+
+        if (!HOEGameManager.plaqueArea)
+        {
+            plaqueRoom.SetActive(false);
+        }
+
+        if (!HOEGameManager.umpArea)
+        {
+            umpireRoom.SetActive(false);
+        }
+
+        if (!HOEGameManager.displayArea)
+        {
+            displayRoom.SetActive(false);
+        }
+
+        if (!HOEGameManager.cornfieldArea)
+        {
+            cornfieldRoom.SetActive(false);
+        }
     }
+    */
 }
