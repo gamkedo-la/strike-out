@@ -13,6 +13,7 @@ public class AudioEnemyAnim : AudioEventGeneric
     public AudioData swingMiss;
     public AudioData swingDizzy;
     public AudioData swingDizzyBirds;
+    public AudioData takeDmg;
 
     private void Start()
     {
@@ -48,7 +49,7 @@ public class AudioEnemyAnim : AudioEventGeneric
     {
         //if (currentBattle != null)
         //{
-        //    if(currentBattle.state == BattleStateMultiple.ENEMYTURN)
+        //    if (currentBattle.state == BattleStateMultiple.ENEMYTURN)
         //        controller.PlayRandom(prep);
         //}
     }
@@ -62,5 +63,10 @@ public class AudioEnemyAnim : AudioEventGeneric
     {
         controller.PlayRandom(swingDizzy);
         controller.PlayRandom(swingDizzyBirds);
+    }
+
+    public void TakeDmg()
+    {
+        controller.PlayRandom(takeDmg);
     }
 }

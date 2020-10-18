@@ -79,6 +79,7 @@ MonoBehaviour:
   swingMiss: {fileID: 11400000, guid: 8ea36c61b4f11c544876700371394b86, type: 2}
   swingDizzy: {fileID: 11400000, guid: ac535609a5d5dcb498035d8f66767687, type: 2}
   swingDizzyBirds: {fileID: 11400000, guid: c60643d699b31c944b77a480c88ee189, type: 2}
+  takeDmg: {fileID: 11400000, guid: efddb4b29ae8d554592f4ca5ea7aa64e, type: 2}
 --- !u!114 &2291999649962156037
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -894,6 +895,7 @@ MonoBehaviour:
   swingMiss: {fileID: 11400000, guid: 8ea36c61b4f11c544876700371394b86, type: 2}
   swingDizzy: {fileID: 11400000, guid: ac535609a5d5dcb498035d8f66767687, type: 2}
   swingDizzyBirds: {fileID: 11400000, guid: c60643d699b31c944b77a480c88ee189, type: 2}
+  takeDmg: {fileID: 11400000, guid: efddb4b29ae8d554592f4ca5ea7aa64e, type: 2}
 --- !u!114 &2291999650462428354
 MonoBehaviour:
   m_ObjectHideFlags: 0

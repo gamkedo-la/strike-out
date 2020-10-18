@@ -276,6 +276,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unitName: Minor 6
+  myEnumValue: 0
   unitLevel: 1
   fastballDamage: 0
   sliderDamage: 0
@@ -355,6 +356,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sound: {fileID: 11400000, guid: 07897056073977649bd9fcad2187c917, type: 2}
   controller: {fileID: -6357831881070765609}
+  currentBattle: {fileID: 0}
   whoosh: {fileID: 11400000, guid: db8cd35f031ca494aa4db8eb73c99c5f, type: 2}
   mittPop: {fileID: 11400000, guid: dbafe08f7a95f42418dae3041f3ecf50, type: 2}
   prep: {fileID: 11400000, guid: 4db55177dc5004f4ba76f44670a69588, type: 2}
@@ -363,6 +365,7 @@ MonoBehaviour:
   swingMiss: {fileID: 11400000, guid: 8ea36c61b4f11c544876700371394b86, type: 2}
   swingDizzy: {fileID: 11400000, guid: ac535609a5d5dcb498035d8f66767687, type: 2}
   swingDizzyBirds: {fileID: 11400000, guid: c60643d699b31c944b77a480c88ee189, type: 2}
+  takeDmg: {fileID: 11400000, guid: efddb4b29ae8d554592f4ca5ea7aa64e, type: 2}
 --- !u!114 &-6357831881070765609
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -376,6 +379,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   source: {fileID: 0}
+  sources: []
+  currentIndex: 0
+  maxSources: 5
 --- !u!1 &2495192766053424288
 GameObject:
   m_ObjectHideFlags: 0
@@ -670,6 +676,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   source: {fileID: 0}
+  sources: []
+  currentIndex: 0
+  maxSources: 5
 --- !u!114 &4456520034148307689
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -684,6 +693,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sound: {fileID: 11400000, guid: 07897056073977649bd9fcad2187c917, type: 2}
   controller: {fileID: 4043029960451376717}
+  currentBattle: {fileID: 0}
   whoosh: {fileID: 11400000, guid: db8cd35f031ca494aa4db8eb73c99c5f, type: 2}
   mittPop: {fileID: 11400000, guid: dbafe08f7a95f42418dae3041f3ecf50, type: 2}
   prep: {fileID: 11400000, guid: 4db55177dc5004f4ba76f44670a69588, type: 2}
@@ -692,6 +702,7 @@ MonoBehaviour:
   swingMiss: {fileID: 11400000, guid: 8ea36c61b4f11c544876700371394b86, type: 2}
   swingDizzy: {fileID: 11400000, guid: ac535609a5d5dcb498035d8f66767687, type: 2}
   swingDizzyBirds: {fileID: 11400000, guid: c60643d699b31c944b77a480c88ee189, type: 2}
+  takeDmg: {fileID: 11400000, guid: efddb4b29ae8d554592f4ca5ea7aa64e, type: 2}
 --- !u!1 &4316886295561133120
 GameObject:
   m_ObjectHideFlags: 0
