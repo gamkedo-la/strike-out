@@ -323,11 +323,22 @@ public class Unit : MonoBehaviour
         { DeepDrive(); }
     }
 
+    private void TakeDamageAudio()
+    {
+        var audioData = GetComponent<AudioEnemyAnim>();
+
+        if(audioData != null)
+            audioData.TakeDmg();
+    }
+
     public bool TakeDamage(int dmg)
     {
         print(dmg);
 
         currentHP -= dmg;
+
+        if (isEnemy)
+            TakeDamageAudio();
 
         if (currentHP <= 0)
         {
@@ -341,6 +352,10 @@ public class Unit : MonoBehaviour
     public bool TakeDamageFast(int dmg)
     {
         currentHP -= (dmg * FastballMultiplier);
+
+        if (isEnemy)
+            TakeDamageAudio();
+
         DamageUI.text = "-" + dmg.ToString();
         if (currentHP <= 0)
         {
@@ -374,6 +389,10 @@ public class Unit : MonoBehaviour
     public bool TakeDamageSlid(int dmg)
     {
         currentHP -= (dmg * SliderMultiplier);
+
+        if (isEnemy)
+            TakeDamageAudio();
+
         DamageUI.text = "-" + dmg.ToString();
         if (currentHP <= 0)
         {
@@ -406,6 +425,10 @@ public class Unit : MonoBehaviour
     public bool TakeDamageCurve(int dmg)
     {
         currentHP -= (dmg * CurveballMultiplier);
+
+        if (isEnemy)
+            TakeDamageAudio();
+
         DamageUI.text = "-" + dmg.ToString();
 
         if (currentHP <= 0)
@@ -439,6 +462,10 @@ public class Unit : MonoBehaviour
     public bool TakeDamageChange(int dmg)
     {
         currentHP -= (dmg * ChangeUpMultiplier);
+
+        if (isEnemy)
+            TakeDamageAudio();
+
         DamageUI.text = "-" + dmg.ToString();
         if (currentHP <= 0)
         {
