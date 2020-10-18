@@ -3154,6 +3154,11 @@ public class BattleSystemMultiple : MonoBehaviour
         Camera.transform.LookAt(enemyCamTarget);
         if (state == BattleStateMultiple.WON)
         {
+            if (Umpire)
+            {
+                HOEGameManager.UmpireDefeated = true;
+            }
+
             if (!starterDead)
             {
                 StarterAnim.Play("Armature|Victory");

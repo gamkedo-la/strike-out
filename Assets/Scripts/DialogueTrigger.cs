@@ -29,6 +29,14 @@ public class DialogueTrigger : MonoBehaviour
             dialogue2.SetActive(false);
             StartCoroutine(Waiting());
         }
+
+        if (Boss3)
+        {
+            if (HOEGameManager.UmpireDefeated)
+            {
+                this.gameObject.SetActive(false);
+            }
+        }
     }
 
     public void TriggerDialogue()
