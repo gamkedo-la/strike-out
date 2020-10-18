@@ -64,7 +64,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3869946179862697764}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0.00000028088027}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -0}
   m_LocalScale: {x: 0.002, y: 0.002, z: 0.002}
   m_Children:
   - {fileID: 1630847866484499183}
@@ -73,7 +73,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 2.25}
+  m_AnchoredPosition: {x: -1.745, y: 2.25}
   m_SizeDelta: {x: 921, y: 518}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &6130507258418717679
@@ -368,8 +368,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6034603076966361513}
   m_LocalRotation: {x: 0, y: -1, z: 0, w: 0.00000028088027}
-  m_LocalPosition: {x: 5.22, y: 0.75, z: 5.62}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0.75, z: 0}
+  m_LocalScale: {x: 1.25, y: 1.25, z: 1.25}
   m_Children:
   - {fileID: 6034603077433574688}
   - {fileID: 6034603078521544350}
@@ -391,6 +391,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unitName: Major 4
+  myEnumValue: 0
   unitLevel: 1
   fastballDamage: 0
   sliderDamage: 0
@@ -406,7 +407,7 @@ MonoBehaviour:
   ChangeUpMultiplier: 1
   enemyDamage: 8
   attackName: 
-  maxHP: 30
+  maxHP: 5
   currentHP: 5
   maxStamina: 30
   currentStamina: 25
@@ -440,7 +441,7 @@ MonoBehaviour:
   StrWeakHolder: {fileID: 240251226063848079}
   DamageUI: {fileID: 215734156146491384}
   minAttackAvil: 0
-  maxAttackAvil: 0
+  maxAttackAvil: 6
 --- !u!114 &6034603076966361508
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -470,6 +471,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sound: {fileID: 11400000, guid: 07897056073977649bd9fcad2187c917, type: 2}
   controller: {fileID: 6034603076966361514}
+  currentBattle: {fileID: 0}
   whoosh: {fileID: 11400000, guid: db8cd35f031ca494aa4db8eb73c99c5f, type: 2}
   mittPop: {fileID: 11400000, guid: dbafe08f7a95f42418dae3041f3ecf50, type: 2}
   prep: {fileID: 11400000, guid: 4db55177dc5004f4ba76f44670a69588, type: 2}
@@ -491,6 +493,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   source: {fileID: 0}
+  sources: []
+  currentIndex: 0
+  maxSources: 5
 --- !u!1 &6034603076978719419
 GameObject:
   m_ObjectHideFlags: 0
@@ -974,6 +979,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sound: {fileID: 11400000, guid: 07897056073977649bd9fcad2187c917, type: 2}
   controller: {fileID: 6034603077156124569}
+  currentBattle: {fileID: 0}
   whoosh: {fileID: 11400000, guid: db8cd35f031ca494aa4db8eb73c99c5f, type: 2}
   mittPop: {fileID: 11400000, guid: dbafe08f7a95f42418dae3041f3ecf50, type: 2}
   prep: {fileID: 11400000, guid: 4db55177dc5004f4ba76f44670a69588, type: 2}
@@ -995,6 +1001,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   source: {fileID: 0}
+  sources: []
+  currentIndex: 0
+  maxSources: 5
 --- !u!1 &7447682779503095599
 GameObject:
   m_ObjectHideFlags: 0
@@ -1177,7 +1186,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: a0b579e608ed336489d317882b4fbd4c,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a0b579e608ed336489d317882b4fbd4c,
         type: 3}

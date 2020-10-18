@@ -19,6 +19,8 @@ public class PlayerMovement : MonoBehaviour
 
     public GameObject playerModel;
     Animator anim;
+
+    public bool isSecondLevel;
     private void Start()
     {
         anim = playerModel.GetComponent<Animator>();
@@ -97,6 +99,14 @@ public class PlayerMovement : MonoBehaviour
     IEnumerator Waiting()
     {
         yield return new WaitForSeconds(2f);
-        SceneManager.LoadScene("SampleScene");
+
+        if (isSecondLevel)
+        {
+            SceneManager.LoadScene("HoEBattle");
+        }
+        if(!isSecondLevel)
+        {
+            SceneManager.LoadScene("SampleScene");
+        }
     }
 }

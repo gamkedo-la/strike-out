@@ -802,6 +802,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isConcourse: 1
+  isHoE: 0
   state: 0
   StarterPrefab: {fileID: 1904753284297806757, guid: 2f3b6b5553d5198479f4fbc10fd6159d,
     type: 3}
@@ -922,6 +923,7 @@ MonoBehaviour:
   Boss: 0
   cutSceneCamAnim: {fileID: 0}
   announcer: 0
+  cutSceneCamSecond: {fileID: 0}
   InventoryItemPostBattle: {fileID: 1188219740}
   McGee: 0
   Announcer: 0
@@ -935,6 +937,13 @@ MonoBehaviour:
   victory: {fileID: 35255476}
   defeat: {fileID: 35255475}
   battleMusic: {fileID: 1690852763}
+  playerTurnOrder: 
+  enemyTurnOrder: 
+  isPlayerTurn: 0
+  isHoEBattle: 0
+  currentTurn: {fileID: 0}
+  nextTurn: {fileID: 0}
+  afterThatTurn: {fileID: 0}
 --- !u!4 &35255473
 Transform:
   m_ObjectHideFlags: 0

@@ -283,8 +283,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1207522930778347491}
   m_LocalRotation: {x: 0, y: -1, z: 0, w: 0.00000028088027}
-  m_LocalPosition: {x: 14.41, y: 0.75, z: 5.62}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0.75, z: 0}
+  m_LocalScale: {x: 1.25, y: 1.25, z: 1.25}
   m_Children:
   - {fileID: 1207522930772871254}
   - {fileID: 1207522930934871749}
@@ -306,6 +306,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unitName: Major 7
+  myEnumValue: 0
   unitLevel: 1
   fastballDamage: 0
   sliderDamage: 0
@@ -321,7 +322,7 @@ MonoBehaviour:
   ChangeUpMultiplier: 2
   enemyDamage: 8
   attackName: 
-  maxHP: 30
+  maxHP: 5
   currentHP: 5
   maxStamina: 30
   currentStamina: 25
@@ -355,7 +356,7 @@ MonoBehaviour:
   StrWeakHolder: {fileID: 4189246095680434538}
   DamageUI: {fileID: 751984772079409644}
   minAttackAvil: 0
-  maxAttackAvil: 0
+  maxAttackAvil: 6
 --- !u!114 &1207522930778347494
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -385,6 +386,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sound: {fileID: 11400000, guid: 07897056073977649bd9fcad2187c917, type: 2}
   controller: {fileID: 1207522930778347492}
+  currentBattle: {fileID: 0}
   whoosh: {fileID: 11400000, guid: db8cd35f031ca494aa4db8eb73c99c5f, type: 2}
   mittPop: {fileID: 11400000, guid: dbafe08f7a95f42418dae3041f3ecf50, type: 2}
   prep: {fileID: 11400000, guid: 4db55177dc5004f4ba76f44670a69588, type: 2}
@@ -406,6 +408,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   source: {fileID: 0}
+  sources: []
+  currentIndex: 0
+  maxSources: 5
 --- !u!1 &1207522930934871748
 GameObject:
   m_ObjectHideFlags: 0
@@ -744,6 +749,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sound: {fileID: 11400000, guid: 07897056073977649bd9fcad2187c917, type: 2}
   controller: {fileID: 1207522930991633432}
+  currentBattle: {fileID: 0}
   whoosh: {fileID: 11400000, guid: db8cd35f031ca494aa4db8eb73c99c5f, type: 2}
   mittPop: {fileID: 11400000, guid: dbafe08f7a95f42418dae3041f3ecf50, type: 2}
   prep: {fileID: 11400000, guid: 4db55177dc5004f4ba76f44670a69588, type: 2}
@@ -765,6 +771,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   source: {fileID: 0}
+  sources: []
+  currentIndex: 0
+  maxSources: 5
 --- !u!1 &2177915503236575274
 GameObject:
   m_ObjectHideFlags: 0
@@ -799,7 +808,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 8.8, y: 1.9}
+  m_AnchoredPosition: {x: -1089, y: -357}
   m_SizeDelta: {x: 802.17993, y: 471.6936}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1519665707200444224
@@ -1177,7 +1186,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: b1c01383e684b2e43ad49e01464d6bc4,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.77
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b1c01383e684b2e43ad49e01464d6bc4,
         type: 3}

@@ -13,14 +13,14 @@ public class PlayerLocationDontDestroy : MonoBehaviour
     {
         if (!isStarting)
         {
-            this.gameObject.transform.position = new Vector3(playerX, playerY, playerZ);
+            this.gameObject.transform.position = new Vector3(playerX, playerY + 3, playerZ);
         }
-        else
+   /*     else
         {
             playerX = 43.9f;
             playerY = -.749f;
             playerZ = -59.18f;
             isStarting = false;
-        }
+        }*/
     }
 }

@@ -10,6 +10,7 @@ public enum BattleStateMultiple { START, STARTER, MIDDLE, SETUP, CLOSER, ENEMYTU
 public class BattleSystemMultiple : MonoBehaviour
 {
     public bool isConcourse;
+    public bool isHoE;
 
     public static bool inBattle; 
     public BattleStateMultiple state;
@@ -122,6 +123,7 @@ public class BattleSystemMultiple : MonoBehaviour
     //cutscene cam anim 
     public Animator cutSceneCamAnim;
     public bool announcer;
+    public GameObject cutSceneCamSecond;
 
     GameObject InventoryManage;
     public Text InventoryItemPostBattle;
@@ -140,6 +142,16 @@ public class BattleSystemMultiple : MonoBehaviour
     public AudioEventGeneric defeat;
     public MusicHandler battleMusic;
 
+    //New Battle Structure
+    public enum CharacterIdentifier
+    {        Starter, Middle, SetUp, Closer, Enemy1, Enemy2, Enemy3, Enemy4, Enemy5    };
+
+    public List<CharacterIdentifier> playerTurnOrder = new List<CharacterIdentifier>();
+    public List<CharacterIdentifier> enemyTurnOrder = new List<CharacterIdentifier>();
+    public bool isPlayerTurn;
+
+    public bool isHoEBattle;
+
     private void Start()
     {
         inBattle = true;
@@ -150,11 +162,22 @@ public class BattleSystemMultiple : MonoBehaviour
         SetUpDamageUI.text = "".ToString();
         CloserDamageUI.text = "".ToString();
 
+        playerTurnOrder.Add(CharacterIdentifier.Starter);
+        playerTurnOrder.Add(CharacterIdentifier.Middle);
+        playerTurnOrder.Add(CharacterIdentifier.SetUp);
+        playerTurnOrder.Add(CharacterIdentifier.Closer);
+
         if (Announcer)
         {
             Camera.transform.position = CutSceneCamTarget.transform.position;
             Camera.transform.rotation = CutSceneCamTarget.transform.rotation;
         }
+        else if (isHoEBattle)
+        {
+            Camera.SetActive(false);
+            //battleCam.transform.position = new Vector3(-14.45f, 3.71f, -14.82f);
+        }
+
         else
         {
             Camera.transform.position = battleCam.transform.position;
@@ -201,10 +224,32 @@ public class BattleSystemMultiple : MonoBehaviour
             }
         }
 
+        enemyTurnOrder.Add(CharacterIdentifier.Enemy1);
+
+        if (enemyStartCount >= 2)
+        {
+            enemyTurnOrder.Add(CharacterIdentifier.Enemy2);
+        }
+        if (enemyStartCount >= 3)
+        {
+            enemyTurnOrder.Add(CharacterIdentifier.Enemy3);
+        }
+        if (enemyStartCount >= 4)
+        {
+            enemyTurnOrder.Add(CharacterIdentifier.Enemy4);
+        }
+        if (enemyStartCount >= 5)
+        {
+            enemyTurnOrder.Add(CharacterIdentifier.Enemy5);
+        }
+
+
+
         for (int i = 0; i < enemyStartCount; i++)
         {
             enemyCount++;
-            enemyPrefab[i].SetActive(true);
+            //enemyPrefab[i].SetActive(true);
+
         }
 
         starterDead = false;
@@ -261,9 +306,33 @@ public class BattleSystemMultiple : MonoBehaviour
             enemyUnit.Add(enemyGO.GetComponent<Unit>());
             enemyAnim.Add(enemyGO.GetComponentInChildren<Animator>());
         }
+
+        enemyUnit[0].GetComponent<Unit>().myEnumValue = CharacterIdentifier.Enemy1;  
+        if (enemyStartCount >= 2)
+        {
+            enemyUnit[1].GetComponent<Unit>().myEnumValue = CharacterIdentifier.Enemy2;
+        }
+        if (enemyStartCount >= 3)
+        {
+            enemyUnit[2].GetComponent<Unit>().myEnumValue = CharacterIdentifier.Enemy3;
+        }
+        if (enemyStartCount >= 4)
+        {
+            enemyUnit[3].GetComponent<Unit>().myEnumValue = CharacterIdentifier.Enemy4;
+        }
+        if (enemyStartCount >= 5)
+        {
+            enemyUnit[4].GetComponent<Unit>().myEnumValue = CharacterIdentifier.Enemy5;
+        }
+
         if (Announcer)
         {
             yield return new WaitForSeconds(6f);
+        }
+        else if (isHoE)
+        {
+            yield return new WaitForSeconds(4f);
+            Camera.SetActive(true);
         }
         else
         {
@@ -273,7 +342,8 @@ public class BattleSystemMultiple : MonoBehaviour
 
         state = BattleStateMultiple.STARTER;
         StarterTurn();
-        //Change state and StarterTurn() to NextTurn();
+        isPlayerTurn = false; //specifically so it will be turned to true in first initialization of NextTurn();
+        NextTurn();
     }
 
     private void Update()
@@ -406,82 +476,85 @@ public class BattleSystemMultiple : MonoBehaviour
             closerDead = true;
             CloserAnim.SetBool("isDead", true);
         }
-        print(GameManager.StarterMorale + " " + GameManager.MidRelivMorale + " " + GameManager.SetUpMorale + " " + GameManager.CloserMorale + " ");
+      //  print(GameManager.StarterMorale + " " + GameManager.MidRelivMorale + " " + GameManager.SetUpMorale + " " + GameManager.CloserMorale + " ");
         #endregion
     }
 
-    /* enum CharacterIdentifier
-     * {
-     * Starter, Middle, SetUp, Closer, Enemy1, Enemy2, Enemy3, Enemy4, Enemy5,
-     * }
-     * 
-     * TODO Populating a list for the players and enemies (2 lists)
-     * TODO how to advance in the CharacterIdentifierList
-     * 
-     * List <CharacterIdentifier> turnOrder
-     * 
-     * void NextTurn()
-     * {
-         * bool isPlayerTurn; (probably gets moved to the top)
-         * isPlayerTurn = !isPlayerTurn; (determines if it is an enemy turn or player turn)
-         * 
-         * var list = turnOrder;
-         * var character = list[0];
-         * list.Remove(0);
-         * list.Add(character);
-         * 
-         * TODO: Remove character if dead, go to next one (player to player, enemy to enemy).
-         * TODO: Can I get rid of all of the switch cases in the script that determine move order? 
-         * 
-         * if(isPlayerTurn)
-         * {
-                * switch(character)
-                * {
-                *    case CharacterIdentifier.Starter:
-                *          StarterTurn();
-                *          state = BattleStateMultiple.STARTER;
-                *          break;
-                *     case CharacterIdentifier.Middle:
-                *          MiddleTurn();
-                *          state = BattleStateMultiple.MIDDLE;
-                *          break;
-                *     case CharacterIdentifier.SetUp:
-                *          SetUpTurn();
-                *          state = BattleStateMultiple.SETUP;
-                *          break;
-                *     case CharacterIdentifier.Closer:
-                *          CloserTurn();
-                *          state = BattleStateMultiple.CLOSER;
-                *          break;
-                * }
-         * }
-         * 
-         * if(!isPlayerTurn)
-                * {
-                *     case CharacterIdentifier.Enemy1:
-                *          state = BattleStateMultiple.ENEMYTURN;
-                        StartCoroutine("EnemyTurn", 0);
-                *          break;
-                *     case CharacterIdentifier.Enemy2:
-                *          state = BattleStateMultiple.ENEMYTURN;
-                        StartCoroutine("EnemyTurn", 1);
-                *          break;
-                *     case CharacterIdentifier.Enemy3:
-                *          state = BattleStateMultiple.ENEMYTURN;
-                        StartCoroutine("EnemyTurn", 2);
-                *          break;
-                *     case CharacterIdentifier.Enemy4:
-                *          state = BattleStateMultiple.ENEMYTURN;
-                        StartCoroutine("EnemyTurn", 3);
-                *          break;
-                *     case CharacterIdentifier.Enemy5:
-                *          state = BattleStateMultiple.ENEMYTURN;
-                        StartCoroutine("EnemyTurn", 4);
-                *          break;
-                * }
-         * }
-     * }
-     * */
+    //TODO how to advance in the CharacterIdentifierList
+
+
+    void NextTurn()
+      {
+        isPlayerTurn = !isPlayerTurn;
+
+        CharacterIdentifier upRightNow;
+        if (isPlayerTurn)
+        {
+            upRightNow = playerTurnOrder[0];
+            playerTurnOrder.RemoveAt(0);
+            playerTurnOrder.Add(upRightNow);
+        }
+        else {
+            upRightNow = enemyTurnOrder[0];
+            enemyTurnOrder.RemoveAt(0);
+            enemyTurnOrder.Add(upRightNow);
+        }
+        Debug.Log("NextTurnCalled: " + upRightNow);
+
+        switch(upRightNow)
+        {
+            case CharacterIdentifier.Starter:
+                print("Starter");
+                StarterTurn();
+                state = BattleStateMultiple.STARTER;
+                break;
+            case CharacterIdentifier.Middle:
+                print("Middle");
+                MiddleTurn();
+                state = BattleStateMultiple.MIDDLE;
+                break;
+            case CharacterIdentifier.SetUp:
+                print("SetUp");
+                SETUPTurn();
+                state = BattleStateMultiple.SETUP;
+                break;
+            case CharacterIdentifier.Closer:
+                print("Closer");
+                CloserTurn();
+                state = BattleStateMultiple.CLOSER;
+                break;
+            case CharacterIdentifier.Enemy1:
+                print("Enemy1");
+                state = BattleStateMultiple.ENEMYTURN;
+                StartCoroutine("EnemyTurn", 0);
+                break;
+            case CharacterIdentifier.Enemy2:
+                print("Enemy2");
+                state = BattleStateMultiple.ENEMYTURN;
+                StartCoroutine("EnemyTurn", 1);
+                break;
+            case CharacterIdentifier.Enemy3:
+                print("Enemy3");
+                state = BattleStateMultiple.ENEMYTURN;
+                StartCoroutine("EnemyTurn", 2);
+                break;
+            case CharacterIdentifier.Enemy4:
+                print("Enemy4");
+                state = BattleStateMultiple.ENEMYTURN;
+                StartCoroutine("EnemyTurn", 3);
+                break;
+            case CharacterIdentifier.Enemy5:
+                print("Enemy5");
+                state = BattleStateMultiple.ENEMYTURN;
+                StartCoroutine("EnemyTurn", 4);
+                break;
+         }
+
+       // TODO: Remove character if dead, go to next one (player to player, enemy to enemy).
+       // TODO: Can I get rid of all of the switch cases in the script that determine move order? 
+
+}
+
 
     public void CallTime()
     {
@@ -493,8 +566,8 @@ public class BattleSystemMultiple : MonoBehaviour
             {
                 enemyUnit[i].TakeDamage(-5);
             }
-            state = BattleStateMultiple.ENEMYTURN;
-            StartCoroutine("EnemyTurn", 0);
+           // state = BattleStateMultiple.ENEMYTURN;
+           // StartCoroutine("EnemyTurn", 0);
         }
 
         if (state == BattleStateMultiple.MIDDLE)
@@ -505,8 +578,8 @@ public class BattleSystemMultiple : MonoBehaviour
             {
                 enemyUnit[i].TakeDamage(-5);
             }
-            state = BattleStateMultiple.ENEMYTURN;
-            StartCoroutine("EnemyTurn", 1);
+           // state = BattleStateMultiple.ENEMYTURN;
+           // StartCoroutine("EnemyTurn", 1);
         }
 
         if (state == BattleStateMultiple.SETUP)
@@ -517,8 +590,8 @@ public class BattleSystemMultiple : MonoBehaviour
             {
                 enemyUnit[i].TakeDamage(-5);
             }
-            state = BattleStateMultiple.ENEMYTURN;
-            StartCoroutine("EnemyTurn", 2);
+           // state = BattleStateMultiple.ENEMYTURN;
+           // StartCoroutine("EnemyTurn", 2);
         }
 
         if (state == BattleStateMultiple.CLOSER)
@@ -529,9 +602,10 @@ public class BattleSystemMultiple : MonoBehaviour
             {
                 enemyUnit[i].TakeDamage(-5);
             }
-            state = BattleStateMultiple.STARTER;
-            StarterTurn();
+            //state = BattleStateMultiple.STARTER;
+           // StarterTurn();
         }
+        NextTurn();
     }
     #region ItemManagement
 
@@ -691,7 +765,7 @@ public class BattleSystemMultiple : MonoBehaviour
         PlayerPitches.SetActive(false);
         ItemMenu.transform.localPosition = new Vector3(233, -900, 0);
 
-        if (state == BattleStateMultiple.STARTER)
+       /* if (state == BattleStateMultiple.STARTER)
         {
 
             state = BattleStateMultiple.ENEMYTURN;
@@ -715,6 +789,7 @@ public class BattleSystemMultiple : MonoBehaviour
             state = BattleStateMultiple.STARTER;
             StartCoroutine(CloserToStarterWait());
         }
+        */
 
         StarterMorale.value = (GameManager.StarterMorale / GameManager.StarterMoraleMax);
         MiddleMorale.value = (GameManager.MidRelivMorale / GameManager.MidRelivMoraleMax);
@@ -725,6 +800,8 @@ public class BattleSystemMultiple : MonoBehaviour
         MiddleEnergy.value = (GameManager.MidRelivEnergy / GameManager.MidRelievEnergyMax);
         SetUpEnergy.value = (GameManager.SetUpEnergy / GameManager.SetUpEnergyMax);
         CloserEnergy.value = (GameManager.CloserEnergy / GameManager.CloserEnergyMax);
+
+        NextTurn();
     }
 
     IEnumerator CloserToStarterWait()
@@ -783,6 +860,11 @@ public class BattleSystemMultiple : MonoBehaviour
         enemySelect = false;
     }
 
+    void RemoveCurrentEnemy()
+    {
+        enemyTurnOrder.Remove(enemyUnit[enemyUnitSelected].myEnumValue);
+    }
+
     #region PlayerAttack - animations and Damage
     IEnumerator PlayerAttack()
     {
@@ -809,6 +891,7 @@ public class BattleSystemMultiple : MonoBehaviour
                     StarterAnim.Play("Armature|Windup");
                     yield return new WaitForSeconds(2f);
                     isDead = enemyUnit[enemyUnitSelected].TakeDamageFast(Starter.fastballDamage + GameManager.StarterFast);
+
                     fastball = false;
                     dialogueText.text = "The attack is successful!";
                     yield return new WaitForSeconds(2f);
@@ -816,6 +899,8 @@ public class BattleSystemMultiple : MonoBehaviour
                     //This checks to see if the Enemy is Dead or has HP remaining
                     if (isDead)
                     {
+                        RemoveCurrentEnemy();
+
                         //               enemyAnim[enemyUnitSelected].Play("Armature|Downed");
                         //Destroy(enemyPrefab[enemyUnitSelected]);
                         totalExp += enemyUnit[enemyUnitSelected].ExperienceToDistribute;
@@ -826,7 +911,7 @@ public class BattleSystemMultiple : MonoBehaviour
                          enemyUnitSelected = 0;
                         */
                         enemySelectionParticle.transform.position = enemyBattleStationLocations[enemyUnitSelected].transform.position;
-                        if (enemyCount == 1)
+              /*          if (enemyCount == 1)
                         {
                             MiddleTurn();
                             state = BattleStateMultiple.MIDDLE;
@@ -836,24 +921,25 @@ public class BattleSystemMultiple : MonoBehaviour
                         {
                             state = BattleStateMultiple.ENEMYTURN;
                             StartCoroutine("EnemyTurn", 0);
-                        }
+                        }*/
                     }
 
-                    if (!isDead)
-                    {
-                        //Middle Reliever turn
-                        if (enemyCount == 1)
-                        {
-                            MiddleTurn();
-                            state = BattleStateMultiple.MIDDLE;
-                        }
+                    /*        if (!isDead)
+                            {
+                                //Middle Reliever turn
+                                if (enemyCount == 1)
+                                {
+                                    MiddleTurn();
+                                    state = BattleStateMultiple.MIDDLE;
+                                }
 
-                        else
-                        {
-                            state = BattleStateMultiple.ENEMYTURN;
-                            StartCoroutine("EnemyTurn", 0);
-                        }
-                    }
+                                else
+                                {
+                                    state = BattleStateMultiple.ENEMYTURN;
+                                    StartCoroutine("EnemyTurn", 0);
+                                }
+                            }*/
+                    NextTurn();
                 }
             }
             if (slider)
@@ -881,6 +967,7 @@ public class BattleSystemMultiple : MonoBehaviour
                     //This checks to see if the Enemy is Dead or has HP remaining
                     if (isDead)
                     {
+                        RemoveCurrentEnemy();
                         //               enemyAnim[enemyUnitSelected].Play("Armature|Downed");
                         //Destroy(enemyPrefab[enemyUnitSelected]);
                         totalExp += enemyUnit[enemyUnitSelected].ExperienceToDistribute;
@@ -892,7 +979,7 @@ public class BattleSystemMultiple : MonoBehaviour
                         */
                         enemySelectionParticle.transform.position = enemyBattleStationLocations[enemyUnitSelected].transform.position;
 
-                        if (enemyCount == 1)
+            /*            if (enemyCount == 1)
                         {
                             MiddleTurn();
                             state = BattleStateMultiple.MIDDLE;
@@ -902,24 +989,25 @@ public class BattleSystemMultiple : MonoBehaviour
                         {
                             state = BattleStateMultiple.ENEMYTURN;
                             StartCoroutine("EnemyTurn", 0);
-                        }
+                        }*/
                     }
 
-                    if (!isDead)
-                    {
-                        //Middle Reliever turn
-                        if (enemyCount == 1)
-                        {
-                            MiddleTurn();
-                            state = BattleStateMultiple.MIDDLE;
-                        }
+                    /*          if (!isDead)
+                              {
+                                  //Middle Reliever turn
+                                  if (enemyCount == 1)
+                                  {
+                                      MiddleTurn();
+                                      state = BattleStateMultiple.MIDDLE;
+                                  }
 
-                        else
-                        {
-                            state = BattleStateMultiple.ENEMYTURN;
-                            StartCoroutine("EnemyTurn", 0);
-                        }
-                    }
+                                  else
+                                  {
+                                      state = BattleStateMultiple.ENEMYTURN;
+                                      StartCoroutine("EnemyTurn", 0);
+                                  }
+                              }*/
+                    NextTurn();
                 }
             }
             if (curveball)
@@ -947,6 +1035,8 @@ public class BattleSystemMultiple : MonoBehaviour
                     //This checks to see if the Enemy is Dead or has HP remaining
                     if (isDead)
                     {
+                        RemoveCurrentEnemy();
+
                         //               enemyAnim[enemyUnitSelected].Play("Armature|Downed");
                         //Destroy(enemyPrefab[enemyUnitSelected]);
                         totalExp += enemyUnit[enemyUnitSelected].ExperienceToDistribute;
@@ -958,7 +1048,7 @@ public class BattleSystemMultiple : MonoBehaviour
                         */
                         enemySelectionParticle.transform.position = enemyBattleStationLocations[enemyUnitSelected].transform.position;
 
-                        if (enemyCount == 1)
+            /*            if (enemyCount == 1)
                         {
                             MiddleTurn();
                             state = BattleStateMultiple.MIDDLE;
@@ -968,24 +1058,25 @@ public class BattleSystemMultiple : MonoBehaviour
                         {
                             state = BattleStateMultiple.ENEMYTURN;
                             StartCoroutine("EnemyTurn", 0);
-                        }
+                        }*/
                     }
 
-                    if (!isDead)
-                    {
-                        //Middle Reliever turn
-                        if (enemyCount == 1)
-                        {
-                            MiddleTurn();
-                            state = BattleStateMultiple.MIDDLE;
-                        }
+                    /*         if (!isDead)
+                             {
+                                 //Middle Reliever turn
+                                 if (enemyCount == 1)
+                                 {
+                                     MiddleTurn();
+                                     state = BattleStateMultiple.MIDDLE;
+                                 }
 
-                        else
-                        {
-                            state = BattleStateMultiple.ENEMYTURN;
-                            StartCoroutine("EnemyTurn", 0);
-                        }
-                    }
+                                 else
+                                 {
+                                     state = BattleStateMultiple.ENEMYTURN;
+                                     StartCoroutine("EnemyTurn", 0);
+                                 }
+                             }*/
+                    NextTurn();
                 }
             }
             if (changeup)
@@ -1013,6 +1104,7 @@ public class BattleSystemMultiple : MonoBehaviour
                     //This checks to see if the Enemy is Dead or has HP remaining
                     if (isDead)
                     {
+                        RemoveCurrentEnemy();
                         //               enemyAnim[enemyUnitSelected].Play("Armature|Downed");
                         //Destroy(enemyPrefab[enemyUnitSelected]);
                         totalExp += enemyUnit[enemyUnitSelected].ExperienceToDistribute;
@@ -1024,7 +1116,7 @@ public class BattleSystemMultiple : MonoBehaviour
                         */
                         enemySelectionParticle.transform.position = enemyBattleStationLocations[enemyUnitSelected].transform.position;
 
-                        if (enemyCount == 1)
+             /*           if (enemyCount == 1)
                         {
                             MiddleTurn();
                             state = BattleStateMultiple.MIDDLE;
@@ -1034,27 +1126,28 @@ public class BattleSystemMultiple : MonoBehaviour
                         {
                             state = BattleStateMultiple.ENEMYTURN;
                             StartCoroutine("EnemyTurn", 0);
-                        }
+                        }*/
                     }
 
-                    if (!isDead)
-                    {
-                        //Middle Reliever turn
-                        if (enemyCount == 1)
-                        {
-                            MiddleTurn();
-                            state = BattleStateMultiple.MIDDLE;
-                        }
+                    /*        if (!isDead)
+                            {
+                                //Middle Reliever turn
+                                if (enemyCount == 1)
+                                {
+                                    MiddleTurn();
+                                    state = BattleStateMultiple.MIDDLE;
+                                }
 
-                        else
-                        {
-                            state = BattleStateMultiple.ENEMYTURN;
-                            StartCoroutine("EnemyTurn", 0);
-                        }
-                    }
+                                else
+                                {
+                                    state = BattleStateMultiple.ENEMYTURN;
+                                    StartCoroutine("EnemyTurn", 0);
+                                }
+                            }*/
+                    NextTurn();
                 }
             }
-            //NextTurn();
+            
         }
     }
 
@@ -1092,6 +1185,7 @@ public class BattleSystemMultiple : MonoBehaviour
                     //This checks to see if the Enemy is Dead or has HP remaining
                     if (isDead)
                     {
+                        RemoveCurrentEnemy();
                         //               enemyAnim[enemyUnitSelected].Play("Armature|Downed");
                         totalExp += enemyUnit[enemyUnitSelected].ExperienceToDistribute;
                         enemyCount--;
@@ -1102,7 +1196,7 @@ public class BattleSystemMultiple : MonoBehaviour
                          */
                         enemySelectionParticle.transform.position = enemyBattleStationLocations[enemyUnitSelected].transform.position;
 
-                        switch (enemyStartCount)
+          /*              switch (enemyStartCount)
                         {
                             case 1:
                             case 3:
@@ -1115,29 +1209,30 @@ public class BattleSystemMultiple : MonoBehaviour
                             case 5:
                                 state = BattleStateMultiple.SETUP;
                                 SETUPTurn();
-                                break;
+                                break;*/
                         }
                     }
+                /*
+                                    if (!isDead)
+                                    {
+                                        switch (enemyStartCount)
+                                        {
+                                            case 1:
+                                            case 3:
+                                            case 4:
+                                                state = BattleStateMultiple.ENEMYTURN;
+                                                StartCoroutine("EnemyTurn", 0);
+                                                break;
 
-                    if (!isDead)
-                    {
-                        switch (enemyStartCount)
-                        {
-                            case 1:
-                            case 3:
-                            case 4:
-                                state = BattleStateMultiple.ENEMYTURN;
-                                StartCoroutine("EnemyTurn", 0);
-                                break;
-
-                            case 2:
-                            case 5:
-                                state = BattleStateMultiple.SETUP;
-                                SETUPTurn();
-                                break;
-                        }
-                    }
-                }
+                                            case 2:
+                                            case 5:
+                                                state = BattleStateMultiple.SETUP;
+                                                SETUPTurn();
+                                                break;
+                                        }
+                                    }*/
+                NextTurn();
+            }
             }
             if (slider)
             {
@@ -1166,6 +1261,7 @@ public class BattleSystemMultiple : MonoBehaviour
                     //This checks to see if the Enemy is Dead or has HP remaining
                     if (isDead)
                     {
+                        RemoveCurrentEnemy();
                         //               enemyAnim[enemyUnitSelected].Play("Armature|Downed");
                         totalExp += enemyUnit[enemyUnitSelected].ExperienceToDistribute;
                         enemyCount--;
@@ -1176,7 +1272,7 @@ public class BattleSystemMultiple : MonoBehaviour
                          */
                         enemySelectionParticle.transform.position = enemyBattleStationLocations[enemyUnitSelected].transform.position;
 
-                        switch (enemyStartCount)
+         /*               switch (enemyStartCount)
                         {
                             case 1:
                             case 3:
@@ -1190,29 +1286,30 @@ public class BattleSystemMultiple : MonoBehaviour
                                 state = BattleStateMultiple.SETUP;
                                 SETUPTurn();
                                 break;
-                        }
+                        }*/
                     }
 
-                    if (!isDead)
-                    {
-                        //Enemy Attack turn
-                        switch (enemyStartCount)
-                        {
-                            case 1:
-                            case 3:
-                            case 4:
-                                state = BattleStateMultiple.ENEMYTURN;
-                                StartCoroutine("EnemyTurn", 0);
-                                break;
+                /*              if (!isDead)
+                              {
+                                  //Enemy Attack turn
+                                  switch (enemyStartCount)
+                                  {
+                                      case 1:
+                                      case 3:
+                                      case 4:
+                                          state = BattleStateMultiple.ENEMYTURN;
+                                          StartCoroutine("EnemyTurn", 0);
+                                          break;
 
-                            case 2:
-                            case 5:
-                                state = BattleStateMultiple.SETUP;
-                                SETUPTurn();
-                                break;
-                        }
-                    }
-                }
+                                      case 2:
+                                      case 5:
+                                          state = BattleStateMultiple.SETUP;
+                                          SETUPTurn();
+                                          break;
+                                  }
+                              }*/
+                NextTurn();
+            }
             }
             if (curveball)
             {
@@ -1241,6 +1338,7 @@ public class BattleSystemMultiple : MonoBehaviour
                     //This checks to see if the Enemy is Dead or has HP remaining
                     if (isDead)
                     {
+                        RemoveCurrentEnemy();
                         //               enemyAnim[enemyUnitSelected].Play("Armature|Downed");
                         totalExp += enemyUnit[enemyUnitSelected].ExperienceToDistribute;
                         enemyCount--;
@@ -1250,8 +1348,8 @@ public class BattleSystemMultiple : MonoBehaviour
                          enemyUnitSelected = 0;
                          */
                         enemySelectionParticle.transform.position = enemyBattleStationLocations[enemyUnitSelected].transform.position;
-
-                        switch (enemyStartCount)
+    
+           /*             switch (enemyStartCount)
                         {
                             case 1:
                             case 3:
@@ -1265,29 +1363,30 @@ public class BattleSystemMultiple : MonoBehaviour
                                 state = BattleStateMultiple.SETUP;
                                 SETUPTurn();
                                 break;
-                        }
+                        }*/
                     }
 
-                    if (!isDead)
-                    {
-                        //Enemy Attack turn
-                        switch (enemyStartCount)
-                        {
-                            case 1:
-                            case 3:
-                            case 4:
-                                state = BattleStateMultiple.ENEMYTURN;
-                                StartCoroutine("EnemyTurn", 0);
-                                break;
+                /*             if (!isDead)
+                             {
+                                 //Enemy Attack turn
+                                 switch (enemyStartCount)
+                                 {
+                                     case 1:
+                                     case 3:
+                                     case 4:
+                                         state = BattleStateMultiple.ENEMYTURN;
+                                         StartCoroutine("EnemyTurn", 0);
+                                         break;
 
-                            case 2:
-                            case 5:
-                                state = BattleStateMultiple.SETUP;
-                                SETUPTurn();
-                                break;
-                        }
-                    }
-                }
+                                     case 2:
+                                     case 5:
+                                         state = BattleStateMultiple.SETUP;
+                                         SETUPTurn();
+                                         break;
+                                 }
+                             }*/
+                NextTurn();
+            }
             }
             if (changeup)
             {
@@ -1316,6 +1415,7 @@ public class BattleSystemMultiple : MonoBehaviour
                     //This checks to see if the Enemy is Dead or has HP remaining
                     if (isDead)
                     {
+                        RemoveCurrentEnemy();
                         //               enemyAnim[enemyUnitSelected].Play("Armature|Downed");
                         totalExp += enemyUnit[enemyUnitSelected].ExperienceToDistribute;
                         enemyCount--;
@@ -1326,7 +1426,7 @@ public class BattleSystemMultiple : MonoBehaviour
                          */
                         enemySelectionParticle.transform.position = enemyBattleStationLocations[enemyUnitSelected].transform.position;
 
-                        switch (enemyStartCount)
+             /*           switch (enemyStartCount)
                         {
                             case 1:
                             case 3:
@@ -1340,32 +1440,33 @@ public class BattleSystemMultiple : MonoBehaviour
                                 state = BattleStateMultiple.SETUP;
                                 SETUPTurn();
                                 break;
-                        }
+                        }*/
                     }
 
-                    if (!isDead)
-                    {
-                        //Enemy Attack turn
-                        switch (enemyStartCount)
-                        {
-                            case 1:
-                            case 3:
-                            case 4:
-                                state = BattleStateMultiple.ENEMYTURN;
-                                StartCoroutine("EnemyTurn", 0);
-                                break;
+                /*         if (!isDead)
+                         {
+                             //Enemy Attack turn
+                             switch (enemyStartCount)
+                             {
+                                 case 1:
+                                 case 3:
+                                 case 4:
+                                     state = BattleStateMultiple.ENEMYTURN;
+                                     StartCoroutine("EnemyTurn", 0);
+                                     break;
 
-                            case 2:
-                            case 5:
-                                state = BattleStateMultiple.SETUP;
-                                SETUPTurn();
-                                break;
-                        }
-                    }
-                }
+                                 case 2:
+                                 case 5:
+                                     state = BattleStateMultiple.SETUP;
+                                     SETUPTurn();
+                                     break;
+                             }
+                         }
+                     }*/
+                NextTurn();
             }
-            //NextTurn();
         }
+       
     }
 
     IEnumerator SetUpAttack()
@@ -1403,6 +1504,7 @@ public class BattleSystemMultiple : MonoBehaviour
                     //This checks to see if the Enemy is Dead or has HP remaining
                     if (isDead)
                     {
+                        RemoveCurrentEnemy();
                         //               enemyAnim[enemyUnitSelected].Play("Armature|Downed");
                         totalExp += enemyUnit[enemyUnitSelected].ExperienceToDistribute;
                         enemyCount--;
@@ -1411,9 +1513,9 @@ public class BattleSystemMultiple : MonoBehaviour
                          enemyUnit.Remove(enemyUnit[enemyUnitSelected]);
                          enemyUnitSelected = 0;
                         */
-                        enemySelectionParticle.transform.position = enemyBattleStationLocations[enemyUnitSelected].transform.position;
+                       enemySelectionParticle.transform.position = enemyBattleStationLocations[enemyUnitSelected].transform.position;
 
-                        switch (enemyStartCount)
+         /*               switch (enemyStartCount)
                         {
                             case 1:
                             case 5:
@@ -1429,29 +1531,30 @@ public class BattleSystemMultiple : MonoBehaviour
                                 state = BattleStateMultiple.ENEMYTURN;
                                 StartCoroutine("EnemyTurn", 2);
                                 break;
-                        }
+                        }*/
                     }
 
-                    if (!isDead)
-                    {
-                        switch (enemyStartCount)
-                        {
-                            case 1:
-                            case 5:
-                                CloserTurn();
-                                state = BattleStateMultiple.CLOSER;
-                                break;
-                            case 2:
-                                state = BattleStateMultiple.ENEMYTURN;
-                                StartCoroutine("EnemyTurn", 1);
-                                break;
-                            case 3:
-                            case 4:
-                                state = BattleStateMultiple.ENEMYTURN;
-                                StartCoroutine("EnemyTurn", 2);
-                                break;
-                        }
-                    }
+                    /*             if (!isDead)
+                                 {
+                                     switch (enemyStartCount)
+                                     {
+                                         case 1:
+                                         case 5:
+                                             CloserTurn();
+                                             state = BattleStateMultiple.CLOSER;
+                                             break;
+                                         case 2:
+                                             state = BattleStateMultiple.ENEMYTURN;
+                                             StartCoroutine("EnemyTurn", 1);
+                                             break;
+                                         case 3:
+                                         case 4:
+                                             state = BattleStateMultiple.ENEMYTURN;
+                                             StartCoroutine("EnemyTurn", 2);
+                                             break;
+                                     }
+                                 }*/
+                    NextTurn();
                 }
             }
             if (slider)
@@ -1482,6 +1585,7 @@ public class BattleSystemMultiple : MonoBehaviour
                     //This checks to see if the Enemy is Dead or has HP remaining
                     if (isDead)
                     {
+                        RemoveCurrentEnemy();
                         //               enemyAnim[enemyUnitSelected].Play("Armature|Downed");
                         totalExp += enemyUnit[enemyUnitSelected].ExperienceToDistribute;
                         enemyCount--;
@@ -1492,7 +1596,7 @@ public class BattleSystemMultiple : MonoBehaviour
                         */
                         enemySelectionParticle.transform.position = enemyBattleStationLocations[enemyUnitSelected].transform.position;
 
-                        switch (enemyStartCount)
+            /*            switch (enemyStartCount)
                         {
                             case 1:
                             case 5:
@@ -1508,29 +1612,30 @@ public class BattleSystemMultiple : MonoBehaviour
                                 state = BattleStateMultiple.ENEMYTURN;
                                 StartCoroutine("EnemyTurn", 2);
                                 break;
-                        }
+                        }*/
                     }
 
-                    if (!isDead)
-                    {
-                        switch (enemyStartCount)
-                        {
-                            case 1:
-                            case 5:
-                                CloserTurn();
-                                state = BattleStateMultiple.CLOSER;
-                                break;
-                            case 2:
-                                state = BattleStateMultiple.ENEMYTURN;
-                                StartCoroutine("EnemyTurn", 1);
-                                break;
-                            case 3:
-                            case 4:
-                                state = BattleStateMultiple.ENEMYTURN;
-                                StartCoroutine("EnemyTurn", 2);
-                                break;
-                        }
-                    }
+                    /*           if (!isDead)
+                               {
+                                   switch (enemyStartCount)
+                                   {
+                                       case 1:
+                                       case 5:
+                                           CloserTurn();
+                                           state = BattleStateMultiple.CLOSER;
+                                           break;
+                                       case 2:
+                                           state = BattleStateMultiple.ENEMYTURN;
+                                           StartCoroutine("EnemyTurn", 1);
+                                           break;
+                                       case 3:
+                                       case 4:
+                                           state = BattleStateMultiple.ENEMYTURN;
+                                           StartCoroutine("EnemyTurn", 2);
+                                           break;
+                                   }
+                               }*/
+                    NextTurn();
                 }
             }
             if (curveball)
@@ -1561,6 +1666,7 @@ public class BattleSystemMultiple : MonoBehaviour
                     //This checks to see if the Enemy is Dead or has HP remaining
                     if (isDead)
                     {
+                        RemoveCurrentEnemy();
                         //               enemyAnim[enemyUnitSelected].Play("Armature|Downed");
                         totalExp += enemyUnit[enemyUnitSelected].ExperienceToDistribute;
                         enemyCount--;
@@ -1571,7 +1677,7 @@ public class BattleSystemMultiple : MonoBehaviour
                         */
                         enemySelectionParticle.transform.position = enemyBattleStationLocations[enemyUnitSelected].transform.position;
 
-                        switch (enemyStartCount)
+          /*              switch (enemyStartCount)
                         {
                             case 1:
                             case 5:
@@ -1587,29 +1693,30 @@ public class BattleSystemMultiple : MonoBehaviour
                                 state = BattleStateMultiple.ENEMYTURN;
                                 StartCoroutine("EnemyTurn", 2);
                                 break;
-                        }
+                        }*/
                     }
 
-                    if (!isDead)
-                    {
-                        switch (enemyStartCount)
-                        {
-                            case 1:
-                            case 5:
-                                CloserTurn();
-                                state = BattleStateMultiple.CLOSER;
-                                break;
-                            case 2:
-                                state = BattleStateMultiple.ENEMYTURN;
-                                StartCoroutine("EnemyTurn", 1);
-                                break;
-                            case 3:
-                            case 4:
-                                state = BattleStateMultiple.ENEMYTURN;
-                                StartCoroutine("EnemyTurn", 2);
-                                break;
-                        }
-                    }
+                    /*      if (!isDead)
+                          {
+                              switch (enemyStartCount)
+                              {
+                                  case 1:
+                                  case 5:
+                                      CloserTurn();
+                                      state = BattleStateMultiple.CLOSER;
+                                      break;
+                                  case 2:
+                                      state = BattleStateMultiple.ENEMYTURN;
+                                      StartCoroutine("EnemyTurn", 1);
+                                      break;
+                                  case 3:
+                                  case 4:
+                                      state = BattleStateMultiple.ENEMYTURN;
+                                      StartCoroutine("EnemyTurn", 2);
+                                      break;
+                              }
+                          }*/
+                    NextTurn();
                 }
             }
             if (changeup)
@@ -1640,6 +1747,7 @@ public class BattleSystemMultiple : MonoBehaviour
                     //This checks to see if the Enemy is Dead or has HP remaining
                     if (isDead)
                     {
+                        RemoveCurrentEnemy();
                         //               enemyAnim[enemyUnitSelected].Play("Armature|Downed");
                         totalExp += enemyUnit[enemyUnitSelected].ExperienceToDistribute;
                         enemyCount--;
@@ -1650,7 +1758,7 @@ public class BattleSystemMultiple : MonoBehaviour
                         */
                         enemySelectionParticle.transform.position = enemyBattleStationLocations[enemyUnitSelected].transform.position;
 
-                        switch (enemyStartCount)
+            /*            switch (enemyStartCount)
                         {
                             case 1:
                             case 5:
@@ -1666,35 +1774,36 @@ public class BattleSystemMultiple : MonoBehaviour
                                 state = BattleStateMultiple.ENEMYTURN;
                                 StartCoroutine("EnemyTurn", 2);
                                 break;
-                        }
+                        }*/
                     }
 
-                    if (!isDead)
-                    {
-                        //Closer turn
-                        switch (enemyStartCount)
-                        {
-                            case 1:
-                            case 5:
-                                CloserTurn();
-                                state = BattleStateMultiple.CLOSER;
-                                break;
-                            case 2:
-                                state = BattleStateMultiple.ENEMYTURN;
-                                StartCoroutine("EnemyTurn", 1);
-                                break;
-                            case 3:
-                            case 4:
-                                state = BattleStateMultiple.ENEMYTURN;
-                                StartCoroutine("EnemyTurn", 2);
-                                break;
-                        }
-                    }
+                    /*        if (!isDead)
+                            {
+                                //Closer turn
+                                switch (enemyStartCount)
+                                {
+                                    case 1:
+                                    case 5:
+                                        CloserTurn();
+                                        state = BattleStateMultiple.CLOSER;
+                                        break;
+                                    case 2:
+                                        state = BattleStateMultiple.ENEMYTURN;
+                                        StartCoroutine("EnemyTurn", 1);
+                                        break;
+                                    case 3:
+                                    case 4:
+                                        state = BattleStateMultiple.ENEMYTURN;
+                                        StartCoroutine("EnemyTurn", 2);
+                                        break;
+                                }
+                            }*/
+                    NextTurn();
                 }
             }
-            //NextTurn();
+           
         }
-
+       
     }
 
     IEnumerator CloserAttack()
@@ -1730,6 +1839,7 @@ public class BattleSystemMultiple : MonoBehaviour
                     //This checks to see if the Enemy is Dead or has HP remaining
                     if (isDead)
                     {
+                        RemoveCurrentEnemy();
                         //               enemyAnim[enemyUnitSelected].Play("Armature|Downed");
                         totalExp += enemyUnit[enemyUnitSelected].ExperienceToDistribute;
                         enemyCount--;
@@ -1740,7 +1850,7 @@ public class BattleSystemMultiple : MonoBehaviour
                        */
                         enemySelectionParticle.transform.position = enemyBattleStationLocations[enemyUnitSelected].transform.position;
 
-                        switch (enemyStartCount)
+              /*          switch (enemyStartCount)
                         {
                             case 1:
                             case 2:
@@ -1753,26 +1863,27 @@ public class BattleSystemMultiple : MonoBehaviour
                                 state = BattleStateMultiple.ENEMYTURN;
                                 StartCoroutine("EnemyTurn", 3);
                                 break;
-                        }
+                        }*/
                     }
 
-                    if (!isDead)
-                    {
-                        switch (enemyStartCount)
-                        {
-                            case 1:
-                            case 2:
-                            case 3:
-                            case 5:
-                                StarterTurn();
-                                state = BattleStateMultiple.STARTER;
-                                break;
-                            case 4:
-                                state = BattleStateMultiple.ENEMYTURN;
-                                StartCoroutine("EnemyTurn", 3);
-                                break;
-                        }
-                    }
+                    /*       if (!isDead)
+                           {
+                               switch (enemyStartCount)
+                               {
+                                   case 1:
+                                   case 2:
+                                   case 3:
+                                   case 5:
+                                       StarterTurn();
+                                       state = BattleStateMultiple.STARTER;
+                                       break;
+                                   case 4:
+                                       state = BattleStateMultiple.ENEMYTURN;
+                                       StartCoroutine("EnemyTurn", 3);
+                                       break;
+                               }
+                           }*/
+                    NextTurn();
                 }
             }
             if (slider)
@@ -1802,6 +1913,7 @@ public class BattleSystemMultiple : MonoBehaviour
                     //This checks to see if the Enemy is Dead or has HP remaining
                     if (isDead)
                     {
+                        RemoveCurrentEnemy();
                         //               enemyAnim[enemyUnitSelected].Play("Armature|Downed");
                         totalExp += enemyUnit[enemyUnitSelected].ExperienceToDistribute;
                         enemyCount--;
@@ -1812,7 +1924,7 @@ public class BattleSystemMultiple : MonoBehaviour
                        */
                         enemySelectionParticle.transform.position = enemyBattleStationLocations[enemyUnitSelected].transform.position;
 
-                        switch (enemyStartCount)
+                  /*      switch (enemyStartCount)
                         {
                             case 1:
                             case 2:
@@ -1825,26 +1937,27 @@ public class BattleSystemMultiple : MonoBehaviour
                                 state = BattleStateMultiple.ENEMYTURN;
                                 StartCoroutine("EnemyTurn", 3);
                                 break;
-                        }
+                        }*/
                     }
 
-                    if (!isDead)
-                    {
-                        switch (enemyStartCount)
-                        {
-                            case 1:
-                            case 2:
-                            case 3:
-                            case 5:
-                                StarterTurn();
-                                state = BattleStateMultiple.STARTER;
-                                break;
-                            case 4:
-                                state = BattleStateMultiple.ENEMYTURN;
-                                StartCoroutine("EnemyTurn", 3);
-                                break;
-                        }
-                    }
+                    /*   if (!isDead)
+                       {
+                           switch (enemyStartCount)
+                           {
+                               case 1:
+                               case 2:
+                               case 3:
+                               case 5:
+                                   StarterTurn();
+                                   state = BattleStateMultiple.STARTER;
+                                   break;
+                               case 4:
+                                   state = BattleStateMultiple.ENEMYTURN;
+                                   StartCoroutine("EnemyTurn", 3);
+                                   break;
+                           }
+                       }*/
+                    NextTurn();
                 }
             }
             if (curveball)
@@ -1874,6 +1987,7 @@ public class BattleSystemMultiple : MonoBehaviour
                     //This checks to see if the Enemy is Dead or has HP remaining
                     if (isDead)
                     {
+                        RemoveCurrentEnemy();
                         //               enemyAnim[enemyUnitSelected].Play("Armature|Downed");
                         totalExp += enemyUnit[enemyUnitSelected].ExperienceToDistribute;
                         enemyCount--;
@@ -1884,7 +1998,7 @@ public class BattleSystemMultiple : MonoBehaviour
                        */
                         enemySelectionParticle.transform.position = enemyBattleStationLocations[enemyUnitSelected].transform.position;
 
-                        switch (enemyStartCount)
+               /*         switch (enemyStartCount)
                         {
                             case 1:
                             case 2:
@@ -1897,26 +2011,27 @@ public class BattleSystemMultiple : MonoBehaviour
                                 state = BattleStateMultiple.ENEMYTURN;
                                 StartCoroutine("EnemyTurn", 3);
                                 break;
-                        }
+                        }*/
                     }
 
-                    if (!isDead)
-                    {
-                        switch (enemyStartCount)
-                        {
-                            case 1:
-                            case 2:
-                            case 3:
-                            case 5:
-                                StarterTurn();
-                                state = BattleStateMultiple.STARTER;
-                                break;
-                            case 4:
-                                state = BattleStateMultiple.ENEMYTURN;
-                                StartCoroutine("EnemyTurn", 3);
-                                break;
-                        }
-                    }
+                    /*     if (!isDead)
+                         {
+                             switch (enemyStartCount)
+                             {
+                                 case 1:
+                                 case 2:
+                                 case 3:
+                                 case 5:
+                                     StarterTurn();
+                                     state = BattleStateMultiple.STARTER;
+                                     break;
+                                 case 4:
+                                     state = BattleStateMultiple.ENEMYTURN;
+                                     StartCoroutine("EnemyTurn", 3);
+                                     break;
+                             }
+                         }*/
+                    NextTurn();
                 }
             }
             if (changeup)
@@ -1946,6 +2061,7 @@ public class BattleSystemMultiple : MonoBehaviour
                     //This checks to see if the Enemy is Dead or has HP remaining
                     if (isDead)
                     {
+                        RemoveCurrentEnemy();
                         //               enemyAnim[enemyUnitSelected].Play("Armature|Downed");
                         totalExp += enemyUnit[enemyUnitSelected].ExperienceToDistribute;
                         enemyCount--;
@@ -1956,7 +2072,7 @@ public class BattleSystemMultiple : MonoBehaviour
                        */
                         enemySelectionParticle.transform.position = enemyBattleStationLocations[enemyUnitSelected].transform.position;
 
-                        switch (enemyStartCount)
+               /*         switch (enemyStartCount)
                         {
                             case 1:
                             case 2:
@@ -1969,29 +2085,30 @@ public class BattleSystemMultiple : MonoBehaviour
                                 state = BattleStateMultiple.ENEMYTURN;
                                 StartCoroutine("EnemyTurn", 3);
                                 break;
-                        }
+                        }*/
                     }
 
-                    if (!isDead)
-                    {
-                        switch (enemyStartCount)
+                    /*    if (!isDead)
                         {
-                            case 1:
-                            case 2:
-                            case 3:
-                            case 5:
-                                StarterTurn();
-                                state = BattleStateMultiple.STARTER;
-                                break;
-                            case 4:
-                                state = BattleStateMultiple.ENEMYTURN;
-                                StartCoroutine("EnemyTurn", 3);
-                                break;
-                        }
-                    }
+                            switch (enemyStartCount)
+                            {
+                                case 1:
+                                case 2:
+                                case 3:
+                                case 5:
+                                    StarterTurn();
+                                    state = BattleStateMultiple.STARTER;
+                                    break;
+                                case 4:
+                                    state = BattleStateMultiple.ENEMYTURN;
+                                    StartCoroutine("EnemyTurn", 3);
+                                    break;
+                            }
+                        }*/
+                    NextTurn();
                 }
             }
-            //NextTurn();
+           
         }
     }
     #endregion
@@ -2016,7 +2133,7 @@ public class BattleSystemMultiple : MonoBehaviour
 
     void NextPlayerTurnAfterEnemyTurn(int enemyIndex)
     {
-        switch (enemyStartCount)
+        /*switch (enemyStartCount)
         {
             case 1:
                 switch (enemyIndex)
@@ -2137,7 +2254,7 @@ public class BattleSystemMultiple : MonoBehaviour
                         break;
                 }
                 break;
-        }
+        }*/
     }
 
     IEnumerator EnemyTurn(int enemyIndex)
@@ -2177,6 +2294,10 @@ public class BattleSystemMultiple : MonoBehaviour
                     StarterMorale.value = (GameManager.StarterMorale / GameManager.StarterMoraleMax);
                     starterDead = true;
                     StarterDamageUI.text = "-" + enemyUnit[enemyUnitSelected].enemyDamage.ToString();
+                    //
+                    playerTurnOrder.Remove(CharacterIdentifier.Starter);
+
+                    //
                     StarterAnim.SetBool("isDead", true);
                 }
                 if (isDead2)
@@ -2185,6 +2306,10 @@ public class BattleSystemMultiple : MonoBehaviour
                     MiddleMorale.value = (GameManager.MidRelivMorale / GameManager.MidRelivMoraleMax);
                     middleDead = true;
                     MiddleDamageUI.text = "-" + enemyUnit[enemyUnitSelected].enemyDamage.ToString();
+
+                    playerTurnOrder.Remove(CharacterIdentifier.Middle);
+
+
                     MidRelAnim.SetBool("isDead", true);
 
                 }
@@ -2194,6 +2319,10 @@ public class BattleSystemMultiple : MonoBehaviour
                     SetUpMorale.value = (GameManager.SetUpMorale / GameManager.SetUpMoraleMax);
                     setupDead = true;
                     SetUpDamageUI.text = "-" + enemyUnit[enemyUnitSelected].enemyDamage.ToString();
+
+                    playerTurnOrder.Remove(CharacterIdentifier.SetUp);
+
+
                     SetUpAnim.SetBool("isDead", true);
                 }
                 if (isDead4)
@@ -2202,6 +2331,9 @@ public class BattleSystemMultiple : MonoBehaviour
                     CloserMorale.value = (GameManager.CloserMorale / GameManager.CloserMoraleMax);
                     closerDead = true;
                     CloserDamageUI.text = "-" + enemyUnit[enemyUnitSelected].enemyDamage.ToString();
+
+                    playerTurnOrder.Remove(CharacterIdentifier.Closer);
+
                     CloserAnim.SetBool("isDead", true);
 
                 }
@@ -2247,6 +2379,64 @@ public class BattleSystemMultiple : MonoBehaviour
                 }
                 Unit.attackAll = false;
                 yield return new WaitForSeconds(2f);
+                StartCoroutine(TurnOffDamageUI());
+                NextPlayerTurnAfterEnemyTurn(enemyIndex);
+            }
+
+            else if (Unit.energyAll)
+            {
+                dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " tires the Pitchers with " + enemyUnit[enemyUnitSelected].attackName + "!";
+
+                enemyAnim[enemyIndex].Play("Armature|Swing");
+
+                yield return new WaitForSeconds(1f);
+
+                bool isDead1 = Starter.TakeDamage(enemyUnit[enemyUnitSelected].enemyDamage);
+                bool isDead2 = MiddleReliever.TakeDamage(enemyUnit[enemyUnitSelected].enemyDamage);
+                bool isDead3 = SetUp.TakeDamage(enemyUnit[enemyUnitSelected].enemyDamage);
+                bool isDead4 = Closer.TakeDamage(enemyUnit[enemyUnitSelected].enemyDamage);
+
+                if (!isDead1)
+                {
+                    yield return new WaitForSeconds(.5f);
+                    StarterAnim.Play("Armature|Oof");
+
+                    GameManager.StarterEnergy -= enemyUnit[enemyUnitSelected].enemyDamage;
+                    StarterDamageUI.text = "-" + enemyUnit[enemyUnitSelected].enemyDamage.ToString();
+                    StarterEnergy.value = (GameManager.StarterEnergy / GameManager.StarterEnergyMax);
+                }
+
+                if (!isDead2)
+                {
+                    yield return new WaitForSeconds(.5f);
+                    MidRelAnim.Play("Armature|Oof");
+
+                    GameManager.MidRelivEnergy -= enemyUnit[enemyUnitSelected].enemyDamage;
+                    MiddleDamageUI.text = "-" + enemyUnit[enemyUnitSelected].enemyDamage.ToString();
+                    MiddleEnergy.value = (GameManager.MidRelivEnergy / GameManager.MidRelievEnergyMax);
+                }
+
+                if (!isDead3)
+                {
+                    yield return new WaitForSeconds(.5f);
+                    SetUpAnim.Play("Armature|Oof");
+
+                    GameManager.SetUpEnergy -= enemyUnit[enemyUnitSelected].enemyDamage;
+                    SetUpDamageUI.text = "-" + enemyUnit[enemyUnitSelected].enemyDamage.ToString();
+                    SetUpEnergy.value = (GameManager.SetUpEnergy / GameManager.SetUpEnergyMax);
+                }
+
+                if (!isDead4)
+                {
+                    yield return new WaitForSeconds(.5f);
+                    CloserAnim.Play("Armature|Oof");
+
+                    GameManager.CloserEnergy -= enemyUnit[enemyUnitSelected].enemyDamage;
+                    CloserDamageUI.text = "-" + enemyUnit[enemyUnitSelected].enemyDamage.ToString();
+                    CloserEnergy.value = (GameManager.CloserEnergy / GameManager.CloserEnergyMax);
+                }
+                Unit.energyAll = false;
+                yield return new WaitForSeconds(1f);
                 StartCoroutine(TurnOffDamageUI());
                 NextPlayerTurnAfterEnemyTurn(enemyIndex);
             }
@@ -2309,6 +2499,8 @@ public class BattleSystemMultiple : MonoBehaviour
                             StarterMorale.value = (GameManager.StarterMorale / GameManager.StarterMoraleMax);
                             starterDead = true;
 
+                            playerTurnOrder.Remove(CharacterIdentifier.Starter);
+
                             StarterAnim.SetBool("isDead", true);
                             yield return new WaitForSeconds(3f);
                             NextPlayerTurnAfterEnemyTurn(enemyIndex);
@@ -2350,6 +2542,9 @@ public class BattleSystemMultiple : MonoBehaviour
                             GameManager.MidRelivMorale -= enemyUnit[enemyUnitSelected].enemyDamage;
                             MiddleMorale.value = (GameManager.MidRelivMorale / GameManager.MidRelivMoraleMax);
                             middleDead = true;
+
+                            playerTurnOrder.Remove(CharacterIdentifier.Middle);
+
                             MidRelAnim.SetBool("isDead", true);
                             yield return new WaitForSeconds(3f);
                             NextPlayerTurnAfterEnemyTurn(enemyIndex);
@@ -2394,6 +2589,9 @@ public class BattleSystemMultiple : MonoBehaviour
                             SetUpMorale.value = (GameManager.SetUpMorale / GameManager.SetUpMoraleMax);
                             SetUpAnim.SetBool("isDead", true);
                             setupDead = true;
+
+                            playerTurnOrder.Remove(CharacterIdentifier.SetUp);
+
                             yield return new WaitForSeconds(3f);
                             NextPlayerTurnAfterEnemyTurn(enemyIndex);
                         }
@@ -2435,6 +2633,9 @@ public class BattleSystemMultiple : MonoBehaviour
                             CloserMorale.value = (GameManager.CloserMorale / GameManager.CloserMoraleMax);
                             CloserAnim.SetBool("isDead", true);
                             closerDead = true;
+
+                            playerTurnOrder.Remove(CharacterIdentifier.Closer);
+
                             yield return new WaitForSeconds(3f);
                             NextPlayerTurnAfterEnemyTurn(enemyIndex);
                         }
@@ -2453,7 +2654,7 @@ public class BattleSystemMultiple : MonoBehaviour
                 }
             }
         }
-        //NextTurn();
+        NextTurn();
     }
 
     IEnumerator TurnOffDamageUI()
@@ -2475,7 +2676,8 @@ public class BattleSystemMultiple : MonoBehaviour
         GameManager.Instance.DebugBall.transform.position = Starter.transform.position + Vector3.up * GameManager.Instance.DebugBallHeight;
         if (starterDead)
         {
-            if (enemyStartCount == 1)
+            NextTurn();
+           /* if (enemyStartCount == 1)
             {
                 state = BattleStateMultiple.MIDDLE;
                 MiddleTurn();
@@ -2484,7 +2686,7 @@ public class BattleSystemMultiple : MonoBehaviour
             {
                 state = BattleStateMultiple.ENEMYTURN;
                 StartCoroutine("EnemyTurn", 0);
-            }
+            }*/
         }
         if (!starterDead)
         {
@@ -2505,7 +2707,8 @@ public class BattleSystemMultiple : MonoBehaviour
         GameManager.Instance.DebugBall.transform.position = MiddleReliever.transform.position + Vector3.up * GameManager.Instance.DebugBallHeight;
         if (middleDead)
         {
-            switch (enemyStartCount)
+            NextTurn();
+          /*  switch (enemyStartCount)
             {
                 case 1:
                 case 3:
@@ -2519,7 +2722,7 @@ public class BattleSystemMultiple : MonoBehaviour
                     state = BattleStateMultiple.SETUP;
                     SETUPTurn();
                     break;
-            }
+            }*/
         }
         if (!middleDead)
         {
@@ -2546,7 +2749,8 @@ public class BattleSystemMultiple : MonoBehaviour
 
         if (setupDead)
         {
-            switch (enemyStartCount)
+            NextTurn();
+           /* switch (enemyStartCount)
             {
                 case 1:
                 case 5:
@@ -2563,7 +2767,7 @@ public class BattleSystemMultiple : MonoBehaviour
                     state = BattleStateMultiple.ENEMYTURN;
                     StartCoroutine("EnemyTurn", 2);
                     break;
-            }
+            }*/
         }
         if (!setupDead)
         {
@@ -2589,7 +2793,8 @@ public class BattleSystemMultiple : MonoBehaviour
         }
         if (closerDead)
         {
-            switch (enemyStartCount)
+            NextTurn();
+           /* switch (enemyStartCount)
             {
                 case 4:
                     state = BattleStateMultiple.ENEMYTURN;
@@ -2599,7 +2804,7 @@ public class BattleSystemMultiple : MonoBehaviour
                     state = BattleStateMultiple.STARTER;
                     StarterTurn();
                     break;
-            }
+            }*/
         }
         if (!closerDead)
         {
@@ -2941,10 +3146,20 @@ public class BattleSystemMultiple : MonoBehaviour
     #region End Battle Conditions
     void EndBattle()
     {
+        if (isHoEBattle)
+        {
+            battleCam.transform.position = new Vector3(-14.45f, 3.71f, -14.82f);
+        }
+
         Camera.transform.position = battleCam.transform.position;
         Camera.transform.LookAt(enemyCamTarget);
         if (state == BattleStateMultiple.WON)
         {
+            if (Umpire)
+            {
+                HOEGameManager.UmpireDefeated = true;
+            }
+
             if (!starterDead)
             {
                 StarterAnim.Play("Armature|Victory");
@@ -3121,11 +3336,17 @@ public class BattleSystemMultiple : MonoBehaviour
                 int NewLevelS = GameManager.StarterLevel;
                 int Difference = NewLevelS - OldLevelS;
                 SPointsToGive = (Difference * 3);
-                StartTotalExp.text = GameManager.StarterLevel.ToString("F0");
+
+                GameManager.StarterMorale = GameManager.StarterMoraleMax;
+                GameManager.StarterEnergy = GameManager.StarterEnergyMax;
             }
+            StarterExpToNext.text = (GameManager.StarterTargetExp - GameManager.StarterExp).ToString("F0");
+            StartTotalExp.text = GameManager.StarterLevel.ToString("F0");
         }
         else
+        {
             MidExp(totalExp / 4);
+        }
     }
 
     void MidExp(int xp)
@@ -3149,15 +3370,17 @@ public class BattleSystemMultiple : MonoBehaviour
                 MLevelUp.SetActive(true);
                 GameManager.MRTargetExp *= 2f;
                 //add training points
-                MRExpToNext.text = (GameManager.MRTargetExp - GameManager.MRExp).ToString("F0");
                 int NewLevelM = GameManager.MRLevel;
                 int Difference = NewLevelM - OldLevelM;
                 MPointsToGive = (Difference * 3) + 1;
-                MRTotalExp.text = GameManager.MRLevel.ToString("F0");
             }
+            MRExpToNext.text = (GameManager.MRTargetExp - GameManager.MRExp).ToString("F0");
+            MRTotalExp.text = GameManager.MRLevel.ToString("F0");
         }
         else
+        {
             SetUpExp(totalExp / 4);
+        }
     }
 
     void SetUpExp(int xp)
@@ -3181,15 +3404,18 @@ public class BattleSystemMultiple : MonoBehaviour
                 SetUpLevelUp.SetActive(true);
                 GameManager.SetupTargetExp *= 2f;
                 //add training points
-                SetUpExpToNext.text = (GameManager.SetupTargetExp - GameManager.SetUpExp).ToString("F0");
+
                 int NewLevelSe = GameManager.SetUpLevel;
                 int Difference = NewLevelSe - OldLevelSe;
                 SePointsToGive = (Difference * 3) + 1;
-                SetUpTotalExp.text = GameManager.SetUpLevel.ToString("F0");
             }
+            SetUpExpToNext.text = (GameManager.SetupTargetExp - GameManager.SetUpExp).ToString("F0");
+            SetUpTotalExp.text = GameManager.SetUpLevel.ToString("F0");
         }
         else
+        {
             CloserExp(totalExp / 4);
+        }
     }
 
     void CloserExp(int xp)
@@ -3213,15 +3439,17 @@ public class BattleSystemMultiple : MonoBehaviour
                 CloserLevelUp.SetActive(true);
                 GameManager.CloserTargetExp *= 2f;
                 //add training points
-                CloserExpToNext.text = (GameManager.CloserTargetExp - GameManager.CloserExp).ToString("F0");
                 int NewLevelC = GameManager.CloserLevel;
                 int Difference = NewLevelC - OldLevelC;
                 CPointsToGive = (Difference * 3) + 1;
-                CloserTotalExp.text = GameManager.CloserLevel.ToString("F0");
             }
+            CloserExpToNext.text = (GameManager.CloserTargetExp - GameManager.CloserExp).ToString("F0");
+            CloserTotalExp.text = GameManager.CloserLevel.ToString("F0");
         }
         else
+        {
             StartCoroutine(WaitingAtEndOfBattle());
+        }
     }
 
     void CheatToInstantlyWin()
@@ -3331,6 +3559,7 @@ public class BattleSystemMultiple : MonoBehaviour
 
     void StarterLevelUp()
     {
+
         if (MLevel)
         {
             starterLevel = false;
@@ -3361,6 +3590,8 @@ public class BattleSystemMultiple : MonoBehaviour
 
     void MidRelieverLevelUp()
     {
+        GameManager.MidRelivMorale = GameManager.MidRelivMoraleMax;
+        GameManager.MidRelivEnergy = GameManager.MidRelievEnergyMax;
         MPoints.text = MPointsToGive.ToString();
 
         if (MLevel)
@@ -3394,6 +3625,8 @@ public class BattleSystemMultiple : MonoBehaviour
 
     void SetLevelUp()
     {
+        GameManager.SetUpMorale = GameManager.SetUpMoraleMax;
+        GameManager.SetUpEnergy = GameManager.SetUpEnergyMax;
         SePoints.text = SePointsToGive.ToString();
 
         if (SeLevel)
@@ -3417,6 +3650,8 @@ public class BattleSystemMultiple : MonoBehaviour
 
     void CloseLevelUp()
     {
+        GameManager.CloserMorale = GameManager.CloserMoraleMax;
+        GameManager.CloserEnergy = GameManager.CloserEnergyMax;
         CPoints.text = CPointsToGive.ToString();
 
         CLevelUpScreen.SetActive(true);
@@ -3820,6 +4055,10 @@ public class BattleSystemMultiple : MonoBehaviour
         if (isConcourse)
         {
             SceneManager.LoadScene("Concourse");
+        }
+        if (isHoE)
+        {
+            SceneManager.LoadScene("ClubHouse");
         }
     }
 

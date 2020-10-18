@@ -5,25 +5,21 @@ using UnityEngine;
 public class HOEGameManager : MonoBehaviour
 {
     public static bool redToggle, greenToggle;
-    // Start is called before the first frame update
-    void Start()
+
+    public static bool plaqueArea, umpArea, displayArea, cornfieldArea;
+
+    public GameObject plaqueRoom, umpireRoom, displayRoom, cornfieldRoom;
+
+    public static bool UmpireDefeated;
+
+    public GameObject player;
+
+    private void Start()
     {
-        redToggle = false;
-        greenToggle = false;
+        if (UmpireDefeated)
+        {
+            player.transform.position = new Vector3(PlayerLocationDontDestroy.playerX, PlayerLocationDontDestroy.playerY, PlayerLocationDontDestroy.playerZ);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        /*if (Input.GetKeyDown(KeyCode.G))
-        {
-            greenToggle = !greenToggle;
-        }
-
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            redToggle = !redToggle;
-        }
-        */
-    }
 }
