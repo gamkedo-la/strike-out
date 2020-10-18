@@ -12,4 +12,14 @@ public class HOEGameManager : MonoBehaviour
 
     public static bool UmpireDefeated;
 
+    public GameObject player;
+
+    private void Start()
+    {
+        if (UmpireDefeated)
+        {
+            player.transform.position = new Vector3(PlayerLocationDontDestroy.playerX, PlayerLocationDontDestroy.playerY, PlayerLocationDontDestroy.playerZ);
+        }
+    }
+
 }

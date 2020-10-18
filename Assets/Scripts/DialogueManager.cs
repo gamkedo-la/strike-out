@@ -95,6 +95,11 @@ public class DialogueManager : MonoBehaviour
         else if (DialogueTrigger.Umpire)
         {
             anim.SetBool("isOpen", false);
+
+            PlayerLocationDontDestroy.playerX = transform.position.x;
+            PlayerLocationDontDestroy.playerY = transform.position.y;
+            PlayerLocationDontDestroy.playerZ = transform.position.z;
+
             PlayerMovement.canMove = true;
             DialogueTrigger.Umpire = false;
             SceneManager.LoadScene(UmpireLevel.ToString());
@@ -103,6 +108,11 @@ public class DialogueManager : MonoBehaviour
         else if (DialogueTrigger.Babe)
         {
             anim.SetBool("isOpen", false);
+
+            PlayerLocationDontDestroy.playerX = transform.position.x;
+            PlayerLocationDontDestroy.playerY = transform.position.y;
+            PlayerLocationDontDestroy.playerZ = transform.position.z;
+
             PlayerMovement.canMove = true;
             DialogueTrigger.Babe = false;
             SceneManager.LoadScene(BabeLevel.ToString());

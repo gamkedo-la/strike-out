@@ -486,6 +486,7 @@ public class BattleSystemMultiple : MonoBehaviour
     void NextTurn()
       {
         isPlayerTurn = !isPlayerTurn;
+
         CharacterIdentifier upRightNow;
         if (isPlayerTurn)
         {
