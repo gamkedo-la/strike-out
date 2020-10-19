@@ -16,6 +16,7 @@ public class PlayerMovement : MonoBehaviour
 
     public static bool canMove;
     public GameObject ShatterBall;
+    public AudioTailObject ShatterBallSound;
 
     public GameObject playerModel;
     Animator anim;
@@ -56,6 +57,10 @@ public class PlayerMovement : MonoBehaviour
                 PlayerLocationDontDestroy.playerZ = transform.position.z;
                 //waiting for the shatter effect 
                 ShatterBall.SetActive(true);
+
+                if (ShatterBallSound != null)
+                    ShatterBallSound.PlaySoundWithTail();
+                
                 StartCoroutine(Waiting());
             }
 

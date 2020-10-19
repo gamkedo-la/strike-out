@@ -12,8 +12,9 @@ public class AudioTailObject : MonoBehaviour
         DontDestroyOnLoad(this);   
     }
 
-    private void OnDestroy()
+    public void PlaySoundWithTail()
     {
-        Destroy(this, sound.Clip.length);
+        controller.PlayRandom(sound);
+        Destroy(this.gameObject, sound.Clip.length);
     }
 }
