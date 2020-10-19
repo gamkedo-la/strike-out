@@ -155,6 +155,9 @@ public class BattleSystemMultiple : MonoBehaviour
     //Turn Order Display
     public Text ondeck, inhole;
 
+    //babe
+    public bool Babe;
+
     private void Start()
     {
         inBattle = true;
@@ -4073,6 +4076,11 @@ public class BattleSystemMultiple : MonoBehaviour
         if (isHoE)
         {
             SceneManager.LoadScene("ClubHouse");
+        }
+
+        if (Babe)
+        {
+            SceneManager.LoadScene("WinScene");
         }
     }
 

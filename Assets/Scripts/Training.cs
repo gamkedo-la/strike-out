@@ -19,6 +19,8 @@ public class Training : MonoBehaviour
         HOEGameManager.redToggle = false;
         HOEGameManager.greenToggle = false;
 
+        HOEGameManager.UmpireDefeated = false;
+
         HOEGameManager.plaqueArea = true;
         HOEGameManager.umpArea = false;
         HOEGameManager.displayArea = false;
