@@ -10,15 +10,25 @@ public class HOEGameManager : MonoBehaviour
 
     public GameObject plaqueRoom, umpireRoom, displayRoom, cornfieldRoom;
 
-    public static bool UmpireDefeated;
-
     public GameObject player;
+    public Transform afterUmpire;
+
+    public static bool UmpireDefeated;
+    public static bool UmpireAlreadyKilled;
 
     private void Start()
     {
         if (UmpireDefeated)
         {
-            player.transform.position = new Vector3(PlayerLocationDontDestroy.playerX, PlayerLocationDontDestroy.playerY, PlayerLocationDontDestroy.playerZ);
+            if (!UmpireAlreadyKilled)
+            {
+                player.transform.position = afterUmpire.transform.position;
+                UmpireAlreadyKilled = true;
+            }
+        }
+        else
+        {
+            player.transform.position = new Vector3(PlayerLocationDontDestroy.playerX, PlayerLocationDontDestroy.playerY + 3, PlayerLocationDontDestroy.playerZ);
         }
     }
 

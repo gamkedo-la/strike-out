@@ -55,6 +55,8 @@ public class PlayerMovement : MonoBehaviour
                 PlayerLocationDontDestroy.playerX = transform.position.x;
                 PlayerLocationDontDestroy.playerY = transform.position.y;
                 PlayerLocationDontDestroy.playerZ = transform.position.z;
+
+                print(PlayerLocationDontDestroy.playerX + ", " + PlayerLocationDontDestroy.playerY + ", " + PlayerLocationDontDestroy.playerZ);
                 //waiting for the shatter effect 
                 ShatterBall.SetActive(true);
 
