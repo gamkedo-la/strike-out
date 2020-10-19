@@ -21,6 +21,8 @@ public class DialogueTrigger : MonoBehaviour
     public bool isTraining ,isManager;
     public GameObject dialogue1, dialogue2;
     public AudioEventGeneric dialogueBoxAudio;
+
+    public bool isWin;
     private void Start()
     {
         if (isTraining)
@@ -30,12 +32,17 @@ public class DialogueTrigger : MonoBehaviour
             StartCoroutine(Waiting());
         }
 
-        if (Boss3)
+        else if (Boss3)
         {
             if (HOEGameManager.UmpireDefeated)
             {
                 this.gameObject.SetActive(false);
             }
+        }
+
+        else if (isWin)
+        {
+            StartCoroutine(WaitingWin());
         }
     }
 
@@ -113,6 +120,12 @@ public class DialogueTrigger : MonoBehaviour
     }
 
     IEnumerator Waiting()
+    {
+        yield return new WaitForSeconds(.25f);
+        TriggerDialogue();
+    }
+
+    IEnumerator WaitingWin()
     {
         yield return new WaitForSeconds(.25f);
         TriggerDialogue();

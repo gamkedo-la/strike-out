@@ -23,6 +23,8 @@ public class DialogueManager : MonoBehaviour
     public AudioData dialogueAudio;
     public AudioSourceController audioSource;
 
+    public bool isWin;
+
     private void Start()
     {
         sentences = new Queue<string>();
@@ -107,6 +109,11 @@ public class DialogueManager : MonoBehaviour
             DialogueTrigger.Babe = false;
             SceneManager.LoadScene(BabeLevel.ToString());
         }
+
+        else if (isWin)
+        {
+            SceneManager.LoadScene("MainMenu");
+        }
         else
         {
             anim.SetBool("isOpen", false);
@@ -131,4 +138,5 @@ public class DialogueManager : MonoBehaviour
         dialogue1.SetActive(true);
         dialogue2.SetActive(false);
     }
+
 }

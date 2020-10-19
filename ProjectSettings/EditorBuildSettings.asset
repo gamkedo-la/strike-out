@@ -41,4 +41,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/HoEBabe.unity
     guid: 37c7f4b1aaf57964aaf9cb76f6df27ec
+  - enabled: 1
+    path: Assets/WinScene.unity
+    guid: fbeb738f3480cd342beef98907014ae9
   m_configObjects: {}
