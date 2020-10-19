@@ -14,14 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Clip: {fileID: 0}
   Sounds:
-  - {fileID: 8300000, guid: 15fb365772c8fbb4ba8f0a8702962b46, type: 3}
+  - {fileID: 8300000, guid: 163159fefab3d4148a2b981ae9c475ba, type: 3}
   - {fileID: 8300000, guid: 37e529f49a713bc4692dd9fe8342c6a0, type: 3}
   - {fileID: 8300000, guid: 163159fefab3d4148a2b981ae9c475ba, type: 3}
   mixer: {fileID: 24100000, guid: 75dd9a9b66abc7c4782df25f39d4594d, type: 2}
   output: 1
   Loop: 0
   Volume: 0
-  Pitch: 0
+  Pitch: -1.7
   SpatialBlend: 0
   RandomVolume: 0
   RandomPitch: 0
