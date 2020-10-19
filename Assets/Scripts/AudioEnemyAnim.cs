@@ -67,6 +67,10 @@ public class AudioEnemyAnim : AudioEventGeneric
 
     public void TakeDmg()
     {
-        controller.PlayRandom(takeDmg);
+        if (takeDmg != null)
+            controller.PlayRandom(takeDmg);
+        else
+            Debug.LogWarning("No take damage audio data!");
+        
     }
 }
