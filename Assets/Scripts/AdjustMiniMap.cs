@@ -8,11 +8,21 @@ public class AdjustMiniMap : MonoBehaviour
     public GameObject map;
     public float mapStart, mapExpand;
     public Camera miniCam;
+
+    public bool isHoE;
     void Update()
     {
         if (Input.GetKey(KeyCode.M))
         {
-            this.transform.localPosition = new Vector3(50, yHeightIncrease, 171);
+            if (isHoE)
+            {
+                this.transform.localPosition = new Vector3(-5, yHeightIncrease, 110);
+            }
+
+            else
+            {
+                this.transform.localPosition = new Vector3(50, yHeightIncrease, 171);
+            }
             this.transform.rotation = Quaternion.Euler(90, 0, 0);
             map.transform.localScale = new Vector2(mapExpand, mapExpand);
             miniCam.orthographic = false;
