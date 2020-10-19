@@ -152,6 +152,9 @@ public class BattleSystemMultiple : MonoBehaviour
 
     public bool isHoEBattle;
 
+    //Turn Order Display
+    public Text ondeck, inhole;
+
     private void Start()
     {
         inBattle = true;
@@ -307,7 +310,7 @@ public class BattleSystemMultiple : MonoBehaviour
             enemyAnim.Add(enemyGO.GetComponentInChildren<Animator>());
         }
 
-        enemyUnit[0].GetComponent<Unit>().myEnumValue = CharacterIdentifier.Enemy1;  
+        enemyUnit[0].GetComponent<Unit>().myEnumValue = CharacterIdentifier.Enemy1;
         if (enemyStartCount >= 2)
         {
             enemyUnit[1].GetComponent<Unit>().myEnumValue = CharacterIdentifier.Enemy2;
@@ -549,11 +552,22 @@ public class BattleSystemMultiple : MonoBehaviour
                 StartCoroutine("EnemyTurn", 4);
                 break;
          }
+        if (isPlayerTurn)
+        {
+            //enemyUnit[1].GetComponent<Unit>().myEnumValue = CharacterIdentifier.Enemy2;
+            ondeck.text = "On Deck:  " + enemyTurnOrder[0].ToString();
+            inhole.text = "In the Hole:  " + playerTurnOrder[0].ToString();
+        }
 
-       // TODO: Remove character if dead, go to next one (player to player, enemy to enemy).
-       // TODO: Can I get rid of all of the switch cases in the script that determine move order? 
+        if (!isPlayerTurn)
+        {
+            ondeck.text = "On Deck:  " + playerTurnOrder[0].ToString();
+            inhole.text = "In the Hole:  " + enemyTurnOrder[0].ToString();
+        }
+        // TODO: Remove character if dead, go to next one (player to player, enemy to enemy).
+        // TODO: Can I get rid of all of the switch cases in the script that determine move order? 
 
-}
+    }
 
 
     public void CallTime()
