@@ -204,6 +204,24 @@ public class BattleSystemMultiple : MonoBehaviour
             enemyStartCount = 1;
 
         }
+
+        if (GameManager.StarterMorale <= 0)
+        {
+            GameManager.StarterMorale = 1;
+        }
+        if (GameManager.MidRelivMorale <= 0)
+        {
+            GameManager.MidRelivMorale = 1;
+        }
+        if (GameManager.SetUpMorale <= 0)
+        {
+            GameManager.SetUpMorale = 1;
+        }
+        if (GameManager.CloserMorale <= 0)
+        {
+            GameManager.CloserMorale = 1;
+        }
+
         else
         {
             int RandRangeEnemySpawn = Random.Range(0, 100);
@@ -685,38 +703,33 @@ public class BattleSystemMultiple : MonoBehaviour
                 //Destroy(enemyPrefab[enemyUnitSelected]);
                 totalExp += enemyUnit[i].ExperienceToDistribute;
                 enemyCount--;
-                enemyBattleStationLocations.Remove(enemyBattleStationLocations[i]);
-                enemyPrefab.Remove(enemyPrefab[i]);
-                enemyUnit.Remove(enemyUnit[i]);
-
-                state = BattleStateMultiple.ENEMYTURN;
-                StartCoroutine("EnemyTurn", 0);
+                //enemyBattleStationLocations.Remove(enemyBattleStationLocations[i]);
+               // enemyPrefab.Remove(enemyPrefab[i]);
+                //enemyUnit.Remove(enemyUnit[i]);
+                RemoveCurrentEnemy();
             }
 
-            if (!isDead)
+            if (enemyCount > 0)
             {
-                if (state == BattleStateMultiple.STARTER || state == BattleStateMultiple.MIDDLE || state == BattleStateMultiple.SETUP)
-                {
-                    state = BattleStateMultiple.ENEMYTURN;
-                    StartCoroutine("EnemyTurn", 0);
-                }
-                if (state == BattleStateMultiple.CLOSER)
-                {
-                    state = BattleStateMultiple.STARTER;
-                    StarterTurn();
-                }
+                AdvanceTurn();
+            }
+            else
+            {
+                backButtonItem.SetActive(false);
+                PlayerMenu.SetActive(false);
+                PlayerPitches.SetActive(false);
+                ItemMenu.transform.localPosition = new Vector3(233, -900, 0);
+
+                state = BattleStateMultiple.WON;
+                EndBattle();
             }
         }
-        AdvanceTurn();
-        print("Did work?");
     }
 
     public void ScoutingReportItem()
     {
         isDead = enemyUnit[enemyUnitSelected].TakeDamage(20);
 
-        if (state == BattleStateMultiple.STARTER || state == BattleStateMultiple.MIDDLE || state == BattleStateMultiple.SETUP)
-        {
             if (isDead)
             {
                 //enemyAnim[enemyUnitSelected].Play("Armature|Downed");
@@ -724,37 +737,25 @@ public class BattleSystemMultiple : MonoBehaviour
                 totalExp += enemyUnit[enemyUnitSelected].ExperienceToDistribute;
                 enemyCount--;
                 enemyBattleStationLocations.Remove(enemyBattleStationLocations[enemyUnitSelected]);
-                // enemyPrefab.Remove(enemyPrefab[enemyUnitSelected]);
-                // enemyUnit.Remove(enemyUnit[enemyUnitSelected]);
-                enemyUnitSelected = 0;
+            RemoveCurrentEnemy();
+            // enemyPrefab.Remove(enemyPrefab[enemyUnitSelected]);
+            // enemyUnit.Remove(enemyUnit[enemyUnitSelected]);
+            enemyUnitSelected = 0;
                 enemySelectionParticle.transform.position = enemyBattleStationLocations[enemyUnitSelected].transform.position;
             }
-            if (!isDead)
-            {
-                state = BattleStateMultiple.ENEMYTURN;
-                StartCoroutine("EnemyTurn", 0);
-            }
+        if (enemyCount > 0)
+        {
+            AdvanceTurn();
         }
-
-        if (state == BattleStateMultiple.CLOSER)
+        else
         {
-            if (isDead)
-            {
-                //enemyAnim[enemyUnitSelected].Play("Armature|Downed");
-                //Destroy(enemyPrefab[enemyUnitSelected]);
-                totalExp += enemyUnit[enemyUnitSelected].ExperienceToDistribute;
-                enemyCount--;
-                enemyBattleStationLocations.Remove(enemyBattleStationLocations[enemyUnitSelected]);
-                //enemyPrefab.Remove(enemyPrefab[enemyUnitSelected]);
-                //enemyUnit.Remove(enemyUnit[enemyUnitSelected]);
-                enemyUnitSelected = 0;
-                enemySelectionParticle.transform.position = enemyBattleStationLocations[enemyUnitSelected].transform.position;
-            }
-            if (!isDead)
-            {
-                state = BattleStateMultiple.STARTER;
-                StarterTurn();
-            }
+            backButtonItem.SetActive(false);
+            PlayerMenu.SetActive(false);
+            PlayerPitches.SetActive(false);
+            ItemMenu.transform.localPosition = new Vector3(233, -900, 0);
+
+            state = BattleStateMultiple.WON;
+            EndBattle();
         }
     }
 
@@ -818,6 +819,25 @@ public class BattleSystemMultiple : MonoBehaviour
         SetUpEnergy.value = (GameManager.SetUpEnergy / GameManager.SetUpEnergyMax);
         CloserEnergy.value = (GameManager.CloserEnergy / GameManager.CloserEnergyMax);
 
+        if (GameManager.StarterMorale > (GameManager.StarterMoraleMax * .2))
+        {
+            StarterAnim.SetBool("isInjured", false);
+        }     
+        //MR
+        if (GameManager.MidRelivMorale > (GameManager.MidRelivMoraleMax * .2))
+        {
+            MidRelAnim.SetBool("isInjured", false);
+        }        
+        //SetUp
+        if (GameManager.SetUpMorale > (GameManager.SetUpMoraleMax * .2))
+        {
+            SetUpAnim.SetBool("isInjured", false);
+        }       
+        //Closer
+        if (GameManager.CloserMorale > (GameManager.CloserMoraleMax * .2))
+        {
+            CloserAnim.SetBool("isInjured", false);
+        }
         NextTurn();
     }
 
@@ -834,6 +854,7 @@ public class BattleSystemMultiple : MonoBehaviour
         if (Rand == 0)
         {
             dialogueText.text = "No one is warming up! You can't leave!";
+            NextTurn();
         }
         if (Rand == 1)
         {

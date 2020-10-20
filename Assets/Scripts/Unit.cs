@@ -342,11 +342,23 @@ public class Unit : MonoBehaviour
 
         if (currentHP <= 0)
         {
+            if (isEnemy)
+            {
+                anim.Play("Armature|Downed");
+                StartCoroutine(ClearText());
+            }
             return true;
         }
 
         else
+        {
+            if (isEnemy)
+            {
+                anim.Play("Armature|SwingMiss");
+                StartCoroutine(ClearText());
+            }
             return false;
+        }
     }
 
     public bool TakeDamageFast(int dmg)

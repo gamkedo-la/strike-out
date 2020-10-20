@@ -85,12 +85,12 @@ public class InventoryItemButton : MonoBehaviour
         {
             if (MultipleSystem.GetComponent<BattleSystemMultiple>() == null)
             {
-                GameManagerObject.GetComponent<GameManager>().EnergyUpAll(20);
+                GameManagerObject.GetComponent<GameManager>().EnergyUpAll(15);
             }
 
             if (MultipleSystem.GetComponent<BattleSystemMultiple>() != null)
             {
-                GameManagerObject.GetComponent<GameManager>().EnergyUpAll(20);
+                GameManagerObject.GetComponent<GameManager>().EnergyUpAll(15);
                 MultipleSystem.GetComponent<BattleSystemMultiple>().AdvanceTurn();
             }
             Destroy(InventoryItem);
