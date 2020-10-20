@@ -629,7 +629,7 @@ public class GameManager : MonoBehaviour
 
         if (!gameStartingStats)
         {
-            /*StarterMorale = 25;
+            StarterMorale = 25;
             MidRelivMorale = 20;
             SetUpMorale = 15;
             CloserMorale = 10;
@@ -649,10 +649,10 @@ public class GameManager : MonoBehaviour
             MidRelievEnergyMax = 20;
             SetUpEnergyMax = 15;
             CloserEnergyMax = 10;
-            */
+            
 
             //Test Stats - remove later
-            StarterMorale = 5;
+  /*          StarterMorale = 5;
             MidRelivMorale = 5;
             SetUpMorale = 5;
             CloserMorale = 5;
@@ -672,7 +672,7 @@ public class GameManager : MonoBehaviour
             MidRelievEnergyMax = 20;
             SetUpEnergyMax = 15;
             CloserEnergyMax = 10;
-
+*/
             gameStartingStats = true;
         }
 
