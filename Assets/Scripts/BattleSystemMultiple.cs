@@ -597,6 +597,16 @@ public class BattleSystemMultiple : MonoBehaviour
         {
             GameManager.StarterEnergy += 5;
             GameManager.StarterMorale += 5;
+
+            if (GameManager.StarterEnergy >= GameManager.StarterEnergyMax)
+            {
+                GameManager.StarterEnergy = GameManager.StarterEnergyMax;
+            }
+            if (GameManager.StarterMorale >= GameManager.StarterMoraleMax)
+            {
+                GameManager.StarterMorale = GameManager.StarterMoraleMax;
+            }
+
             for (int i = 0; i < enemyUnit.Count; i++)
             {
                 enemyUnit[i].TakeDamage(-5);
@@ -609,6 +619,16 @@ public class BattleSystemMultiple : MonoBehaviour
         {
             GameManager.MidRelivEnergy += 5;
             GameManager.MidRelivMorale += 5;
+
+            if (GameManager.MidRelivEnergy >= GameManager.MidRelievEnergyMax)
+            {
+                GameManager.MidRelivEnergy = GameManager.MidRelievEnergyMax;
+            }
+            if (GameManager.MidRelivMorale >= GameManager.MidRelivMoraleMax)
+            {
+                GameManager.MidRelivMorale = GameManager.MidRelivMoraleMax;
+            }
+
             for (int i = 0; i < enemyUnit.Count; i++)
             {
                 enemyUnit[i].TakeDamage(-5);
@@ -621,6 +641,16 @@ public class BattleSystemMultiple : MonoBehaviour
         {
             GameManager.SetUpEnergy += 5;
             GameManager.SetUpMorale += 5;
+
+            if (GameManager.SetUpEnergy >= GameManager.SetUpEnergyMax)
+            {
+                GameManager.SetUpEnergy = GameManager.SetUpEnergyMax;
+            }
+            if (GameManager.SetUpMorale >= GameManager.SetUpMoraleMax)
+            {
+                GameManager.SetUpMorale = GameManager.SetUpMoraleMax;
+            }
+
             for (int i = 0; i < enemyUnit.Count; i++)
             {
                 enemyUnit[i].TakeDamage(-5);
@@ -633,6 +663,16 @@ public class BattleSystemMultiple : MonoBehaviour
         {
             GameManager.CloserEnergy += 5;
             GameManager.CloserMorale += 5;
+
+            if (GameManager.CloserEnergy >= GameManager.CloserEnergyMax)
+            {
+                GameManager.CloserEnergy = GameManager.CloserEnergyMax;
+            }
+            if (GameManager.CloserMorale >= GameManager.CloserMoraleMax)
+            {
+                GameManager.CloserMorale = GameManager.CloserMoraleMax;
+            }
+
             for (int i = 0; i < enemyUnit.Count; i++)
             {
                 enemyUnit[i].TakeDamage(-5);
@@ -640,7 +680,7 @@ public class BattleSystemMultiple : MonoBehaviour
             //state = BattleStateMultiple.STARTER;
            // StarterTurn();
         }
-        NextTurn();
+        AdvanceTurn();
     }
     #region ItemManagement
 
@@ -2169,7 +2209,7 @@ public class BattleSystemMultiple : MonoBehaviour
         return false;
     }
 
-    void NextPlayerTurnAfterEnemyTurn(int enemyIndex)
+   /* void NextPlayerTurnAfterEnemyTurn(int enemyIndex)
     {
         /*switch (enemyStartCount)
         {
@@ -2293,7 +2333,7 @@ public class BattleSystemMultiple : MonoBehaviour
                 }
                 break;
         }*/
-    }
+    //}
 
     IEnumerator EnemyTurn(int enemyIndex)
     {
@@ -2302,7 +2342,7 @@ public class BattleSystemMultiple : MonoBehaviour
         GameManager.Instance.DebugBall.transform.position = enemyUnit[enemyIndex].transform.position + Vector3.up * GameManager.Instance.DebugBallHeight;
         if (enemyUnit[enemyIndex].currentHP <= 0)
         {
-            NextPlayerTurnAfterEnemyTurn(enemyIndex);
+           // NextPlayerTurnAfterEnemyTurn(enemyIndex);
         }
         else
         {
@@ -2418,7 +2458,7 @@ public class BattleSystemMultiple : MonoBehaviour
                 Unit.attackAll = false;
                 yield return new WaitForSeconds(2f);
                 StartCoroutine(TurnOffDamageUI());
-                NextPlayerTurnAfterEnemyTurn(enemyIndex);
+               // NextPlayerTurnAfterEnemyTurn(enemyIndex);
             }
 
             else if (Unit.energyAll)
@@ -2476,7 +2516,7 @@ public class BattleSystemMultiple : MonoBehaviour
                 Unit.energyAll = false;
                 yield return new WaitForSeconds(1f);
                 StartCoroutine(TurnOffDamageUI());
-                NextPlayerTurnAfterEnemyTurn(enemyIndex);
+                //NextPlayerTurnAfterEnemyTurn(enemyIndex);
             }
 
 
@@ -2520,7 +2560,7 @@ public class BattleSystemMultiple : MonoBehaviour
                         yield return new WaitForSeconds(.5f);
                         dialogueText.text = "Starter Dodges!";
                         yield return new WaitForSeconds(1f);
-                        NextPlayerTurnAfterEnemyTurn(enemyIndex);
+                       // NextPlayerTurnAfterEnemyTurn(enemyIndex);
                     }
 
                     if (GameManager.StarterAgil < RandomAttack)
@@ -2541,7 +2581,7 @@ public class BattleSystemMultiple : MonoBehaviour
 
                             StarterAnim.SetBool("isDead", true);
                             yield return new WaitForSeconds(3f);
-                            NextPlayerTurnAfterEnemyTurn(enemyIndex);
+                           // NextPlayerTurnAfterEnemyTurn(enemyIndex);
                         }
 
                         else
@@ -2552,7 +2592,7 @@ public class BattleSystemMultiple : MonoBehaviour
                             GameManager.StarterMorale -= enemyUnit[enemyUnitSelected].enemyDamage;
                             StarterMorale.value = (GameManager.StarterMorale / GameManager.StarterMoraleMax);
                             yield return new WaitForSeconds(2f);
-                            NextPlayerTurnAfterEnemyTurn(enemyIndex);
+                           // NextPlayerTurnAfterEnemyTurn(enemyIndex);
                         }
                     }
                     StartCoroutine(TurnOffDamageUI());
@@ -2567,7 +2607,7 @@ public class BattleSystemMultiple : MonoBehaviour
                         yield return new WaitForSeconds(.5f);
                         dialogueText.text = "Mid Reliever Dodges!";
                         yield return new WaitForSeconds(1f);
-                        NextPlayerTurnAfterEnemyTurn(enemyIndex);
+                        //NextPlayerTurnAfterEnemyTurn(enemyIndex);
                     }
                     if (GameManager.MiddleAgil < RandomAttack)
                     {
@@ -2585,7 +2625,7 @@ public class BattleSystemMultiple : MonoBehaviour
 
                             MidRelAnim.SetBool("isDead", true);
                             yield return new WaitForSeconds(3f);
-                            NextPlayerTurnAfterEnemyTurn(enemyIndex);
+                          //  NextPlayerTurnAfterEnemyTurn(enemyIndex);
                         }
 
                         else
@@ -2596,7 +2636,7 @@ public class BattleSystemMultiple : MonoBehaviour
                             GameManager.MidRelivMorale -= enemyUnit[enemyUnitSelected].enemyDamage;
                             MiddleMorale.value = (GameManager.MidRelivMorale / GameManager.MidRelivMoraleMax);
                             yield return new WaitForSeconds(2f);
-                            NextPlayerTurnAfterEnemyTurn(enemyIndex);
+                          //  NextPlayerTurnAfterEnemyTurn(enemyIndex);
                         }
                     }
 
@@ -2613,7 +2653,7 @@ public class BattleSystemMultiple : MonoBehaviour
                         yield return new WaitForSeconds(.5f);
                         dialogueText.text = "SetUp Dodges!";
                         yield return new WaitForSeconds(1f);
-                        NextPlayerTurnAfterEnemyTurn(enemyIndex);
+                       // NextPlayerTurnAfterEnemyTurn(enemyIndex);
                     }
                     if (GameManager.SetUpAgil < RandomAttack)
                     {
@@ -2631,7 +2671,7 @@ public class BattleSystemMultiple : MonoBehaviour
                             playerTurnOrder.Remove(CharacterIdentifier.SetUp);
 
                             yield return new WaitForSeconds(3f);
-                            NextPlayerTurnAfterEnemyTurn(enemyIndex);
+                          //  NextPlayerTurnAfterEnemyTurn(enemyIndex);
                         }
 
                         else
@@ -2641,7 +2681,7 @@ public class BattleSystemMultiple : MonoBehaviour
                             GameManager.SetUpMorale -= enemyUnit[enemyUnitSelected].enemyDamage;
                             SetUpMorale.value = (GameManager.SetUpMorale / GameManager.SetUpMoraleMax);
                             yield return new WaitForSeconds(2f);
-                            NextPlayerTurnAfterEnemyTurn(enemyIndex);
+                          //  NextPlayerTurnAfterEnemyTurn(enemyIndex);
                         }
                     }
                     StartCoroutine(TurnOffDamageUI());
@@ -2656,7 +2696,7 @@ public class BattleSystemMultiple : MonoBehaviour
                         yield return new WaitForSeconds(.5f);
                         dialogueText.text = "Closer Dodges!";
                         yield return new WaitForSeconds(1f);
-                        NextPlayerTurnAfterEnemyTurn(enemyIndex);
+                       // NextPlayerTurnAfterEnemyTurn(enemyIndex);
                     }
 
                     if (GameManager.CloserAgil < RandomAttack)
@@ -2675,7 +2715,7 @@ public class BattleSystemMultiple : MonoBehaviour
                             playerTurnOrder.Remove(CharacterIdentifier.Closer);
 
                             yield return new WaitForSeconds(3f);
-                            NextPlayerTurnAfterEnemyTurn(enemyIndex);
+                         //   NextPlayerTurnAfterEnemyTurn(enemyIndex);
                         }
 
                         else
@@ -2685,7 +2725,7 @@ public class BattleSystemMultiple : MonoBehaviour
                             GameManager.CloserMorale -= enemyUnit[enemyUnitSelected].enemyDamage;
                             CloserMorale.value = (GameManager.CloserMorale / GameManager.CloserMoraleMax);
                             yield return new WaitForSeconds(2f);
-                            NextPlayerTurnAfterEnemyTurn(enemyIndex);
+                          //  NextPlayerTurnAfterEnemyTurn(enemyIndex);
                         }
                     }
                     StartCoroutine(TurnOffDamageUI());
