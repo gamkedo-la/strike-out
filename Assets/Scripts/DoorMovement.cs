@@ -8,7 +8,9 @@ public class DoorMovement : MonoBehaviour
     Vector3 isClosed = new Vector3(0, -10, 0);
     Vector3 isOpen = new Vector3(0, +10, 0);
 
-    [SerializeField]
+    public AudioData gateOpenAudio;
+    public AudioData gateCloseAudio;
+    public AudioSourceController audioController;
     private Vector3 storedPos;
 
     // Start is called before the first frame update
@@ -25,7 +27,16 @@ public class DoorMovement : MonoBehaviour
             this.transform.position += isClosed;
         }
 
-        //AudioButtonAction.ButtonCall += GateOpenCloseAudio;
+        if(gateOpenAudio == null)
+            gateOpenAudio = FindObjectOfType<AudioButtonAction>().data.GateOpen;
+
+        if (gateCloseAudio == null)
+            gateCloseAudio = FindObjectOfType<AudioButtonAction>().data.GateClose;
+
+        if (audioController == null)
+            audioController = gameObject.AddComponent<AudioSourceController>();
+
+        
         storedPos = this.transform.position;
     }
 
@@ -80,20 +91,22 @@ public class DoorMovement : MonoBehaviour
             }
         }
 
-        //GateOpenCloseAudio(this.transform.position);
+        GateOpenCloseAudio();
     }
 
-    void GateOpenCloseAudio(string newPosition)
+    void GateOpenCloseAudio()
     {
         if (this.transform.position != storedPos)
         {
             if (this.transform.position.y == storedPos.y - 3.5f || this.transform.position.y == storedPos.y - 13f)
             {
-                AudioButtonAction.ButtonCall("GateOpen");
+                if(audioController != null)
+                    audioController.PlayRandom(gateOpenAudio);
             }
             else
             {
-                AudioButtonAction.ButtonCall("GateClose");
+                if (audioController != null)
+                    audioController.PlayRandom(gateCloseAudio);
             }
         }
 
@@ -103,10 +116,5 @@ public class DoorMovement : MonoBehaviour
     void StoreNewPos(Vector3 newPosition)
     {
         storedPos = newPosition;
-    }
-
-    private void OnDestroy()
-    {
-        AudioButtonAction.ButtonCall -= GateOpenCloseAudio;
     }
 }
