@@ -7,9 +7,13 @@ public class DoorMovement : MonoBehaviour
     public bool isRedOpen, isRedClosed, isGreenOpen, isGreenClosed;
     Vector3 isClosed = new Vector3(0, -10, 0);
     Vector3 isOpen = new Vector3(0, +10, 0);
+
+    private Vector3 storedPos;
+
     // Start is called before the first frame update
     void Start()
     {
+
         if (isRedOpen)
         {
             this.transform.position += isClosed;
@@ -19,6 +23,7 @@ public class DoorMovement : MonoBehaviour
         {
             this.transform.position += isClosed;
         }
+        storedPos = this.transform.position;
     }
 
     // Update is called once per frame
@@ -71,5 +76,29 @@ public class DoorMovement : MonoBehaviour
                 this.transform.position = new Vector3(this.transform.position.x, 3, this.transform.position.z);
             }
         }
+
+        GateOpenCloseAudio(this.transform.position);
+    }
+
+    void GateOpenCloseAudio(Vector3 newPosition)
+    {
+        if (newPosition.y != storedPos.y)
+        {
+            if (newPosition.y == -3.5f || newPosition.y == -13)
+            {
+                AudioButtonAction.ButtonCall("GateOpen");
+            }
+            else
+            {
+                AudioButtonAction.ButtonCall("GateOpen");
+            }
+        }
+
+        StoreNewPos(newPosition);
+    }
+
+    void StoreNewPos(Vector3 newPosition)
+    {
+        storedPos = newPosition;
     }
 }
