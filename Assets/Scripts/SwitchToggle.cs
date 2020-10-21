@@ -25,12 +25,17 @@ public class SwitchToggle : MonoBehaviour
                     if (HOEGameManager.redToggle)
                     {
                         switchModel.SetBool("isOpen", true);
+
+                        AudioButtonAction.ButtonCall("LeverOn"); // Switch On Audio
+
                         print("yes");
                     }
 
                     if(!HOEGameManager.redToggle)
                     {
                         switchModel.SetBool("isOpen", false);
+                        AudioButtonAction.ButtonCall("LeverOff"); // Switch On Audio
+
                         print("no");
                     }
                 }
@@ -42,11 +47,13 @@ public class SwitchToggle : MonoBehaviour
                     if (HOEGameManager.greenToggle)
                     {
                         switchModel.SetBool("isOpen", true);
+                        AudioButtonAction.ButtonCall("LeverOn"); // Switch On Audio
                     }
 
                     if (!HOEGameManager.greenToggle)
                     {
                         switchModel.SetBool("isOpen", false);
+                        AudioButtonAction.ButtonCall("LeverOff"); // Switch On Audio
                     }
                 }
             }
