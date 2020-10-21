@@ -8,6 +8,7 @@ public class DoorMovement : MonoBehaviour
     Vector3 isClosed = new Vector3(0, -10, 0);
     Vector3 isOpen = new Vector3(0, +10, 0);
 
+    [SerializeField]
     private Vector3 storedPos;
 
     // Start is called before the first frame update
@@ -23,6 +24,8 @@ public class DoorMovement : MonoBehaviour
         {
             this.transform.position += isClosed;
         }
+
+        //AudioButtonAction.ButtonCall += GateOpenCloseAudio;
         storedPos = this.transform.position;
     }
 
@@ -77,28 +80,33 @@ public class DoorMovement : MonoBehaviour
             }
         }
 
-        GateOpenCloseAudio(this.transform.position);
+        //GateOpenCloseAudio(this.transform.position);
     }
 
-    void GateOpenCloseAudio(Vector3 newPosition)
+    void GateOpenCloseAudio(string newPosition)
     {
-        if (newPosition.y != storedPos.y)
+        if (this.transform.position != storedPos)
         {
-            if (newPosition.y == -3.5f || newPosition.y == -13)
+            if (this.transform.position.y == storedPos.y - 3.5f || this.transform.position.y == storedPos.y - 13f)
             {
                 AudioButtonAction.ButtonCall("GateOpen");
             }
             else
             {
-                AudioButtonAction.ButtonCall("GateOpen");
+                AudioButtonAction.ButtonCall("GateClose");
             }
         }
 
-        StoreNewPos(newPosition);
+        StoreNewPos(this.transform.position);
     }
 
     void StoreNewPos(Vector3 newPosition)
     {
         storedPos = newPosition;
+    }
+
+    private void OnDestroy()
+    {
+        AudioButtonAction.ButtonCall -= GateOpenCloseAudio;
     }
 }

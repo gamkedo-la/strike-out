@@ -14,7 +14,12 @@ public class AudioSourceController : MonoBehaviour
 
     void Awake()
     {
-        if(source == null)
+        //if(source == null)
+        //{
+        //    CreateNewSource();
+        //}
+
+        for(int i = 0; i < maxSources; ++i)
         {
             CreateNewSource();
         }
@@ -39,8 +44,11 @@ public class AudioSourceController : MonoBehaviour
             }
             else
             {
-                currentIndex += 1;
-                return GetNextSource();
+                //currentIndex += 1;
+                IncrementIndex(); 
+                source = sources[currentIndex];
+                return source;
+                //return GetNextSource();
             }
         }
         else if (sources.Count < maxSources)
@@ -48,8 +56,11 @@ public class AudioSourceController : MonoBehaviour
             CreateNewSource();
             return source;
         }
-        IncrementIndex();
-        return sources[currentIndex];
+
+        IncrementIndex(); 
+        source = sources[currentIndex];
+        return source;
+        //return sources[currentIndex];
     }
 
     public void SetSourceOutput(AudioData data)
@@ -94,7 +105,7 @@ public class AudioSourceController : MonoBehaviour
         SetSourceOutput(data);
         SetRandomProperties(data);
         source.Play();
-        IncrementIndex();
+       // IncrementIndex();
     }
 
     public void PlayScheduled(AudioData data, double time)
@@ -108,7 +119,8 @@ public class AudioSourceController : MonoBehaviour
 
     private void IncrementIndex()
     {
-        currentIndex = (currentIndex + 1) % sources.Count;
+        //Debug.LogWarning("Increment Index");
+        currentIndex = (currentIndex + 1) % maxSources;
     }
 
     public void Stop()
