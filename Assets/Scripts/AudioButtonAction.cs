@@ -41,6 +41,18 @@ public class AudioButtonAction : MonoBehaviour
             case "Dialogue":
                 return data.TextDialogue;
 
+            case "LeverOn":
+                return data.LeverOn;
+
+            case "LeverOff":
+                return data.LeverOff;
+
+            case "GateOpen":
+                return data.GateOpen;
+
+            case "GateClose":
+                return data.GateClose;
+
             default:
                 return null;
 

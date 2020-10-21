@@ -13,4 +13,8 @@ public class AudioButtonHandler : ScriptableObject
     public AudioData TextButton;
     public AudioData TextDialogue;
     public AudioData TextBoxAppear;
+    public AudioData LeverOn;
+    public AudioData LeverOff;
+    public AudioData GateOpen;
+    public AudioData GateClose;
 }

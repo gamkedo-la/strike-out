@@ -12,10 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 105e6d0e2f14e914887c8a2ab5831773, type: 3}
   m_Name: ButtonAudioDefault
   m_EditorClassIdentifier: 
-  Source: {fileID: 0}
   ButtonHover: {fileID: 11400000, guid: 76acb1b1ae17dd84c87f9d2c55100a0e, type: 2}
   ButtonClick: {fileID: 11400000, guid: a8572ef638ec212439741eed0cc786df, type: 2}
   ButtonError: {fileID: 11400000, guid: 8c1f3ec3fc123604ebf4d0718a345139, type: 2}
   TextButton: {fileID: 11400000, guid: 8a8fdb0d69586b742a9ab09a9c49af4a, type: 2}
   TextDialogue: {fileID: 11400000, guid: 4fde49e5b33683a4dbdcc9ce7239a005, type: 2}
   TextBoxAppear: {fileID: 11400000, guid: f005a65041b0cd9469d49e1c5c16f88a, type: 2}
+  LeverOn: {fileID: 11400000, guid: a6b6b7f262310d84984240f0c509709c, type: 2}
+  LeverOff: {fileID: 11400000, guid: d4a7ee30f4018774fbb71d9169cef4a0, type: 2}
+  GateOpen: {fileID: 11400000, guid: 66c4dc85ca5cafd49afb1c9a4f028eed, type: 2}
+  GateClose: {fileID: 11400000, guid: 48dc33e12d1cc30438101c679984b9a1, type: 2}
