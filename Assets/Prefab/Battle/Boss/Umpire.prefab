@@ -388,7 +388,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 6c42f7e685e116d4e86e51fa826dc2fe, type: 3}
     m_FontSize: 50
     m_FontStyle: 0
     m_BestFit: 0
@@ -490,6 +490,7 @@ MonoBehaviour:
   swingMiss: {fileID: 0}
   swingDizzy: {fileID: 0}
   swingDizzyBirds: {fileID: 0}
+  takeDmg: {fileID: 0}
 --- !u!95 &3979816446505812179
 Animator:
   serializedVersion: 3
@@ -1016,7 +1017,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6430333116372065582}
-  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0.00000028088027}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.89, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children:
@@ -1027,7 +1028,7 @@ Transform:
   - {fileID: 8113627502930160647}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -179.99998, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3582215681635365939
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1130,6 +1131,7 @@ MonoBehaviour:
   swingMiss: {fileID: 0}
   swingDizzy: {fileID: 0}
   swingDizzyBirds: {fileID: 0}
+  takeDmg: {fileID: 0}
 --- !u!114 &1367911554139197970
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1608,7 +1610,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 6c42f7e685e116d4e86e51fa826dc2fe, type: 3}
     m_FontSize: 300
     m_FontStyle: 0
     m_BestFit: 0

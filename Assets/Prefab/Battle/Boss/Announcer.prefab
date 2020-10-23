@@ -125,6 +125,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unitName: Announcer
+  myEnumValue: 0
   unitLevel: 5
   fastballDamage: 0
   sliderDamage: 0
@@ -204,8 +205,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sound: {fileID: 11400000, guid: 07897056073977649bd9fcad2187c917, type: 2}
   controller: {fileID: 5757743381820771121}
+  currentBattle: {fileID: 0}
   whoosh: {fileID: 11400000, guid: db8cd35f031ca494aa4db8eb73c99c5f, type: 2}
   mittPop: {fileID: 11400000, guid: dbafe08f7a95f42418dae3041f3ecf50, type: 2}
+  prep: {fileID: 0}
+  downed: {fileID: 0}
+  downedBatFall: {fileID: 0}
+  swingMiss: {fileID: 0}
+  swingDizzy: {fileID: 0}
+  swingDizzyBirds: {fileID: 0}
+  takeDmg: {fileID: 0}
 --- !u!114 &5757743381820771121
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -219,6 +228,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   source: {fileID: 0}
+  sources: []
+  currentIndex: 0
+  maxSources: 5
 --- !u!1 &431227966945509874
 GameObject:
   m_ObjectHideFlags: 0
@@ -469,8 +481,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sound: {fileID: 11400000, guid: 07897056073977649bd9fcad2187c917, type: 2}
   controller: {fileID: 0}
+  currentBattle: {fileID: 0}
   whoosh: {fileID: 11400000, guid: db8cd35f031ca494aa4db8eb73c99c5f, type: 2}
   mittPop: {fileID: 11400000, guid: dbafe08f7a95f42418dae3041f3ecf50, type: 2}
+  prep: {fileID: 0}
+  downed: {fileID: 0}
+  downedBatFall: {fileID: 0}
+  swingMiss: {fileID: 0}
+  swingDizzy: {fileID: 0}
+  swingDizzyBirds: {fileID: 0}
+  takeDmg: {fileID: 0}
 --- !u!1 &4098930328184929414
 GameObject:
   m_ObjectHideFlags: 0
@@ -712,8 +732,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 50
+    m_Font: {fileID: 12800000, guid: 6c42f7e685e116d4e86e51fa826dc2fe, type: 3}
+    m_FontSize: 40
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -805,8 +825,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 60
+    m_Font: {fileID: 12800000, guid: 6c42f7e685e116d4e86e51fa826dc2fe, type: 3}
+    m_FontSize: 40
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0

@@ -158,6 +158,9 @@ public class BattleSystemMultiple : MonoBehaviour
     //babe
     public bool Babe;
 
+    //movingBall
+    public GameObject movingBall;
+
     private void Start()
     {
         inBattle = true;
@@ -2532,7 +2535,7 @@ public class BattleSystemMultiple : MonoBehaviour
                 //happens at least once, if it is true, it does it again. (keep going until valid)
                 int safteyCounter = 1000;
 
-
+                
                 do
                 {
                     WhoToAttack = Random.Range(0, 4);
@@ -2547,12 +2550,17 @@ public class BattleSystemMultiple : MonoBehaviour
 
                 yield return new WaitForSeconds(1.5f);
 
+                
+
                 enemyAnim[enemyIndex].Play("Armature|Swing");
+                yield return new WaitForSeconds(.5f);
 
                 if (WhoToAttack == 0 && !starterDead)
                 {
-                    Camera.transform.LookAt(Starter.transform.position);
+                    enemyUnit[enemyIndex].transform.LookAt(Starter.transform.position);
+                    Instantiate(movingBall, enemyUnit[enemyIndex].transform.position, enemyUnit[enemyIndex].transform.rotation);
 
+                    Camera.transform.LookAt(Starter.transform.position);
 
                     if (GameManager.StarterAgil >= RandomAttack)
                     {
@@ -2597,8 +2605,11 @@ public class BattleSystemMultiple : MonoBehaviour
                     }
                     StartCoroutine(TurnOffDamageUI());
                 }
-                if (WhoToAttack == 1 && !middleDead)
+                else if (WhoToAttack == 1 && !middleDead)
                 {
+                    enemyUnit[enemyIndex].transform.LookAt(MiddleReliever.transform.position);
+                    Instantiate(movingBall, enemyUnit[enemyIndex].transform.position, enemyUnit[enemyIndex].transform.rotation);
+
                     Camera.transform.LookAt(MiddleReliever.transform.position);
 
                     if (GameManager.MiddleAgil >= RandomAttack)
@@ -2643,8 +2654,10 @@ public class BattleSystemMultiple : MonoBehaviour
                     yield return new WaitForSeconds(.5f);
                     StartCoroutine(TurnOffDamageUI());
                 }
-                if (WhoToAttack == 2 && !setupDead)
+                else if (WhoToAttack == 2 && !setupDead)
                 {
+                    enemyUnit[enemyIndex].transform.LookAt(SetUp.transform.position);
+                    Instantiate(movingBall, enemyUnit[enemyIndex].transform.position, enemyUnit[enemyIndex].transform.rotation);
                     Camera.transform.LookAt(SetUp.transform.position);
 
                     if (GameManager.SetUpAgil >= RandomAttack)
@@ -2686,8 +2699,10 @@ public class BattleSystemMultiple : MonoBehaviour
                     }
                     StartCoroutine(TurnOffDamageUI());
                 }
-                if (WhoToAttack == 3 && !closerDead)
+                else if(WhoToAttack == 3 && !closerDead)
                 {
+                    enemyUnit[enemyIndex].transform.LookAt(Closer.transform.position);
+                    Instantiate(movingBall, enemyUnit[enemyIndex].transform.position, enemyUnit[enemyIndex].transform.rotation);
                     Camera.transform.LookAt(Closer.transform.position);
 
                     if (GameManager.CloserAgil >= RandomAttack)
