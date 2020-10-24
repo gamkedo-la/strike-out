@@ -30,38 +30,70 @@ public class ButtonHover : MonoBehaviour
             GameManager.Money -= price;
 
             if (m1)
-            { GameManager.m1 = true; }
+            { GameManager.m1 = true;
+                GameManager.m1v = 1;
+            }
             if (m2)
-            { GameManager.m2 = true; }
+            { GameManager.m2 = true;
+                GameManager.m2v = 1;
+            }
             if (m3)
-            { GameManager.m3 = true; }
+            { GameManager.m3 = true;
+                GameManager.m2v = 1;
+            }
             if (m4)
-            { GameManager.m4 = true; }
+            { GameManager.m4 = true;
+                GameManager.m2v = 1;
+            }
             if (m5)
-            { GameManager.m5 = true; }
+            { GameManager.m5 = true;
+                GameManager.m2v = 1;
+            }
             if (m6)
-            { GameManager.m6 = true; }
+            { GameManager.m6 = true;
+                GameManager.m2v = 1;
+            }
             if (m7)
-            { GameManager.m7 = true; }
+            { GameManager.m7 = true;
+                GameManager.m2v = 1;
+            }
             if (m8)
-            { GameManager.m8 = true; }
+            { GameManager.m8 = true;
+                GameManager.m2v = 1;
+            }
 
             if (M1)
-            { GameManager.M1 = true; }
+            { GameManager.M1 = true;
+                GameManager.M1v = 1;
+            }
             if (M2)
-            { GameManager.M2 = true; }
+            { GameManager.M2 = true;
+                GameManager.M2v = 1;
+            }
             if (M3)
-            { GameManager.M3 = true; }
+            { GameManager.M3 = true;
+                GameManager.M3v = 1;
+            }
             if (M4)
-            { GameManager.M4 = true; }
+            { GameManager.M4 = true;
+                GameManager.M4v = 1;
+            }
             if (M5)
-            { GameManager.M5 = true; }
+            { GameManager.M5 = true;
+                GameManager.M5v = 1;
+            }
             if (M6)
-            { GameManager.M6 = true; }
+            { GameManager.M6 = true;
+                GameManager.M6v = 1;
+            }
             if (M7)
-            { GameManager.M7 = true; }
+            { GameManager.M7 = true;
+                GameManager.M7v = 1;
+            }
             if (M8)
-            { GameManager.M8 = true; }
+            { GameManager.M8 = true;
+                GameManager.M8v = 1;
+            }
 
             if (e1)
             { GameManager.e1 = true; }
