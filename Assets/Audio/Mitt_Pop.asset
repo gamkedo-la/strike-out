@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Clip: {fileID: 0}
   Sounds:
-  - {fileID: 8300000, guid: 163159fefab3d4148a2b981ae9c475ba, type: 3}
-  - {fileID: 8300000, guid: 37e529f49a713bc4692dd9fe8342c6a0, type: 3}
-  - {fileID: 8300000, guid: 163159fefab3d4148a2b981ae9c475ba, type: 3}
+  - {fileID: 8300000, guid: 98d15a77fe4121d40b206cc55371266c, type: 3}
+  - {fileID: 8300000, guid: ecb413454d478d74191228e249e27203, type: 3}
+  - {fileID: 8300000, guid: c079bd7d85b3def4db95ca1805208bfd, type: 3}
   mixer: {fileID: 24100000, guid: 75dd9a9b66abc7c4782df25f39d4594d, type: 2}
   output: 1
   Loop: 0
