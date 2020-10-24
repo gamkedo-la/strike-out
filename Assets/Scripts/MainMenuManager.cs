@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MainMenuManager : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class MainMenuManager : MonoBehaviour
     public Transform creditsSpot, main;
     public GameObject cameraMain;
     public GameObject shatterBall;
+
+    public Text loadText;
 
     public void PlayGame()
     {
@@ -114,11 +117,106 @@ public class MainMenuManager : MonoBehaviour
         PlayerPrefs.GetFloat("SetUpMoraleMax");
         PlayerPrefs.GetFloat("SetUpEnergyMax");
 
+        PlayerPrefs.GetInt("HOEUnlockedValue");
+
+        if (GameManager.m1v == 1)
+        {
+            GameManager.m1 = true;
+        }
+
+        if (GameManager.m2v == 1)
+        {
+            GameManager.m2 = true;
+        }
+
+        if (GameManager.m3v == 1)
+        {
+            GameManager.m3 = true;
+        }
+
+        if (GameManager.m4v == 1)
+        {
+            GameManager.m4 = true;
+        }
+
+        if (GameManager.m5v == 1)
+        {
+            GameManager.m5 = true;
+        }
+
+        if (GameManager.m6v == 1)
+        {
+            GameManager.m6 = true;
+        }
+
+        if (GameManager.m7v == 1)
+        {
+            GameManager.m7 = true;
+        }
+
+        if (GameManager.m8v == 1)
+        {
+            GameManager.m8 = true;
+        }
+
+
+        if (GameManager.M1v == 1)
+        {
+            GameManager.M1 = true;
+        }
+
+        if (GameManager.M2v == 1)
+        {
+            GameManager.M2 = true;
+        }
+
+        if (GameManager.M3v == 1)
+        {
+            GameManager.M3 = true;
+        }
+
+        if (GameManager.M4v == 1)
+        {
+            GameManager.M4 = true;
+        }
+
+        if (GameManager.M5v == 1)
+        {
+            GameManager.M5 = true;
+        }
+
+        if (GameManager.M6v == 1)
+        {
+            GameManager.M6 = true;
+        }
+
+        if (GameManager.M7v == 1)
+        {
+            GameManager.M7 = true;
+        }
+
+        if (GameManager.M8v == 1)
+        {
+            GameManager.M8 = true;
+        }
+
+        if (TVTurnOn.HOEUnlockedValue == 1)
+        {
+            TVTurnOn.HOEUnlocked = true;
+        }
+
+        loadText.text = "Loading...".ToString();
+        StartCoroutine(Waiting());
         //items are not currently saved
     }
 
     public void Quit()
     {
 
+    }
+    IEnumerator Waiting()
+    {
+        yield return new WaitForSeconds(1.25f);
+        SceneManager.LoadScene("TrainingArea");
     }
 }

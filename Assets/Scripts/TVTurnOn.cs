@@ -20,6 +20,7 @@ public class TVTurnOn : MonoBehaviour
     public DialogueForTraining dialogue1, dialogue2, dialogue3;
 
     public static bool HOEUnlocked;
+    public static int HOEUnlockedValue;
     public Material locked, unlocked;
     public GameObject HallOfEliteIcon;
 
@@ -31,10 +32,12 @@ public class TVTurnOn : MonoBehaviour
         if (HOEUnlocked)
         {
             HallOfEliteIcon.GetComponent<Renderer>().material = unlocked;
+            HOEUnlockedValue = 1;
         }
         else
         {
             HallOfEliteIcon.GetComponent<Renderer>().material = locked;
+            HOEUnlockedValue = 0;
         }
     }
     private void OnTriggerEnter(Collider other)
