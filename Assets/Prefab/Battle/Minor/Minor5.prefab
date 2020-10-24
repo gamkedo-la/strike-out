@@ -630,6 +630,7 @@ MonoBehaviour:
   DamageUI: {fileID: 5326118987312111562}
   minAttackAvil: 1
   maxAttackAvil: 4
+  flyBall: {fileID: 9203900730353594078, guid: 28401d3adc4b905478342e34ce9b1256, type: 3}
 --- !u!114 &1551550836067565702
 MonoBehaviour:
   m_ObjectHideFlags: 0

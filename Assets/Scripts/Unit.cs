@@ -62,6 +62,8 @@ public class Unit : MonoBehaviour
     public int minAttackAvil, maxAttackAvil;
     int attackToDo;
 
+    public GameObject flyBall; 
+
     /*  public void SetHUD(Unit unit)
       {
           HealthSlider.value = unit.currentHP / unit.maxHP;
@@ -382,6 +384,7 @@ public class Unit : MonoBehaviour
             {
                 anim.Play("Armature|Swing");
                 DescText.text = "Resist!";
+                StartCoroutine(FlyBallWait());
             }
             if (FastballMultiplier == 1f)
             {
@@ -419,6 +422,7 @@ public class Unit : MonoBehaviour
             {
                 anim.Play("Armature|Swing");
                 DescText.text = "Resist!";
+                StartCoroutine(FlyBallWait());
             }
             if (SliderMultiplier == 1f)
             {
@@ -456,6 +460,7 @@ public class Unit : MonoBehaviour
             {
                 anim.Play("Armature|Swing");
                 DescText.text = "Resist!";
+                StartCoroutine(FlyBallWait());
             }
             if (CurveballMultiplier == 1f)
             {
@@ -492,6 +497,7 @@ public class Unit : MonoBehaviour
             {
                 anim.Play("Armature|Swing");
                 DescText.text = "Resist!";
+                StartCoroutine(FlyBallWait());
                 StartCoroutine(ClearText());
             }
             if (ChangeUpMultiplier == 1f)
@@ -896,5 +902,11 @@ public class Unit : MonoBehaviour
         yield return new WaitForSeconds(2f);
         DamageUI.text = "".ToString();
         DescText.text = "";
+    }
+
+    IEnumerator FlyBallWait()
+    {
+        yield return new WaitForSeconds(.385f);
+        Instantiate(flyBall, transform.position, Quaternion.identity);
     }
 }
