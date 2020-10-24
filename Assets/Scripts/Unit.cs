@@ -68,6 +68,7 @@ public class Unit : MonoBehaviour
     //PlayerBallSpawn/Release
     public Transform releasePoint;
     public GameObject ballInGlove, ballInHand, releaseBall;
+    //public GameObject self;
 
     /*  public void SetHUD(Unit unit)
       {
@@ -930,7 +931,7 @@ public class Unit : MonoBehaviour
     public void ReleaseHandBall()
     {
         ballInHand.SetActive(false);
-        Instantiate(releaseBall, releasePoint.transform.position, Quaternion.identity);
+        Instantiate(releaseBall, releasePoint.transform.position, this.gameObject.transform.rotation);
         releaseBall.transform.parent = releasePoint.transform;
     }
 }
