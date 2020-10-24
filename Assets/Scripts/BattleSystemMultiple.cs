@@ -969,7 +969,7 @@ public class BattleSystemMultiple : MonoBehaviour
                 {
                     GameManager.StarterEnergy -= Starter.fastballStamina;
                     StarterEnergy.value = GameManager.StarterEnergy / GameManager.StarterEnergyMax;
-                    StarterAnim.Play("Armature|Windup");
+                    StarterAnim.Play("StarterWindup");
                     yield return new WaitForSeconds(2f);
                     isDead = enemyUnit[enemyUnitSelected].TakeDamageFast(Starter.fastballDamage + GameManager.StarterFast);
 
@@ -1038,7 +1038,7 @@ public class BattleSystemMultiple : MonoBehaviour
                 {
                     GameManager.StarterEnergy -= Starter.sliderStamina;
                     StarterEnergy.value = GameManager.StarterEnergy / GameManager.StarterEnergyMax;
-                    StarterAnim.Play("Armature|Windup");
+                    StarterAnim.Play("StarterWindup");
                     yield return new WaitForSeconds(2f);
                     isDead = enemyUnit[enemyUnitSelected].TakeDamageSlid(Starter.sliderDamage + GameManager.StarterSlid);
                     slider = false;
@@ -1106,7 +1106,7 @@ public class BattleSystemMultiple : MonoBehaviour
                 {
                     GameManager.StarterEnergy -= Starter.curveballStamina;
                     StarterEnergy.value = GameManager.StarterEnergy / GameManager.StarterEnergyMax;
-                    StarterAnim.Play("Armature|Windup");
+                    StarterAnim.Play("StarterWindup");
                     yield return new WaitForSeconds(2f);
                     isDead = enemyUnit[enemyUnitSelected].TakeDamageCurve(Starter.curveballDamage + GameManager.StarterCurve);
                     curveball = false;
@@ -1175,7 +1175,7 @@ public class BattleSystemMultiple : MonoBehaviour
                 {
                     GameManager.StarterEnergy -= Starter.changeupStamina;
                     StarterEnergy.value = GameManager.StarterEnergy / GameManager.StarterEnergyMax;
-                    StarterAnim.Play("Armature|Windup");
+                    StarterAnim.Play("StarterWindup");
                     yield return new WaitForSeconds(2f);
                     isDead = enemyUnit[enemyUnitSelected].TakeDamageChange(Starter.changeupDamage + GameManager.StarterChange);
                     changeup = false;
@@ -1252,7 +1252,7 @@ public class BattleSystemMultiple : MonoBehaviour
                 }
                 else
                 {
-                    MidRelAnim.Play("Armature|Windup");
+                    MidRelAnim.Play("StarterWindup");
                     GameManager.MidRelivEnergy -= MiddleReliever.fastballStamina;
                     MiddleEnergy.value = GameManager.MidRelivEnergy / GameManager.MidRelievEnergyMax;
                     yield return new WaitForSeconds(2f);
@@ -1328,7 +1328,7 @@ public class BattleSystemMultiple : MonoBehaviour
                 }
                 else
                 {
-                    MidRelAnim.Play("Armature|Windup");
+                    MidRelAnim.Play("StarterWindup");
                     GameManager.MidRelivEnergy -= MiddleReliever.sliderStamina;
                     MiddleEnergy.value = GameManager.MidRelivEnergy / GameManager.MidRelievEnergyMax;
                     yield return new WaitForSeconds(2f);
@@ -1405,7 +1405,7 @@ public class BattleSystemMultiple : MonoBehaviour
                 }
                 else
                 {
-                    MidRelAnim.Play("Armature|Windup");
+                    MidRelAnim.Play("StarterWindup");
                     GameManager.MidRelivEnergy -= MiddleReliever.curveballStamina;
                     MiddleEnergy.value = GameManager.MidRelivEnergy / GameManager.MidRelievEnergyMax;
                     yield return new WaitForSeconds(2f);
@@ -1482,7 +1482,7 @@ public class BattleSystemMultiple : MonoBehaviour
                 }
                 else
                 {
-                    MidRelAnim.Play("Armature|Windup");
+                    MidRelAnim.Play("StarterWindup");
                     GameManager.MidRelivEnergy -= MiddleReliever.changeupStamina;
                     MiddleEnergy.value = GameManager.MidRelivEnergy / GameManager.MidRelievEnergyMax;
                     yield return new WaitForSeconds(2f);
@@ -1570,7 +1570,7 @@ public class BattleSystemMultiple : MonoBehaviour
                 }
                 else
                 {
-                    SetUpAnim.Play("Armature|Windup");
+                    SetUpAnim.Play("StarterWindup");
                     GameManager.SetUpEnergy -= SetUp.fastballStamina;
                     //UpdateStarterUI;
                     SetUpEnergy.value = GameManager.SetUpEnergy / GameManager.SetUpEnergyMax;
@@ -1651,7 +1651,7 @@ public class BattleSystemMultiple : MonoBehaviour
                 }
                 else
                 {
-                    SetUpAnim.Play("Armature|Windup");
+                    SetUpAnim.Play("StarterWindup");
                     GameManager.SetUpEnergy -= SetUp.sliderStamina;
                     //UpdateStarterUI;
                     SetUpEnergy.value = GameManager.SetUpEnergy / GameManager.SetUpEnergyMax;
@@ -1732,7 +1732,7 @@ public class BattleSystemMultiple : MonoBehaviour
                 }
                 else
                 {
-                    SetUpAnim.Play("Armature|Windup");
+                    SetUpAnim.Play("StarterWindup");
                     GameManager.SetUpEnergy -= SetUp.curveballStamina;
                     //UpdateStarterUI;
                     SetUpEnergy.value = GameManager.SetUpEnergy / GameManager.SetUpEnergyMax;
@@ -1813,7 +1813,7 @@ public class BattleSystemMultiple : MonoBehaviour
                 }
                 else
                 {
-                    SetUpAnim.Play("Armature|Windup");
+                    SetUpAnim.Play("StarterWindup");
                     GameManager.SetUpEnergy -= SetUp.changeupStamina;
                     //UpdateStarterUI;
                     SetUpEnergy.value = GameManager.SetUpEnergy / GameManager.SetUpEnergyMax;
@@ -1906,7 +1906,7 @@ public class BattleSystemMultiple : MonoBehaviour
                 }
                 else
                 {
-                    CloserAnim.Play("Armature|Windup");
+                    CloserAnim.Play("StarterWindup");
                     GameManager.CloserEnergy -= Closer.fastballStamina;
                     //UpdateStarterUI;
                     CloserEnergy.value = GameManager.CloserEnergy / GameManager.CloserEnergyMax;
@@ -1980,7 +1980,7 @@ public class BattleSystemMultiple : MonoBehaviour
                 }
                 else
                 {
-                    CloserAnim.Play("Armature|Windup");
+                    CloserAnim.Play("StarterWindup");
                     GameManager.CloserEnergy -= Closer.sliderStamina;
                     //UpdateStarterUI;
                     CloserEnergy.value = GameManager.CloserEnergy / GameManager.CloserEnergyMax;
@@ -2054,7 +2054,7 @@ public class BattleSystemMultiple : MonoBehaviour
                 }
                 else
                 {
-                    CloserAnim.Play("Armature|Windup");
+                    CloserAnim.Play("StarterWindup");
                     GameManager.CloserEnergy -= Closer.curveballStamina;
                     //UpdateStarterUI;
                     CloserEnergy.value = GameManager.CloserEnergy / GameManager.CloserEnergyMax;
@@ -2128,7 +2128,7 @@ public class BattleSystemMultiple : MonoBehaviour
                 }
                 else
                 {
-                    CloserAnim.Play("Armature|Windup");
+                    CloserAnim.Play("StarterWindup");
                     GameManager.CloserEnergy -= Closer.changeupStamina;
                     //UpdateStarterUI;
                     CloserEnergy.value = GameManager.CloserEnergy / GameManager.CloserEnergyMax;

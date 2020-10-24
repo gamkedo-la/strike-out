@@ -62,7 +62,12 @@ public class Unit : MonoBehaviour
     public int minAttackAvil, maxAttackAvil;
     int attackToDo;
 
-    public GameObject flyBall; 
+    //Enemy Resist Attack
+    public GameObject flyBall;
+
+    //PlayerBallSpawn/Release
+    public Transform releasePoint;
+    public GameObject ballInGlove, ballInHand, releaseBall;
 
     /*  public void SetHUD(Unit unit)
       {
@@ -908,5 +913,24 @@ public class Unit : MonoBehaviour
     {
         yield return new WaitForSeconds(.385f);
         Instantiate(flyBall, transform.position, Quaternion.identity);
+    }
+
+
+    public void CreateBallInGlove()
+    {
+        ballInGlove.SetActive(true);
+    }
+
+    public void MoveGloveBallToHand()
+    {
+        ballInGlove.SetActive(false);
+        ballInHand.SetActive(true);
+    }
+
+    public void ReleaseHandBall()
+    {
+        ballInHand.SetActive(false);
+        Instantiate(releaseBall, releasePoint.transform.position, Quaternion.identity);
+        releaseBall.transform.parent = releasePoint.transform;
     }
 }
