@@ -2342,7 +2342,7 @@ public class BattleSystemMultiple : MonoBehaviour
     {
         Camera.transform.position = enemyCam.transform.position;
         Camera.transform.LookAt(Starter.transform.position);
-        GameManager.Instance.DebugBall.transform.position = enemyUnit[enemyIndex].transform.position + Vector3.up * GameManager.Instance.DebugBallHeight;
+       // GameManager.Instance.DebugBall.transform.position = enemyUnit[enemyIndex].transform.position + Vector3.up * GameManager.Instance.DebugBallHeight;
         if (enemyUnit[enemyIndex].currentHP <= 0)
         {
            // NextPlayerTurnAfterEnemyTurn(enemyIndex);
@@ -2766,7 +2766,7 @@ public class BattleSystemMultiple : MonoBehaviour
     {
         Camera.transform.position = starterCam.transform.position;
         Camera.transform.LookAt(enemyCamTarget);
-        GameManager.Instance.DebugBall.transform.position = Starter.transform.position + Vector3.up * GameManager.Instance.DebugBallHeight;
+      //  GameManager.Instance.DebugBall.transform.position = Starter.transform.position + Vector3.up * GameManager.Instance.DebugBallHeight;
         if (starterDead)
         {
             NextTurn();
@@ -2797,7 +2797,7 @@ public class BattleSystemMultiple : MonoBehaviour
     {
         Camera.transform.position = middleCam.transform.position;
         Camera.transform.LookAt(enemyCamTarget);
-        GameManager.Instance.DebugBall.transform.position = MiddleReliever.transform.position + Vector3.up * GameManager.Instance.DebugBallHeight;
+    //    GameManager.Instance.DebugBall.transform.position = MiddleReliever.transform.position + Vector3.up * GameManager.Instance.DebugBallHeight;
         if (middleDead)
         {
             NextTurn();
@@ -2833,7 +2833,7 @@ public class BattleSystemMultiple : MonoBehaviour
     {
         Camera.transform.position = setupCam.transform.position;
         Camera.transform.LookAt(enemyCamTarget);
-        GameManager.Instance.DebugBall.transform.position = SetUp.transform.position + Vector3.up * GameManager.Instance.DebugBallHeight;
+     //   GameManager.Instance.DebugBall.transform.position = SetUp.transform.position + Vector3.up * GameManager.Instance.DebugBallHeight;
         if (SetUpAnim.GetBool("isDead"))
         {
             state = BattleStateMultiple.ENEMYTURN;
@@ -2878,7 +2878,7 @@ public class BattleSystemMultiple : MonoBehaviour
     {
         Camera.transform.position = closerCam.transform.position;
         Camera.transform.LookAt(enemyCamTarget);
-        GameManager.Instance.DebugBall.transform.position = Closer.transform.position + Vector3.up * GameManager.Instance.DebugBallHeight;
+       // GameManager.Instance.DebugBall.transform.position = Closer.transform.position + Vector3.up * GameManager.Instance.DebugBallHeight;
         if (CloserAnim.GetBool("isDead"))
         {
             state = BattleStateMultiple.STARTER;
