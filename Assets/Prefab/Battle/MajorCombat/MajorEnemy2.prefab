@@ -423,18 +423,18 @@ MonoBehaviour:
   SliderMultiplier: 1
   CurveballMultiplier: 0.5
   ChangeUpMultiplier: 1
-  enemyDamage: 8
+  enemyDamage: 10
   attackName: 
-  maxHP: 5
-  currentHP: 5
+  maxHP: 50
+  currentHP: 50
   maxStamina: 30
   currentStamina: 25
   ExperienceToDistribute: 0
-  minExperience: 10
-  maxExperience: 15
+  minExperience: 25
+  maxExperience: 35
   MoneyToDistribute: 0
-  minMoney: 10
-  maxMoney: 20
+  minMoney: 25
+  maxMoney: 35
   isEnemy: 1
   HealthSlider: {fileID: 4052639758009099457}
   DescText: {fileID: 4052639758179844894}
@@ -461,6 +461,10 @@ MonoBehaviour:
   minAttackAvil: 0
   maxAttackAvil: 6
   flyBall: {fileID: 9203900730353594078, guid: 28401d3adc4b905478342e34ce9b1256, type: 3}
+  releasePoint: {fileID: 0}
+  ballInGlove: {fileID: 0}
+  ballInHand: {fileID: 0}
+  releaseBall: {fileID: 0}
 --- !u!114 &4052639757325189708
 MonoBehaviour:
   m_ObjectHideFlags: 0

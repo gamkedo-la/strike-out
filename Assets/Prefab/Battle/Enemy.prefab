@@ -652,11 +652,11 @@ MonoBehaviour:
   maxStamina: 30
   currentStamina: 25
   ExperienceToDistribute: 0
-  minExperience: 10
-  maxExperience: 15
+  minExperience: 3
+  maxExperience: 6
   MoneyToDistribute: 0
-  minMoney: 10
-  maxMoney: 11
+  minMoney: 5
+  maxMoney: 8
   isEnemy: 1
   HealthSlider: {fileID: 2203616325019548219}
   DescText: {fileID: 5843391866964174108}
@@ -683,6 +683,10 @@ MonoBehaviour:
   minAttackAvil: 0
   maxAttackAvil: 5
   flyBall: {fileID: 9203900730353594078, guid: 28401d3adc4b905478342e34ce9b1256, type: 3}
+  releasePoint: {fileID: 0}
+  ballInGlove: {fileID: 0}
+  ballInHand: {fileID: 0}
+  releaseBall: {fileID: 0}
 --- !u!114 &5878812590787417898
 MonoBehaviour:
   m_ObjectHideFlags: 0

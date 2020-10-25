@@ -600,8 +600,8 @@ MonoBehaviour:
   maxStamina: 30
   currentStamina: 25
   ExperienceToDistribute: 0
-  minExperience: 10
-  maxExperience: 15
+  minExperience: 9
+  maxExperience: 11
   MoneyToDistribute: 0
   minMoney: 10
   maxMoney: 11
@@ -631,6 +631,10 @@ MonoBehaviour:
   minAttackAvil: 1
   maxAttackAvil: 4
   flyBall: {fileID: 9203900730353594078, guid: 28401d3adc4b905478342e34ce9b1256, type: 3}
+  releasePoint: {fileID: 0}
+  ballInGlove: {fileID: 0}
+  ballInHand: {fileID: 0}
+  releaseBall: {fileID: 0}
 --- !u!114 &1551550836067565702
 MonoBehaviour:
   m_ObjectHideFlags: 0

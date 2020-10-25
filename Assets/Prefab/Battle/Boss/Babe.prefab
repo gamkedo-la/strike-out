@@ -1099,15 +1099,15 @@ MonoBehaviour:
   SliderMultiplier: 1
   CurveballMultiplier: 2
   ChangeUpMultiplier: 1
-  enemyDamage: 3
+  enemyDamage: 30
   attackName: Shagging
-  maxHP: 10
-  currentHP: 36
+  maxHP: 500
+  currentHP: 500
   maxStamina: 30
   currentStamina: 25
   ExperienceToDistribute: 0
-  minExperience: 60
-  maxExperience: 80
+  minExperience: 200
+  maxExperience: 200
   MoneyToDistribute: 0
   minMoney: 50
   maxMoney: 75
@@ -1137,6 +1137,10 @@ MonoBehaviour:
   minAttackAvil: 20
   maxAttackAvil: 27
   flyBall: {fileID: 9203900730353594078, guid: 28401d3adc4b905478342e34ce9b1256, type: 3}
+  releasePoint: {fileID: 0}
+  ballInGlove: {fileID: 0}
+  ballInHand: {fileID: 0}
+  releaseBall: {fileID: 0}
 --- !u!114 &2860996424318398275
 MonoBehaviour:
   m_ObjectHideFlags: 0
