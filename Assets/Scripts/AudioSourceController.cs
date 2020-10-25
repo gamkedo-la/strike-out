@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class AudioSourceController : MonoBehaviour
@@ -19,7 +18,7 @@ public class AudioSourceController : MonoBehaviour
         //    CreateNewSource();
         //}
 
-        for(int i = 0; i < maxSources; ++i)
+        for (int i = 0; i < maxSources; ++i)
         {
             CreateNewSource();
         }
@@ -45,7 +44,7 @@ public class AudioSourceController : MonoBehaviour
             else
             {
                 //currentIndex += 1;
-                IncrementIndex(); 
+                IncrementIndex();
                 source = sources[currentIndex];
                 return source;
                 //return GetNextSource();
@@ -57,7 +56,7 @@ public class AudioSourceController : MonoBehaviour
             return source;
         }
 
-        IncrementIndex(); 
+        IncrementIndex();
         source = sources[currentIndex];
         return source;
         //return sources[currentIndex];
@@ -70,7 +69,7 @@ public class AudioSourceController : MonoBehaviour
 
     public void SetSourceProperties(AudioData data)
     {
-        source.clip = data.Clip;
+        source.clip = data.GetRandomClip();
         source.volume = data.GetVol();
         source.pitch = data.Pitch;
         source.loop = data.Loop;
@@ -105,7 +104,7 @@ public class AudioSourceController : MonoBehaviour
         SetSourceOutput(data);
         SetRandomProperties(data);
         source.Play();
-       // IncrementIndex();
+        // IncrementIndex();
     }
 
     public void PlayScheduled(AudioData data, double time)
@@ -113,8 +112,9 @@ public class AudioSourceController : MonoBehaviour
         source = GetNextSource();
         SetSourceOutput(data);
         SetRandomProperties(data);
+        //SetSourceProperties(data);
         source.PlayScheduled(time);
-        IncrementIndex();
+        //IncrementIndex();
     }
 
     private void IncrementIndex()
@@ -130,7 +130,7 @@ public class AudioSourceController : MonoBehaviour
 
     public void StopAll()
     {
-        foreach(AudioSource source in sources)
+        foreach (AudioSource source in sources)
         {
             source.Stop();
         }
