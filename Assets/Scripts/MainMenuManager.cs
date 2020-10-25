@@ -212,7 +212,7 @@ public class MainMenuManager : MonoBehaviour
 
     public void Quit()
     {
-
+        Application.Quit();
     }
     IEnumerator Waiting()
     {

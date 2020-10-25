@@ -165,6 +165,9 @@ public class PauseMenu : MonoBehaviour
     public void ReturnToMain()
     {
         Time.timeScale = 1f;
-        //SceneManager.LoadScene("MainMenu");
+        isInventory = false;
+        isPaused = !isPaused;
+        StatsMenu.SetActive(false);
+        SceneManager.LoadScene("MainMenu");
     }
 }
