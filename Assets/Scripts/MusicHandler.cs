@@ -18,7 +18,7 @@ public class MusicHandler : MonoBehaviour
         if (controller == null)
             controller = GetComponent<AudioSourceController>();
 
-        if (StartMusic != null)
+        if (StartMusic.Length > 0)
             playIntro = true;
     }
 
@@ -28,6 +28,7 @@ public class MusicHandler : MonoBehaviour
 
         if (playIntro)
         {
+            Debug.LogWarning("playIntro");
             foreach (AudioData data in StartMusic)
             {
                 //controller.SetSourceOutput(data);
