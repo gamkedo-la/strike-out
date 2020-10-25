@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class MusicHandler : MonoBehaviour
 {
@@ -26,7 +24,7 @@ public class MusicHandler : MonoBehaviour
 
     void Start()
     {
-        nextStartTime = AudioSettings.dspTime + 1.0f;
+        nextStartTime = AudioSettings.dspTime + 0.1;
 
         if (playIntro)
         {
@@ -36,18 +34,19 @@ public class MusicHandler : MonoBehaviour
                 controller.PlayScheduled(data, nextStartTime);
             }
 
-            nextStartTime += 60.0f / bpm * (lengthOfStartBars * 4); 
+            nextStartTime += 60.0f / bpm * (lengthOfStartBars * 4);
         }
 
         foreach (AudioData data in LoopMusic)
         {
             //controller.SetSourceOutput(data);
             controller.PlayScheduled(data, nextStartTime);
+            Debug.LogWarning("scheduling loop");
         }
     }
 
     void Update()
     {
-        
+
     }
 }
