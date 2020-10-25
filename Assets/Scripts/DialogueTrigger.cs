@@ -22,6 +22,8 @@ public class DialogueTrigger : MonoBehaviour
     public GameObject dialogue1, dialogue2;
     public AudioEventGeneric dialogueBoxAudio;
 
+    public GameObject CineCam;
+
     public bool isWin;
     private void Start()
     {
@@ -88,8 +90,10 @@ public class DialogueTrigger : MonoBehaviour
             Boss4 = false;
             Babe = true;
             theBabe.SetActive(true);
-            mainCam.SetActive(false);
-            cutsceneCam.SetActive(true);
+            CineCam.SetActive(false);
+            mainCam.transform.position = cutsceneCam.transform.position;
+            mainCam.transform.rotation = cutsceneCam.transform.rotation;
+            mainCam.GetComponent<CamShake>().enabled = true;
         }
     }
 

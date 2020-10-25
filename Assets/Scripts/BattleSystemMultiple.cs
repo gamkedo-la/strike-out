@@ -325,7 +325,6 @@ public class BattleSystemMultiple : MonoBehaviour
         CloserAnim = playerGO4.GetComponent<Animator>();
 
 
-
         for (int i = 0; i < enemyStartCount; i++)
         {
             int RandEnemy = Random.Range(0, enemyPrefab.Count);
@@ -333,7 +332,6 @@ public class BattleSystemMultiple : MonoBehaviour
             enemyUnit.Add(enemyGO.GetComponent<Unit>());
             enemyAnim.Add(enemyGO.GetComponentInChildren<Animator>());
         }
-
         enemyUnit[0].GetComponent<Unit>().myEnumValue = CharacterIdentifier.Enemy1;
         if (enemyStartCount >= 2)
         {

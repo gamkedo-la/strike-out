@@ -20,7 +20,7 @@ public class BabeLifeTimeAnimation : MonoBehaviour
 
     IEnumerator Waiting()
     {
-        yield return new WaitForSeconds(9);
+        yield return new WaitForSeconds(8);
         theBabeWalk.SetBool("toLeadUp", true);
     }
 }
