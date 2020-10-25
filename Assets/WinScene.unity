@@ -16583,7 +16583,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1.3
+  m_Intensity: 0.2
   m_Range: 35
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -75633,7 +75633,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1632732139}
   m_LocalRotation: {x: -0.22683986, y: -0.010581404, z: -0.013281916, w: -0.973784}
-  m_LocalPosition: {x: 4.865058, y: 10.999781, z: 27.592133}
+  m_LocalPosition: {x: 4.86, y: 11.06, z: 27.47}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 399706697}
@@ -84393,7 +84393,7 @@ RectTransform:
   m_GameObject: {fileID: 1775210299}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.7, y: 1.7, z: 1.7}
   m_Children:
   - {fileID: 1003088308}
   - {fileID: 1265891520}
@@ -85057,6 +85057,7 @@ MonoBehaviour:
   dialogue1: {fileID: 0}
   dialogue2: {fileID: 0}
   dialogueBoxAudio: {fileID: 0}
+  CineCam: {fileID: 0}
   isWin: 1
 --- !u!4 &1797159767
 Transform:
@@ -103729,6 +103730,11 @@ MonoBehaviour:
   DamageUI: {fileID: 4184921972262828221}
   minAttackAvil: 20
   maxAttackAvil: 27
+  flyBall: {fileID: 0}
+  releasePoint: {fileID: 0}
+  ballInGlove: {fileID: 0}
+  ballInHand: {fileID: 0}
+  releaseBall: {fileID: 0}
 --- !u!4 &4511686670803139287
 Transform:
   m_ObjectHideFlags: 0
@@ -106325,6 +106331,7 @@ MonoBehaviour:
   dialogue1: {fileID: 0}
   dialogue2: {fileID: 0}
   dialogueBoxAudio: {fileID: 0}
+  CineCam: {fileID: 0}
   isWin: 0
 --- !u!65 &8129988318746709720
 BoxCollider:
