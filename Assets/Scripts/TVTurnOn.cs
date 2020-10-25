@@ -24,6 +24,8 @@ public class TVTurnOn : MonoBehaviour
     public Material locked, unlocked;
     public GameObject HallOfEliteIcon;
 
+    public TextMesh TVText;
+
     private void Start()
     {
         cam.SetActive(false);
@@ -39,6 +41,8 @@ public class TVTurnOn : MonoBehaviour
             HallOfEliteIcon.GetComponent<Renderer>().material = locked;
             HOEUnlockedValue = 0;
         }
+
+        TVText.text = "";
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -67,6 +71,16 @@ public class TVTurnOn : MonoBehaviour
             SelectionOfLevel.SetActive(true);
 
             SelectionOfLevel.transform.position = Levels[levelSelect].transform.position;
+
+            if (levelSelect == 0)
+            {
+                TVText.text = "Concourse";
+            }
+
+            if (levelSelect == 1)
+            {
+                TVText.text = "Hall of Elite";
+            }
 
             if (Input.GetKeyDown(KeyCode.A))
             {

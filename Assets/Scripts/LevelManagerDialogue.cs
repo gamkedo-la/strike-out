@@ -12,6 +12,8 @@ public class LevelManagerDialogue : MonoBehaviour
 
     public Text nameText;
     public Text dialogueText;
+
+    public TextMesh TVText;
     private void Start()
     {
         sentences = new Queue<string>();
@@ -37,6 +39,7 @@ public class LevelManagerDialogue : MonoBehaviour
     {
         if (sentences.Count == 0)
         {
+            TVText.text = "Loading . . .";
             EndDialogue();
             return;
         }
@@ -57,6 +60,7 @@ public class LevelManagerDialogue : MonoBehaviour
 
     void EndDialogue()
     {
+        TVText.text = "Loading . . .".ToString();
         anim.SetBool("isOpen", false);
         PlayerMovement.canMove = true;
 
