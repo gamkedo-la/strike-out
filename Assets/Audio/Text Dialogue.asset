@@ -13,12 +13,15 @@ MonoBehaviour:
   m_Name: Text Dialogue
   m_EditorClassIdentifier: 
   Clip: {fileID: 8300000, guid: 8df626cfc129a3848b70fc693c321ad1, type: 3}
-  Sounds: []
+  Sounds:
+  - {fileID: 8300000, guid: d26794d95b9b9304188be7588dad6808, type: 3}
+  - {fileID: 8300000, guid: faebe28daf4113245ae572cc485d96c5, type: 3}
+  - {fileID: 8300000, guid: 8df626cfc129a3848b70fc693c321ad1, type: 3}
   mixer: {fileID: 24100000, guid: 75dd9a9b66abc7c4782df25f39d4594d, type: 2}
   output: 2
   Loop: 0
   Volume: 0
   Pitch: 0
   SpatialBlend: 0
-  RandomVolume: 0
-  RandomPitch: 0.48
+  RandomVolume: -1.67
+  RandomPitch: 2.95
