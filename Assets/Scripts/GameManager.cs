@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
@@ -133,7 +131,7 @@ public class GameManager : MonoBehaviour
     }
     #endregion
     #region Experience
-           #region CurrentExp;
+    #region CurrentExp;
     public static float StarterExp
     {
         get
@@ -186,7 +184,7 @@ public class GameManager : MonoBehaviour
         }
     }
     #endregion
-           #region TargetExp
+    #region TargetExp
     public static float StarterTargetExp
     {
         get
@@ -240,7 +238,7 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 
-           #region Level
+    #region Level
     public static int StarterLevel
     {
         get
@@ -652,30 +650,30 @@ public class GameManager : MonoBehaviour
             MidRelievEnergyMax = 20;
             SetUpEnergyMax = 15;
             CloserEnergyMax = 10;
-            
+
 
             //Test Stats - remove later
-  /*          StarterMorale = 5;
-            MidRelivMorale = 5;
-            SetUpMorale = 5;
-            CloserMorale = 5;
+            /*          StarterMorale = 5;
+                      MidRelivMorale = 5;
+                      SetUpMorale = 5;
+                      CloserMorale = 5;
 
 
-            StarterMoraleMax = 25;
-            MidRelivMoraleMax = 20;
-            SetUpMoraleMax = 15;
-            CloserMoraleMax = 10;
+                      StarterMoraleMax = 25;
+                      MidRelivMoraleMax = 20;
+                      SetUpMoraleMax = 15;
+                      CloserMoraleMax = 10;
 
-            StarterEnergy = 5;
-            MidRelivEnergy = 5;
-            SetUpEnergy = 5;
-            CloserEnergy = 5;
+                      StarterEnergy = 5;
+                      MidRelivEnergy = 5;
+                      SetUpEnergy = 5;
+                      CloserEnergy = 5;
 
-            StarterEnergyMax = 25;
-            MidRelievEnergyMax = 20;
-            SetUpEnergyMax = 15;
-            CloserEnergyMax = 10;
-*/
+                      StarterEnergyMax = 25;
+                      MidRelievEnergyMax = 20;
+                      SetUpEnergyMax = 15;
+                      CloserEnergyMax = 10;
+          */
             gameStartingStats = true;
         }
 
@@ -703,19 +701,22 @@ public class GameManager : MonoBehaviour
     public void HookUpUI()
     {
         Debug.Log("Resetting UI Hookups");
-        Starter = GameObject.Find("StarterMorale").GetComponent<Slider>();
-        MidReliv = GameObject.Find("MiddleRelivMorale").GetComponent<Slider>();
-        SetUp = GameObject.Find("SetUpMorale").GetComponent<Slider>();
-        Closer = GameObject.Find("CloserMorale").GetComponent<Slider>();
 
-        StarterE = GameObject.Find("StarterEnergy").GetComponent<Slider>();
-        MidRelivE = GameObject.Find("MiddleRelivEnergy").GetComponent<Slider>();
-        SetUpE = GameObject.Find("SetUpEnergy").GetComponent<Slider>();
-        CloserE = GameObject.Find("CloserEnergy").GetComponent<Slider>();
+        if (Starter != null)
+        {
+            Starter = GameObject.Find("StarterMorale").GetComponent<Slider>();
+            MidReliv = GameObject.Find("MiddleRelivMorale").GetComponent<Slider>();
+            SetUp = GameObject.Find("SetUpMorale").GetComponent<Slider>();
+            Closer = GameObject.Find("CloserMorale").GetComponent<Slider>();
 
-        moneyUI = GameObject.Find("Money").GetComponent<Text>();
-        moneyUI.text = "$ " + Money.ToString("F0");
-        
+            StarterE = GameObject.Find("StarterEnergy").GetComponent<Slider>();
+            MidRelivE = GameObject.Find("MiddleRelivEnergy").GetComponent<Slider>();
+            SetUpE = GameObject.Find("SetUpEnergy").GetComponent<Slider>();
+            CloserE = GameObject.Find("CloserEnergy").GetComponent<Slider>();
+
+            moneyUI = GameObject.Find("Money").GetComponent<Text>();
+            moneyUI.text = "$ " + Money.ToString("F0");
+        }
     }
 
     private void Update()
@@ -726,26 +727,29 @@ public class GameManager : MonoBehaviour
 
     public void UpdateUI()
     {
-        Starter.value = (StarterMorale / StarterMoraleMax);
-        MidReliv.value = (MidRelivMorale / MidRelivMoraleMax);
-        SetUp.value = (SetUpMorale / SetUpMoraleMax);
-        Closer.value = (CloserMorale / CloserMoraleMax);
+        if (Starter != null)
+        {
+            Starter.value = (StarterMorale / StarterMoraleMax);
+            MidReliv.value = (MidRelivMorale / MidRelivMoraleMax);
+            SetUp.value = (SetUpMorale / SetUpMoraleMax);
+            Closer.value = (CloserMorale / CloserMoraleMax);
 
 
-        StarterE.value = (StarterEnergy / StarterEnergyMax);
-        MidRelivE.value = (MidRelivEnergy / MidRelievEnergyMax);
-        SetUpE.value = (SetUpEnergy / SetUpEnergyMax);
-        CloserE.value = (CloserEnergy / CloserEnergyMax);
+            StarterE.value = (StarterEnergy / StarterEnergyMax);
+            MidRelivE.value = (MidRelivEnergy / MidRelievEnergyMax);
+            SetUpE.value = (SetUpEnergy / SetUpEnergyMax);
+            CloserE.value = (CloserEnergy / CloserEnergyMax);
+        }
     }
 
     public void StarterHealthUp(int HPIncrease)
     {
-           StarterMorale += HPIncrease;
+        StarterMorale += HPIncrease;
 
-            if (StarterMorale > StarterMoraleMax)
-            {
-                StarterMorale = StarterMoraleMax;
-            }
+        if (StarterMorale > StarterMoraleMax)
+        {
+            StarterMorale = StarterMoraleMax;
+        }
         UpdateUI();
     }
 
@@ -885,5 +889,5 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 
-    
+
 }
