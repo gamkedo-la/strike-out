@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class AudioEnemyAnim : AudioEventGeneric
 {
@@ -18,6 +16,9 @@ public class AudioEnemyAnim : AudioEventGeneric
     private void Start()
     {
         currentBattle = FindObjectOfType<BattleSystemMultiple>();
+
+        if (controller == null)
+            controller = gameObject.AddComponent<AudioSourceController>();
     }
 
     void BatWhoosh()
@@ -32,7 +33,12 @@ public class AudioEnemyAnim : AudioEventGeneric
 
     void MittPop()
     {
-        controller.PlayRandom(mittPop);
+        if (mittPop)
+            controller.PlayRandom(mittPop);
+        else
+        {
+            Debug.LogError("No Mitt Pop Sound");
+        }
     }
 
     public void Downed()
@@ -56,13 +62,25 @@ public class AudioEnemyAnim : AudioEventGeneric
 
     public void SwingMiss()
     {
-        controller.PlayRandom(swingMiss);
+        if (swingMiss)
+            controller.PlayRandom(swingMiss);
+        else
+        {
+            Debug.LogError("No Swing Miss Sound");
+        }
     }
 
     public void SwingDizzy()
     {
-        controller.PlayRandom(swingDizzy);
-        controller.PlayRandom(swingDizzyBirds);
+        if (swingDizzy)
+        {
+            controller.PlayRandom(swingDizzy);
+            controller.PlayRandom(swingDizzyBirds);
+        }
+        else
+        {
+            Debug.LogError("No Swing Dizzy Sound");
+        }
     }
 
     public void TakeDmg()
@@ -71,6 +89,6 @@ public class AudioEnemyAnim : AudioEventGeneric
             controller.PlayRandom(takeDmg);
         else
             Debug.LogWarning("No take damage audio data!");
-        
+
     }
 }

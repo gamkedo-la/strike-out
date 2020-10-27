@@ -1,7 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
-using System;
 
 public enum AnimEvent { Windup, Swing, Oof, Dizzy, Miss };
 public class AudioOnAnim : MonoBehaviour
@@ -16,13 +14,17 @@ public class AudioOnAnim : MonoBehaviour
 
     void Start()
     {
+
+        if (controller == null)
+            controller = gameObject.AddComponent<AudioSourceController>();
+
         controller.SetSourceOutput(sound);
     }
 
     public void PitchSound()
     {
         controller.PlayRandom(sound);
-       // Debug.Log("Pitch Sound!");
+        // Debug.Log("Pitch Sound!");
     }
 
     public void TakeDmg()

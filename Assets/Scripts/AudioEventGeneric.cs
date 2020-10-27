@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class AudioEventGeneric : MonoBehaviour
 {
@@ -9,6 +7,9 @@ public class AudioEventGeneric : MonoBehaviour
 
     void Start()
     {
+        if (controller == null)
+            controller = gameObject.AddComponent<AudioSourceController>();
+
         controller.SetSourceOutput(sound);
     }
 

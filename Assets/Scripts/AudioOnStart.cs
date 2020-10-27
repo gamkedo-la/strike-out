@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class AudioOnStart : AudioEventGeneric
 {
@@ -8,9 +6,12 @@ public class AudioOnStart : AudioEventGeneric
 
     void Start()
     {
+        if (controller == null)
+            controller = gameObject.AddComponent<AudioSourceController>();
+
         if (sound != null)
         {
-            controller.Play(sound);
+            controller.PlayRandom(sound);
         }
         else
             Debug.Log("No sound attached");
