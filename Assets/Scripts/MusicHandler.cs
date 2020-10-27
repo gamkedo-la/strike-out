@@ -31,7 +31,7 @@ public class MusicHandler : MonoBehaviour
 
         if (playIntro)
         {
-            Debug.LogWarning("playIntro");
+            //Debug.LogWarning("playIntro");
             foreach (AudioData data in StartMusic)
             {
                 //controller.SetSourceOutput(data);
@@ -46,7 +46,7 @@ public class MusicHandler : MonoBehaviour
         {
             //controller.SetSourceOutput(data);
             controller.PlayScheduled(data, nextStartTime);
-            Debug.LogWarning("scheduling loop");
+            //Debug.LogWarning("scheduling loop");
         }
     }
 
@@ -58,6 +58,6 @@ public class MusicHandler : MonoBehaviour
     private void OnDestroy()
     {
         nextStartTime = AudioSettings.dspTime + 1f;
-        Debug.LogWarning(nextStartTime);
+        //Debug.LogWarning(nextStartTime);
     }
 }
