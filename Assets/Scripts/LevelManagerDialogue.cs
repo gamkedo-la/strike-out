@@ -1,8 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class LevelManagerDialogue : MonoBehaviour
 {
@@ -14,6 +14,9 @@ public class LevelManagerDialogue : MonoBehaviour
     public Text dialogueText;
 
     public TextMesh TVText;
+    public AudioData dialogueAudio;
+    public AudioSourceController audioSource;
+
     private void Start()
     {
         sentences = new Queue<string>();
@@ -56,6 +59,9 @@ public class LevelManagerDialogue : MonoBehaviour
             dialogueText.text += letter;
             yield return null;
         }
+
+        if (dialogueAudio != null)
+            audioSource.PlayRandom(dialogueAudio);
     }
 
     void EndDialogue()
