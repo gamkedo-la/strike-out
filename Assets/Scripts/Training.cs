@@ -11,6 +11,8 @@ public class Training : MonoBehaviour
 
     private void Start()
     {
+        LevelSelectTV = false;
+
         ConcourseGameManager.AnnouncerKilled = false;
         ConcourseGameManager.AnnouncerHasAlreadyBeenKilled = false;
         ConcourseGameManager.McGeeKilled = false;

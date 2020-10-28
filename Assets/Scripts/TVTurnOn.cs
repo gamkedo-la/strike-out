@@ -28,6 +28,7 @@ public class TVTurnOn : MonoBehaviour
 
     private void Start()
     {
+        Training.LevelSelectTV = false;
         cam.SetActive(false);
         levelSelect = 0;
 
