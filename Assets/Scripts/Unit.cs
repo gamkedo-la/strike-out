@@ -341,7 +341,7 @@ public class Unit : MonoBehaviour
 
     public bool TakeDamage(int dmg)
     {
-        print(dmg);
+      //  print(dmg);
 
         currentHP -= dmg;
 

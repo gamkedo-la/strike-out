@@ -50,6 +50,8 @@ public class GameManager : MonoBehaviour
     public static float money;
 
     private static GameManager _instance;
+
+    bool DebugCheatDeathConditions = false;
     public static GameManager Instance
     {
         get
@@ -630,6 +632,7 @@ public class GameManager : MonoBehaviour
 
         if (!gameStartingStats)
         {
+
             StarterMorale = 25;
             MidRelivMorale = 20;
             SetUpMorale = 15;
@@ -651,29 +654,31 @@ public class GameManager : MonoBehaviour
             SetUpEnergyMax = 15;
             CloserEnergyMax = 10;
 
+            if (DebugCheatDeathConditions)
+            {
+                //Test Stats - remove later
+                StarterMorale = 5;
+                MidRelivMorale = 5;
+                SetUpMorale = 5;
+                CloserMorale = 5;
 
-            //Test Stats - remove later
-            /*          StarterMorale = 5;
-                      MidRelivMorale = 5;
-                      SetUpMorale = 5;
-                      CloserMorale = 5;
 
+                StarterMoraleMax = 25;
+                MidRelivMoraleMax = 20;
+                SetUpMoraleMax = 15;
+                CloserMoraleMax = 10;
 
-                      StarterMoraleMax = 25;
-                      MidRelivMoraleMax = 20;
-                      SetUpMoraleMax = 15;
-                      CloserMoraleMax = 10;
+                StarterEnergy = 5;
+                MidRelivEnergy = 5;
+                SetUpEnergy = 5;
+                CloserEnergy = 5;
 
-                      StarterEnergy = 5;
-                      MidRelivEnergy = 5;
-                      SetUpEnergy = 5;
-                      CloserEnergy = 5;
-
-                      StarterEnergyMax = 25;
-                      MidRelievEnergyMax = 20;
-                      SetUpEnergyMax = 15;
-                      CloserEnergyMax = 10;
-          */
+                StarterEnergyMax = 25;
+                MidRelievEnergyMax = 20;
+                SetUpEnergyMax = 15;
+                CloserEnergyMax = 10;
+                Debug.LogWarning("THESE ARE CHEAT STATS - USING DEBUG CHEAT DEATH CONDITIONS");
+            }
             gameStartingStats = true;
         }
 

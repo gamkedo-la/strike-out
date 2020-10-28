@@ -508,7 +508,15 @@ public class BattleSystemMultiple : MonoBehaviour
     }
 
     //TODO how to advance in the CharacterIdentifierList
-
+    private void DebugPrintList(List<CharacterIdentifier> forList)
+    {
+        string listStr = "";
+        for (int i = 0; i < forList.Count; i++)
+        {
+            listStr += forList[i].ToString() + ", ";
+        }
+        Debug.Log(listStr);
+    }
 
     void NextTurn()
       {
@@ -517,6 +525,8 @@ public class BattleSystemMultiple : MonoBehaviour
         CharacterIdentifier upRightNow;
         if (isPlayerTurn)
         {
+
+            DebugPrintList(playerTurnOrder);
             upRightNow = playerTurnOrder[0];
             playerTurnOrder.RemoveAt(0);
             playerTurnOrder.Add(upRightNow);
@@ -2391,7 +2401,8 @@ public class BattleSystemMultiple : MonoBehaviour
                     StarterDamageUI.text = "-" + enemyUnit[enemyUnitSelected].enemyDamage.ToString();
                     //
                     playerTurnOrder.Remove(CharacterIdentifier.Starter);
-
+                    Debug.Log("Removing Starter");
+                    DebugPrintList(playerTurnOrder);
                     //
                     StarterAnim.SetBool("isDead", true);
                 }
@@ -2403,7 +2414,8 @@ public class BattleSystemMultiple : MonoBehaviour
                     MiddleDamageUI.text = "-" + enemyUnit[enemyUnitSelected].enemyDamage.ToString();
 
                     playerTurnOrder.Remove(CharacterIdentifier.Middle);
-
+                    Debug.Log("Removing Middle");
+                    DebugPrintList(playerTurnOrder);
 
                     MidRelAnim.SetBool("isDead", true);
 
@@ -2416,7 +2428,8 @@ public class BattleSystemMultiple : MonoBehaviour
                     SetUpDamageUI.text = "-" + enemyUnit[enemyUnitSelected].enemyDamage.ToString();
 
                     playerTurnOrder.Remove(CharacterIdentifier.SetUp);
-
+                    Debug.Log("Removing SetUp");
+                    DebugPrintList(playerTurnOrder);
 
                     SetUpAnim.SetBool("isDead", true);
                 }
@@ -2428,6 +2441,8 @@ public class BattleSystemMultiple : MonoBehaviour
                     CloserDamageUI.text = "-" + enemyUnit[enemyUnitSelected].enemyDamage.ToString();
 
                     playerTurnOrder.Remove(CharacterIdentifier.Closer);
+                    Debug.Log("Removing Closer");
+                    DebugPrintList(playerTurnOrder);
 
                     CloserAnim.SetBool("isDead", true);
 
@@ -2585,14 +2600,14 @@ public class BattleSystemMultiple : MonoBehaviour
                        // NextPlayerTurnAfterEnemyTurn(enemyIndex);
                     }
 
-                    if (GameManager.StarterAgil < RandomAttack)
+                    else 
                     {
                         dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Starter with " + enemyUnit[enemyUnitSelected].attackName + "!";
 
                         yield return new WaitForSeconds(2f);
 
                         bool isDead = Starter.TakeDamage(enemyUnit[enemyUnitSelected].enemyDamage);
-
+                        print(isDead + " Starter");
                         if (isDead)
                         {
                             GameManager.StarterMorale -= enemyUnit[enemyUnitSelected].enemyDamage;
@@ -2600,6 +2615,9 @@ public class BattleSystemMultiple : MonoBehaviour
                             starterDead = true;
 
                             playerTurnOrder.Remove(CharacterIdentifier.Starter);
+
+                            Debug.Log("Removing Starter");
+                            DebugPrintList(playerTurnOrder);
 
                             StarterAnim.SetBool("isDead", true);
                             yield return new WaitForSeconds(3f);
@@ -2634,12 +2652,13 @@ public class BattleSystemMultiple : MonoBehaviour
                         yield return new WaitForSeconds(1f);
                         //NextPlayerTurnAfterEnemyTurn(enemyIndex);
                     }
-                    if (GameManager.MiddleAgil < RandomAttack)
+                    else
                     {
                         dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Mid Reliever with " + enemyUnit[enemyUnitSelected].attackName + "!";
 
                         yield return new WaitForSeconds(1f);
                         bool isDead = MiddleReliever.TakeDamage(enemyUnit[enemyUnitSelected].enemyDamage);
+                        print(isDead + " Middle");
                         if (isDead)
                         {
                             GameManager.MidRelivMorale -= enemyUnit[enemyUnitSelected].enemyDamage;
@@ -2647,6 +2666,9 @@ public class BattleSystemMultiple : MonoBehaviour
                             middleDead = true;
 
                             playerTurnOrder.Remove(CharacterIdentifier.Middle);
+
+                            Debug.Log("Removing Middle");
+                            DebugPrintList(playerTurnOrder);
 
                             MidRelAnim.SetBool("isDead", true);
                             yield return new WaitForSeconds(3f);
@@ -2682,12 +2704,13 @@ public class BattleSystemMultiple : MonoBehaviour
                         yield return new WaitForSeconds(1f);
                        // NextPlayerTurnAfterEnemyTurn(enemyIndex);
                     }
-                    if (GameManager.SetUpAgil < RandomAttack)
+                    else
                     {
                         dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Set Up with " + enemyUnit[enemyUnitSelected].attackName + "!";
 
                         yield return new WaitForSeconds(1f);
                         bool isDead = SetUp.TakeDamage(enemyUnit[enemyUnitSelected].enemyDamage);
+                        print(isDead + " SetUp");
                         if (isDead)
                         {
                             GameManager.SetUpMorale -= enemyUnit[enemyUnitSelected].enemyDamage;
@@ -2696,6 +2719,9 @@ public class BattleSystemMultiple : MonoBehaviour
                             setupDead = true;
 
                             playerTurnOrder.Remove(CharacterIdentifier.SetUp);
+
+                            Debug.Log("Removing SetuP");
+                            DebugPrintList(playerTurnOrder);
 
                             yield return new WaitForSeconds(3f);
                           //  NextPlayerTurnAfterEnemyTurn(enemyIndex);
@@ -2728,12 +2754,13 @@ public class BattleSystemMultiple : MonoBehaviour
                        // NextPlayerTurnAfterEnemyTurn(enemyIndex);
                     }
 
-                    if (GameManager.CloserAgil < RandomAttack)
+                    else
                     {
                         dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Closer with " + enemyUnit[enemyUnitSelected].attackName + "!";
 
                         yield return new WaitForSeconds(1f);
                         bool isDead = Closer.TakeDamage(enemyUnit[enemyUnitSelected].enemyDamage);
+                        print(isDead + " Closer");
                         if (isDead)
                         {
                             GameManager.CloserMorale -= enemyUnit[enemyUnitSelected].enemyDamage;
@@ -2742,6 +2769,9 @@ public class BattleSystemMultiple : MonoBehaviour
                             closerDead = true;
 
                             playerTurnOrder.Remove(CharacterIdentifier.Closer);
+
+                            Debug.Log("Removing Closer");
+                            DebugPrintList(playerTurnOrder);
 
                             yield return new WaitForSeconds(3f);
                          //   NextPlayerTurnAfterEnemyTurn(enemyIndex);
