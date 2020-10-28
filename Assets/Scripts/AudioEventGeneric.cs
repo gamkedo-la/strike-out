@@ -4,6 +4,8 @@ public class AudioEventGeneric : MonoBehaviour
 {
     public AudioData sound;
     public AudioSourceController controller;
+    public bool playOnce;
+    private bool hasPlayed;
 
     void Start()
     {
@@ -15,6 +17,10 @@ public class AudioEventGeneric : MonoBehaviour
 
     public void PlayEvent()
     {
-        controller.PlayRandom(sound);
+        if (!hasPlayed)
+            controller.PlayRandom(sound);
+
+        if (playOnce)
+            hasPlayed = true;
     }
 }
