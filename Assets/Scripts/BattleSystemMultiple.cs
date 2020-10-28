@@ -148,6 +148,8 @@ public class BattleSystemMultiple : MonoBehaviour
 
     public List<CharacterIdentifier> playerTurnOrder = new List<CharacterIdentifier>();
     public List<CharacterIdentifier> enemyTurnOrder = new List<CharacterIdentifier>();
+    //List<CharacterIdentifier> enemyName = new List<CharacterIdentifier>();
+
     public bool isPlayerTurn;
 
     public bool isHoEBattle;
@@ -577,18 +579,32 @@ public class BattleSystemMultiple : MonoBehaviour
         if (isPlayerTurn)
         {
             //enemyUnit[1].GetComponent<Unit>().myEnumValue = CharacterIdentifier.Enemy2;
-            ondeck.text = "On Deck:  " + enemyTurnOrder[0].ToString();
+            ondeck.text = "On Deck:  " + ReturnNameOfEnemy(enemyTurnOrder[0]);
             inhole.text = "In the Hole:  " + playerTurnOrder[0].ToString();
         }
 
         if (!isPlayerTurn)
         {
             ondeck.text = "On Deck:  " + playerTurnOrder[0].ToString();
-            inhole.text = "In the Hole:  " + enemyTurnOrder[0].ToString();
+            inhole.text = "In the Hole:  " + ReturnNameOfEnemy(enemyTurnOrder[0]);
         }
         // TODO: Remove character if dead, go to next one (player to player, enemy to enemy).
         // TODO: Can I get rid of all of the switch cases in the script that determine move order? 
 
+    }
+
+    private string ReturnNameOfEnemy(CharacterIdentifier forID)
+    {
+        for (int i = 0; i < enemyUnit.Count; i++)
+        {
+            if (enemyUnit[i].myEnumValue == forID)
+            {
+                string nameToRemoveCloneFrom = enemyUnit[i].name;
+                nameToRemoveCloneFrom = nameToRemoveCloneFrom.Replace("(Clone)", "");
+                return nameToRemoveCloneFrom;
+            }
+        }
+        return "Error: No Match Found";
     }
 
 

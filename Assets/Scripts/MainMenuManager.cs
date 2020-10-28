@@ -37,11 +37,13 @@ public class MainMenuManager : MonoBehaviour
     }
     public void Load()
     {
-        PlayerPrefs.GetFloat("money", GameManager.Money);
+        //This is the format, use this for the future items
+        GameManager.Money = PlayerPrefs.GetFloat("money", GameManager.Money);
 
         PlayerPrefs.GetInt("StarterFast");
         PlayerPrefs.GetInt("StarterSlid");
-        PlayerPrefs.GetInt("StarterCurve");
+        GameManager.StarterCurve = PlayerPrefs.GetInt("StarterCurve", GameManager.StarterCurve);
+        print(GameManager.StarterCurve + "Starter Curve Value");
         PlayerPrefs.GetInt("StarterChange");
         PlayerPrefs.GetInt("StarterAgil");
 
