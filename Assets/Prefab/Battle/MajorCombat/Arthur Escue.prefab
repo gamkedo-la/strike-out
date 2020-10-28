@@ -143,6 +143,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sound: {fileID: 11400000, guid: 07897056073977649bd9fcad2187c917, type: 2}
   controller: {fileID: 2922313864736433524}
+  playOnce: 0
   currentBattle: {fileID: 0}
   whoosh: {fileID: 11400000, guid: db8cd35f031ca494aa4db8eb73c99c5f, type: 2}
   mittPop: {fileID: 11400000, guid: dbafe08f7a95f42418dae3041f3ecf50, type: 2}
@@ -152,7 +153,7 @@ MonoBehaviour:
   swingMiss: {fileID: 11400000, guid: 8ea36c61b4f11c544876700371394b86, type: 2}
   swingDizzy: {fileID: 11400000, guid: ac535609a5d5dcb498035d8f66767687, type: 2}
   swingDizzyBirds: {fileID: 11400000, guid: c60643d699b31c944b77a480c88ee189, type: 2}
-  takeDmg: {fileID: 0}
+  takeDmg: {fileID: 11400000, guid: efddb4b29ae8d554592f4ca5ea7aa64e, type: 2}
 --- !u!1 &2922313864614661132
 GameObject:
   m_ObjectHideFlags: 0
@@ -626,7 +627,7 @@ GameObject:
   - component: {fileID: 2922313866278339945}
   - component: {fileID: 2922313866278339944}
   m_Layer: 0
-  m_Name: MajorEnemy5
+  m_Name: Arthur Escue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -748,6 +749,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sound: {fileID: 11400000, guid: 07897056073977649bd9fcad2187c917, type: 2}
   controller: {fileID: 2922313866278339944}
+  playOnce: 0
   currentBattle: {fileID: 0}
   whoosh: {fileID: 11400000, guid: db8cd35f031ca494aa4db8eb73c99c5f, type: 2}
   mittPop: {fileID: 11400000, guid: dbafe08f7a95f42418dae3041f3ecf50, type: 2}
