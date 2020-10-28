@@ -39,56 +39,55 @@ public class MainMenuManager : MonoBehaviour
     {
         PlayerPrefs.GetFloat("money", GameManager.Money);
 
-        PlayerPrefs.GetFloat("StarterFast");
-        PlayerPrefs.GetFloat("StarterSlid");
-        PlayerPrefs.GetFloat("StarterCurve");
-        PlayerPrefs.GetFloat("StarterChange");
-        PlayerPrefs.GetFloat("StarterAgil");
+        PlayerPrefs.GetInt("StarterFast");
+        PlayerPrefs.GetInt("StarterSlid");
+        PlayerPrefs.GetInt("StarterCurve");
+        PlayerPrefs.GetInt("StarterChange");
+        PlayerPrefs.GetInt("StarterAgil");
 
-        PlayerPrefs.GetFloat("MiddleFast");
-        PlayerPrefs.GetFloat("MiddleSlid");
-        PlayerPrefs.GetFloat("MiddleCurve");
-        PlayerPrefs.GetFloat("MiddleChange");
-        PlayerPrefs.GetFloat("MiddleAgil");
+        PlayerPrefs.GetInt("MiddleFast");
+        PlayerPrefs.GetInt("MiddleSlid");
+        PlayerPrefs.GetInt("MiddleCurve");
+        PlayerPrefs.GetInt("MiddleChange");
+        PlayerPrefs.GetInt("MiddleAgil");
 
-        PlayerPrefs.GetFloat("SetUpFast");
-        PlayerPrefs.GetFloat("SetUpSlid");
-        PlayerPrefs.GetFloat("SetUpCurve");
-        PlayerPrefs.GetFloat("SetUpChange");
-        PlayerPrefs.GetFloat("SetUpAgil");
+        PlayerPrefs.GetInt("SetUpFast");
+        PlayerPrefs.GetInt("SetUpSlid");
+        PlayerPrefs.GetInt("SetUpCurve");
+        PlayerPrefs.GetInt("SetUpChange");
+        PlayerPrefs.GetInt("SetUpAgil");
 
-        PlayerPrefs.GetFloat("CloserFast");
-        PlayerPrefs.GetFloat("CloserSlid");
-        PlayerPrefs.GetFloat("CloserCurve");
-        PlayerPrefs.GetFloat("CloserChange");
-        PlayerPrefs.GetFloat("CloserAgil");
+        PlayerPrefs.GetInt("CloserFast");
+        PlayerPrefs.GetInt("CloserSlid");
+        PlayerPrefs.GetInt("CloserCurve");
+        PlayerPrefs.GetInt("CloserChange");
+        PlayerPrefs.GetInt("CloserAgil");
 
-        PlayerPrefs.GetFloat("StarterLevel");
-        PlayerPrefs.GetFloat("MRLevel");
-        PlayerPrefs.GetFloat("SetUpLevel");
-        PlayerPrefs.GetFloat("CloserLevel");
+        PlayerPrefs.GetInt("StarterLevel");
+        PlayerPrefs.GetInt("MRLevel");
+        PlayerPrefs.GetInt("SetUpLevel");
+        PlayerPrefs.GetInt("CloserLevel");
 
         PlayerPrefs.GetFloat("StarterMorale");
         PlayerPrefs.GetFloat("StarterEnergy");
-        PlayerPrefs.GetFloat("StarterMoraleMax");
-        PlayerPrefs.GetFloat("StarterEnergyMax");
+        PlayerPrefs.GetInt("StarterMoraleMax");
+        PlayerPrefs.GetInt("StarterEnergyMax");
 
         PlayerPrefs.GetFloat("MidRelivMorale");
         PlayerPrefs.GetFloat("MidRelivEnergy");
-        PlayerPrefs.GetFloat("MidRelivMoraleMax");
-        PlayerPrefs.GetFloat("MidRelievEnergyMax");
+        PlayerPrefs.GetInt("MidRelivMoraleMax");
+        PlayerPrefs.GetInt("MidRelievEnergyMax");
 
         PlayerPrefs.GetFloat("SetUpMorale");
         PlayerPrefs.GetFloat("SetUpEnergy");
-        PlayerPrefs.GetFloat("SetUpMoraleMax");
-        PlayerPrefs.GetFloat("SetUpEnergyMax");
+        PlayerPrefs.GetInt("SetUpMoraleMax");
+        PlayerPrefs.GetInt("SetUpEnergyMax");
 
         PlayerPrefs.GetFloat("CloserMorale");
         PlayerPrefs.GetFloat("CloserEnergy");
-        PlayerPrefs.GetFloat("CloserMoraleMax");
-        PlayerPrefs.GetFloat("CloserEnergyMax");
+        PlayerPrefs.GetInt("CloserMoraleMax");
+        PlayerPrefs.GetInt("CloserEnergyMax");
 
-        //convert this to the bool once it is loaded
         PlayerPrefs.GetFloat("Minor1Value");
         PlayerPrefs.GetFloat("Minor2Value");
         PlayerPrefs.GetFloat("Minor3Value");

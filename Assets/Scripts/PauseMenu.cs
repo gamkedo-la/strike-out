@@ -80,54 +80,54 @@ public class PauseMenu : MonoBehaviour
     {
         PlayerPrefs.SetFloat("money", GameManager.Money);
 
-        PlayerPrefs.SetFloat("StarterFast", GameManager.StarterFast);
-        PlayerPrefs.SetFloat("StarterSlid", GameManager.StarterSlid);
-        PlayerPrefs.SetFloat("StarterCurve", GameManager.StarterCurve);
-        PlayerPrefs.SetFloat("StarterChange", GameManager.StarterChange);
-        PlayerPrefs.SetFloat("StarterAgil", GameManager.StarterAgil);
+        PlayerPrefs.SetInt("StarterFast", GameManager.StarterFast);
+        PlayerPrefs.SetInt("StarterSlid", GameManager.StarterSlid);
+        PlayerPrefs.SetInt("StarterCurve", GameManager.StarterCurve);
+        PlayerPrefs.SetInt("StarterChange", GameManager.StarterChange);
+        PlayerPrefs.SetInt("StarterAgil", GameManager.StarterAgil);
 
-        PlayerPrefs.SetFloat("MiddleFast", GameManager.MiddleFast);
-        PlayerPrefs.SetFloat("MiddleSlid", GameManager.MiddleSlid);
-        PlayerPrefs.SetFloat("MiddleCurve", GameManager.MiddleCurve);
-        PlayerPrefs.SetFloat("MiddleChange", GameManager.MiddleChange);
-        PlayerPrefs.SetFloat("MiddleAgil", GameManager.MiddleAgil);
+        PlayerPrefs.SetInt("MiddleFast", GameManager.MiddleFast);
+        PlayerPrefs.SetInt("MiddleSlid", GameManager.MiddleSlid);
+        PlayerPrefs.SetInt("MiddleCurve", GameManager.MiddleCurve);
+        PlayerPrefs.SetInt("MiddleChange", GameManager.MiddleChange);
+        PlayerPrefs.SetInt("MiddleAgil", GameManager.MiddleAgil);
 
-        PlayerPrefs.SetFloat("SetUpFast", GameManager.SetUpFast);
-        PlayerPrefs.SetFloat("SetUpSlid", GameManager.SetUpSlid);
-        PlayerPrefs.SetFloat("SetUpCurve", GameManager.SetUpCurve);
-        PlayerPrefs.SetFloat("SetUpChange", GameManager.SetUpChange);
-        PlayerPrefs.SetFloat("SetUpAgil", GameManager.SetUpAgil);
+        PlayerPrefs.SetInt("SetUpFast", GameManager.SetUpFast);
+        PlayerPrefs.SetInt("SetUpSlid", GameManager.SetUpSlid);
+        PlayerPrefs.SetInt("SetUpCurve", GameManager.SetUpCurve);
+        PlayerPrefs.SetInt("SetUpChange", GameManager.SetUpChange);
+        PlayerPrefs.SetInt("SetUpAgil", GameManager.SetUpAgil);
 
-        PlayerPrefs.SetFloat("CloserFast", GameManager.CloserFast);
-        PlayerPrefs.SetFloat("CloserSlid", GameManager.CloserSlid);
-        PlayerPrefs.SetFloat("CloserCurve", GameManager.CloserCurve);
-        PlayerPrefs.SetFloat("CloserChange", GameManager.CloserChange);
-        PlayerPrefs.SetFloat("CloserAgil", GameManager.CloserAgil);
+        PlayerPrefs.SetInt("CloserFast", GameManager.CloserFast);
+        PlayerPrefs.SetInt("CloserSlid", GameManager.CloserSlid);
+        PlayerPrefs.SetInt("CloserCurve", GameManager.CloserCurve);
+        PlayerPrefs.SetInt("CloserChange", GameManager.CloserChange);
+        PlayerPrefs.SetInt("CloserAgil", GameManager.CloserAgil);
 
-        PlayerPrefs.SetFloat("StarterLevel", GameManager.StarterLevel);
-        PlayerPrefs.SetFloat("MRLevel", GameManager.MRLevel);
-        PlayerPrefs.SetFloat("SetUpLevel", GameManager.SetUpLevel);
-        PlayerPrefs.SetFloat("CloserLevel", GameManager.CloserLevel);
+        PlayerPrefs.SetInt("StarterLevel", GameManager.StarterLevel);
+        PlayerPrefs.SetInt("MRLevel", GameManager.MRLevel);
+        PlayerPrefs.SetInt("SetUpLevel", GameManager.SetUpLevel);
+        PlayerPrefs.SetInt("CloserLevel", GameManager.CloserLevel);
 
         PlayerPrefs.SetFloat("StarterMorale", GameManager.StarterMorale);
         PlayerPrefs.SetFloat("StarterEnergy", GameManager.StarterEnergy);
-        PlayerPrefs.SetFloat("StarterMoraleMax", GameManager.StarterMoraleMax);
-        PlayerPrefs.SetFloat("StarterEnergyMax", GameManager.StarterEnergyMax);
+        PlayerPrefs.SetInt("StarterMoraleMax", GameManager.StarterMoraleMax);
+        PlayerPrefs.SetInt("StarterEnergyMax", GameManager.StarterEnergyMax);
 
         PlayerPrefs.SetFloat("MidRelivMorale", GameManager.MidRelivMorale);
         PlayerPrefs.SetFloat("MidRelivEnergy", GameManager.MidRelivEnergy);
-        PlayerPrefs.SetFloat("MidRelivMoraleMax", GameManager.MidRelivMoraleMax);
-        PlayerPrefs.SetFloat("MidRelievEnergyMax", GameManager.MidRelievEnergyMax);
+        PlayerPrefs.SetInt("MidRelivMoraleMax", GameManager.MidRelivMoraleMax);
+        PlayerPrefs.SetInt("MidRelievEnergyMax", GameManager.MidRelievEnergyMax);
 
         PlayerPrefs.SetFloat("SetUpMorale", GameManager.SetUpMorale);
         PlayerPrefs.SetFloat("SetUpEnergy", GameManager.SetUpEnergy);
-        PlayerPrefs.SetFloat("SetUpMoraleMax", GameManager.SetUpMoraleMax);
-        PlayerPrefs.SetFloat("SetUpEnergyMax", GameManager.SetUpEnergyMax);
+        PlayerPrefs.SetInt("SetUpMoraleMax", GameManager.SetUpMoraleMax);
+        PlayerPrefs.SetInt("SetUpEnergyMax", GameManager.SetUpEnergyMax);
 
         PlayerPrefs.SetFloat("CloserMorale", GameManager.CloserMorale);
         PlayerPrefs.SetFloat("CloserEnergy", GameManager.CloserEnergy);
-        PlayerPrefs.SetFloat("CloserMoraleMax", GameManager.CloserMoraleMax);
-        PlayerPrefs.SetFloat("CloserEnergyMax", GameManager.CloserEnergyMax);
+        PlayerPrefs.SetInt("CloserMoraleMax", GameManager.CloserMoraleMax);
+        PlayerPrefs.SetInt("CloserEnergyMax", GameManager.CloserEnergyMax);
 
         PlayerPrefs.SetFloat("Minor1Value", GameManager.m1v);
         PlayerPrefs.SetFloat("Minor2Value", GameManager.m2v);
