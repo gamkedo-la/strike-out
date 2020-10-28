@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour
 
     private static GameManager _instance;
 
-    bool DebugCheatDeathConditions = false;
+    bool DebugCheatDeathConditions = true;
     public static GameManager Instance
     {
         get

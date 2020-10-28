@@ -70,6 +70,7 @@ public class Unit : MonoBehaviour
     public GameObject ballInGlove, ballInHand, releaseBall;
     //public GameObject self;
 
+
     /*  public void SetHUD(Unit unit)
       {
           HealthSlider.value = unit.currentHP / unit.maxHP;
@@ -211,6 +212,8 @@ public class Unit : MonoBehaviour
             StrWeakHolder.SetActive(false);
         }
         #endregion
+
+
         DamageUI.text = "";
         if (isEnemy)
         {
@@ -341,12 +344,12 @@ public class Unit : MonoBehaviour
 
     public bool TakeDamage(int dmg)
     {
-      //  print(dmg);
-
         currentHP -= dmg;
 
         if (isEnemy)
+        {
             TakeDamageAudio();
+        }
 
         if (currentHP <= 0)
         {

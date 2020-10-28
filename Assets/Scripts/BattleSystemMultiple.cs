@@ -376,6 +376,28 @@ public class BattleSystemMultiple : MonoBehaviour
                 CheatToInstantlyWin();
             }
         }
+
+
+        if (GameManager.StarterMorale <= 0)
+        {
+            playerTurnOrder.Remove(CharacterIdentifier.Starter);
+        }
+
+        if (GameManager.MidRelivMorale <= 0)
+        {
+            playerTurnOrder.Remove(CharacterIdentifier.Middle);
+        }
+
+        if (GameManager.SetUpMorale <= 0)
+        {
+            playerTurnOrder.Remove(CharacterIdentifier.SetUp);
+        }
+
+        if (GameManager.CloserMorale <= 0)
+        {
+            playerTurnOrder.Remove(CharacterIdentifier.Closer);
+        }
+
         #region Select Enemy
         if ((state == BattleStateMultiple.STARTER || state == BattleStateMultiple.MIDDLE || state == BattleStateMultiple.SETUP || state == BattleStateMultiple.CLOSER) && enemySelect)
         {
@@ -529,52 +551,52 @@ public class BattleSystemMultiple : MonoBehaviour
             enemyTurnOrder.RemoveAt(0);
             enemyTurnOrder.Add(upRightNow);
         }
-        Debug.Log("NextTurnCalled: " + upRightNow);
+      //  Debug.Log("NextTurnCalled: " + upRightNow);
 
         switch(upRightNow)
         {
             case CharacterIdentifier.Starter:
-                print("Starter");
+         //       print("Starter");
                 StarterTurn();
                 state = BattleStateMultiple.STARTER;
                 break;
             case CharacterIdentifier.Middle:
-                print("Middle");
+         //       print("Middle");
                 MiddleTurn();
                 state = BattleStateMultiple.MIDDLE;
                 break;
             case CharacterIdentifier.SetUp:
-                print("SetUp");
+         //       print("SetUp");
                 SETUPTurn();
                 state = BattleStateMultiple.SETUP;
                 break;
             case CharacterIdentifier.Closer:
-                print("Closer");
+         //       print("Closer");
                 CloserTurn();
                 state = BattleStateMultiple.CLOSER;
                 break;
             case CharacterIdentifier.Enemy1:
-                print("Enemy1");
+          //      print("Enemy1");
                 state = BattleStateMultiple.ENEMYTURN;
                 StartCoroutine("EnemyTurn", 0);
                 break;
             case CharacterIdentifier.Enemy2:
-                print("Enemy2");
+         //       print("Enemy2");
                 state = BattleStateMultiple.ENEMYTURN;
                 StartCoroutine("EnemyTurn", 1);
                 break;
             case CharacterIdentifier.Enemy3:
-                print("Enemy3");
+           //     print("Enemy3");
                 state = BattleStateMultiple.ENEMYTURN;
                 StartCoroutine("EnemyTurn", 2);
                 break;
             case CharacterIdentifier.Enemy4:
-                print("Enemy4");
+          //      print("Enemy4");
                 state = BattleStateMultiple.ENEMYTURN;
                 StartCoroutine("EnemyTurn", 3);
                 break;
             case CharacterIdentifier.Enemy5:
-                print("Enemy5");
+            //    print("Enemy5");
                 state = BattleStateMultiple.ENEMYTURN;
                 StartCoroutine("EnemyTurn", 4);
                 break;
@@ -1633,7 +1655,7 @@ public class BattleSystemMultiple : MonoBehaviour
                     //
                     playerTurnOrder.Remove(CharacterIdentifier.Starter);
                     Debug.Log("Removing Starter");
-                    DebugPrintList(playerTurnOrder);
+
                     //
                     StarterAnim.SetBool("isDead", true);
                 }
@@ -1646,7 +1668,7 @@ public class BattleSystemMultiple : MonoBehaviour
 
                     playerTurnOrder.Remove(CharacterIdentifier.Middle);
                     Debug.Log("Removing Middle");
-                    DebugPrintList(playerTurnOrder);
+
 
                     MidRelAnim.SetBool("isDead", true);
 
@@ -1660,7 +1682,7 @@ public class BattleSystemMultiple : MonoBehaviour
 
                     playerTurnOrder.Remove(CharacterIdentifier.SetUp);
                     Debug.Log("Removing SetUp");
-                    DebugPrintList(playerTurnOrder);
+
 
                     SetUpAnim.SetBool("isDead", true);
                 }
@@ -1673,12 +1695,12 @@ public class BattleSystemMultiple : MonoBehaviour
 
                     playerTurnOrder.Remove(CharacterIdentifier.Closer);
                     Debug.Log("Removing Closer");
-                    DebugPrintList(playerTurnOrder);
+
 
                     CloserAnim.SetBool("isDead", true);
 
                 }
-
+                DebugPrintList(playerTurnOrder);
                 if (!isDead1)
                 {
                     yield return new WaitForSeconds(.5f);
@@ -1837,7 +1859,9 @@ public class BattleSystemMultiple : MonoBehaviour
                         yield return new WaitForSeconds(2f);
 
                         bool isDead = Starter.TakeDamage(enemyUnit[enemyUnitSelected].enemyDamage);
+
                         print(isDead + " Starter");
+
                         if (isDead)
                         {
                             GameManager.StarterMorale -= enemyUnit[enemyUnitSelected].enemyDamage;

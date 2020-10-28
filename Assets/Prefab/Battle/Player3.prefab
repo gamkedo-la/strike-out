@@ -826,6 +826,10 @@ MonoBehaviour:
   ballInHand: {fileID: 2134537031}
   releaseBall: {fileID: 4850016048595085806, guid: 54d612c030daa69408145133b3a83d1d,
     type: 3}
+  Starter: 0
+  Middle: 0
+  SetUp: 1
+  Closer: 0
 --- !u!114 &5198577936507615313
 MonoBehaviour:
   m_ObjectHideFlags: 0
