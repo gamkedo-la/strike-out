@@ -203,13 +203,6 @@ public class BattleSystemMultiple : MonoBehaviour
 
         print(enemyBattleStationLocations.Count);
 
-
-        if (Boss)
-        {
-            enemyStartCount = 1;
-
-        }
-
         if (GameManager.StarterMorale <= 0)
         {
             GameManager.StarterMorale = 1;
@@ -225,6 +218,11 @@ public class BattleSystemMultiple : MonoBehaviour
         if (GameManager.CloserMorale <= 0)
         {
             GameManager.CloserMorale = 1;
+        }
+
+        if (Boss)
+        {
+            enemyStartCount = 1;
         }
 
         else
@@ -886,16 +884,23 @@ public class BattleSystemMultiple : MonoBehaviour
 
     public void CallBullpen()
     {
-        int Rand = Random.Range(0, 2);
-        if (Rand == 0)
+        if (!Babe)
         {
-            dialogueText.text = "No one is warming up! You can't leave!";
-            NextTurn();
+            int Rand = Random.Range(0, 2);
+            if (Rand == 0)
+            {
+                dialogueText.text = "No one is warming up! You can't leave!";
+                NextTurn();
+            }
+            if (Rand == 1)
+            {
+                dialogueText.text = "The Manager is signaling a replacement, you get away!";
+                StartCoroutine(WaitingAtEndOfBattle());
+            }
         }
-        if (Rand == 1)
+        if (Babe)
         {
-            dialogueText.text = "The Manager is signaling a replacement, you get away!";
-            StartCoroutine(WaitingAtEndOfBattle());
+            dialogueText.text = "You can't run from this fight!";
         }
     }
 
@@ -2591,7 +2596,7 @@ public class BattleSystemMultiple : MonoBehaviour
 
         if (RandInt < 30)
         {
-            print("No item rewarded");
+            InventoryItemPostBattle.text = "No Item Reward".ToString();
         }
         else if (RandInt < 50)
         {
@@ -3376,10 +3381,16 @@ public class BattleSystemMultiple : MonoBehaviour
         {
             SceneManager.LoadScene("ClubHouse");
         }
-
-        if (Babe)
+        if (state == BattleStateMultiple.WON)
         {
-            SceneManager.LoadScene("WinScene");
+            if (Babe)
+            {
+                SceneManager.LoadScene("WinScene");
+            }
+        }
+        else if (state == BattleStateMultiple.STARTER || state == BattleStateMultiple.MIDDLE || state == BattleStateMultiple.SETUP || state == BattleStateMultiple.CLOSER)
+        {
+            SceneManager.LoadScene("ClubHouse");
         }
     }
 

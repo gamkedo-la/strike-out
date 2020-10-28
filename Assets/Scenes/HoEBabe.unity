@@ -63555,7 +63555,7 @@ MonoBehaviour:
   McGee: 0
   Announcer: 0
   Umpire: 0
-  TheBabe: 0
+  TheBabe: 1
   StarterDamageUI: {fileID: 1913259287}
   MiddleDamageUI: {fileID: 316595043}
   SetUpDamageUI: {fileID: 1624650496}
