@@ -635,6 +635,7 @@ GameObject:
   m_Component:
   - component: {fileID: 15059913}
   - component: {fileID: 15059912}
+  - component: {fileID: 15059914}
   m_Layer: 0
   m_Name: CutSceneCam
   m_TagString: Untagged
@@ -676,6 +677,14 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!81 &15059914
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 15059911}
+  m_Enabled: 1
 --- !u!1 &15918042
 GameObject:
   m_ObjectHideFlags: 0
@@ -16969,7 +16978,7 @@ PrefabInstance:
     - target: {fileID: 2618564056278647627, guid: 4a6048c1d7fd75047afef9cecd36b06d,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2618564056278647627, guid: 4a6048c1d7fd75047afef9cecd36b06d,
         type: 3}
@@ -18301,7 +18310,7 @@ PrefabInstance:
     - target: {fileID: 529725988985261706, guid: 88d418b7a7f77de4fa8cf6933239616a,
         type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 529725988985261706, guid: 88d418b7a7f77de4fa8cf6933239616a,
         type: 3}
