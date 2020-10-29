@@ -12,6 +12,7 @@ public class AudioEnemyAnim : AudioEventGeneric
     public AudioData swingDizzy;
     public AudioData swingDizzyBirds;
     public AudioData takeDmg;
+    public AudioData leadup;
 
     private void Start()
     {
@@ -90,5 +91,14 @@ public class AudioEnemyAnim : AudioEventGeneric
         else
             Debug.LogWarning("No take damage audio data!");
 
+    }
+
+    public void LeadUp()
+    {
+        if (leadup)
+        {
+            if (currentBattle)
+                controller.PlayRandom(leadup);
+        }
     }
 }
