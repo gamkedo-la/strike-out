@@ -13,6 +13,9 @@ public class MainMenuManager : MonoBehaviour
 
     public Text loadText;
 
+    public Animator mainCamAnim;
+    public GameObject skip;
+
     public void PlayGame()
     {
         SceneManager.LoadScene("IntroScene");
@@ -213,6 +216,15 @@ public class MainMenuManager : MonoBehaviour
     public void Quit()
     {
         Application.Quit();
+    }
+
+    public void Skip()
+    {
+        mainCamAnim.SetBool("hasEnded", true);
+        cameraMain.GetComponent<mainIntro>().enabled = true;
+        cameraMain.GetComponent<Animator>().enabled = false;
+        menu.SetActive(true);
+        skip.SetActive(false);
     }
     IEnumerator Waiting()
     {
