@@ -13,11 +13,16 @@ MonoBehaviour:
   m_Name: Swing_Dizzy
   m_EditorClassIdentifier: 
   Clip: {fileID: 0}
-  Sounds: []
+  Sounds:
+  - {fileID: 8300000, guid: 5309745e502f67a47a01d050d7c3c127, type: 3}
+  - {fileID: 8300000, guid: f91dedbda2e1c9946ac245752c2461a2, type: 3}
+  - {fileID: 8300000, guid: 806c8aaabd303924295ca72c9940e8fa, type: 3}
+  - {fileID: 8300000, guid: c3b5136b07770224daa711115388a83e, type: 3}
+  - {fileID: 8300000, guid: cab3b74b320f4b841b362c341ae933f4, type: 3}
   mixer: {fileID: 24100000, guid: 75dd9a9b66abc7c4782df25f39d4594d, type: 2}
   output: 1
   Loop: 0
-  Volume: 0
+  Volume: -80
   Pitch: 0
   SpatialBlend: 0
   RandomVolume: 0
