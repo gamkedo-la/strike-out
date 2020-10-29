@@ -1655,7 +1655,14 @@ public class BattleSystemMultiple : MonoBehaviour
 
                 enemyAnim[enemyIndex].Play("Armature|Swing");
 
+                if (Announcer)
+                {
+                    yield return new WaitForSeconds(3.5f);
+                }
+                else
+                { 
                 yield return new WaitForSeconds(2f);
+                }
 
                 bool isDead1 = Starter.TakeDamage(enemyUnit[enemyUnitSelected].enemyDamage);
                 bool isDead2 = MiddleReliever.TakeDamage(enemyUnit[enemyUnitSelected].enemyDamage);
@@ -1850,7 +1857,16 @@ public class BattleSystemMultiple : MonoBehaviour
                 
 
                 enemyAnim[enemyIndex].Play("Armature|Swing");
-                yield return new WaitForSeconds(.5f);
+
+                if (Announcer)
+                {
+                    yield return new WaitForSeconds(1.75f);
+                }
+                else
+                {
+                    yield return new WaitForSeconds(.5f);
+                }
+
 
                 if (WhoToAttack == 0 && !starterDead)
                 {
