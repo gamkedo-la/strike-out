@@ -28,7 +28,7 @@ public class OnTriggerOfPlayer : MonoBehaviour
             Timer -= Time.deltaTime;
         }
 
-        if (Timer <= 0)
+        if (Timer <= 0 && !PlayerMovement.hasAttackedEnemy)
         {
             GameManager.enemyAttackedPlayer = true;
             screenBreak.GetComponent<TurnObjectOn>().enabled = true;

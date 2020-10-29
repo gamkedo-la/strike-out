@@ -21,6 +21,8 @@ public class PlayerMovement : MonoBehaviour
     public GameObject playerModel;
     Animator anim;
 
+    public static bool hasAttackedEnemy;
+
     public bool isSecondLevel;
     private void Start()
     {
@@ -52,6 +54,8 @@ public class PlayerMovement : MonoBehaviour
             }
             if (interactActiveEnemy && Input.GetKeyDown(KeyCode.Space))
             {
+                hasAttackedEnemy = true;
+
                 PlayerLocationDontDestroy.playerX = transform.position.x;
                 PlayerLocationDontDestroy.playerY = transform.position.y;
                 PlayerLocationDontDestroy.playerZ = transform.position.z;

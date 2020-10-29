@@ -3409,6 +3409,7 @@ public class BattleSystemMultiple : MonoBehaviour
         {
             ConcourseGameManager.AnnouncerKilled = true;
         }
+        PlayerMovement.hasAttackedEnemy = false;
         inBattle = false;
         yield return new WaitForSeconds(1.5f);
         state = BattleStateMultiple.START;
@@ -3436,6 +3437,7 @@ public class BattleSystemMultiple : MonoBehaviour
 
     IEnumerator WaitingAtEndOfBattleForTraining()
     {
+        PlayerMovement.hasAttackedEnemy = false;
         inBattle = false;
         yield return new WaitForSeconds(1.5f);
         state = BattleStateMultiple.START;
