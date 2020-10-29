@@ -155,18 +155,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09749b25fde58fe4a9e8eb60f894fcc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sound: {fileID: 11400000, guid: 07897056073977649bd9fcad2187c917, type: 2}
+  sound: {fileID: 11400000, guid: 88fcdd9bedc50bc4d97dec4ac14a184c, type: 2}
   controller: {fileID: 0}
+  playOnce: 0
   currentBattle: {fileID: 0}
-  whoosh: {fileID: 11400000, guid: db8cd35f031ca494aa4db8eb73c99c5f, type: 2}
+  whoosh: {fileID: 11400000, guid: 88fcdd9bedc50bc4d97dec4ac14a184c, type: 2}
   mittPop: {fileID: 11400000, guid: dbafe08f7a95f42418dae3041f3ecf50, type: 2}
   prep: {fileID: 0}
-  downed: {fileID: 0}
+  downed: {fileID: 11400000, guid: ca49342de360c324e8006158feab6b7f, type: 2}
   downedBatFall: {fileID: 0}
-  swingMiss: {fileID: 0}
-  swingDizzy: {fileID: 0}
-  swingDizzyBirds: {fileID: 0}
-  takeDmg: {fileID: 0}
+  swingMiss: {fileID: 11400000, guid: 8ea36c61b4f11c544876700371394b86, type: 2}
+  swingDizzy: {fileID: 11400000, guid: ac535609a5d5dcb498035d8f66767687, type: 2}
+  swingDizzyBirds: {fileID: 11400000, guid: c60643d699b31c944b77a480c88ee189, type: 2}
+  takeDmg: {fileID: 11400000, guid: efddb4b29ae8d554592f4ca5ea7aa64e, type: 2}
+  leadup: {fileID: 11400000, guid: a300bc9b83192194a9f5dba182e66583, type: 2}
 --- !u!95 &4311717998589641863
 Animator:
   serializedVersion: 3
@@ -1168,18 +1170,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09749b25fde58fe4a9e8eb60f894fcc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sound: {fileID: 11400000, guid: 07897056073977649bd9fcad2187c917, type: 2}
+  sound: {fileID: 11400000, guid: 88fcdd9bedc50bc4d97dec4ac14a184c, type: 2}
   controller: {fileID: 2168101808629225030}
+  playOnce: 0
   currentBattle: {fileID: 0}
-  whoosh: {fileID: 11400000, guid: db8cd35f031ca494aa4db8eb73c99c5f, type: 2}
+  whoosh: {fileID: 11400000, guid: 88fcdd9bedc50bc4d97dec4ac14a184c, type: 2}
   mittPop: {fileID: 11400000, guid: dbafe08f7a95f42418dae3041f3ecf50, type: 2}
   prep: {fileID: 0}
-  downed: {fileID: 0}
+  downed: {fileID: 11400000, guid: ca49342de360c324e8006158feab6b7f, type: 2}
   downedBatFall: {fileID: 0}
-  swingMiss: {fileID: 0}
-  swingDizzy: {fileID: 0}
-  swingDizzyBirds: {fileID: 0}
-  takeDmg: {fileID: 0}
+  swingMiss: {fileID: 11400000, guid: 8ea36c61b4f11c544876700371394b86, type: 2}
+  swingDizzy: {fileID: 11400000, guid: ac535609a5d5dcb498035d8f66767687, type: 2}
+  swingDizzyBirds: {fileID: 11400000, guid: c60643d699b31c944b77a480c88ee189, type: 2}
+  takeDmg: {fileID: 11400000, guid: efddb4b29ae8d554592f4ca5ea7aa64e, type: 2}
+  leadup: {fileID: 11400000, guid: a300bc9b83192194a9f5dba182e66583, type: 2}
 --- !u!114 &2168101808629225030
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1813,6 +1817,59 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7136502164250831248, guid: 9b4210d76572b2a4ba9b4dfec795e37a,
+        type: 3}
+      propertyPath: sound
+      value: 
+      objectReference: {fileID: 11400000, guid: 88fcdd9bedc50bc4d97dec4ac14a184c,
+        type: 2}
+    - target: {fileID: 7136502164250831248, guid: 9b4210d76572b2a4ba9b4dfec795e37a,
+        type: 3}
+      propertyPath: whoosh
+      value: 
+      objectReference: {fileID: 11400000, guid: 88fcdd9bedc50bc4d97dec4ac14a184c,
+        type: 2}
+    - target: {fileID: 7136502164250831248, guid: 9b4210d76572b2a4ba9b4dfec795e37a,
+        type: 3}
+      propertyPath: downed
+      value: 
+      objectReference: {fileID: 11400000, guid: ca49342de360c324e8006158feab6b7f,
+        type: 2}
+    - target: {fileID: 7136502164250831248, guid: 9b4210d76572b2a4ba9b4dfec795e37a,
+        type: 3}
+      propertyPath: swingMiss
+      value: 
+      objectReference: {fileID: 11400000, guid: 8ea36c61b4f11c544876700371394b86,
+        type: 2}
+    - target: {fileID: 7136502164250831248, guid: 9b4210d76572b2a4ba9b4dfec795e37a,
+        type: 3}
+      propertyPath: swingDizzy
+      value: 
+      objectReference: {fileID: 11400000, guid: ac535609a5d5dcb498035d8f66767687,
+        type: 2}
+    - target: {fileID: 7136502164250831248, guid: 9b4210d76572b2a4ba9b4dfec795e37a,
+        type: 3}
+      propertyPath: swingDizzyBirds
+      value: 
+      objectReference: {fileID: 11400000, guid: c60643d699b31c944b77a480c88ee189,
+        type: 2}
+    - target: {fileID: 7136502164250831248, guid: 9b4210d76572b2a4ba9b4dfec795e37a,
+        type: 3}
+      propertyPath: takeDmg
+      value: 
+      objectReference: {fileID: 11400000, guid: efddb4b29ae8d554592f4ca5ea7aa64e,
+        type: 2}
+    - target: {fileID: 7136502164250831248, guid: 9b4210d76572b2a4ba9b4dfec795e37a,
+        type: 3}
+      propertyPath: leadup
+      value: 
+      objectReference: {fileID: 11400000, guid: a300bc9b83192194a9f5dba182e66583,
+        type: 2}
+    - target: {fileID: 7136502164250831248, guid: 9b4210d76572b2a4ba9b4dfec795e37a,
+        type: 3}
+      propertyPath: controller
+      value: 
+      objectReference: {fileID: 7253849113098589503}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9b4210d76572b2a4ba9b4dfec795e37a, type: 3}
 --- !u!4 &8440904602521743216 stripped
@@ -1821,3 +1878,15 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 6541853567715924113}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7253849113098589503 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4495591322162449838, guid: 9b4210d76572b2a4ba9b4dfec795e37a,
+    type: 3}
+  m_PrefabInstance: {fileID: 6541853567715924113}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 323552738cd52c34c9876e75ddbc1531, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
