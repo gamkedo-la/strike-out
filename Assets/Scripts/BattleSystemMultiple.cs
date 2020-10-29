@@ -2494,6 +2494,11 @@ public class BattleSystemMultiple : MonoBehaviour
                 HOEGameManager.UmpireDefeated = true;
             }
 
+            if (Babe)
+            {
+                SceneManager.LoadScene("WinScene");
+            }
+
             if (!starterDead)
             {
                 StarterAnim.Play("Armature|Victory");
