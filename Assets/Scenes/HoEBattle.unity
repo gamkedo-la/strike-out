@@ -27117,6 +27117,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 323552738cd52c34c9876e75ddbc1531, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &997672119 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5143373677150880248, guid: 88d418b7a7f77de4fa8cf6933239616a,
+    type: 3}
+  m_PrefabInstance: {fileID: 997672117}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ff1578f3b5652f44b26a5240b7f20ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1002985881
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -29361,7 +29373,7 @@ MonoBehaviour:
   CutSceneCamTarget: {fileID: 0}
   victory: {fileID: 1091831155}
   defeat: {fileID: 1091831154}
-  battleMusic: {fileID: 0}
+  battleMusic: {fileID: 997672119}
   playerTurnOrder: 
   enemyTurnOrder: 
   isPlayerTurn: 0

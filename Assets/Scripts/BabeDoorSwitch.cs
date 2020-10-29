@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class BabeDoorSwitch : MonoBehaviour
 {
@@ -21,6 +19,9 @@ public class BabeDoorSwitch : MonoBehaviour
                 switchToggle.SetBool("isOpen", true);
                 door.Play("babeDoorRotate");
                 cornfield.SetActive(true);
+                AudioButtonAction.ButtonCall("LeverOn");
+                var doorSound = GetComponent<AudioEventGeneric>();
+                doorSound.controller.PlayRandom(doorSound.sound);
             }
         }
     }
