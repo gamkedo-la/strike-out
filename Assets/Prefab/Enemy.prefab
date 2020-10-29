@@ -187,6 +187,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Exclam: {fileID: 2066351976727296188}
+  startTime: 1.5
+  Concourse: 1
+  HoE: 0
 --- !u!195 &2066351976724305603
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -239,6 +242,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 3.5
   rotSpeed: 100
+  distanceToFollow: 30
   rayColor: {r: 1, g: 0, b: 0, a: 0}
   Vendors:
   - {fileID: 1183393357437066011}

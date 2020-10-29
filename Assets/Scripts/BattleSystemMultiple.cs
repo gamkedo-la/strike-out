@@ -359,9 +359,18 @@ public class BattleSystemMultiple : MonoBehaviour
         }
         cutsceneCam.SetActive(false);
 
-        state = BattleStateMultiple.STARTER;
-        StarterTurn();
-        isPlayerTurn = false; //specifically so it will be turned to true in first initialization of NextTurn();
+
+
+        if (GameManager.enemyAttackedPlayer)
+        {
+            isPlayerTurn = true;
+        }
+        else
+        {
+           // state = BattleStateMultiple.STARTER;
+           // StarterTurn();
+            isPlayerTurn = false;
+        }
         NextTurn();
     }
 
@@ -3361,6 +3370,7 @@ public class BattleSystemMultiple : MonoBehaviour
 
     IEnumerator WaitingAtEndOfBattle()
     {
+        GameManager.enemyAttackedPlayer = false;
         if (McGee)
         {
             ConcourseGameManager.McGeeKilled = true;

@@ -498,6 +498,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Exclam: {fileID: 4800625141463072861}
+  startTime: 1.5
+  Concourse: 0
+  HoE: 1
 --- !u!195 &4800625141465935394
 NavMeshAgent:
   m_ObjectHideFlags: 0
