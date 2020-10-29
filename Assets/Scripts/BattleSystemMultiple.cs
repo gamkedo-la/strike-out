@@ -163,6 +163,8 @@ public class BattleSystemMultiple : MonoBehaviour
     //movingBall
     public GameObject movingBall;
 
+    bool gameOverToPreventDuplicates;
+
     private void Start()
     {
         inBattle = true;
@@ -2526,14 +2528,21 @@ public class BattleSystemMultiple : MonoBehaviour
         }
         else if (state == BattleStateMultiple.LOST)
         {
-            dialogueText.text = "You lost the battle...";
-            GameManager.isGameOver = true;
-            StartCoroutine(WaitingAtEndOfBattleForTraining());
-
-            defeat.PlayEvent();
-            battleMusic.controller.StopAll();
-            battleMusic.controller.PlayRandom(battleMusic.OutMusic);
+            if (!gameOverToPreventDuplicates)
+            {
+                dialogueText.text = "You lost the battle...";
+                GameManager.isGameOver = true;
+                StartCoroutine(WaitingAtEndOfBattleForTraining());
+                starterDead = false;
+                middleDead = false;
+                setupDead = false;
+                closerDead = false;
+                defeat.PlayEvent();
+                battleMusic.controller.StopAll();
+                battleMusic.controller.PlayRandom(battleMusic.OutMusic);
+            }
         }
+        gameOverToPreventDuplicates = true;
     }
     public void AddXP()
     {
@@ -2787,7 +2796,7 @@ public class BattleSystemMultiple : MonoBehaviour
 
         for (int i = 0; i < enemyUnit.Count; i++)
         {
-            enemyUnit[i].TakeDamage(100);
+            enemyUnit[i].TakeDamage(10000);
             Debug.Log("Cheat Activated");
         }
         state = BattleStateMultiple.WON;
