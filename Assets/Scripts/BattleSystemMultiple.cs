@@ -198,11 +198,6 @@ public class BattleSystemMultiple : MonoBehaviour
         }
         state = BattleStateMultiple.START;
 
-        if (announcer)
-        {
-           // cutSceneCamAnim.SetBool("Announcer", true);
-        }
-
         print(enemyBattleStationLocations.Count);
 
         if (GameManager.StarterMorale <= 0)
@@ -378,6 +373,7 @@ public class BattleSystemMultiple : MonoBehaviour
 
     private void Update()
     {
+        print(enemyCount);
         //Cheat Code to Win Battle
         {
             if (Input.GetKeyDown(KeyCode.E))
@@ -457,7 +453,7 @@ public class BattleSystemMultiple : MonoBehaviour
             }
         }
 
-        if (enemyCount == 0 && !isOver)
+        if (enemyCount <= 0 && !isOver)
         {
             state = BattleStateMultiple.WON;
             EndBattle();
@@ -557,9 +553,19 @@ public class BattleSystemMultiple : MonoBehaviour
         }
         else {
             upRightNow = enemyTurnOrder[0];
-            enemyTurnOrder.RemoveAt(0);
-            enemyTurnOrder.Add(upRightNow);
+            if (enemyCount <= 0)
+            {
+                state = BattleStateMultiple.WON;
+                EndBattle();
+            }
+            if(!isPlayerTurn)
+            {
+
+                enemyTurnOrder.RemoveAt(0);
+                enemyTurnOrder.Add(upRightNow);
+            }
         }
+
       //  Debug.Log("NextTurnCalled: " + upRightNow);
 
         switch(upRightNow)
@@ -1065,7 +1071,7 @@ public class BattleSystemMultiple : MonoBehaviour
                         RemoveCurrentEnemy();
 
                         enemySelectionParticle.transform.position = enemyBattleStationLocations[enemyUnitSelected].transform.position;
-
+                        enemyCount--;
                     }
 
                     NextTurn();
