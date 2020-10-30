@@ -52091,7 +52091,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -84393,7 +84393,7 @@ RectTransform:
   m_GameObject: {fileID: 1775210299}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.7, y: 1.7, z: 1.7}
+  m_LocalScale: {x: 1.1, y: 1.1, z: 1.1}
   m_Children:
   - {fileID: 1003088308}
   - {fileID: 1265891520}
@@ -101564,6 +101564,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sound: {fileID: 11400000, guid: 07897056073977649bd9fcad2187c917, type: 2}
   controller: {fileID: 2168101809403057624}
+  playOnce: 0
   currentBattle: {fileID: 0}
   whoosh: {fileID: 11400000, guid: db8cd35f031ca494aa4db8eb73c99c5f, type: 2}
   mittPop: {fileID: 11400000, guid: dbafe08f7a95f42418dae3041f3ecf50, type: 2}
@@ -101574,6 +101575,7 @@ MonoBehaviour:
   swingDizzy: {fileID: 0}
   swingDizzyBirds: {fileID: 0}
   takeDmg: {fileID: 0}
+  leadup: {fileID: 0}
 --- !u!224 &1175956954734668047
 RectTransform:
   m_ObjectHideFlags: 0
@@ -103580,6 +103582,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sound: {fileID: 11400000, guid: 07897056073977649bd9fcad2187c917, type: 2}
   controller: {fileID: 0}
+  playOnce: 0
   currentBattle: {fileID: 0}
   whoosh: {fileID: 11400000, guid: db8cd35f031ca494aa4db8eb73c99c5f, type: 2}
   mittPop: {fileID: 11400000, guid: dbafe08f7a95f42418dae3041f3ecf50, type: 2}
@@ -103590,6 +103593,7 @@ MonoBehaviour:
   swingDizzy: {fileID: 0}
   swingDizzyBirds: {fileID: 0}
   takeDmg: {fileID: 0}
+  leadup: {fileID: 0}
 --- !u!114 &4184921972262828221
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -107210,6 +107214,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sound: {fileID: 11400000, guid: 07897056073977649bd9fcad2187c917, type: 2}
   controller: {fileID: 0}
+  playOnce: 0
   currentBattle: {fileID: 0}
   whoosh: {fileID: 11400000, guid: db8cd35f031ca494aa4db8eb73c99c5f, type: 2}
   mittPop: {fileID: 11400000, guid: dbafe08f7a95f42418dae3041f3ecf50, type: 2}
@@ -107220,6 +107225,7 @@ MonoBehaviour:
   swingDizzy: {fileID: 0}
   swingDizzyBirds: {fileID: 0}
   takeDmg: {fileID: 0}
+  leadup: {fileID: 0}
 --- !u!1 &9110727824030250580
 GameObject:
   m_ObjectHideFlags: 0
