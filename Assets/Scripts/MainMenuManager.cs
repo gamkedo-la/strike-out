@@ -222,13 +222,19 @@ public class MainMenuManager : MonoBehaviour
     {
         mainCamAnim.SetBool("hasEnded", true);
         cameraMain.GetComponent<mainIntro>().enabled = true;
-        cameraMain.GetComponent<Animator>().enabled = false;
         menu.SetActive(true);
         skip.SetActive(false);
+        StartCoroutine(Waiting2());
     }
     IEnumerator Waiting()
     {
         yield return new WaitForSeconds(1.25f);
         SceneManager.LoadScene("TrainingArea");
+    }
+
+    IEnumerator Waiting2()
+    {
+        yield return new WaitForSeconds(.5f);
+        cameraMain.GetComponent<Animator>().enabled = false;
     }
 }
