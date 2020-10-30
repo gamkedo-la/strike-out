@@ -159,6 +159,8 @@ public class PauseMenu : MonoBehaviour
 
         PlayerPrefs.SetInt("HOEUnlockedValue", TVTurnOn.HOEUnlockedValue);
 
+        PlayerPrefs.Save();
+
         //items are not currently saved
     }
 
