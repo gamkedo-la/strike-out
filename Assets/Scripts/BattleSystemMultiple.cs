@@ -164,6 +164,7 @@ public class BattleSystemMultiple : MonoBehaviour
     public GameObject movingBall;
 
     bool gameOverToPreventDuplicates;
+    bool preventingAddXPDup;
 
     private void Start()
     {
@@ -373,7 +374,6 @@ public class BattleSystemMultiple : MonoBehaviour
 
     private void Update()
     {
-        print(enemyCount);
         //Cheat Code to Win Battle
         {
             if (Input.GetKeyDown(KeyCode.E))
@@ -453,12 +453,12 @@ public class BattleSystemMultiple : MonoBehaviour
             }
         }
 
-        if (enemyCount <= 0 && !isOver)
+        if (enemyCount == 0 && !isOver)
         {
             state = BattleStateMultiple.WON;
             EndBattle();
         }
-
+        
         if (starterDead && middleDead && setupDead && closerDead)
         {
             state = BattleStateMultiple.LOST;
@@ -545,26 +545,19 @@ public class BattleSystemMultiple : MonoBehaviour
         CharacterIdentifier upRightNow;
         if (isPlayerTurn)
         {
-
             DebugPrintList(playerTurnOrder);
             upRightNow = playerTurnOrder[0];
             playerTurnOrder.RemoveAt(0);
             playerTurnOrder.Add(upRightNow);
         }
-        else {
-            upRightNow = enemyTurnOrder[0];
-            if (enemyCount <= 0)
-            {
-                state = BattleStateMultiple.WON;
-                EndBattle();
-            }
-            if(!isPlayerTurn)
-            {
 
-                enemyTurnOrder.RemoveAt(0);
-                enemyTurnOrder.Add(upRightNow);
-            }
+        else 
+        {
+            upRightNow = enemyTurnOrder[0];
+            enemyTurnOrder.RemoveAt(0);
+            enemyTurnOrder.Add(upRightNow);
         }
+
 
       //  Debug.Log("NextTurnCalled: " + upRightNow);
 
@@ -2542,9 +2535,11 @@ public class BattleSystemMultiple : MonoBehaviour
             EndingMenu.SetActive(true);
             PlayerPitches.SetActive(false);
             PlayerMenu.SetActive(false);
-            if (!isOver)
+
+            if (!isOver && !preventingAddXPDup)
             {
                 AddXP();
+                isOver = true;
             }
 
             isOver = true;
@@ -2573,6 +2568,8 @@ public class BattleSystemMultiple : MonoBehaviour
     }
     public void AddXP()
     {
+        preventingAddXPDup = true;
+        print("why are you here");
         for (int i = 0; i < enemyUnit.Count; i++)
         {
             GameManager.Money += enemyUnit[i].MoneyToDistribute;
@@ -2633,6 +2630,7 @@ public class BattleSystemMultiple : MonoBehaviour
         }
 
         ChooseItem();
+
     }
 
     void ChooseItem()
@@ -2673,8 +2671,6 @@ public class BattleSystemMultiple : MonoBehaviour
             InventoryManage.GetComponent<InventoryManager>().EnemyHealthDownAll20();
             InventoryItemPostBattle.text = "Defensive Shift".ToString();
         }
-
-
     }
 
     void StarterExp(int xp)
