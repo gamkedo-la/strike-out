@@ -148,4 +148,12 @@ public class AIMovement : MonoBehaviour
         }
         isWandering = false;
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "DestroyEnemy")
+        {
+            Destroy(this.gameObject);
+        }
+    }
 }

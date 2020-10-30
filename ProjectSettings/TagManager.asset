@@ -12,6 +12,7 @@ TagManager:
   - Keys
   - MiniMap
   - Wall
+  - DestroyEnemy
   layers:
   - Default
   - TransparentFX
