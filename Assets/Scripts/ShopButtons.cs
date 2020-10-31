@@ -16,7 +16,7 @@ public class ShopButtons : MonoBehaviour
     {
         scoutingMenu.SetActive(true);
         minorMenu.SetActive(true);
-        majorMenu.SetActive(true);
+        majorMenu.SetActive(false);
         itemMenu.SetActive(false);
     }
 

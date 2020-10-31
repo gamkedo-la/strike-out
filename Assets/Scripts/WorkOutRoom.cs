@@ -74,7 +74,7 @@ public class WorkOutRoom : MonoBehaviour
 
     private void Update()
     {
-        Money.text = GameManager.Money.ToString();
+        Money.text = "$ " + GameManager.Money.ToString();
         if (StartB)
         {
             SF.value = GameManager.StarterFast;
