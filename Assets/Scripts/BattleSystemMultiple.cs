@@ -741,6 +741,7 @@ public class BattleSystemMultiple : MonoBehaviour
         {
             GameManagerObject.GetComponent<GameManager>().CloserHealthUp(20);
         }
+
         AdvanceTurn();
     }
 
@@ -2692,7 +2693,7 @@ public class BattleSystemMultiple : MonoBehaviour
 
                 SLevel = true;
                 SLevelUp.SetActive(true);
-                GameManager.StarterTargetExp *= 2f;
+                GameManager.StarterTargetExp *= 1.25f;
                 //add training points
                 StarterExpToNext.text = (GameManager.StarterTargetExp - GameManager.StarterExp).ToString("F0");
                 int NewLevelS = GameManager.StarterLevel;
@@ -2730,7 +2731,7 @@ public class BattleSystemMultiple : MonoBehaviour
 
                 MLevel = true;
                 MLevelUp.SetActive(true);
-                GameManager.MRTargetExp *= 2f;
+                GameManager.MRTargetExp *= 1.5f;
                 //add training points
                 int NewLevelM = GameManager.MRLevel;
                 int Difference = NewLevelM - OldLevelM;
@@ -2764,7 +2765,7 @@ public class BattleSystemMultiple : MonoBehaviour
 
                 SeLevel = true;
                 SetUpLevelUp.SetActive(true);
-                GameManager.SetupTargetExp *= 2f;
+                GameManager.SetupTargetExp *= 1.75f;
                 //add training points
 
                 int NewLevelSe = GameManager.SetUpLevel;

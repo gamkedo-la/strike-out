@@ -619,10 +619,10 @@ public class GameManager : MonoBehaviour
         #endregion
 
         #region Experience
-        starterTargetExp = 5;
-        mrTargetExp = 5;
-        setupTargetExp = 5;
-        closerTargetExp = 5;
+        starterTargetExp = 5f;
+        mrTargetExp = 4.5f;
+        setupTargetExp = 4f;
+        closerTargetExp = 3.5f;
         #endregion
 
         #region Level
