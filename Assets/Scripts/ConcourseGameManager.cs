@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class ConcourseGameManager : MonoBehaviour
 {
@@ -20,6 +21,11 @@ public class ConcourseGameManager : MonoBehaviour
 
     private void Start()
     {
+        Player.GetComponent<NavMeshAgent>().enabled = false;
+        Player.transform.position = new Vector3(PlayerLocationDontDestroy.playerX, PlayerLocationDontDestroy.playerY, PlayerLocationDontDestroy.playerZ);
+        print("I transported the player to: " + Player.transform.position);
+        Player.GetComponent<NavMeshAgent>().enabled = true;
+
         if (!McGeeHasAlreadyBeenKilled)
         {
             if (McGeeKilled)

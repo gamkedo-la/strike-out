@@ -14,10 +14,12 @@ public class OnTriggerOfPlayer : MonoBehaviour
     public bool HoE;
 
     GameObject screenBreak;
+    GameObject player;
 
     private void Start()
     {
         screenBreak = GameObject.Find("EnemyScreenBreakHolder");
+        player = GameObject.Find("Player");
     }
 
     private void Update()
@@ -60,10 +62,22 @@ public class OnTriggerOfPlayer : MonoBehaviour
         yield return new WaitForSeconds(2.5f);
         if (HoE)
         {
+            PlayerLocationDontDestroy.playerX = player.transform.position.x;
+            PlayerLocationDontDestroy.playerY = player.transform.position.y;
+            PlayerLocationDontDestroy.playerZ = player.transform.position.z;
+
+            print("Saving location as: " + PlayerLocationDontDestroy.playerX + "," + PlayerLocationDontDestroy.playerY + "," + PlayerLocationDontDestroy.playerZ);
+
             SceneManager.LoadScene("HoEBattle");
         }
         if (Concourse)
         {
+            PlayerLocationDontDestroy.playerX = player.transform.position.x;
+            PlayerLocationDontDestroy.playerY = player.transform.position.y;
+            PlayerLocationDontDestroy.playerZ = player.transform.position.z;
+
+            print("Saving location as: " + PlayerLocationDontDestroy.playerX + "," + PlayerLocationDontDestroy.playerY + "," + PlayerLocationDontDestroy.playerZ);
+
             SceneManager.LoadScene("SampleScene");
         }
     }

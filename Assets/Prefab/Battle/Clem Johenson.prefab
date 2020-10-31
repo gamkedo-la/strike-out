@@ -137,6 +137,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sound: {fileID: 11400000, guid: 07897056073977649bd9fcad2187c917, type: 2}
   controller: {fileID: 4196488397902541356}
+  playOnce: 0
   currentBattle: {fileID: 0}
   whoosh: {fileID: 11400000, guid: db8cd35f031ca494aa4db8eb73c99c5f, type: 2}
   mittPop: {fileID: 11400000, guid: dbafe08f7a95f42418dae3041f3ecf50, type: 2}
@@ -147,6 +148,7 @@ MonoBehaviour:
   swingDizzy: {fileID: 11400000, guid: ac535609a5d5dcb498035d8f66767687, type: 2}
   swingDizzyBirds: {fileID: 11400000, guid: c60643d699b31c944b77a480c88ee189, type: 2}
   takeDmg: {fileID: 11400000, guid: efddb4b29ae8d554592f4ca5ea7aa64e, type: 2}
+  leadup: {fileID: 0}
 --- !u!1 &1043011340580196967
 GameObject:
   m_ObjectHideFlags: 0
@@ -647,13 +649,13 @@ MonoBehaviour:
   ChangeUpMultiplier: 1
   enemyDamage: 8
   attackName: 
-  maxHP: 15
-  currentHP: 15
+  maxHP: 20
+  currentHP: 20
   maxStamina: 30
   currentStamina: 25
   ExperienceToDistribute: 0
-  minExperience: 3
-  maxExperience: 6
+  minExperience: 5
+  maxExperience: 10
   MoneyToDistribute: 0
   minMoney: 5
   maxMoney: 8
@@ -716,6 +718,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sound: {fileID: 11400000, guid: 07897056073977649bd9fcad2187c917, type: 2}
   controller: {fileID: -1713807769092919761}
+  playOnce: 0
   currentBattle: {fileID: 0}
   whoosh: {fileID: 11400000, guid: db8cd35f031ca494aa4db8eb73c99c5f, type: 2}
   mittPop: {fileID: 11400000, guid: dbafe08f7a95f42418dae3041f3ecf50, type: 2}
@@ -726,6 +729,7 @@ MonoBehaviour:
   swingDizzy: {fileID: 11400000, guid: ac535609a5d5dcb498035d8f66767687, type: 2}
   swingDizzyBirds: {fileID: 11400000, guid: c60643d699b31c944b77a480c88ee189, type: 2}
   takeDmg: {fileID: 11400000, guid: efddb4b29ae8d554592f4ca5ea7aa64e, type: 2}
+  leadup: {fileID: 0}
 --- !u!114 &-1713807769092919761
 MonoBehaviour:
   m_ObjectHideFlags: 0
