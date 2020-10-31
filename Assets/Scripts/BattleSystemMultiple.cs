@@ -901,6 +901,7 @@ public class BattleSystemMultiple : MonoBehaviour
             if (Rand == 0)
             {
                 dialogueText.text = "No one is warming up! You can't leave!";
+                PlayerMenu.SetActive(false);
                 NextTurn();
             }
             if (Rand == 1)
@@ -912,6 +913,8 @@ public class BattleSystemMultiple : MonoBehaviour
         if (Babe || Announcer || McGee || Umpire)
         {
             dialogueText.text = "You can't run from this fight!";
+            PlayerMenu.SetActive(false);
+            NextTurn();
         }
     }
 

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -724,11 +725,29 @@ public class GameManager : MonoBehaviour
             moneyUI = GameObject.Find("Money").GetComponent<Text>();
             moneyUI.text = "$ " + Money.ToString("F0");
         }
+
+
+       /* if (SceneManager.GetActiveScene().name == "Concourse" || SceneManager.GetActiveScene().name == "ClubHouse")
+        {
+            print("you should be displaying the UI slider");
+
+            Starter.value = (StarterMorale / StarterMoraleMax);
+            MidReliv.value = (MidRelivMorale / MidRelivMoraleMax);
+            SetUp.value = (SetUpMorale / SetUpMoraleMax);
+            Closer.value = (CloserMorale / CloserMoraleMax);
+
+
+            StarterE.value = (StarterEnergy / StarterEnergyMax);
+            MidRelivE.value = (MidRelivEnergy / MidRelievEnergyMax);
+            SetUpE.value = (SetUpEnergy / SetUpEnergyMax);
+            CloserE.value = (CloserEnergy / CloserEnergyMax);
+        }*/
     }
 
     private void Update()
     {
         UpdateUI();
+
     }
     #region Items
 

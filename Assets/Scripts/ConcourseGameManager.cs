@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class ConcourseGameManager : MonoBehaviour
 {
@@ -21,8 +22,26 @@ public class ConcourseGameManager : MonoBehaviour
 
     public GameObject AnnouncerConvo, AnnouncerCam;
 
+    Slider SM, MM, SeM, CM, SE, ME, SeE, CE;
+
+
+    private void Awake()
+    {
+        SM = GameObject.Find("StarterMorale").GetComponent<Slider>();
+        MM = GameObject.Find("MiddleRelivMorale").GetComponent<Slider>();
+        SeM = GameObject.Find("SetUpMorale").GetComponent<Slider>();
+        CM = GameObject.Find("CloserMorale").GetComponent<Slider>();
+
+        SE = GameObject.Find("StarterEnergy").GetComponent<Slider>();
+        ME = GameObject.Find("MiddleRelivEnergy").GetComponent<Slider>();
+        SeE = GameObject.Find("SetUpEnergy").GetComponent<Slider>();
+        CE = GameObject.Find("CloserEnergy").GetComponent<Slider>();
+
+    }
     private void Start()
     {
+       
+
         if (elevatorUnlocked)
         {
             Destroy(elevatorBlock);
@@ -34,7 +53,7 @@ public class ConcourseGameManager : MonoBehaviour
 
         Player.GetComponent<NavMeshAgent>().enabled = false;
         Player.transform.position = new Vector3(PlayerLocationDontDestroy.playerX, PlayerLocationDontDestroy.playerY, PlayerLocationDontDestroy.playerZ);
-        print("I transported the player to: " + Player.transform.position);
+        //print("I transported the player to: " + Player.transform.position);
         Player.GetComponent<NavMeshAgent>().enabled = true;
 
         if (!McGeeHasAlreadyBeenKilled)
@@ -57,6 +76,19 @@ public class ConcourseGameManager : MonoBehaviour
                 StartCoroutine(AnnouncerKilledWait());
             }
         }
+    }
+
+    private void Update()
+    {
+        SM.value = (GameManager.StarterMorale / GameManager.StarterMoraleMax);
+        MM.value = (GameManager.MidRelivMorale / GameManager.MidRelivMoraleMax);
+        SeM.value = (GameManager.SetUpMorale / GameManager.SetUpMoraleMax);
+        CM.value = (GameManager.CloserMorale / GameManager.CloserMoraleMax);
+
+        SE.value = (GameManager.StarterEnergy / GameManager.StarterEnergyMax);
+        ME.value = (GameManager.MidRelivEnergy / GameManager.MidRelievEnergyMax);
+        SeE.value = (GameManager.SetUpEnergy / GameManager.SetUpEnergyMax);
+        CE.value = (GameManager.CloserEnergy / GameManager.CloserEnergyMax);
     }
 
     IEnumerator McGeeKilledWaiting()
