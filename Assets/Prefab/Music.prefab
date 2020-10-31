@@ -64,5 +64,13 @@ MonoBehaviour:
   StartMusic: []
   LoopMusic: []
   OutMusic: {fileID: 0}
+  playIntro: 0
   bpm: 0
-  lengthOfStart: 0
+  lengthOfStartBars: 0
+  mixer: {fileID: 24100000, guid: 75dd9a9b66abc7c4782df25f39d4594d, type: 2}
+  normal: {fileID: 24500006, guid: 75dd9a9b66abc7c4782df25f39d4594d, type: 2}
+  transition: {fileID: 9081107370499206309, guid: 75dd9a9b66abc7c4782df25f39d4594d,
+    type: 2}
+  thisScene: {fileID: 6433332742148581711, guid: 75dd9a9b66abc7c4782df25f39d4594d,
+    type: 2}
+  useSnapshot: 0
