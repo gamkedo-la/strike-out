@@ -11,6 +11,16 @@ public class Training : MonoBehaviour
 
     private void Start()
     {
+        GameManager.StarterMorale = GameManager.StarterMoraleMax;
+        GameManager.MidRelivMorale = GameManager.MidRelivMoraleMax;
+        GameManager.SetUpMorale = GameManager.SetUpMoraleMax;
+        GameManager.CloserMorale = GameManager.CloserMoraleMax;
+
+        GameManager.StarterEnergy = GameManager.StarterEnergyMax;
+        GameManager.MidRelivEnergy = GameManager.MidRelievEnergyMax;
+        GameManager.SetUpEnergy = GameManager.SetUpEnergyMax;
+        GameManager.CloserEnergy = GameManager.CloserEnergyMax;
+
         LevelSelectTV = false;
 
         ConcourseGameManager.AnnouncerKilled = false;

@@ -135,9 +135,9 @@ MonoBehaviour:
   sliderStamina: 0
   curveballStamina: 0
   changeupStamina: 0
-  FastballMultiplier: 0.5
+  FastballMultiplier: 1
   SliderMultiplier: 1
-  CurveballMultiplier: 2
+  CurveballMultiplier: 1
   ChangeUpMultiplier: 1
   enemyDamage: 10
   attackName: 
@@ -210,6 +210,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sound: {fileID: 11400000, guid: 8ea36c61b4f11c544876700371394b86, type: 2}
   controller: {fileID: 5757743381820771121}
+  playOnce: 0
   currentBattle: {fileID: 0}
   whoosh: {fileID: 11400000, guid: 88fcdd9bedc50bc4d97dec4ac14a184c, type: 2}
   mittPop: {fileID: 11400000, guid: dbafe08f7a95f42418dae3041f3ecf50, type: 2}
@@ -220,6 +221,7 @@ MonoBehaviour:
   swingDizzy: {fileID: 0}
   swingDizzyBirds: {fileID: 0}
   takeDmg: {fileID: 11400000, guid: efddb4b29ae8d554592f4ca5ea7aa64e, type: 2}
+  leadup: {fileID: 0}
 --- !u!114 &5757743381820771121
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -502,6 +504,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sound: {fileID: 11400000, guid: 8ea36c61b4f11c544876700371394b86, type: 2}
   controller: {fileID: 2148727760288164547}
+  playOnce: 0
   currentBattle: {fileID: 0}
   whoosh: {fileID: 11400000, guid: 88fcdd9bedc50bc4d97dec4ac14a184c, type: 2}
   mittPop: {fileID: 11400000, guid: dbafe08f7a95f42418dae3041f3ecf50, type: 2}
@@ -512,6 +515,7 @@ MonoBehaviour:
   swingDizzy: {fileID: 0}
   swingDizzyBirds: {fileID: 0}
   takeDmg: {fileID: 11400000, guid: efddb4b29ae8d554592f4ca5ea7aa64e, type: 2}
+  leadup: {fileID: 0}
 --- !u!1 &4098930328184929414
 GameObject:
   m_ObjectHideFlags: 0

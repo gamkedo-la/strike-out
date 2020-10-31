@@ -1098,9 +1098,9 @@ MonoBehaviour:
   curveballStamina: 0
   changeupStamina: 0
   FastballMultiplier: 0.5
-  SliderMultiplier: 1
-  CurveballMultiplier: 2
-  ChangeUpMultiplier: 1
+  SliderMultiplier: 0.5
+  CurveballMultiplier: 0.5
+  ChangeUpMultiplier: 0.5
   enemyDamage: 30
   attackName: Shagging
   maxHP: 500
