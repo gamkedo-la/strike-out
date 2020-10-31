@@ -94,6 +94,8 @@ AudioMixerController:
   m_MasterGroup: {fileID: 24300002}
   m_Snapshots:
   - {fileID: 24500006}
+  - {fileID: 6433332742148581711}
+  - {fileID: 9081107370499206309}
   m_StartSnapshot: {fileID: 24500006}
   m_SuspendThreshold: -80
   m_EnableSuspend: 1
@@ -108,7 +110,7 @@ AudioMixerController:
     - d63e2843df68035449237659d2b58eee
     name: View
   m_CurrentViewIndex: 0
-  m_TargetSnapshot: {fileID: 24500006}
+  m_TargetSnapshot: {fileID: 9081107370499206309}
 --- !u!243 &24300002
 AudioMixerGroupController:
   m_ObjectHideFlags: 0
@@ -180,6 +182,21 @@ AudioMixerGroupController:
   m_Mute: 0
   m_Solo: 0
   m_BypassEffects: 0
+--- !u!245 &6433332742148581711
+AudioMixerSnapshotController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: WinScene
+  m_AudioMixer: {fileID: 24100000}
+  m_SnapshotID: ad6d4160c73d3ac4985e87437b777b60
+  m_FloatValues:
+    5e5aede08557c79459aa6c87ea3f8fad: 10
+    db16c103baa6ca04a92939450cfc3dda: -8.841784
+    ae43367bed6b96246adf90372f32f97f: -10.4748535
+    219dc1bcc4f578c4c9093e8cbba29f62: -9.9
+  m_TransitionOverrides: {}
 --- !u!244 &7070126860467170510
 AudioMixerEffectController:
   m_ObjectHideFlags: 3
@@ -233,3 +250,18 @@ AudioMixerGroupController:
   m_Mute: 0
   m_Solo: 0
   m_BypassEffects: 0
+--- !u!245 &9081107370499206309
+AudioMixerSnapshotController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Transition
+  m_AudioMixer: {fileID: 24100000}
+  m_SnapshotID: 008cd89737446d747942f4aa373e5bde
+  m_FloatValues:
+    5e5aede08557c79459aa6c87ea3f8fad: 10
+    db16c103baa6ca04a92939450cfc3dda: -80
+    ae43367bed6b96246adf90372f32f97f: -0.102314055
+    219dc1bcc4f578c4c9093e8cbba29f62: -9.9
+  m_TransitionOverrides: {}

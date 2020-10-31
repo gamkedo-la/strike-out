@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Audio;
 
 public class MusicHandler : MonoBehaviour
 {
@@ -15,6 +16,14 @@ public class MusicHandler : MonoBehaviour
 
     private double nextStartTime;
 
+    [Header("Snapshot Info")]
+    public AudioMixer mixer;
+    public AudioMixerSnapshot normal;
+    public AudioMixerSnapshot transition;
+    public AudioMixerSnapshot thisScene;
+    public bool useSnapshot;
+
+
     private void Awake()
     {
         if (controller == null)
@@ -26,6 +35,11 @@ public class MusicHandler : MonoBehaviour
 
     void Start()
     {
+        if (useSnapshot)
+        { thisScene.TransitionTo(1f); }
+        else
+        { normal.TransitionTo(2f); }
+
         nextStartTime = AudioSettings.dspTime + 1f;
         //Debug.LogWarning(nextStartTime);
 
@@ -58,6 +72,7 @@ public class MusicHandler : MonoBehaviour
     private void OnDestroy()
     {
         nextStartTime = AudioSettings.dspTime + 1f;
+        transition.TransitionTo(1f);
         //Debug.LogWarning(nextStartTime);
     }
 }
