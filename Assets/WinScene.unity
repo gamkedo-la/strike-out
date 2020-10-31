@@ -38762,10 +38762,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: Music
       objectReference: {fileID: 0}
+    - target: {fileID: 529725988985261711, guid: 88d418b7a7f77de4fa8cf6933239616a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5143373677150880248, guid: 88d418b7a7f77de4fa8cf6933239616a,
         type: 3}
       propertyPath: StartMusic.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5143373677150880248, guid: 88d418b7a7f77de4fa8cf6933239616a,
         type: 3}
@@ -92880,6 +92885,7 @@ GameObject:
   - component: {fileID: 2044077597}
   - component: {fileID: 2044077598}
   - component: {fileID: 2044077599}
+  - component: {fileID: 2044077600}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -93028,8 +93034,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae26f696ba4d612438922224dc29fdda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sound: {fileID: 11400000, guid: adc9f1ed76657764b9e5dbdee43408cc, type: 2}
-  controller: {fileID: 0}
+  sound: {fileID: 11400000, guid: bfb1170c55819c44ba7f7a955043b97b, type: 2}
+  controller: {fileID: 2044077600}
   playOnce: 0
 --- !u!114 &2044077599
 MonoBehaviour:
@@ -93038,7 +93044,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2044077590}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6bbbb35c8a893e04cb29dd0ca9d2a27e, type: 3}
   m_Name: 
@@ -93048,6 +93054,22 @@ MonoBehaviour:
   prep: {fileID: 11400000, guid: 14bc4a6529e919d42a41bf4e787cfa59, type: 2}
   downed: {fileID: 0}
   controller: {fileID: 0}
+--- !u!114 &2044077600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2044077590}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 323552738cd52c34c9876e75ddbc1531, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  source: {fileID: 0}
+  sources: []
+  currentIndex: 0
+  maxSources: 5
 --- !u!1001 &2053375164
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -103845,7 +103867,7 @@ MonoBehaviour:
   controller: {fileID: 0}
   playOnce: 0
   currentBattle: {fileID: 0}
-  whoosh: {fileID: 11400000, guid: 8ea36c61b4f11c544876700371394b86, type: 2}
+  whoosh: {fileID: 11400000, guid: 90007dc9b951a564cb7e94972ad6a98a, type: 2}
   mittPop: {fileID: 11400000, guid: dbafe08f7a95f42418dae3041f3ecf50, type: 2}
   prep: {fileID: 0}
   downed: {fileID: 11400000, guid: ca49342de360c324e8006158feab6b7f, type: 2}
