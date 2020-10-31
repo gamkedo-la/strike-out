@@ -758,20 +758,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09749b25fde58fe4a9e8eb60f894fcc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sound: {fileID: 11400000, guid: 07897056073977649bd9fcad2187c917, type: 2}
-  controller: {fileID: 7343136832007318546}
+  sound: {fileID: 11400000, guid: 88fcdd9bedc50bc4d97dec4ac14a184c, type: 2}
+  controller: {fileID: 0}
   playOnce: 0
   currentBattle: {fileID: 0}
-  whoosh: {fileID: 11400000, guid: db8cd35f031ca494aa4db8eb73c99c5f, type: 2}
+  whoosh: {fileID: 11400000, guid: 88fcdd9bedc50bc4d97dec4ac14a184c, type: 2}
   mittPop: {fileID: 11400000, guid: dbafe08f7a95f42418dae3041f3ecf50, type: 2}
   prep: {fileID: 0}
-  downed: {fileID: 0}
+  downed: {fileID: 11400000, guid: ca49342de360c324e8006158feab6b7f, type: 2}
   downedBatFall: {fileID: 0}
-  swingMiss: {fileID: 0}
-  swingDizzy: {fileID: 0}
-  swingDizzyBirds: {fileID: 0}
-  takeDmg: {fileID: 0}
-  leadup: {fileID: 0}
+  swingMiss: {fileID: 11400000, guid: 8ea36c61b4f11c544876700371394b86, type: 2}
+  swingDizzy: {fileID: 11400000, guid: ac535609a5d5dcb498035d8f66767687, type: 2}
+  swingDizzyBirds: {fileID: 11400000, guid: c60643d699b31c944b77a480c88ee189, type: 2}
+  takeDmg: {fileID: 11400000, guid: efddb4b29ae8d554592f4ca5ea7aa64e, type: 2}
+  leadup: {fileID: 11400000, guid: a300bc9b83192194a9f5dba182e66583, type: 2}
 --- !u!114 &7343136832007318546
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1624,20 +1624,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09749b25fde58fe4a9e8eb60f894fcc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sound: {fileID: 11400000, guid: 07897056073977649bd9fcad2187c917, type: 2}
+  sound: {fileID: 11400000, guid: 88fcdd9bedc50bc4d97dec4ac14a184c, type: 2}
   controller: {fileID: 0}
   playOnce: 0
   currentBattle: {fileID: 0}
-  whoosh: {fileID: 11400000, guid: db8cd35f031ca494aa4db8eb73c99c5f, type: 2}
+  whoosh: {fileID: 11400000, guid: 88fcdd9bedc50bc4d97dec4ac14a184c, type: 2}
   mittPop: {fileID: 11400000, guid: dbafe08f7a95f42418dae3041f3ecf50, type: 2}
   prep: {fileID: 0}
-  downed: {fileID: 0}
+  downed: {fileID: 11400000, guid: ca49342de360c324e8006158feab6b7f, type: 2}
   downedBatFall: {fileID: 0}
-  swingMiss: {fileID: 0}
-  swingDizzy: {fileID: 0}
-  swingDizzyBirds: {fileID: 0}
-  takeDmg: {fileID: 0}
-  leadup: {fileID: 0}
+  swingMiss: {fileID: 11400000, guid: 8ea36c61b4f11c544876700371394b86, type: 2}
+  swingDizzy: {fileID: 11400000, guid: ac535609a5d5dcb498035d8f66767687, type: 2}
+  swingDizzyBirds: {fileID: 11400000, guid: c60643d699b31c944b77a480c88ee189, type: 2}
+  takeDmg: {fileID: 11400000, guid: efddb4b29ae8d554592f4ca5ea7aa64e, type: 2}
+  leadup: {fileID: 11400000, guid: a300bc9b83192194a9f5dba182e66583, type: 2}
 --- !u!95 &4623219604573929171
 Animator:
   serializedVersion: 3
