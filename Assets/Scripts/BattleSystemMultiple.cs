@@ -402,7 +402,35 @@ public class BattleSystemMultiple : MonoBehaviour
         {
             playerTurnOrder.Remove(CharacterIdentifier.Closer);
         }
+        //Adding
+        if (GameManager.StarterMorale >= 0 && starterDead)
+        {
+            StarterAnim.SetBool("isDead", false);
+            starterDead = false;
+            playerTurnOrder.Add(CharacterIdentifier.Starter);
+        }
 
+        if (GameManager.MidRelivMorale >= 0 && middleDead)
+        {
+            MidRelAnim.SetBool("isDead", false);
+            middleDead = false;
+            playerTurnOrder.Add(CharacterIdentifier.Middle);
+        }
+
+        if (GameManager.SetUpMorale >= 0 && setupDead)
+        {
+            SetUpAnim.SetBool("isDead", false);
+            setupDead = false;
+            playerTurnOrder.Add(CharacterIdentifier.SetUp);
+        }
+
+        if (GameManager.CloserMorale >= 0 && closerDead)
+        {
+            CloserAnim.SetBool("isDead", false);
+            closerDead = false;
+            playerTurnOrder.Add(CharacterIdentifier.Closer);
+        }
+        
         #region Select Enemy
         if ((state == BattleStateMultiple.STARTER || state == BattleStateMultiple.MIDDLE || state == BattleStateMultiple.SETUP || state == BattleStateMultiple.CLOSER) && enemySelect)
         {
@@ -656,7 +684,10 @@ public class BattleSystemMultiple : MonoBehaviour
 
             for (int i = 0; i < enemyUnit.Count; i++)
             {
-                enemyUnit[i].TakeDamage(-5);
+                if (enemyUnit[i].currentHP > 0)
+                {
+                    enemyUnit[i].TakeDamage(-5);
+                }
             }
         }
 
@@ -676,7 +707,10 @@ public class BattleSystemMultiple : MonoBehaviour
 
             for (int i = 0; i < enemyUnit.Count; i++)
             {
-                enemyUnit[i].TakeDamage(-5);
+                if (enemyUnit[i].currentHP > 0)
+                {
+                    enemyUnit[i].TakeDamage(-5);
+                }
             }
         }
 
@@ -696,7 +730,10 @@ public class BattleSystemMultiple : MonoBehaviour
 
             for (int i = 0; i < enemyUnit.Count; i++)
             {
-                enemyUnit[i].TakeDamage(-5);
+                if (enemyUnit[i].currentHP > 0)
+                {
+                    enemyUnit[i].TakeDamage(-5);
+                }
             }
         }
 
@@ -716,7 +753,10 @@ public class BattleSystemMultiple : MonoBehaviour
 
             for (int i = 0; i < enemyUnit.Count; i++)
             {
-                enemyUnit[i].TakeDamage(-5);
+                if (enemyUnit[i].currentHP > 0)
+                {
+                    enemyUnit[i].TakeDamage(-5);
+                }
             }
         }
         AdvanceTurn();
