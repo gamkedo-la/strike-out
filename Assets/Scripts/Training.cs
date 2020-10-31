@@ -66,6 +66,8 @@ public class Training : MonoBehaviour
         GameManager.i24 = false;
         GameManager.i25 = false;
 
+        ConcourseGameManager.elevatorUnlocked = false;
+
         PlayerLocationDontDestroy.isStarting = true;
     }
 

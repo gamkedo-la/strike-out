@@ -12,6 +12,8 @@ public class ConcourseGameManager : MonoBehaviour
 
     public GameObject elevatorBlock, barrierOnElevator1, barrierOnElevator2, barrierOnElevator3, barrierOnElevator4, ElevatorCam, mainCam;
 
+    public static bool elevatorUnlocked;
+
     public Dialogue dialogue;
 
     public Transform playerStartAfterMcGee;
@@ -21,6 +23,15 @@ public class ConcourseGameManager : MonoBehaviour
 
     private void Start()
     {
+        if (elevatorUnlocked)
+        {
+            Destroy(elevatorBlock);
+            Destroy(barrierOnElevator1);
+            Destroy(barrierOnElevator2);
+            Destroy(barrierOnElevator3);
+            Destroy(barrierOnElevator4);
+        }
+
         Player.GetComponent<NavMeshAgent>().enabled = false;
         Player.transform.position = new Vector3(PlayerLocationDontDestroy.playerX, PlayerLocationDontDestroy.playerY, PlayerLocationDontDestroy.playerZ);
         print("I transported the player to: " + Player.transform.position);
@@ -30,6 +41,7 @@ public class ConcourseGameManager : MonoBehaviour
         {
             if (McGeeKilled)
             {
+                elevatorUnlocked = true;
                 Fred.SetActive(false);
                 StartCoroutine(McGeeKilledWaiting());
             }
