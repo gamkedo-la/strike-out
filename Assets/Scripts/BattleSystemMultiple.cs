@@ -909,7 +909,7 @@ public class BattleSystemMultiple : MonoBehaviour
                 StartCoroutine(WaitingAtEndOfBattle());
             }
         }
-        if (Babe)
+        if (Babe || Announcer || McGee || Umpire)
         {
             dialogueText.text = "You can't run from this fight!";
         }
