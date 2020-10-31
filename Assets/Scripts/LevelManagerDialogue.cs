@@ -14,6 +14,7 @@ public class LevelManagerDialogue : MonoBehaviour
     public Text dialogueText;
 
     public TextMesh TVText;
+    public GameObject Text1, Text2;
     public AudioData dialogueAudio;
     public AudioSourceController audioSource;
 
@@ -77,12 +78,23 @@ public class LevelManagerDialogue : MonoBehaviour
 
         if (TVTurnOn.levelSelect == 1)
         {
-            SceneManager.LoadScene("Clubhouse");
+            Text1.SetActive(false);
+            Text2.SetActive(true);
+            TVText.text = "Loading . . .";
+            StartCoroutine(Waiting());
         }
 
-        if (TVTurnOn.levelSelect == 2)
+       /* if (TVTurnOn.levelSelect == 2)
         {
-            SceneManager.LoadScene("HallofFame");
-        }
+            TVText.text = "Loading . . .".ToString();
+            StartCoroutine(Waiting());
+
+        }*/
+    }
+
+    IEnumerator Waiting()
+    {
+        yield return new WaitForSeconds(.25f);
+        SceneManager.LoadScene("Clubhouse");
     }
 }
