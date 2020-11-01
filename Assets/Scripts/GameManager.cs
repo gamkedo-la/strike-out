@@ -572,7 +572,7 @@ public class GameManager : MonoBehaviour
     {
         if (_instance != null)
         {
-            Debug.Log("GameManager Already Exists. Self - destruct initiated.");
+           // Debug.Log("GameManager Already Exists. Self - destruct initiated.");
             _instance.HookUpUI();
 
             Destroy(gameObject);
@@ -585,7 +585,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log("Calling Start from here");
+     //   Debug.Log("Calling Start from here");
         DontDestroyOnLoad(this.gameObject);
 
         #region StartingStats 
@@ -708,7 +708,7 @@ public class GameManager : MonoBehaviour
     }
     public void HookUpUI()
     {
-        Debug.Log("Resetting UI Hookups");
+      //  Debug.Log("Resetting UI Hookups");
 
         if (Starter != null)
         {

@@ -942,7 +942,7 @@ public class Unit : MonoBehaviour
     public void ReleaseHandBall()
     {
         ballInHand.SetActive(false);
-        Instantiate(releaseBall, releasePoint.transform.position, this.gameObject.transform.rotation);
-        releaseBall.transform.parent = releasePoint.transform;
+        GameObject myReleaseBall = Instantiate(releaseBall, releasePoint.transform.position, this.gameObject.transform.rotation);
+        myReleaseBall.transform.parent = releasePoint.transform;
     }
 }

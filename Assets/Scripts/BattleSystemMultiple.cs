@@ -556,7 +556,7 @@ public class BattleSystemMultiple : MonoBehaviour
         #endregion
     }
 
-    private void DebugPrintList(List<CharacterIdentifier> forList)
+  /*  private void DebugPrintList(List<CharacterIdentifier> forList)
     {
         string listStr = "";
         for (int i = 0; i < forList.Count; i++)
@@ -565,7 +565,7 @@ public class BattleSystemMultiple : MonoBehaviour
         }
         Debug.Log(listStr);
     }
-
+    */
     void NextTurn()
       {
         isPlayerTurn = !isPlayerTurn;
@@ -573,7 +573,7 @@ public class BattleSystemMultiple : MonoBehaviour
         CharacterIdentifier upRightNow;
         if (isPlayerTurn)
         {
-            DebugPrintList(playerTurnOrder);
+            //DebugPrintList(playerTurnOrder);
             upRightNow = playerTurnOrder[0];
             playerTurnOrder.RemoveAt(0);
             playerTurnOrder.Add(upRightNow);
@@ -581,9 +581,18 @@ public class BattleSystemMultiple : MonoBehaviour
 
         else 
         {
-            upRightNow = enemyTurnOrder[0];
-            enemyTurnOrder.RemoveAt(0);
-            enemyTurnOrder.Add(upRightNow);
+            if (enemyCount > 0)
+            {
+                upRightNow = enemyTurnOrder[0];
+                enemyTurnOrder.RemoveAt(0);
+                enemyTurnOrder.Add(upRightNow);
+            }
+            else
+            {
+                upRightNow = 0;
+                state = BattleStateMultiple.WON;
+                EndBattle();
+            }
         }
 
 
@@ -646,7 +655,14 @@ public class BattleSystemMultiple : MonoBehaviour
         if (!isPlayerTurn)
         {
             ondeck.text = "On Deck:  " + playerTurnOrder[0].ToString();
-            inhole.text = "In the Hole:  " + ReturnNameOfEnemy(enemyTurnOrder[0]);
+            if (enemyCount > 0)
+            {
+                inhole.text = "In the Hole:  " + ReturnNameOfEnemy(enemyTurnOrder[0]);
+            }
+            else
+            {
+                inhole.text = "In the Hole:  ";
+            }
         }
 
     }
@@ -1040,8 +1056,8 @@ public class BattleSystemMultiple : MonoBehaviour
 
                         enemySelectionParticle.transform.position = enemyBattleStationLocations[enemyUnitSelected].transform.position;
                     }
+                        NextTurn();
 
-                    NextTurn();
                 }
             }
             if (slider)
@@ -1665,7 +1681,7 @@ public class BattleSystemMultiple : MonoBehaviour
                 return closerDead;
         }
 
-        Debug.LogError("isPlayerIndexDead received an invalid index " + playerID);
+      //  Debug.LogError("isPlayerIndexDead received an invalid index " + playerID);
         return false;
     }
 
@@ -1726,7 +1742,7 @@ public class BattleSystemMultiple : MonoBehaviour
                     StarterDamageUI.text = "-" + enemyUnit[enemyUnitSelected].enemyDamage.ToString();
                     //
                     playerTurnOrder.Remove(CharacterIdentifier.Starter);
-                    Debug.Log("Removing Starter");
+                 //   Debug.Log("Removing Starter");
 
                     //
                     StarterAnim.SetBool("isDead", true);
@@ -1739,7 +1755,7 @@ public class BattleSystemMultiple : MonoBehaviour
                     MiddleDamageUI.text = "-" + enemyUnit[enemyUnitSelected].enemyDamage.ToString();
 
                     playerTurnOrder.Remove(CharacterIdentifier.Middle);
-                    Debug.Log("Removing Middle");
+                  //  Debug.Log("Removing Middle");
 
 
                     MidRelAnim.SetBool("isDead", true);
@@ -1753,7 +1769,7 @@ public class BattleSystemMultiple : MonoBehaviour
                     SetUpDamageUI.text = "-" + enemyUnit[enemyUnitSelected].enemyDamage.ToString();
 
                     playerTurnOrder.Remove(CharacterIdentifier.SetUp);
-                    Debug.Log("Removing SetUp");
+                 //   Debug.Log("Removing SetUp");
 
 
                     SetUpAnim.SetBool("isDead", true);
@@ -1766,7 +1782,7 @@ public class BattleSystemMultiple : MonoBehaviour
                     CloserDamageUI.text = "-" + enemyUnit[enemyUnitSelected].enemyDamage.ToString();
 
                     playerTurnOrder.Remove(CharacterIdentifier.Closer);
-                    Debug.Log("Removing Closer");
+                //    Debug.Log("Removing Closer");
 
 
                     CloserAnim.SetBool("isDead", true);
@@ -1894,7 +1910,7 @@ public class BattleSystemMultiple : MonoBehaviour
                     WhoToAttack = Random.Range(0, 4);
                     if (safteyCounter-- < 0)
                     {
-                        Debug.LogError("Couldn't find a living WhoToAttack, is the Whole Team Dead?");
+                //        Debug.LogError("Couldn't find a living WhoToAttack, is the Whole Team Dead?");
                         break;
                         //bails us out of the do while
                     }
@@ -1951,8 +1967,8 @@ public class BattleSystemMultiple : MonoBehaviour
 
                             playerTurnOrder.Remove(CharacterIdentifier.Starter);
 
-                            Debug.Log("Removing Starter");
-                            DebugPrintList(playerTurnOrder);
+                         //   Debug.Log("Removing Starter");
+                        //    DebugPrintList(playerTurnOrder);
 
                             StarterAnim.SetBool("isDead", true);
                             yield return new WaitForSeconds(3f);
@@ -2002,8 +2018,8 @@ public class BattleSystemMultiple : MonoBehaviour
 
                             playerTurnOrder.Remove(CharacterIdentifier.Middle);
 
-                            Debug.Log("Removing Middle");
-                            DebugPrintList(playerTurnOrder);
+                         //   Debug.Log("Removing Middle");
+                         //   DebugPrintList(playerTurnOrder);
 
                             MidRelAnim.SetBool("isDead", true);
                             yield return new WaitForSeconds(3f);
@@ -2055,8 +2071,8 @@ public class BattleSystemMultiple : MonoBehaviour
 
                             playerTurnOrder.Remove(CharacterIdentifier.SetUp);
 
-                            Debug.Log("Removing SetuP");
-                            DebugPrintList(playerTurnOrder);
+                         //   Debug.Log("Removing SetuP");
+                         //   DebugPrintList(playerTurnOrder);
 
                             yield return new WaitForSeconds(3f);
 
@@ -2105,8 +2121,8 @@ public class BattleSystemMultiple : MonoBehaviour
 
                             playerTurnOrder.Remove(CharacterIdentifier.Closer);
 
-                            Debug.Log("Removing Closer");
-                            DebugPrintList(playerTurnOrder);
+                        //    Debug.Log("Removing Closer");
+                        //    DebugPrintList(playerTurnOrder);
 
                             yield return new WaitForSeconds(3f);
 
@@ -2872,11 +2888,11 @@ public class BattleSystemMultiple : MonoBehaviour
         for (int i = 0; i < enemyUnit.Count; i++)
         {
             enemyUnit[i].TakeDamage(10000);
-            Debug.Log("Cheat Activated");
+        //    Debug.Log("Cheat Activated");
         }
         state = BattleStateMultiple.WON;
         EndBattle();
-        Debug.Log("Attempted To Cheat To Win");
+      //  Debug.Log("Attempted To Cheat To Win");
     }
 
     public void BattleFinished()
