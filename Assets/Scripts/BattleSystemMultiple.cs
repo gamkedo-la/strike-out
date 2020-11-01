@@ -996,6 +996,7 @@ public class BattleSystemMultiple : MonoBehaviour
     void RemoveCurrentEnemy()
     {
         enemyTurnOrder.Remove(enemyUnit[enemyUnitSelected].myEnumValue);
+        totalExp += enemyUnit[enemyUnitSelected].ExperienceToDistribute;
     }
 
     #region PlayerAttack - animations and Damage
@@ -1034,7 +1035,7 @@ public class BattleSystemMultiple : MonoBehaviour
                     {
                         RemoveCurrentEnemy();
 
-                        totalExp += enemyUnit[enemyUnitSelected].ExperienceToDistribute;
+                   //     totalExp += enemyUnit[enemyUnitSelected].ExperienceToDistribute;
                         enemyCount--;
 
                         enemySelectionParticle.transform.position = enemyBattleStationLocations[enemyUnitSelected].transform.position;
@@ -1070,7 +1071,7 @@ public class BattleSystemMultiple : MonoBehaviour
                     {
                         RemoveCurrentEnemy();
 
-                        totalExp += enemyUnit[enemyUnitSelected].ExperienceToDistribute;
+                      //  totalExp += enemyUnit[enemyUnitSelected].ExperienceToDistribute;
                         enemyCount--;
 
                         enemySelectionParticle.transform.position = enemyBattleStationLocations[enemyUnitSelected].transform.position;
@@ -1141,7 +1142,7 @@ public class BattleSystemMultiple : MonoBehaviour
                     {
                         RemoveCurrentEnemy();
 
-                        totalExp += enemyUnit[enemyUnitSelected].ExperienceToDistribute;
+                       // totalExp += enemyUnit[enemyUnitSelected].ExperienceToDistribute;
                         enemyCount--;
 
                         enemySelectionParticle.transform.position = enemyBattleStationLocations[enemyUnitSelected].transform.position;
@@ -1189,7 +1190,7 @@ public class BattleSystemMultiple : MonoBehaviour
                     {
                         RemoveCurrentEnemy();
 
-                        totalExp += enemyUnit[enemyUnitSelected].ExperienceToDistribute;
+                       // totalExp += enemyUnit[enemyUnitSelected].ExperienceToDistribute;
                         enemyCount--;
 
                         enemySelectionParticle.transform.position = enemyBattleStationLocations[enemyUnitSelected].transform.position;
@@ -1229,7 +1230,7 @@ public class BattleSystemMultiple : MonoBehaviour
                     {
                         RemoveCurrentEnemy();
 
-                        totalExp += enemyUnit[enemyUnitSelected].ExperienceToDistribute;
+                    //    totalExp += enemyUnit[enemyUnitSelected].ExperienceToDistribute;
                         enemyCount--;
 
                         enemySelectionParticle.transform.position = enemyBattleStationLocations[enemyUnitSelected].transform.position;
@@ -1268,7 +1269,7 @@ public class BattleSystemMultiple : MonoBehaviour
                     {
                         RemoveCurrentEnemy();
 
-                        totalExp += enemyUnit[enemyUnitSelected].ExperienceToDistribute;
+                      //  totalExp += enemyUnit[enemyUnitSelected].ExperienceToDistribute;
                         enemyCount--;
 
                         enemySelectionParticle.transform.position = enemyBattleStationLocations[enemyUnitSelected].transform.position;
@@ -1307,7 +1308,7 @@ public class BattleSystemMultiple : MonoBehaviour
                     {
                         RemoveCurrentEnemy();
 
-                        totalExp += enemyUnit[enemyUnitSelected].ExperienceToDistribute;
+                     //   totalExp += enemyUnit[enemyUnitSelected].ExperienceToDistribute;
                         enemyCount--;
 
                         enemySelectionParticle.transform.position = enemyBattleStationLocations[enemyUnitSelected].transform.position;
@@ -1356,7 +1357,7 @@ public class BattleSystemMultiple : MonoBehaviour
                     {
                         RemoveCurrentEnemy();
 
-                        totalExp += enemyUnit[enemyUnitSelected].ExperienceToDistribute;
+                    //    totalExp += enemyUnit[enemyUnitSelected].ExperienceToDistribute;
                         enemyCount--;
 
                        enemySelectionParticle.transform.position = enemyBattleStationLocations[enemyUnitSelected].transform.position;
@@ -1395,7 +1396,7 @@ public class BattleSystemMultiple : MonoBehaviour
                     {
                         RemoveCurrentEnemy();
 
-                        totalExp += enemyUnit[enemyUnitSelected].ExperienceToDistribute;
+                     //   totalExp += enemyUnit[enemyUnitSelected].ExperienceToDistribute;
                         enemyCount--;
 
                         enemySelectionParticle.transform.position = enemyBattleStationLocations[enemyUnitSelected].transform.position;
@@ -1434,7 +1435,7 @@ public class BattleSystemMultiple : MonoBehaviour
                     {
                         RemoveCurrentEnemy();
 
-                        totalExp += enemyUnit[enemyUnitSelected].ExperienceToDistribute;
+                      //  totalExp += enemyUnit[enemyUnitSelected].ExperienceToDistribute;
                         enemyCount--;
 
                         enemySelectionParticle.transform.position = enemyBattleStationLocations[enemyUnitSelected].transform.position;
@@ -1474,7 +1475,7 @@ public class BattleSystemMultiple : MonoBehaviour
                     {
                         RemoveCurrentEnemy();
 
-                        totalExp += enemyUnit[enemyUnitSelected].ExperienceToDistribute;
+                    //    totalExp += enemyUnit[enemyUnitSelected].ExperienceToDistribute;
                         enemyCount--;
 
                         enemySelectionParticle.transform.position = enemyBattleStationLocations[enemyUnitSelected].transform.position;
@@ -1524,7 +1525,7 @@ public class BattleSystemMultiple : MonoBehaviour
                     {
                         RemoveCurrentEnemy();
 
-                        totalExp += enemyUnit[enemyUnitSelected].ExperienceToDistribute;
+                      //  totalExp += enemyUnit[enemyUnitSelected].ExperienceToDistribute;
                         enemyCount--;
 
                         enemySelectionParticle.transform.position = enemyBattleStationLocations[enemyUnitSelected].transform.position;
@@ -1563,7 +1564,7 @@ public class BattleSystemMultiple : MonoBehaviour
                     {
                         RemoveCurrentEnemy();
 
-                        totalExp += enemyUnit[enemyUnitSelected].ExperienceToDistribute;
+                     //   totalExp += enemyUnit[enemyUnitSelected].ExperienceToDistribute;
                         enemyCount--;
 
                         enemySelectionParticle.transform.position = enemyBattleStationLocations[enemyUnitSelected].transform.position;
@@ -1602,7 +1603,7 @@ public class BattleSystemMultiple : MonoBehaviour
                     {
                         RemoveCurrentEnemy();
 
-                        totalExp += enemyUnit[enemyUnitSelected].ExperienceToDistribute;
+                      //  totalExp += enemyUnit[enemyUnitSelected].ExperienceToDistribute;
                         enemyCount--;
 
                         enemySelectionParticle.transform.position = enemyBattleStationLocations[enemyUnitSelected].transform.position;
@@ -1641,7 +1642,7 @@ public class BattleSystemMultiple : MonoBehaviour
                     {
                         RemoveCurrentEnemy();
 
-                        totalExp += enemyUnit[enemyUnitSelected].ExperienceToDistribute;
+                     //   totalExp += enemyUnit[enemyUnitSelected].ExperienceToDistribute;
                         enemyCount--;
 
                         enemySelectionParticle.transform.position = enemyBattleStationLocations[enemyUnitSelected].transform.position;
@@ -2613,7 +2614,7 @@ public class BattleSystemMultiple : MonoBehaviour
     public void AddXP()
     {
         preventingAddXPDup = true;
-        print("why are you here");
+
         for (int i = 0; i < enemyUnit.Count; i++)
         {
             GameManager.Money += enemyUnit[i].MoneyToDistribute;
