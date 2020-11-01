@@ -6,10 +6,17 @@ using UnityEngine.AI;
 public class TeleportCheatConcourse : MonoBehaviour
 {
     public GameObject player;
-    public Vector3 keys, main, elevatortop, elevatordown, announcer, umpire, babe;
+    public Vector3 keys, main, elevatortop, elevatordown, announcer, umpire, babe, fred;
 
     private void Update()
     {
+        if (Input.GetKey(KeyCode.F))
+        {
+            player.GetComponent<NavMeshAgent>().enabled = false;
+            player.transform.position = fred;
+            player.GetComponent<NavMeshAgent>().enabled = true;
+        }
+
         if (Input.GetKey(KeyCode.K))
         {
             player.GetComponent<NavMeshAgent>().enabled = false;
