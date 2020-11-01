@@ -3062,6 +3062,11 @@ public class BattleSystemMultiple : MonoBehaviour
             SLevelUpScreen.SetActive(false);
             CloseLevelUp();
         }
+
+        if (!SeLevel && !CLevel)
+        {
+            StartCoroutine(WaitingAtEndOfBattle());
+        }
     }
 
     void CloseLevelUp()
