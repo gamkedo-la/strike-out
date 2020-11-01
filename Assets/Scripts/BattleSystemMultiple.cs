@@ -1190,16 +1190,15 @@ public class BattleSystemMultiple : MonoBehaviour
                     {
                         RemoveCurrentEnemy();
 
-                       // totalExp += enemyUnit[enemyUnitSelected].ExperienceToDistribute;
+                        // totalExp += enemyUnit[enemyUnitSelected].ExperienceToDistribute;
                         enemyCount--;
 
                         enemySelectionParticle.transform.position = enemyBattleStationLocations[enemyUnitSelected].transform.position;
 
-                        }
                     }
+                }
 
                 NextTurn();
-            }
             }
             if (slider)
             {
@@ -1230,15 +1229,15 @@ public class BattleSystemMultiple : MonoBehaviour
                     {
                         RemoveCurrentEnemy();
 
-                    //    totalExp += enemyUnit[enemyUnitSelected].ExperienceToDistribute;
+                        //    totalExp += enemyUnit[enemyUnitSelected].ExperienceToDistribute;
                         enemyCount--;
 
                         enemySelectionParticle.transform.position = enemyBattleStationLocations[enemyUnitSelected].transform.position;
 
                     }
 
-                NextTurn();
-            }
+                    NextTurn();
+                }
             }
             if (curveball)
             {
@@ -1269,15 +1268,15 @@ public class BattleSystemMultiple : MonoBehaviour
                     {
                         RemoveCurrentEnemy();
 
-                      //  totalExp += enemyUnit[enemyUnitSelected].ExperienceToDistribute;
+                        //  totalExp += enemyUnit[enemyUnitSelected].ExperienceToDistribute;
                         enemyCount--;
 
                         enemySelectionParticle.transform.position = enemyBattleStationLocations[enemyUnitSelected].transform.position;
 
                     }
 
-                NextTurn();
-            }
+                    NextTurn();
+                }
             }
             if (changeup)
             {
@@ -1308,13 +1307,14 @@ public class BattleSystemMultiple : MonoBehaviour
                     {
                         RemoveCurrentEnemy();
 
-                     //   totalExp += enemyUnit[enemyUnitSelected].ExperienceToDistribute;
+                        //   totalExp += enemyUnit[enemyUnitSelected].ExperienceToDistribute;
                         enemyCount--;
 
                         enemySelectionParticle.transform.position = enemyBattleStationLocations[enemyUnitSelected].transform.position;
 
                     }
-                NextTurn();
+                    NextTurn();
+                }
             }
         }
        
@@ -1484,10 +1484,8 @@ public class BattleSystemMultiple : MonoBehaviour
 
                     NextTurn();
                 }
-            }
-           
+            } 
         }
-       
     }
 
     IEnumerator CloserAttack()
@@ -1605,11 +1603,8 @@ public class BattleSystemMultiple : MonoBehaviour
 
                       //  totalExp += enemyUnit[enemyUnitSelected].ExperienceToDistribute;
                         enemyCount--;
-
                         enemySelectionParticle.transform.position = enemyBattleStationLocations[enemyUnitSelected].transform.position;
-
                     }
-
                     NextTurn();
                 }
             }
@@ -1652,7 +1647,6 @@ public class BattleSystemMultiple : MonoBehaviour
                     NextTurn();
                 }
             }
-           
         }
     }
     #endregion
@@ -1708,12 +1702,23 @@ public class BattleSystemMultiple : MonoBehaviour
                 yield return new WaitForSeconds(2f);
                 }
 
+                int RandomAttack = Random.Range(0, 100);
+
+                if (GameManager.MiddleAgil >= RandomAttack)
+                {
+                    dialogueText.text = enemyUnit[enemyUnitSelected].unitName + " attacks Mid Reliever with " + enemyUnit[enemyUnitSelected].attackName + "!";
+                    yield return new WaitForSeconds(.5f);
+                    dialogueText.text = "Mid Reliever Dodges!";
+                    yield return new WaitForSeconds(1f);
+
+                }
+
                 bool isDead1 = Starter.TakeDamage(enemyUnit[enemyUnitSelected].enemyDamage);
                 bool isDead2 = MiddleReliever.TakeDamage(enemyUnit[enemyUnitSelected].enemyDamage);
                 bool isDead3 = SetUp.TakeDamage(enemyUnit[enemyUnitSelected].enemyDamage);
                 bool isDead4 = Closer.TakeDamage(enemyUnit[enemyUnitSelected].enemyDamage);
 
-                if (isDead1)
+                if (isDead1 && GameManager.StarterAgil < RandomAttack)
                 {
                     GameManager.StarterMorale -= enemyUnit[enemyUnitSelected].enemyDamage;
                     StarterMorale.value = (GameManager.StarterMorale / GameManager.StarterMoraleMax);
@@ -1726,7 +1731,7 @@ public class BattleSystemMultiple : MonoBehaviour
                     //
                     StarterAnim.SetBool("isDead", true);
                 }
-                if (isDead2)
+                if (isDead2 && GameManager.MiddleAgil < RandomAttack)
                 {
                     GameManager.MidRelivMorale -= enemyUnit[enemyUnitSelected].enemyDamage;
                     MiddleMorale.value = (GameManager.MidRelivMorale / GameManager.MidRelivMoraleMax);
@@ -1740,7 +1745,7 @@ public class BattleSystemMultiple : MonoBehaviour
                     MidRelAnim.SetBool("isDead", true);
 
                 }
-                if (isDead3)
+                if (isDead3 && GameManager.SetUpAgil < RandomAttack)
                 {
                     GameManager.SetUpMorale -= enemyUnit[enemyUnitSelected].enemyDamage;
                     SetUpMorale.value = (GameManager.SetUpMorale / GameManager.SetUpMoraleMax);
@@ -1753,7 +1758,7 @@ public class BattleSystemMultiple : MonoBehaviour
 
                     SetUpAnim.SetBool("isDead", true);
                 }
-                if (isDead4)
+                if (isDead4 && GameManager.CloserAgil < RandomAttack)
                 {
                     GameManager.CloserMorale -= enemyUnit[enemyUnitSelected].enemyDamage;
                     CloserMorale.value = (GameManager.CloserMorale / GameManager.CloserMoraleMax);
@@ -1767,8 +1772,8 @@ public class BattleSystemMultiple : MonoBehaviour
                     CloserAnim.SetBool("isDead", true);
 
                 }
-                DebugPrintList(playerTurnOrder);
-                if (!isDead1)
+
+                if (!isDead1 && GameManager.StarterAgil < RandomAttack)
                 {
                     yield return new WaitForSeconds(.5f);
                     StarterAnim.Play("Armature|Oof");
@@ -1778,7 +1783,7 @@ public class BattleSystemMultiple : MonoBehaviour
                     StarterMorale.value = (GameManager.StarterMorale / GameManager.StarterMoraleMax);
                 }
 
-                if (!isDead2)
+                if (!isDead2 && GameManager.MiddleAgil < RandomAttack)
                 {
                     yield return new WaitForSeconds(.5f);
                     MidRelAnim.Play("Armature|Oof");
@@ -1788,7 +1793,7 @@ public class BattleSystemMultiple : MonoBehaviour
                     MiddleMorale.value = (GameManager.MidRelivMorale / GameManager.MidRelivMoraleMax);
                 }
 
-                if (!isDead3)
+                if (!isDead3 && GameManager.SetUpAgil < RandomAttack)
                 {
                     yield return new WaitForSeconds(.5f);
                     SetUpAnim.Play("Armature|Oof");
@@ -1798,7 +1803,7 @@ public class BattleSystemMultiple : MonoBehaviour
                     SetUpMorale.value = (GameManager.SetUpMorale / GameManager.SetUpMoraleMax);
                 }
 
-                if (!isDead4)
+                if (!isDead4 && GameManager.CloserAgil < RandomAttack)
                 {
                     yield return new WaitForSeconds(.5f);
                     CloserAnim.Play("Armature|Oof");
@@ -2777,6 +2782,7 @@ public class BattleSystemMultiple : MonoBehaviour
                 MLevelUp.SetActive(true);
                 GameManager.MRTargetExp *= 1.5f;
                 //add training points
+                MRExpToNext.text = (GameManager.MRTargetExp - GameManager.MRExp).ToString("F0");
                 int NewLevelM = GameManager.MRLevel;
                 int Difference = NewLevelM - OldLevelM;
                 MPointsToGive = (Difference * 3) + 1;
@@ -2811,7 +2817,7 @@ public class BattleSystemMultiple : MonoBehaviour
                 SetUpLevelUp.SetActive(true);
                 GameManager.SetupTargetExp *= 1.75f;
                 //add training points
-
+                SetUpExpToNext.text = (GameManager.SetupTargetExp - GameManager.SetUpExp).ToString("F0");
                 int NewLevelSe = GameManager.SetUpLevel;
                 int Difference = NewLevelSe - OldLevelSe;
                 SePointsToGive = (Difference * 3) + 1;
@@ -2846,6 +2852,7 @@ public class BattleSystemMultiple : MonoBehaviour
                 CloserLevelUp.SetActive(true);
                 GameManager.CloserTargetExp *= 2f;
                 //add training points
+                CloserExpToNext.text = (GameManager.CloserTargetExp - GameManager.CloserExp).ToString("F0");
                 int NewLevelC = GameManager.CloserLevel;
                 int Difference = NewLevelC - OldLevelC;
                 CPointsToGive = (Difference * 3) + 1;
@@ -2966,6 +2973,8 @@ public class BattleSystemMultiple : MonoBehaviour
 
     void StarterLevelUp()
     {
+        GameManager.StarterMorale = GameManager.StarterMoraleMax;
+        GameManager.StarterEnergy = GameManager.StarterEnergyMax;
 
         if (MLevel)
         {
