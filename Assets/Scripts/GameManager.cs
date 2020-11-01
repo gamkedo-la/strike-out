@@ -722,7 +722,7 @@ public class GameManager : MonoBehaviour
             SetUpE = GameObject.Find("SetUpEnergy").GetComponent<Slider>();
             CloserE = GameObject.Find("CloserEnergy").GetComponent<Slider>();
 
-            moneyUI = GameObject.Find("Money").GetComponent<Text>();
+            //moneyUI = GameObject.Find("Money").GetComponent<Text>();
             moneyUI.text = "$ " + Money.ToString("F0");
         }
 
