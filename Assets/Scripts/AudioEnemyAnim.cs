@@ -13,6 +13,7 @@ public class AudioEnemyAnim : AudioEventGeneric
     public AudioData swingDizzyBirds;
     public AudioData takeDmg;
     public AudioData leadup;
+    private AudioVOs VO;
 
     private void Start()
     {
@@ -20,6 +21,8 @@ public class AudioEnemyAnim : AudioEventGeneric
 
         if (controller == null)
             controller = gameObject.AddComponent<AudioSourceController>();
+
+        VO = FindObjectOfType<AudioVOs>();
     }
 
     void BatWhoosh()
@@ -30,6 +33,9 @@ public class AudioEnemyAnim : AudioEventGeneric
     void BatHit()
     {
         controller.PlayRandom(sound);
+
+        if (VO != null)
+            VO.StartCoroutine(VO.PlayAfterDelay(1f, VO.enemyAtkVO));
     }
 
     void MittPop()
@@ -91,6 +97,9 @@ public class AudioEnemyAnim : AudioEventGeneric
         else
             Debug.LogWarning("No take damage audio data!");
 
+
+        //if (VO != null)
+        //    VO.StartCoroutine(VO.PlayAfterDelay(1, VO.EnemyTakeDmgVO));
     }
 
     public void LeadUp()

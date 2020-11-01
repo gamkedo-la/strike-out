@@ -13,13 +13,15 @@ public class AudioVOs : MonoBehaviour
     private void Start()
     {
         if (controller == null)
-            controller = gameObject.AddComponent<AudioSourceController>();
+            controller = gameObject.GetComponent<AudioSourceController>();
     }
 
-    IEnumerator PlayAfterDelay(float time, AudioData sound)
+    public IEnumerator PlayAfterDelay(float time, AudioData sound)
     {
         yield return new WaitForSeconds(time);
 
         controller.PlayRandom(sound);
+        Debug.LogWarning("Calling VO");
+        yield return null;
     }
 }

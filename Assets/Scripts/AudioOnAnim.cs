@@ -11,6 +11,7 @@ public class AudioOnAnim : MonoBehaviour
     public AudioData prep;
     public AudioData downed;
     public AudioSourceController controller;
+    public AudioVOs VO;
 
     void Start()
     {
@@ -19,23 +20,32 @@ public class AudioOnAnim : MonoBehaviour
             controller = gameObject.AddComponent<AudioSourceController>();
 
         controller.SetSourceOutput(sound);
+
+        VO = FindObjectOfType<AudioVOs>();
     }
 
     public void PitchSound()
     {
         controller.PlayRandom(sound);
         // Debug.Log("Pitch Sound!");
+        if (VO != null)
+            VO.StartCoroutine(VO.PlayAfterDelay(1f, VO.pitchVO));
     }
 
     public void TakeDmg()
     {
         controller.PlayRandom(dmg);
         //Debug.Log("Dmg Sound!");
+        //if (VO != null)
+        //    VO.StartCoroutine(VO.PlayAfterDelay(1, VO.playerTakeDmgVO));
     }
 
     public void Downed()
     {
         controller.PlayRandom(downed);
+
+        if (VO != null)
+            VO.PlayAfterDelay(1, VO.playerTakeDmgVO);
     }
 
     public void Prep()
