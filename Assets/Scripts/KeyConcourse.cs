@@ -7,6 +7,7 @@ public class KeyConcourse : MonoBehaviour
     public GameObject mainCam, cutSceneCam;
     public static bool gateHasBeenOpened;
     public Animator gate;
+    public GameObject barrierForPlayer;
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
@@ -17,6 +18,7 @@ public class KeyConcourse : MonoBehaviour
             gateHasBeenOpened = true;
             StartCoroutine(Waiting());
             this.gameObject.GetComponent<BoxCollider>().enabled = false;
+            barrierForPlayer.SetActive(true);
         }
     }
 
@@ -26,5 +28,6 @@ public class KeyConcourse : MonoBehaviour
         mainCam.SetActive(true);
         cutSceneCam.SetActive(false);
         Destroy(this.gameObject);
+        barrierForPlayer.SetActive(false);
     }
 }

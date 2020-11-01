@@ -30,7 +30,7 @@ public class PauseMenu : MonoBehaviour
 
             if (!isInventory)
             {
-                InventoryMenu.transform.localPosition = new Vector3(233, -900, 0);
+                InventoryMenu.transform.localPosition = new Vector3(233, -900, -5000);
             }
 
 
