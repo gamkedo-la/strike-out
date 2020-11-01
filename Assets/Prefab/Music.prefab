@@ -87,3 +87,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ed4c194ed780e04a83deb073028827b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pitchVO: {fileID: 11400000, guid: 7a197a067a6acf7448de093ca5e54cff, type: 2}
+  enemyAtkVO: {fileID: 11400000, guid: ebac1c38e043b5241bf85ca389430742, type: 2}
+  playerTakeDmgVO: {fileID: 11400000, guid: c2c8874d5d4faf44a9d70ab59acc322f, type: 2}
+  EnemyTakeDmgVO: {fileID: 11400000, guid: 161a84be5d1dbba41b660adbe4d9b57a, type: 2}
