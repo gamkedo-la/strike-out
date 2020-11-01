@@ -24,6 +24,8 @@ public class ConcourseGameManager : MonoBehaviour
 
     Slider SM, MM, SeM, CM, SE, ME, SeE, CE;
 
+    public Text Objective;
+
 
     private void Awake()
     {
@@ -89,6 +91,26 @@ public class ConcourseGameManager : MonoBehaviour
         ME.value = (GameManager.MidRelivEnergy / GameManager.MidRelievEnergyMax);
         SeE.value = (GameManager.SetUpEnergy / GameManager.SetUpEnergyMax);
         CE.value = (GameManager.CloserEnergy / GameManager.CloserEnergyMax);
+
+        if (!KeyConcourse.gateHasBeenOpened)
+        {
+            Objective.text = "Find Keys to Open the Gate".ToString();
+        }
+
+        if (KeyConcourse.gateHasBeenOpened && !McGeeHasAlreadyBeenKilled)
+        {
+            Objective.text = "Take down Power McGee".ToString();
+        }
+
+        if (McGeeHasAlreadyBeenKilled && elevatorUnlocked)
+        {
+            Objective.text = "Go upstairs to take down the Announcer".ToString();
+        }
+
+        else if (McGeeHasAlreadyBeenKilled && elevatorUnlocked && AnnouncerHasAlreadyBeenKilled)
+        {
+            Objective.text = "Move on to the next Level".ToString();
+        }
     }
 
     IEnumerator McGeeKilledWaiting()
