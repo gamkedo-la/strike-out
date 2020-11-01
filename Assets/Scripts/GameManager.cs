@@ -52,7 +52,7 @@ public class GameManager : MonoBehaviour
 
     private static GameManager _instance;
 
-    bool DebugCheatDeathConditions = true;
+    bool DebugCheatDeathConditions = false;
 
     public static bool enemyAttackedPlayer;
     public static GameManager Instance

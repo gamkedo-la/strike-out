@@ -2555,7 +2555,7 @@ public class BattleSystemMultiple : MonoBehaviour
 
             if (Babe)
             {
-                SceneManager.LoadScene("WinScene");
+                StartCoroutine(WaitingAtEndBabeBattle());
             }
 
             if (!starterDead)
@@ -3472,7 +3472,7 @@ public class BattleSystemMultiple : MonoBehaviour
         {
             if (Babe)
             {
-                SceneManager.LoadScene("WinScene");
+                StartCoroutine(WaitingAtEndOfBattle());
             }
         }
         else if (state == BattleStateMultiple.STARTER || state == BattleStateMultiple.MIDDLE || state == BattleStateMultiple.SETUP || state == BattleStateMultiple.CLOSER)
@@ -3489,5 +3489,12 @@ public class BattleSystemMultiple : MonoBehaviour
         state = BattleStateMultiple.START;
         //Return to Main Menu
         SceneManager.LoadScene("TrainingArea");
+    }
+
+    IEnumerator WaitingAtEndBabeBattle()
+    {
+        yield return new WaitForSeconds(1.5f);
+        state = BattleStateMultiple.START;
+        SceneManager.LoadScene("WinScene");
     }
 }

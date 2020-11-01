@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.AI;
 
 public class HOEGameManager : MonoBehaviour
 {
@@ -39,8 +40,10 @@ public class HOEGameManager : MonoBehaviour
         {
             if (!UmpireAlreadyKilled)
             {
+                player.GetComponent<NavMeshAgent>().enabled = false;
                 player.transform.position = afterUmpire.transform.position;
                 UmpireAlreadyKilled = true;
+                player.GetComponent<NavMeshAgent>().enabled = true;
             }
         }
         else
