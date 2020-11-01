@@ -3533,6 +3533,5 @@ public class BattleSystemMultiple : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
         dialogueText.text = "Please choose an action.";
-
     }
 }

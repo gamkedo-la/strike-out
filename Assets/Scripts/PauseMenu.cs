@@ -9,10 +9,12 @@ public class PauseMenu : MonoBehaviour
     bool isPaused;
     public GameObject pauseMenu;
     public GameObject InventoryMenu, StatsMenu;
+    bool isLocked;
 
     private void Start()
     {
         isPaused = false;
+        isLocked = true;
     }
     private void Update()
     {
@@ -39,6 +41,7 @@ public class PauseMenu : MonoBehaviour
                 isInventory = false;
                 isPaused = !isPaused;
                 StatsMenu.SetActive(false);
+                isLocked = !isLocked;
                 // InventoryMenu.transform.localPosition = new Vector3(0,-400,0);
             }
 
@@ -52,6 +55,16 @@ public class PauseMenu : MonoBehaviour
             {
                 Time.timeScale = 1f;
                 pauseMenu.SetActive(false);
+            }
+
+            if (isLocked)
+            {
+                Cursor.lockState = CursorLockMode.Confined;
+            }
+
+            if (!isLocked)
+            {
+                Cursor.lockState = CursorLockMode.None;
             }
         }
     }
