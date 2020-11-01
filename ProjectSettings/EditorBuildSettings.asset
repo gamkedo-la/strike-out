@@ -23,9 +23,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ClubHouse.unity
     guid: bed2f5caedb72bd4c955cc9a13c3d21b
-  - enabled: 0
-    path: Assets/Scenes/Field.unity
-    guid: a0efeaf125abfe44ebd012e62f5cae2c
   - enabled: 1
     path: Assets/Scenes/AnnouncerFight.unity
     guid: 63971c0d8747c114e9ef040217e3d84c
