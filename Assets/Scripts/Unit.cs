@@ -58,6 +58,8 @@ public class Unit : MonoBehaviour
 
     public Text DamageUI;
 
+    public bool Cheat = true; 
+
     //enemyAttack
     public int minAttackAvil, maxAttackAvil;
     int attackToDo;
@@ -213,7 +215,6 @@ public class Unit : MonoBehaviour
         }
         #endregion
 
-
         DamageUI.text = "";
         if (isEnemy)
         {
@@ -233,6 +234,8 @@ public class Unit : MonoBehaviour
         ExperienceToDistribute = Random.Range(minExperience, maxExperience);
         MoneyToDistribute = Random.Range(minMoney, maxMoney);
 
+
+
         //Remove This later
         //currentHP = 100;
     }
@@ -243,6 +246,11 @@ public class Unit : MonoBehaviour
         if (isEnemy)
         {
             HealthSlider.value = currentHP / maxHP;
+        }
+
+        if (Cheat && Input.GetKeyDown(KeyCode.C))
+        {
+            currentHP *= .25f;
         }
     }
 
