@@ -129,23 +129,23 @@ public class PauseMenu : MonoBehaviour
         PlayerPrefs.SetInt("CloserMoraleMax", GameManager.CloserMoraleMax);
         PlayerPrefs.SetInt("CloserEnergyMax", GameManager.CloserEnergyMax);
 
-        PlayerPrefs.SetFloat("Minor1Value", GameManager.m1v);
-        PlayerPrefs.SetFloat("Minor2Value", GameManager.m2v);
-        PlayerPrefs.SetFloat("Minor3Value", GameManager.m3v);
-        PlayerPrefs.SetFloat("Minor4Value", GameManager.m4v);
-        PlayerPrefs.SetFloat("Minor5Value", GameManager.m5v);
-        PlayerPrefs.SetFloat("Minor6Value", GameManager.m6v);
-        PlayerPrefs.SetFloat("Minor7Value", GameManager.m7v);
-        PlayerPrefs.SetFloat("Minor8Value", GameManager.m8v);
+        PlayerPrefs.SetInt("Minor1Value", GameManager.m1v);
+        PlayerPrefs.SetInt("Minor2Value", GameManager.m2v);
+        PlayerPrefs.SetInt("Minor3Value", GameManager.m3v);
+        PlayerPrefs.SetInt("Minor4Value", GameManager.m4v);
+        PlayerPrefs.SetInt("Minor5Value", GameManager.m5v);
+        PlayerPrefs.SetInt("Minor6Value", GameManager.m6v);
+        PlayerPrefs.SetInt("Minor7Value", GameManager.m7v);
+        PlayerPrefs.SetInt("Minor8Value", GameManager.m8v);
 
-        PlayerPrefs.SetFloat("Major1Value", GameManager.M1v);
-        PlayerPrefs.SetFloat("Major2Value", GameManager.M2v);
-        PlayerPrefs.SetFloat("Major3Value", GameManager.M3v);
-        PlayerPrefs.SetFloat("Major4Value", GameManager.M4v);
-        PlayerPrefs.SetFloat("Major5Value", GameManager.M5v);
-        PlayerPrefs.SetFloat("Major6Value", GameManager.M6v);
-        PlayerPrefs.SetFloat("Major7Value", GameManager.M7v);
-        PlayerPrefs.SetFloat("Major8Value", GameManager.M8v);
+        PlayerPrefs.SetInt("Major1Value", GameManager.M1v);
+        PlayerPrefs.SetInt("Major2Value", GameManager.M2v);
+        PlayerPrefs.SetInt("Major3Value", GameManager.M3v);
+        PlayerPrefs.SetInt("Major4Value", GameManager.M4v);
+        PlayerPrefs.SetInt("Major5Value", GameManager.M5v);
+        PlayerPrefs.SetInt("Major6Value", GameManager.M6v);
+        PlayerPrefs.SetInt("Major7Value", GameManager.M7v);
+        PlayerPrefs.SetInt("Major8Value", GameManager.M8v);
 
         PlayerPrefs.SetFloat("MidRelivMorale", GameManager.StarterExp);
         PlayerPrefs.SetFloat("MidRelivEnergy", GameManager.MRExp);

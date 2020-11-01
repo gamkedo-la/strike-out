@@ -42,8 +42,8 @@ public class GameManager : MonoBehaviour
     public static bool M1, M2, M3, M4, M5, M6, M7, M8;
     public static bool e1, e2, e3, e4, e5, e6, e7, e8;
 
-    public static float m1v, m2v, m3v, m4v, m5v, m6v, m7v, m8v;
-    public static float M1v, M2v, M3v, M4v, M5v, M6v, M7v, M8v;
+    public static int m1v, m2v, m3v, m4v, m5v, m6v, m7v, m8v;
+    public static int M1v, M2v, M3v, M4v, M5v, M6v, M7v, M8v;
 
     public static bool gameStartingStats;
     public static bool playerStartingStats;

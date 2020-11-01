@@ -92,23 +92,23 @@ public class MainMenuManager : MonoBehaviour
         GameManager.CloserMoraleMax = PlayerPrefs.GetInt("CloserMoraleMax", GameManager.CloserMoraleMax);
         GameManager.CloserEnergyMax = PlayerPrefs.GetInt("CloserEnergyMax", GameManager.CloserEnergyMax);
 
-        GameManager.m1v = PlayerPrefs.GetFloat("Minor1Value", GameManager.m1v);
-        GameManager.m2v = PlayerPrefs.GetFloat("Minor2Value", GameManager.m2v);
-        GameManager.m3v = PlayerPrefs.GetFloat("Minor3Value", GameManager.m3v);
-        GameManager.m4v = PlayerPrefs.GetFloat("Minor4Value", GameManager.m4v);
-        GameManager.m5v = PlayerPrefs.GetFloat("Minor5Value", GameManager.m5v);
-        GameManager.m6v = PlayerPrefs.GetFloat("Minor6Value", GameManager.m6v);
-        GameManager.m7v = PlayerPrefs.GetFloat("Minor7Value", GameManager.m7v);
-        GameManager.m8v = PlayerPrefs.GetFloat("Minor8Value", GameManager.m8v);
+        GameManager.m1v = PlayerPrefs.GetInt("Minor1Value", GameManager.m1v);
+        GameManager.m2v = PlayerPrefs.GetInt("Minor2Value", GameManager.m2v);
+        GameManager.m3v = PlayerPrefs.GetInt("Minor3Value", GameManager.m3v);
+        GameManager.m4v = PlayerPrefs.GetInt("Minor4Value", GameManager.m4v);
+        GameManager.m5v = PlayerPrefs.GetInt("Minor5Value", GameManager.m5v);
+        GameManager.m6v = PlayerPrefs.GetInt("Minor6Value", GameManager.m6v);
+        GameManager.m7v = PlayerPrefs.GetInt("Minor7Value", GameManager.m7v);
+        GameManager.m8v = PlayerPrefs.GetInt("Minor8Value", GameManager.m8v);
 
-        GameManager.M1v = PlayerPrefs.GetFloat("Major1Value", GameManager.M1v);
-        GameManager.M2v = PlayerPrefs.GetFloat("Major2Value", GameManager.M2v);
-        GameManager.M3v = PlayerPrefs.GetFloat("Major3Value", GameManager.M3v);
-        GameManager.M4v = PlayerPrefs.GetFloat("Major4Value", GameManager.M4v);
-        GameManager.M5v = PlayerPrefs.GetFloat("Major5Value", GameManager.M5v);
-        GameManager.M6v = PlayerPrefs.GetFloat("Major6Value", GameManager.M6v);
-        GameManager.M7v = PlayerPrefs.GetFloat("Major7Value", GameManager.M7v);
-        GameManager.M8v = PlayerPrefs.GetFloat("Major8Value", GameManager.M8v);
+        GameManager.M1v = PlayerPrefs.GetInt("Major1Value", GameManager.M1v);
+        GameManager.M2v = PlayerPrefs.GetInt("Major2Value", GameManager.M2v);
+        GameManager.M3v = PlayerPrefs.GetInt("Major3Value", GameManager.M3v);
+        GameManager.M4v = PlayerPrefs.GetInt("Major4Value", GameManager.M4v);
+        GameManager.M5v = PlayerPrefs.GetInt("Major5Value", GameManager.M5v);
+        GameManager.M6v = PlayerPrefs.GetInt("Major6Value", GameManager.M6v);
+        GameManager.M7v = PlayerPrefs.GetInt("Major7Value", GameManager.M7v);
+        GameManager.M8v = PlayerPrefs.GetInt("Major8Value", GameManager.M8v);
 
         GameManager.StarterExp = PlayerPrefs.GetFloat("MidRelivMorale", GameManager.StarterExp);
         GameManager.MRExp = PlayerPrefs.GetFloat("MidRelivEnergy", GameManager.MRExp);

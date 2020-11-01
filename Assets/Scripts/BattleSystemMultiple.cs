@@ -935,7 +935,12 @@ public class BattleSystemMultiple : MonoBehaviour
 
     public void CallBullpen()
     {
-        if (!Babe)
+        if (Babe || Announcer || McGee || Umpire)
+        {
+            dialogueText.text = "You can't run from this fight!";
+            StartCoroutine(WaitingForCall());
+        }
+        else
         {
             int Rand = Random.Range(0, 2);
             if (Rand == 0)
@@ -950,12 +955,7 @@ public class BattleSystemMultiple : MonoBehaviour
                 StartCoroutine(WaitingAtEndOfBattle());
             }
         }
-        if (Babe || Announcer || McGee || Umpire)
-        {
-            dialogueText.text = "You can't run from this fight!";
-            PlayerMenu.SetActive(false);
-            NextTurn();
-        }
+
     }
 
     public void ConfirmAttack()
@@ -3496,5 +3496,12 @@ public class BattleSystemMultiple : MonoBehaviour
         yield return new WaitForSeconds(1.5f);
         state = BattleStateMultiple.START;
         SceneManager.LoadScene("WinScene");
+    }
+
+    IEnumerator WaitingForCall()
+    {
+        yield return new WaitForSeconds(2f);
+        dialogueText.text = "Please choose an action.";
+
     }
 }

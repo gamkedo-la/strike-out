@@ -11,6 +11,8 @@ public class Training : MonoBehaviour
 
     private void Start()
     {
+        GameManager.Money += 10000;
+
         GameManager.StarterMorale = GameManager.StarterMoraleMax;
         GameManager.MidRelivMorale = GameManager.MidRelivMoraleMax;
         GameManager.SetUpMorale = GameManager.SetUpMoraleMax;
