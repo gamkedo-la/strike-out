@@ -115,7 +115,9 @@ public class ConcourseGameManager : MonoBehaviour
 
     IEnumerator McGeeKilledWaiting()
     {
+        Player.GetComponent<NavMeshAgent>().enabled = false;
         Player.transform.position = playerStartAfterMcGee.transform.position;
+        Player.GetComponent<NavMeshAgent>().enabled = true;
         yield return new WaitForSeconds(1.5f);
         ElevatorCam.SetActive(true);
         mainCam.SetActive(false);
