@@ -26,7 +26,7 @@ public class ConcourseGameManager : MonoBehaviour
 
     public Text Objective;
 
-
+    public GameObject cutSceneBarrier;
     private void Awake()
     {
         SM = GameObject.Find("StarterMorale").GetComponent<Slider>();
@@ -72,6 +72,7 @@ public class ConcourseGameManager : MonoBehaviour
         {
             if (AnnouncerKilled)
             {
+                cutSceneBarrier.SetActive(true);
                 AnnouncerBoss.SetActive(false);
                 AnnouncerCam.SetActive(true);
                 mainCam.SetActive(false);
@@ -153,5 +154,6 @@ public class ConcourseGameManager : MonoBehaviour
         AnnouncerCam.SetActive(false);
         mainCam.SetActive(true);
         AnnouncerConvo.SetActive(true);
+        cutSceneBarrier.SetActive(false);
     }
 }

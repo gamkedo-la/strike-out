@@ -16,6 +16,8 @@ public class MainMenuManager : MonoBehaviour
     public Animator mainCamAnim;
     public GameObject skip;
 
+    public GameObject music;
+
     public void PlayGame()
     {
         SceneManager.LoadScene("IntroScene");
@@ -225,6 +227,7 @@ public class MainMenuManager : MonoBehaviour
         menu.SetActive(true);
         skip.SetActive(false);
         StartCoroutine(Waiting2());
+        music.SetActive(true);
     }
     IEnumerator Waiting()
     {
