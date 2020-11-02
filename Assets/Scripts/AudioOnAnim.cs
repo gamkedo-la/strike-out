@@ -12,6 +12,7 @@ public class AudioOnAnim : MonoBehaviour
     public AudioData downed;
     public AudioSourceController controller;
     public AudioVOs VO;
+    public bool suppressVO;
 
     void Start()
     {
@@ -28,7 +29,7 @@ public class AudioOnAnim : MonoBehaviour
     {
         controller.PlayRandom(sound);
         // Debug.Log("Pitch Sound!");
-        if (VO != null)
+        if (VO != null && !suppressVO)
             VO.StartCoroutine(VO.PlayAfterDelay(1f, VO.pitchVO));
     }
 
