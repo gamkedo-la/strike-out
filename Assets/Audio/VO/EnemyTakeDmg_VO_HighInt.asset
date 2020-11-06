@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ec881fac809cf54887debcac172057a, type: 3}
+  m_Name: EnemyTakeDmg_VO_HighInt
+  m_EditorClassIdentifier: 
+  Clip: {fileID: 0}
+  Sounds:
+  - {fileID: 8300000, guid: ff4103e705cd38f4fbf1c48c6ab2f21c, type: 3}
+  - {fileID: 8300000, guid: 5911e55960a3f53448b7752285e14165, type: 3}
+  - {fileID: 8300000, guid: 87d8141b8c165334894479f03311da4d, type: 3}
+  - {fileID: 8300000, guid: 16999763ba3be3742b709a3400285575, type: 3}
+  - {fileID: 8300000, guid: daf2269b18e50fa43b2f61a1ce1126ca, type: 3}
+  - {fileID: 8300000, guid: c7c336424b679f44aab3053765590672, type: 3}
+  - {fileID: 8300000, guid: 9a46c4fdb064959418ba860ae06fe2e5, type: 3}
+  - {fileID: 8300000, guid: 24e4507fa677bf745ad9b29dc3520d9e, type: 3}
+  mixer: {fileID: 24100000, guid: 75dd9a9b66abc7c4782df25f39d4594d, type: 2}
+  output: 1
+  Loop: 0
+  Volume: 0
+  Pitch: 0
+  SpatialBlend: 0
+  RandomVolume: 0
+  RandomPitch: 0

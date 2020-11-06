@@ -1,5 +1,13 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+
+[System.Serializable]
+public class AudioClipList
+{
+    [SerializeField] string name;
+    public List<AudioClip> Sounds = new List<AudioClip>();
+}
 
 public class AudioVOs : MonoBehaviour
 {
@@ -7,6 +15,8 @@ public class AudioVOs : MonoBehaviour
     public AudioData enemyAtkVO;
     public AudioData playerTakeDmgVO;
     public AudioData EnemyTakeDmgVO;
+    public List<AudioClipList> VOSounds = new List<AudioClipList>();
+
 
     public AudioSourceController controller;
 
