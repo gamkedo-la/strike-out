@@ -27893,6 +27893,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1690852764}
+        m_MethodName: PlayCurveballVO
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1102362069
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30860,6 +30871,17 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 35255472}
         m_MethodName: OnChangeUpButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1690852764}
+        m_MethodName: PlayChangeupVO
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -33960,6 +33982,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1690852764}
+        m_MethodName: PlaySliderVO
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1631356169
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34988,6 +35021,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: a68a8973690ac4a43ac13fa5b7fd4eec,
         type: 2}
+    - target: {fileID: 7176400363605065484, guid: 88d418b7a7f77de4fa8cf6933239616a,
+        type: 3}
+      propertyPath: VODelay
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7176400363605065484, guid: 88d418b7a7f77de4fa8cf6933239616a,
+        type: 3}
+      propertyPath: controller
+      value: 
+      objectReference: {fileID: 1690852762}
     m_RemovedComponents:
     - {fileID: 529725988985261707, guid: 88d418b7a7f77de4fa8cf6933239616a, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 88d418b7a7f77de4fa8cf6933239616a, type: 3}
@@ -35013,6 +35056,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7ff1578f3b5652f44b26a5240b7f20ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1690852764 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7176400363605065484, guid: 88d418b7a7f77de4fa8cf6933239616a,
+    type: 3}
+  m_PrefabInstance: {fileID: 1690852761}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ed4c194ed780e04a83deb073028827b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1695493963
@@ -38720,6 +38775,17 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 35255472}
         m_MethodName: OnFastballButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1690852764}
+        m_MethodName: PlayFastBallVO
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

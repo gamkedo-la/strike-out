@@ -86,6 +86,15 @@ public class AudioSourceController : MonoBehaviour
         source.spatialBlend = data.SpatialBlend;
     }
 
+    public void SetRandomProperties(AudioData data, List<AudioClip> sounds)
+    {
+        source.clip = data.GetRandomOutsideClip(sounds);
+        source.volume = data.GetRandomVol();
+        source.pitch = data.GetRandomPitch();
+        source.loop = data.Loop;
+        source.spatialBlend = data.SpatialBlend;
+    }
+
     public void SetPosition(Vector3 position)
     {
         transform.position = position;
@@ -103,6 +112,15 @@ public class AudioSourceController : MonoBehaviour
         source = GetNextSource();
         SetSourceOutput(data);
         SetRandomProperties(data);
+        source.Play();
+        // IncrementIndex();
+    }
+
+    public void PlayRandomRead(AudioData data, List<AudioClip> sounds)
+    {
+        source = GetNextSource();
+        SetSourceOutput(data);
+        SetRandomProperties(data, sounds);
         source.Play();
         // IncrementIndex();
     }

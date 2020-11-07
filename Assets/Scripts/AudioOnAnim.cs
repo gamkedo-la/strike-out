@@ -29,8 +29,8 @@ public class AudioOnAnim : MonoBehaviour
     {
         controller.PlayRandom(sound);
         // Debug.Log("Pitch Sound!");
-        if (VO != null && !suppressVO)
-            VO.StartCoroutine(VO.PlayAfterDelay(1f, VO.pitchVO));
+        //if (VO != null && !suppressVO)
+        //    VO.StartCoroutine(VO.PlayAfterDelay(1f, VO.pitchVO));
     }
 
     public void TakeDmg()

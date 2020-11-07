@@ -49,7 +49,7 @@ public class AudioData : ScriptableObject
     {
         string group;
 
-        switch(output)
+        switch (output)
         {
             case AudioOutputGroup.Music:
                 group = "Music";
@@ -65,10 +65,10 @@ public class AudioData : ScriptableObject
                 break;
         }
 
-        if(mixer != null)
+        if (mixer != null)
         {
             return mixer.FindMatchingGroups(group)[0];
-        } 
+        }
         else
         {
             Debug.Log("No Mixer?");
@@ -78,7 +78,7 @@ public class AudioData : ScriptableObject
 
     public AudioClip GetRandomClip()
     {
-        if(Sounds.Count == 0)
+        if (Sounds.Count == 0)
         {
             if (Clip != null)
             {
@@ -92,12 +92,36 @@ public class AudioData : ScriptableObject
         }
 
         int index = 0;
-        if(Sounds.Count > 1)
+        if (Sounds.Count > 1)
         {
             index = Random.Range(0, Sounds.Count - 1);
         }
 
         return Sounds[index];
+    }
+
+    public AudioClip GetRandomOutsideClip(List<AudioClip> other)
+    {
+        if (other.Count == 0)
+        {
+            if (Clip != null)
+            {
+                return Clip;
+            }
+            else
+            {
+                Debug.LogWarning("AudioData does not contain any AudioClips.");
+                return null;
+            }
+        }
+
+        int index = 0;
+        if (other.Count > 1)
+        {
+            index = Random.Range(0, other.Count - 1);
+        }
+
+        return other[index];
     }
 
     //public AudioSourceController Play()

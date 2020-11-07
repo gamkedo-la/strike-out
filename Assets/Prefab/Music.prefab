@@ -87,49 +87,115 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ed4c194ed780e04a83deb073028827b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultData: {fileID: 11400000, guid: bba7f5e914b3b2d409b35db852a8b5cb, type: 2}
   pitchVO: {fileID: 11400000, guid: 7a197a067a6acf7448de093ca5e54cff, type: 2}
   enemyAtkVO: {fileID: 11400000, guid: ebac1c38e043b5241bf85ca389430742, type: 2}
   playerTakeDmgVO: {fileID: 11400000, guid: c2c8874d5d4faf44a9d70ab59acc322f, type: 2}
   EnemyTakeDmgVO: {fileID: 11400000, guid: 161a84be5d1dbba41b660adbe4d9b57a, type: 2}
+  FastballVO: {fileID: 11400000, guid: b1c4286580157174ba939ec772b415e1, type: 2}
+  SliderVO: {fileID: 11400000, guid: 7b9944147f36f814c928056ce71a6016, type: 2}
+  CurveballVO: {fileID: 11400000, guid: 0b5acc2221a83a14da8ea27a18cb5844, type: 2}
+  ChangeUpVO: {fileID: 11400000, guid: 4cb93ac3c92bc364cb4792c4fa7f84c2, type: 2}
+  VODelay: 0
   VOSounds:
-  - name: 
+  - name: WeakGrounder
+    Sounds:
+    - {fileID: 8300000, guid: 5cb011fee1833124c946dff2cbd69b04, type: 3}
+    - {fileID: 8300000, guid: 3f26ce627ac3f6f47b14a21cebaa884c, type: 3}
+    - {fileID: 8300000, guid: a0bc78d22d3698b4f835b2c58e1a2720, type: 3}
+    - {fileID: 8300000, guid: 1ea25457c11320a44844f0cabacbc790, type: 3}
+  - name: SeeingEye
+    Sounds:
+    - {fileID: 8300000, guid: 79f36fbd62172974e8eb0cbec43cb3bf, type: 3}
+    - {fileID: 8300000, guid: 4c8cd11ee285eef4e90c4ada843d492c, type: 3}
+    - {fileID: 8300000, guid: c1bb95640f3c87c4fba6480eea08a344, type: 3}
+    - {fileID: 8300000, guid: afbadda986558c84394cfb36d19156cf, type: 3}
+  - name: PopUp
+    Sounds:
+    - {fileID: 8300000, guid: b9e6221d81f0f6445ac054c7a6eec52c, type: 3}
+    - {fileID: 8300000, guid: 1f23e34c1bdce764a817253a06b62604, type: 3}
+    - {fileID: 8300000, guid: 3cc9f8cbb0be7b64faf12e0359286a81, type: 3}
+    - {fileID: 8300000, guid: 711da49d912345242aa281d54c0b6979, type: 3}
+    - {fileID: 8300000, guid: a3b9f0e41cfe3ad4594b05a84f41a74f, type: 3}
+    - {fileID: 8300000, guid: 7a4c587ed93adea498fe8b9d0307705a, type: 3}
+  - name: LineDrive
+    Sounds:
+    - {fileID: 8300000, guid: 5f0c03442e7204e4981496dcb026d946, type: 3}
+  - name: Shaggin
+    Sounds:
+    - {fileID: 8300000, guid: c81a744182a923f4d9b7c11237e0acd7, type: 3}
+  - name: GroundRule
+    Sounds:
+    - {fileID: 8300000, guid: deeca6e8754ec4f4e9751625d1ff74c5, type: 3}
+  - name: TakingPitch
+    Sounds:
+    - {fileID: 8300000, guid: d79ad266299f53547b79f74e3c447d16, type: 3}
+    - {fileID: 8300000, guid: dc3c57b3ba03c8d4abcfa7741dc3a73b, type: 3}
+  - name: DeepFoul
+    Sounds:
+    - {fileID: 8300000, guid: b96dc962e5f54f740928e629a15f0c9f, type: 3}
+    - {fileID: 8300000, guid: c1521f27b60c77a48bbfbfadc6b7f320, type: 3}
+    - {fileID: 8300000, guid: c2e814a6020c01347939bc6484114578, type: 3}
+    - {fileID: 8300000, guid: 2797071ef65097549b2c890739447775, type: 3}
+  - name: CircusPlay
+    Sounds:
+    - {fileID: 8300000, guid: 5b8d45c3bdf692d43b809de6dffd9cd6, type: 3}
+    - {fileID: 8300000, guid: 6e930adf37b94bd4e8795072d6a0931a, type: 3}
+  - name: GrandStanding
     Sounds: []
-  - name: 
+  - name: TheCall
     Sounds: []
-  - name: 
+  - name: DucksOnPond
+    Sounds:
+    - {fileID: 8300000, guid: 382a6a0293241004693f4fef20fc30b1, type: 3}
+  - name: SouvenirDay
+    Sounds:
+    - {fileID: 8300000, guid: 44d350d974a98304db18bc76ddcbb64c, type: 3}
+  - name: DeadBall
+    Sounds:
+    - {fileID: 8300000, guid: 9d5816cd7decae34780a546df27c5d87, type: 3}
+  - name: Balk
+    Sounds:
+    - {fileID: 8300000, guid: d499dc489b0e7e94f9f5acdeb9aac61c, type: 3}
+  - name: Walk
+    Sounds:
+    - {fileID: 8300000, guid: 53d26cd85dbaa3f4fb783f57bbbe32f8, type: 3}
+  - name: OverTurnedCall
     Sounds: []
-  - name: 
-    Sounds: []
-  - name: 
-    Sounds: []
-  - name: 
-    Sounds: []
-  - name: 
-    Sounds: []
-  - name: 
-    Sounds: []
-  - name: 
-    Sounds: []
-  - name: 
-    Sounds: []
-  - name: 
-    Sounds: []
-  - name: 
-    Sounds: []
-  - name: 
-    Sounds: []
-  - name: 
-    Sounds: []
-  - name: 
-    Sounds: []
-  - name: 
-    Sounds: []
-  - name: 
-    Sounds: []
-  - name: 
-    Sounds: []
-  - name: 
-    Sounds: []
-  - name: 
-    Sounds: []
-  controller: {fileID: 0}
+  - name: StrikeOut
+    Sounds:
+    - {fileID: 8300000, guid: 6d72c4c0498d2774586cc5031178a80f, type: 3}
+  - name: Ejection
+    Sounds:
+    - {fileID: 8300000, guid: 2797071ef65097549b2c890739447775, type: 3}
+  - name: TightStrikeZone
+    Sounds:
+    - {fileID: 8300000, guid: 53d26cd85dbaa3f4fb783f57bbbe32f8, type: 3}
+    - {fileID: 8300000, guid: 506176856255fe549a026d3db70a619c, type: 3}
+  - name: Clutch
+    Sounds:
+    - {fileID: 8300000, guid: c355ec3aead92fd4e976c04c228c70a8, type: 3}
+    - {fileID: 8300000, guid: 93df2c3722317e04a9e3ca7e67edf66f, type: 3}
+  - name: GrandSlam
+    Sounds:
+    - {fileID: 8300000, guid: 841d84e4eba9b6d42a346762a8842332, type: 3}
+    - {fileID: 8300000, guid: 59e021ac97841cf41bbf34e578830a7d, type: 3}
+    - {fileID: 8300000, guid: 34f4657f8a7749e4395d5923ea279c66, type: 3}
+    - {fileID: 8300000, guid: 719bfcc6ddb0f8949a9f5a1f95649d51, type: 3}
+  - name: CalledShot
+    Sounds:
+    - {fileID: 8300000, guid: 53d26cd85dbaa3f4fb783f57bbbe32f8, type: 3}
+  - name: Rally
+    Sounds:
+    - {fileID: 8300000, guid: c355ec3aead92fd4e976c04c228c70a8, type: 3}
+  - name: Double
+    Sounds:
+    - {fileID: 8300000, guid: 53d26cd85dbaa3f4fb783f57bbbe32f8, type: 3}
+  - name: RBIMachine
+    Sounds:
+    - {fileID: 8300000, guid: c355ec3aead92fd4e976c04c228c70a8, type: 3}
+  - name: DeepDrive
+    Sounds:
+    - {fileID: 8300000, guid: 53d26cd85dbaa3f4fb783f57bbbe32f8, type: 3}
+    - {fileID: 8300000, guid: 0f9380b2f3c2b1c4fba8e0b1e6b9d0a0, type: 3}
+  controller: {fileID: 6238930934979988517}

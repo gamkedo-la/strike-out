@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -58,7 +57,7 @@ public class Unit : MonoBehaviour
 
     public Text DamageUI;
 
-    public bool Cheat = true; 
+    public bool Cheat = true;
 
     //enemyAttack
     public int minAttackAvil, maxAttackAvil;
@@ -346,7 +345,7 @@ public class Unit : MonoBehaviour
     {
         var audioData = GetComponent<AudioEnemyAnim>();
 
-        if(audioData != null)
+        if (audioData != null)
             audioData.TakeDmg();
     }
 

@@ -22,7 +22,7 @@ public class AudioEnemyAnim : AudioEventGeneric
         if (controller == null)
             controller = gameObject.AddComponent<AudioSourceController>();
 
-        VO = FindObjectOfType<AudioVOs>();
+        // VO = FindObjectOfType<AudioVOs>();
     }
 
     void BatWhoosh()
@@ -34,8 +34,8 @@ public class AudioEnemyAnim : AudioEventGeneric
     {
         controller.PlayRandom(sound);
 
-        if (VO != null)
-            VO.StartCoroutine(VO.PlayAfterDelay(1f, VO.enemyAtkVO));
+        //if (VO != null)
+        //    VO.StartCoroutine(VO.PlayAfterDelay(1f, VO.enemyAtkVO));
     }
 
     void MittPop()
