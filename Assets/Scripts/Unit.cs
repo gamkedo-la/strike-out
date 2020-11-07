@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -347,10 +348,12 @@ public class Unit : MonoBehaviour
 
     private void AttackVO(int attackToDo)
     {
+        Debug.Log("Attack to do: " + attackToDo);
         if (VO != null)
         {
-            var VOtoPlay = VO.VOSounds[attackToDo].Sounds;
-            VO.PlayAfterDelay(VO.VODelay, VO.defaultData, VOtoPlay);
+            List<AudioClip> VOtoPlay = VO.VOSounds[attackToDo].Sounds;
+            StartCoroutine(VO.PlayAfterDelay(VO.VODelay, VO.defaultData, VOtoPlay));
+            Debug.Log("Tried to play enemy VO");
 
             //controller.PlayRandomRead(VO.defaultData, VOtoPlay);
         }

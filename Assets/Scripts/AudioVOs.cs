@@ -54,7 +54,7 @@ public class AudioVOs : MonoBehaviour
 
         controller.PlayRandomRead(data, soundsToPlay);
         Debug.LogWarning("Calling VO");
-        yield return null;
+        // yield return null;
     }
 
     public void PlayFastBallVO()

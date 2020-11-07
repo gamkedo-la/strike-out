@@ -15,7 +15,7 @@ MonoBehaviour:
   Clip: {fileID: 0}
   Sounds:
   - {fileID: 8300000, guid: 34e8993fe630fb344b40a432899ed57f, type: 3}
-  - {fileID: 8300000, guid: 9921824eb0030b8408aaaffe41642c4b, type: 3}
+  - {fileID: 8300000, guid: bec94327cfb8b9c4cbfe2e2ad84941ef, type: 3}
   - {fileID: 8300000, guid: 77a309c885a099c44b30cfae6e27ba74, type: 3}
   - {fileID: 8300000, guid: bec94327cfb8b9c4cbfe2e2ad84941ef, type: 3}
   - {fileID: 8300000, guid: bde266d97e968c94db606a8fd3a015c6, type: 3}
