@@ -14,14 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Clip: {fileID: 0}
   Sounds:
-  - {fileID: 8300000, guid: ff4103e705cd38f4fbf1c48c6ab2f21c, type: 3}
-  - {fileID: 8300000, guid: 5911e55960a3f53448b7752285e14165, type: 3}
-  - {fileID: 8300000, guid: 87d8141b8c165334894479f03311da4d, type: 3}
-  - {fileID: 8300000, guid: 16999763ba3be3742b709a3400285575, type: 3}
-  - {fileID: 8300000, guid: daf2269b18e50fa43b2f61a1ce1126ca, type: 3}
-  - {fileID: 8300000, guid: c7c336424b679f44aab3053765590672, type: 3}
-  - {fileID: 8300000, guid: 9a46c4fdb064959418ba860ae06fe2e5, type: 3}
-  - {fileID: 8300000, guid: 24e4507fa677bf745ad9b29dc3520d9e, type: 3}
+  - {fileID: 8300000, guid: 9921824eb0030b8408aaaffe41642c4b, type: 3}
+  - {fileID: 8300000, guid: 3dd17f6d59f92fb408ff2577e57ada8c, type: 3}
+  - {fileID: 8300000, guid: f4c33f10fa10a1e42894a20f0bbed076, type: 3}
   mixer: {fileID: 24100000, guid: 75dd9a9b66abc7c4782df25f39d4594d, type: 2}
   output: 1
   Loop: 0

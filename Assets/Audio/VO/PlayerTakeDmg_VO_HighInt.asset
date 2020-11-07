@@ -13,14 +13,7 @@ MonoBehaviour:
   m_Name: PlayerTakeDmg_VO_HighInt
   m_EditorClassIdentifier: 
   Clip: {fileID: 0}
-  Sounds:
-  - {fileID: 8300000, guid: 6590c27e534bbe644a16cc54384a6a5c, type: 3}
-  - {fileID: 8300000, guid: 1acd7536f32e7a044b2a8383cff48ced, type: 3}
-  - {fileID: 8300000, guid: 4b926453d9b39694e81f3c653bf64a06, type: 3}
-  - {fileID: 8300000, guid: 5402db602235dda4e90d668f24b84243, type: 3}
-  - {fileID: 8300000, guid: 95704e522b2111345a6fb0c23b072407, type: 3}
-  - {fileID: 8300000, guid: a27ab394941d25146bbc36b7513c9659, type: 3}
-  - {fileID: 8300000, guid: 8f7761419b68a5c45885beb33f00f800, type: 3}
+  Sounds: []
   mixer: {fileID: 24100000, guid: 75dd9a9b66abc7c4782df25f39d4594d, type: 2}
   output: 1
   Loop: 0

@@ -91,3 +91,45 @@ MonoBehaviour:
   enemyAtkVO: {fileID: 11400000, guid: ebac1c38e043b5241bf85ca389430742, type: 2}
   playerTakeDmgVO: {fileID: 11400000, guid: c2c8874d5d4faf44a9d70ab59acc322f, type: 2}
   EnemyTakeDmgVO: {fileID: 11400000, guid: 161a84be5d1dbba41b660adbe4d9b57a, type: 2}
+  VOSounds:
+  - name: 
+    Sounds: []
+  - name: 
+    Sounds: []
+  - name: 
+    Sounds: []
+  - name: 
+    Sounds: []
+  - name: 
+    Sounds: []
+  - name: 
+    Sounds: []
+  - name: 
+    Sounds: []
+  - name: 
+    Sounds: []
+  - name: 
+    Sounds: []
+  - name: 
+    Sounds: []
+  - name: 
+    Sounds: []
+  - name: 
+    Sounds: []
+  - name: 
+    Sounds: []
+  - name: 
+    Sounds: []
+  - name: 
+    Sounds: []
+  - name: 
+    Sounds: []
+  - name: 
+    Sounds: []
+  - name: 
+    Sounds: []
+  - name: 
+    Sounds: []
+  - name: 
+    Sounds: []
+  controller: {fileID: 0}

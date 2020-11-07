@@ -14,13 +14,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Clip: {fileID: 0}
   Sounds:
-  - {fileID: 8300000, guid: 6590c27e534bbe644a16cc54384a6a5c, type: 3}
-  - {fileID: 8300000, guid: 1acd7536f32e7a044b2a8383cff48ced, type: 3}
-  - {fileID: 8300000, guid: 4b926453d9b39694e81f3c653bf64a06, type: 3}
-  - {fileID: 8300000, guid: 5402db602235dda4e90d668f24b84243, type: 3}
-  - {fileID: 8300000, guid: 95704e522b2111345a6fb0c23b072407, type: 3}
-  - {fileID: 8300000, guid: a27ab394941d25146bbc36b7513c9659, type: 3}
-  - {fileID: 8300000, guid: 8f7761419b68a5c45885beb33f00f800, type: 3}
+  - {fileID: 8300000, guid: 4c12f09504b9a774ab428e430714b102, type: 3}
+  - {fileID: 8300000, guid: 53d26cd85dbaa3f4fb783f57bbbe32f8, type: 3}
+  - {fileID: 8300000, guid: a3baa98f9682a5143918820108f56e21, type: 3}
+  - {fileID: 8300000, guid: c327398a11c734b4b8f27ce0993f7355, type: 3}
+  - {fileID: 8300000, guid: 4bd112b32b821b447a1a8bb002e94cad, type: 3}
+  - {fileID: 8300000, guid: e1cba9fae31ed2c4faa0b81f6f029541, type: 3}
+  - {fileID: 8300000, guid: cc8a69c13cb03a94480d5a54ab005f90, type: 3}
+  - {fileID: 8300000, guid: 7508617114bc5f24198d1cd92fc4b62c, type: 3}
+  - {fileID: 8300000, guid: 6d72c4c0498d2774586cc5031178a80f, type: 3}
+  - {fileID: 8300000, guid: 95f6d0640315650438a3859b658d653d, type: 3}
+  - {fileID: 8300000, guid: 4a73c0fbb2c311b42b45c3f441f894a0, type: 3}
+  - {fileID: 8300000, guid: 31de4a72c2c250049aeecc163085c71d, type: 3}
+  - {fileID: 8300000, guid: 24c27cf8755e8754590908bd068f9232, type: 3}
   mixer: {fileID: 24100000, guid: 75dd9a9b66abc7c4782df25f39d4594d, type: 2}
   output: 1
   Loop: 0
