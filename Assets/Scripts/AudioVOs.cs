@@ -48,6 +48,15 @@ public class AudioVOs : MonoBehaviour
         yield return null;
     }
 
+    public IEnumerator PlayAfterDelay(float time, AudioData data, List<AudioClip> soundsToPlay)
+    {
+        yield return new WaitForSeconds(time);
+
+        controller.PlayRandomRead(data, soundsToPlay);
+        Debug.LogWarning("Calling VO");
+        yield return null;
+    }
+
     public void PlayFastBallVO()
     {
         StartCoroutine(PlayAfterDelay(VODelay, FastballVO));

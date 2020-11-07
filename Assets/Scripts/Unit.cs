@@ -69,6 +69,10 @@ public class Unit : MonoBehaviour
     //PlayerBallSpawn/Release
     public Transform releasePoint;
     public GameObject ballInGlove, ballInHand, releaseBall;
+
+    //VO Rig
+    public AudioVOs VO;
+
     //public GameObject self;
 
 
@@ -234,7 +238,7 @@ public class Unit : MonoBehaviour
         MoneyToDistribute = Random.Range(minMoney, maxMoney);
 
 
-
+        VO = FindObjectOfType<AudioVOs>();
         //Remove This later
         //currentHP = 100;
     }
@@ -258,87 +262,98 @@ public class Unit : MonoBehaviour
         attackToDo = Random.Range(minAttackAvil, maxAttackAvil);
 
         if (attackToDo == 0)
-        { WeakGrounder(); }
+        { WeakGrounder(); AttackVO(attackToDo); }
 
         if (attackToDo == 1)
-        { SeeingEye(); }
+        { SeeingEye(); AttackVO(attackToDo); }
 
         if (attackToDo == 2)
-        { PopUp(); }
+        { PopUp(); AttackVO(attackToDo); }
 
         if (attackToDo == 3)
-        { LineDrive(); }
+        { LineDrive(); AttackVO(attackToDo); }
 
         if (attackToDo == 4)
-        { Shagging(); }
+        { Shagging(); AttackVO(attackToDo); }
 
         if (attackToDo == 5)
-        { GroundRule(); }
+        { GroundRule(); AttackVO(attackToDo); }
 
         if (attackToDo == 6)
-        { TakingPitch(); }
+        { TakingPitch(); AttackVO(attackToDo); }
 
         if (attackToDo == 7)
-        { DeepFoul(); }
+        { DeepFoul(); AttackVO(attackToDo); }
 
         if (attackToDo == 8)
-        { CircusPlay(); }
+        { CircusPlay(); AttackVO(attackToDo); }
 
         if (attackToDo == 9)
-        { Grandstanding(); }
+        { Grandstanding(); AttackVO(attackToDo); }
 
         if (attackToDo == 10)
-        { TheCall(); }
+        { TheCall(); AttackVO(attackToDo); }
 
         if (attackToDo == 11)
-        { DucksOnPond(); }
+        { DucksOnPond(); AttackVO(attackToDo); }
 
         if (attackToDo == 12)
-        { SouvenirDay(); }
+        { SouvenirDay(); AttackVO(attackToDo); }
 
         if (attackToDo == 13)
-        { DeadBall(); }
+        { DeadBall(); AttackVO(attackToDo); }
 
         if (attackToDo == 14)
-        { Balk(); }
+        { Balk(); AttackVO(attackToDo); }
 
         if (attackToDo == 15)
-        { Walk(); }
+        { Walk(); AttackVO(attackToDo); }
 
         if (attackToDo == 16)
-        { OverTurnedCall(); }
+        { OverTurnedCall(); AttackVO(attackToDo); }
 
         if (attackToDo == 17)
-        { StrikeOut(); }
+        { StrikeOut(); AttackVO(attackToDo); }
 
         if (attackToDo == 18)
-        { Ejection(); }
+        { Ejection(); AttackVO(attackToDo); }
 
         if (attackToDo == 19)
-        { TightStrikeZone(); }
+        { TightStrikeZone(); AttackVO(attackToDo); }
 
 
 
         if (attackToDo == 20)
-        { Clutch(); }
+        { Clutch(); AttackVO(attackToDo); }
 
         if (attackToDo == 21)
-        { GrandSlam(); }
+        { GrandSlam(); AttackVO(attackToDo); }
 
         if (attackToDo == 22)
-        { CalledShot(); }
+        { CalledShot(); AttackVO(attackToDo); }
 
         if (attackToDo == 23)
-        { Rally(); }
+        { Rally(); AttackVO(attackToDo); }
 
         if (attackToDo == 24)
-        { Double(); }
+        { Double(); AttackVO(attackToDo); }
 
         if (attackToDo == 25)
-        { RBIMachine(); }
+        { RBIMachine(); AttackVO(attackToDo); }
 
         if (attackToDo == 26)
-        { DeepDrive(); }
+        { DeepDrive(); AttackVO(attackToDo); }
+    }
+
+    private void AttackVO(int attackToDo)
+    {
+        if (VO != null)
+        {
+            var VOtoPlay = VO.VOSounds[attackToDo].Sounds;
+            VO.PlayAfterDelay(VO.VODelay, VO.defaultData, VOtoPlay);
+
+            //controller.PlayRandomRead(VO.defaultData, VOtoPlay);
+        }
     }
 
     private void TakeDamageAudio()
