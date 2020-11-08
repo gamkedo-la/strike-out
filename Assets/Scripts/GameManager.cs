@@ -644,18 +644,18 @@ public class GameManager : MonoBehaviour
 
             StarterMoraleMax = 25;
             MidRelivMoraleMax = 20;
-            SetUpMoraleMax = 15;
-            CloserMoraleMax = 10;
+            SetUpMoraleMax = 18;
+            CloserMoraleMax = 15;
 
             StarterEnergy = 25;
             MidRelivEnergy = 20;
-            SetUpEnergy = 18;
-            CloserEnergy = 15;
+            SetUpEnergy = 15;
+            CloserEnergy = 12;
 
             StarterEnergyMax = 25;
             MidRelievEnergyMax = 20;
             SetUpEnergyMax = 15;
-            CloserEnergyMax = 10;
+            CloserEnergyMax = 12;
 
             if (DebugCheatDeathConditions)
             {
