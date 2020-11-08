@@ -638,8 +638,8 @@ public class GameManager : MonoBehaviour
 
             StarterMorale = 25;
             MidRelivMorale = 20;
-            SetUpMorale = 15;
-            CloserMorale = 10;
+            SetUpMorale = 18;
+            CloserMorale = 15;
 
 
             StarterMoraleMax = 25;
@@ -649,8 +649,8 @@ public class GameManager : MonoBehaviour
 
             StarterEnergy = 25;
             MidRelivEnergy = 20;
-            SetUpEnergy = 15;
-            CloserEnergy = 10;
+            SetUpEnergy = 18;
+            CloserEnergy = 15;
 
             StarterEnergyMax = 25;
             MidRelievEnergyMax = 20;

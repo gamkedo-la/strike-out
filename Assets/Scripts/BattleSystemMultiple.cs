@@ -1043,6 +1043,9 @@ public class BattleSystemMultiple : MonoBehaviour
                     isDead = enemyUnit[enemyUnitSelected].TakeDamageFast(Starter.fastballDamage + GameManager.StarterFast);
 
                     fastball = false;
+                    slider = false;
+                    curveball = false;
+                    changeup = false;
                     dialogueText.text = "The attack is successful!";
                     yield return new WaitForSeconds(2f);
 
@@ -1078,7 +1081,10 @@ public class BattleSystemMultiple : MonoBehaviour
                     StarterAnim.Play("StarterWindup");
                     yield return new WaitForSeconds(2f);
                     isDead = enemyUnit[enemyUnitSelected].TakeDamageSlid(Starter.sliderDamage + GameManager.StarterSlid);
+                    fastball = false;
                     slider = false;
+                    curveball = false;
+                    changeup = false;
                     dialogueText.text = "The attack is successful!";
                     yield return new WaitForSeconds(2f);
 
@@ -1115,7 +1121,10 @@ public class BattleSystemMultiple : MonoBehaviour
                     StarterAnim.Play("StarterWindup");
                     yield return new WaitForSeconds(2f);
                     isDead = enemyUnit[enemyUnitSelected].TakeDamageCurve(Starter.curveballDamage + GameManager.StarterCurve);
+                    fastball = false;
+                    slider = false;
                     curveball = false;
+                    changeup = false;
                     dialogueText.text = "The attack is successful!";
                     yield return new WaitForSeconds(2f);
 
@@ -1149,6 +1158,9 @@ public class BattleSystemMultiple : MonoBehaviour
                     StarterAnim.Play("StarterWindup");
                     yield return new WaitForSeconds(2f);
                     isDead = enemyUnit[enemyUnitSelected].TakeDamageChange(Starter.changeupDamage + GameManager.StarterChange);
+                    fastball = false;
+                    slider = false;
+                    curveball = false;
                     changeup = false;
                     dialogueText.text = "The attack is successful!";
                     yield return new WaitForSeconds(2f);
@@ -1196,6 +1208,9 @@ public class BattleSystemMultiple : MonoBehaviour
                     yield return new WaitForSeconds(2f);
                     isDead = enemyUnit[enemyUnitSelected].TakeDamageFast(MiddleReliever.fastballDamage + GameManager.MiddleFast);
                     fastball = false;
+                    slider = false;
+                    curveball = false;
+                    changeup = false;
                     //enemyHUD.SetHP(enemyUnit[enemyUnitSelected].currentHP);
                     dialogueText.text = "The attack is successful!";
                     yield return new WaitForSeconds(2f);
@@ -1234,7 +1249,10 @@ public class BattleSystemMultiple : MonoBehaviour
                     MiddleEnergy.value = GameManager.MidRelivEnergy / GameManager.MidRelievEnergyMax;
                     yield return new WaitForSeconds(2f);
                     isDead = enemyUnit[enemyUnitSelected].TakeDamageSlid(MiddleReliever.sliderDamage + GameManager.MiddleSlid);
+                    fastball = false;
                     slider = false;
+                    curveball = false;
+                    changeup = false;
                     //enemyHUD.SetHP(enemyUnit[enemyUnitSelected].currentHP);
                     dialogueText.text = "The attack is successful!";
                     yield return new WaitForSeconds(2f);
@@ -1273,7 +1291,10 @@ public class BattleSystemMultiple : MonoBehaviour
                     MiddleEnergy.value = GameManager.MidRelivEnergy / GameManager.MidRelievEnergyMax;
                     yield return new WaitForSeconds(2f);
                     isDead = enemyUnit[enemyUnitSelected].TakeDamageCurve(MiddleReliever.curveballDamage + GameManager.MiddleCurve);
+                    fastball = false;
+                    slider = false;
                     curveball = false;
+                    changeup = false;
                     //enemyHUD.SetHP(enemyUnit[enemyUnitSelected].currentHP);
                     dialogueText.text = "The attack is successful!";
                     yield return new WaitForSeconds(2f);
@@ -1312,6 +1333,9 @@ public class BattleSystemMultiple : MonoBehaviour
                     MiddleEnergy.value = GameManager.MidRelivEnergy / GameManager.MidRelievEnergyMax;
                     yield return new WaitForSeconds(2f);
                     isDead = enemyUnit[enemyUnitSelected].TakeDamageChange(MiddleReliever.changeupDamage + GameManager.MiddleChange);
+                    fastball = false;
+                    slider = false;
+                    curveball = false;
                     changeup = false;
                     //enemyHUD.SetHP(enemyUnit[enemyUnitSelected].currentHP);
                     dialogueText.text = "The attack is successful!";
@@ -1363,6 +1387,9 @@ public class BattleSystemMultiple : MonoBehaviour
                     yield return new WaitForSeconds(2f);
                     isDead = enemyUnit[enemyUnitSelected].TakeDamageFast(SetUp.fastballDamage + GameManager.SetUpFast);
                     fastball = false;
+                    slider = false;
+                    curveball = false;
+                    changeup = false;
 
                     dialogueText.text = "The attack is successful!";
                     yield return new WaitForSeconds(2f);
@@ -1402,7 +1429,10 @@ public class BattleSystemMultiple : MonoBehaviour
                     SetUpEnergy.value = GameManager.SetUpEnergy / GameManager.SetUpEnergyMax;
                     yield return new WaitForSeconds(2f);
                     isDead = enemyUnit[enemyUnitSelected].TakeDamageSlid(SetUp.sliderDamage + GameManager.SetUpSlid);
+                    fastball = false;
                     slider = false;
+                    curveball = false;
+                    changeup = false;
 
                     dialogueText.text = "The attack is successful!";
                     yield return new WaitForSeconds(2f);
@@ -1440,7 +1470,10 @@ public class BattleSystemMultiple : MonoBehaviour
                     SetUpEnergy.value = GameManager.SetUpEnergy / GameManager.SetUpEnergyMax;
                     yield return new WaitForSeconds(2f);
                     isDead = enemyUnit[enemyUnitSelected].TakeDamageCurve(SetUp.curveballDamage + GameManager.SetUpCurve);
+                    fastball = false;
+                    slider = false;
                     curveball = false;
+                    changeup = false;
 
                     dialogueText.text = "The attack is successful!";
                     yield return new WaitForSeconds(2f);
@@ -1480,6 +1513,9 @@ public class BattleSystemMultiple : MonoBehaviour
                     SetUpEnergy.value = GameManager.SetUpEnergy / GameManager.SetUpEnergyMax;
                     yield return new WaitForSeconds(2f);
                     isDead = enemyUnit[enemyUnitSelected].TakeDamageChange(SetUp.changeupDamage + GameManager.SetUpChange);
+                    fastball = false;
+                    slider = false;
+                    curveball = false;
                     changeup = false;
 
                     dialogueText.text = "The attack is successful!";
@@ -1530,6 +1566,9 @@ public class BattleSystemMultiple : MonoBehaviour
                     yield return new WaitForSeconds(2f);
                     isDead = enemyUnit[enemyUnitSelected].TakeDamageFast(Closer.fastballDamage + GameManager.CloserFast);
                     fastball = false;
+                    slider = false;
+                    curveball = false;
+                    changeup = false;
 
                     dialogueText.text = "The attack is successful!";
                     yield return new WaitForSeconds(2f);
@@ -1568,7 +1607,10 @@ public class BattleSystemMultiple : MonoBehaviour
                     CloserEnergy.value = GameManager.CloserEnergy / GameManager.CloserEnergyMax;
                     yield return new WaitForSeconds(2f);
                     isDead = enemyUnit[enemyUnitSelected].TakeDamageSlid(Closer.sliderDamage + GameManager.CloserSlid);
+                    fastball = false;
                     slider = false;
+                    curveball = false;
+                    changeup = false;
 
                     dialogueText.text = "The attack is successful!";
                     yield return new WaitForSeconds(2f);
@@ -1607,7 +1649,10 @@ public class BattleSystemMultiple : MonoBehaviour
                     CloserEnergy.value = GameManager.CloserEnergy / GameManager.CloserEnergyMax;
                     yield return new WaitForSeconds(2f);
                     isDead = enemyUnit[enemyUnitSelected].TakeDamageCurve(Closer.curveballDamage + GameManager.CloserCurve);
+                    fastball = false;
+                    slider = false;
                     curveball = false;
+                    changeup = false;
 
                     dialogueText.text = "The attack is successful!";
                     yield return new WaitForSeconds(2f);
@@ -1643,6 +1688,9 @@ public class BattleSystemMultiple : MonoBehaviour
                     CloserEnergy.value = GameManager.CloserEnergy / GameManager.CloserEnergyMax;
                     yield return new WaitForSeconds(2f);
                     isDead = enemyUnit[enemyUnitSelected].TakeDamageChange(Closer.changeupDamage + GameManager.CloserChange);
+                    fastball = false;
+                    slider = false;
+                    curveball = false;
                     changeup = false;
 
                     dialogueText.text = "The attack is successful!";
