@@ -375,13 +375,13 @@ public class BattleSystemMultiple : MonoBehaviour
     private void Update()
     {
         //Cheat Code to Win Battle
-        {
+        /*{
             if (Input.GetKeyDown(KeyCode.E))
             {
                 CheatToInstantlyWin();
             }
         }
-
+        */
 
         if (GameManager.StarterMorale <= 0)
         {
